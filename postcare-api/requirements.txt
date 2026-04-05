@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+openai
+python-multipart
+paddlepaddle
+paddleocr
+openai-whisper
+edge-tts
+Pillow
+numpy

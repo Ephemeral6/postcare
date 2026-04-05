@@ -1,0 +1,5623 @@
+{
+  "version": "1.0",
+  "last_updated": "2026-04-04",
+  "source": "基于《诊断学》第9版及中国临床检验标准",
+  "total_count": 150,
+  "categories": [
+    {
+      "category_id": "CBC",
+      "category_name": "血常规",
+      "category_name_en": "Complete Blood Count",
+      "indicators": [
+        {
+          "id": "CBC-001",
+          "name": "白细胞计数",
+          "name_en": "White Blood Cell Count",
+          "abbreviation": "WBC",
+          "unit": "×10⁹/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 3.5,
+              "max": 9.5
+            },
+            "adult_female": {
+              "min": 3.5,
+              "max": 9.5
+            },
+            "child": {
+              "min": 5.0,
+              "max": 12.0
+            },
+            "newborn": {
+              "min": 15.0,
+              "max": 20.0
+            }
+          },
+          "clinical_significance": {
+            "high": "白细胞增高常见于细菌感染、炎症、应激反应、白血病、组织坏死等。生理性增高见于剧烈运动、妊娠、新生儿等。",
+            "low": "白细胞减低常见于病毒感染、再生障碍性贫血、脾功能亢进、放化疗后骨髓抑制、某些自身免疫性疾病等。",
+            "normal": "白细胞计数在正常范围内，提示机体免疫功能基本正常，无明显感染或血液系统异常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "白细胞是血液中负责抵抗病菌的'卫兵'，帮助身体对抗感染。",
+            "high_simple": "白细胞偏高，可能身体正在对抗感染或有炎症，建议找医生看看是什么原因。",
+            "low_simple": "白细胞偏低，说明身体的抵抗力可能下降了，容易生病，需要注意防护。",
+            "normal_simple": "白细胞正常，说明身体的免疫防御能力良好。"
+          },
+          "related_indicators": [
+            "CBC-010",
+            "CBC-006",
+            "CBC-005"
+          ],
+          "common_in_departments": [
+            "血液科",
+            "感染科",
+            "内科",
+            "急诊科"
+          ]
+        },
+        {
+          "id": "CBC-002",
+          "name": "红细胞计数",
+          "name_en": "Red Blood Cell Count",
+          "abbreviation": "RBC",
+          "unit": "×10¹²/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 4.3,
+              "max": 5.8
+            },
+            "adult_female": {
+              "min": 3.8,
+              "max": 5.1
+            },
+            "newborn": {
+              "min": 6.0,
+              "max": 7.0
+            }
+          },
+          "clinical_significance": {
+            "high": "红细胞增多见于真性红细胞增多症、慢性缺氧（如肺心病、高原居住）、严重脱水等。",
+            "low": "红细胞减少见于各类贫血（缺铁性、巨幼细胞性、再生障碍性等）、急慢性失血、白血病等。",
+            "normal": "红细胞计数正常，提示造血功能正常，无明显贫血或红细胞增多症。"
+          },
+          "patient_explanation": {
+            "what_is_it": "红细胞是血液中负责运输氧气的细胞，就像身体的'运输车'。",
+            "high_simple": "红细胞偏高，可能与缺氧或脱水有关，建议多喝水并就医检查。",
+            "low_simple": "红细胞偏低，可能有贫血，会感觉乏力、头晕，建议查明原因并补充营养。",
+            "normal_simple": "红细胞正常，说明血液运输氧气的能力正常。"
+          },
+          "related_indicators": [
+            "CBC-003",
+            "CBC-012",
+            "CBC-013"
+          ],
+          "common_in_departments": [
+            "血液科",
+            "内科"
+          ]
+        },
+        {
+          "id": "CBC-003",
+          "name": "血红蛋白",
+          "name_en": "Hemoglobin",
+          "abbreviation": "HGB",
+          "unit": "g/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 130,
+              "max": 175
+            },
+            "adult_female": {
+              "min": 115,
+              "max": 150
+            },
+            "newborn": {
+              "min": 170,
+              "max": 200
+            }
+          },
+          "clinical_significance": {
+            "high": "血红蛋白增高见于真性红细胞增多症、慢性缺氧、严重脱水、大面积烧伤等。",
+            "low": "血红蛋白降低是贫血的直接指标，根据程度分为轻度（>90g/L）、中度（60-90g/L）、重度（30-60g/L）、极重度（<30g/L）。",
+            "normal": "血红蛋白正常，提示无贫血状态，血液携氧能力正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "血红蛋白是红细胞里携带氧气的物质，就像'氧气搬运工'。",
+            "high_simple": "血红蛋白偏高，血液可能太浓稠，需要医生进一步检查。",
+            "low_simple": "血红蛋白偏低，说明可能贫血，容易头晕、乏力，要注意补充铁和营养。",
+            "normal_simple": "血红蛋白正常，说明血液携带氧气的能力正常，没有贫血。"
+          },
+          "related_indicators": [
+            "CBC-002",
+            "CBC-012",
+            "CBC-014"
+          ],
+          "common_in_departments": [
+            "血液科",
+            "内科",
+            "妇产科"
+          ]
+        },
+        {
+          "id": "CBC-004",
+          "name": "血小板计数",
+          "name_en": "Platelet Count",
+          "abbreviation": "PLT",
+          "unit": "×10⁹/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 125,
+              "max": 350
+            },
+            "adult_female": {
+              "min": 125,
+              "max": 350
+            }
+          },
+          "clinical_significance": {
+            "high": "血小板增多见于骨髓增殖性疾病、急性感染、缺铁性贫血、脾切除术后等，可能增加血栓风险。",
+            "low": "血小板减少见于免疫性血小板减少症、再生障碍性贫血、DIC、脾功能亢进、放化疗后等，可致出血倾向。",
+            "normal": "血小板计数正常，提示凝血功能基本正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "血小板是帮助止血的小细胞，受伤出血时它们会聚在一起堵住伤口。",
+            "high_simple": "血小板偏高，血液容易结块形成血栓，需要医生评估原因。",
+            "low_simple": "血小板偏低，说明止血能力下降，容易出血或淤青，要小心避免磕碰。",
+            "normal_simple": "血小板正常，说明身体的止血功能正常。"
+          },
+          "related_indicators": [
+            "CBC-017",
+            "CBC-018",
+            "CBC-019",
+            "COAG-006"
+          ],
+          "common_in_departments": [
+            "血液科",
+            "急诊科"
+          ]
+        },
+        {
+          "id": "CBC-005",
+          "name": "中性粒细胞百分比",
+          "name_en": "Neutrophil Percentage",
+          "abbreviation": "NEUT%",
+          "unit": "%",
+          "reference_range": {
+            "adult_male": {
+              "min": 40,
+              "max": 75
+            },
+            "adult_female": {
+              "min": 40,
+              "max": 75
+            }
+          },
+          "clinical_significance": {
+            "high": "中性粒细胞百分比增高多见于细菌感染、急性炎症、组织损伤、大手术后、急性心肌梗死等。",
+            "low": "中性粒细胞百分比减低见于病毒感染、伤寒、疟疾、再生障碍性贫血、粒细胞缺乏症等。",
+            "normal": "中性粒细胞百分比正常，提示机体无明显细菌感染或炎症。"
+          },
+          "patient_explanation": {
+            "what_is_it": "中性粒细胞是白细胞的一种，是抵抗细菌感染的主力军。",
+            "high_simple": "中性粒细胞偏高，通常说明身体可能有细菌感染或炎症。",
+            "low_simple": "中性粒细胞偏低，身体抵抗细菌的能力减弱，要注意卫生防护。",
+            "normal_simple": "中性粒细胞比例正常，身体抵抗细菌感染的能力正常。"
+          },
+          "related_indicators": [
+            "CBC-001",
+            "CBC-010"
+          ],
+          "common_in_departments": [
+            "感染科",
+            "血液科",
+            "内科"
+          ]
+        },
+        {
+          "id": "CBC-006",
+          "name": "淋巴细胞百分比",
+          "name_en": "Lymphocyte Percentage",
+          "abbreviation": "LYMPH%",
+          "unit": "%",
+          "reference_range": {
+            "adult_male": {
+              "min": 20,
+              "max": 50
+            },
+            "adult_female": {
+              "min": 20,
+              "max": 50
+            }
+          },
+          "clinical_significance": {
+            "high": "淋巴细胞百分比增高见于病毒感染（流感、麻疹等）、某些慢性感染（结核）、淋巴细胞白血病等。",
+            "low": "淋巴细胞百分比减低见于应用肾上腺皮质激素、免疫缺陷病、放射病等。",
+            "normal": "淋巴细胞百分比正常，提示免疫系统功能基本正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "淋巴细胞是白细胞的一种，主要负责对抗病毒和调节免疫。",
+            "high_simple": "淋巴细胞偏高，可能有病毒感染，建议看医生查明原因。",
+            "low_simple": "淋巴细胞偏低，免疫力可能下降，需要注意休息和营养。",
+            "normal_simple": "淋巴细胞比例正常，免疫系统工作正常。"
+          },
+          "related_indicators": [
+            "CBC-001",
+            "CBC-011"
+          ],
+          "common_in_departments": [
+            "感染科",
+            "血液科",
+            "免疫科"
+          ]
+        },
+        {
+          "id": "CBC-007",
+          "name": "单核细胞百分比",
+          "name_en": "Monocyte Percentage",
+          "abbreviation": "MONO%",
+          "unit": "%",
+          "reference_range": {
+            "adult_male": {
+              "min": 3,
+              "max": 10
+            },
+            "adult_female": {
+              "min": 3,
+              "max": 10
+            }
+          },
+          "clinical_significance": {
+            "high": "单核细胞增高见于某些感染（结核、亚急性细菌性心内膜炎）、血液病（单核细胞白血病）、感染恢复期。",
+            "low": "单核细胞减少临床意义不大。",
+            "normal": "单核细胞百分比正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "单核细胞是白细胞的一种，负责吞噬清除病菌和老旧细胞。",
+            "high_simple": "单核细胞偏高，可能与感染恢复或慢性炎症有关，需医生判断。",
+            "low_simple": "单核细胞偏低，通常问题不大，可以和医生确认。",
+            "normal_simple": "单核细胞比例正常。"
+          },
+          "related_indicators": [
+            "CBC-001"
+          ],
+          "common_in_departments": [
+            "血液科",
+            "感染科"
+          ]
+        },
+        {
+          "id": "CBC-008",
+          "name": "嗜酸性粒细胞百分比",
+          "name_en": "Eosinophil Percentage",
+          "abbreviation": "EOS%",
+          "unit": "%",
+          "reference_range": {
+            "adult_male": {
+              "min": 0.4,
+              "max": 8
+            },
+            "adult_female": {
+              "min": 0.4,
+              "max": 8
+            }
+          },
+          "clinical_significance": {
+            "high": "嗜酸性粒细胞增高见于过敏性疾病（哮喘、荨麻疹）、寄生虫感染、某些血液病、药物过敏等。",
+            "low": "嗜酸性粒细胞减少见于伤寒初期、大手术后、长期使用糖皮质激素等。",
+            "normal": "嗜酸性粒细胞百分比正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "嗜酸性粒细胞是白细胞的一种，和过敏反应、抵抗寄生虫有关。",
+            "high_simple": "嗜酸性粒细胞偏高，可能与过敏或寄生虫感染有关，建议就医检查。",
+            "low_simple": "嗜酸性粒细胞偏低，通常无大碍。",
+            "normal_simple": "嗜酸性粒细胞比例正常。"
+          },
+          "related_indicators": [
+            "CBC-001"
+          ],
+          "common_in_departments": [
+            "变态反应科",
+            "血液科",
+            "感染科"
+          ]
+        },
+        {
+          "id": "CBC-009",
+          "name": "嗜碱性粒细胞百分比",
+          "name_en": "Basophil Percentage",
+          "abbreviation": "BASO%",
+          "unit": "%",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 1
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 1
+            }
+          },
+          "clinical_significance": {
+            "high": "嗜碱性粒细胞增高见于慢性粒细胞白血病、骨髓纤维化、过敏性疾病等。",
+            "low": "嗜碱性粒细胞减少一般无临床意义。",
+            "normal": "嗜碱性粒细胞百分比正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "嗜碱性粒细胞是白细胞中数量最少的一种，与过敏反应有关。",
+            "high_simple": "嗜碱性粒细胞偏高，比较少见，建议找血液科医生看看。",
+            "low_simple": "嗜碱性粒细胞偏低，通常没有问题。",
+            "normal_simple": "嗜碱性粒细胞比例正常。"
+          },
+          "related_indicators": [
+            "CBC-001"
+          ],
+          "common_in_departments": [
+            "血液科"
+          ]
+        },
+        {
+          "id": "CBC-010",
+          "name": "中性粒细胞绝对值",
+          "name_en": "Neutrophil Absolute Count",
+          "abbreviation": "NEUT#",
+          "unit": "×10⁹/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 1.8,
+              "max": 6.3
+            },
+            "adult_female": {
+              "min": 1.8,
+              "max": 6.3
+            }
+          },
+          "clinical_significance": {
+            "high": "中性粒细胞绝对值增高见于细菌感染、炎症反应、组织坏死等。",
+            "low": "中性粒细胞绝对值<1.5×10⁹/L为粒细胞减少症，<0.5×10⁹/L为粒细胞缺乏症，感染风险极高。",
+            "normal": "中性粒细胞绝对值正常，提示机体抗菌防御能力正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "中性粒细胞绝对值是血液中抗菌'战士'的实际数量。",
+            "high_simple": "中性粒细胞数量偏多，身体可能正在对抗感染。",
+            "low_simple": "中性粒细胞数量太少，身体抵抗细菌的能力很弱，需要特别注意防感染。",
+            "normal_simple": "中性粒细胞数量正常，抵抗力正常。"
+          },
+          "related_indicators": [
+            "CBC-001",
+            "CBC-005"
+          ],
+          "common_in_departments": [
+            "血液科",
+            "感染科",
+            "肿瘤科"
+          ]
+        },
+        {
+          "id": "CBC-011",
+          "name": "淋巴细胞绝对值",
+          "name_en": "Lymphocyte Absolute Count",
+          "abbreviation": "LYMPH#",
+          "unit": "×10⁹/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 1.1,
+              "max": 3.2
+            },
+            "adult_female": {
+              "min": 1.1,
+              "max": 3.2
+            }
+          },
+          "clinical_significance": {
+            "high": "淋巴细胞绝对值增高见于病毒感染、淋巴细胞白血病、器官移植排斥反应等。",
+            "low": "淋巴细胞绝对值减低见于免疫缺陷病、应用免疫抑制剂、放疗后等。",
+            "normal": "淋巴细胞绝对值正常，提示免疫系统功能正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "淋巴细胞绝对值是血液中免疫细胞的实际数量。",
+            "high_simple": "淋巴细胞数量偏多，可能有病毒感染或其他免疫问题。",
+            "low_simple": "淋巴细胞数量太少，免疫力比较差，要注意防护。",
+            "normal_simple": "淋巴细胞数量正常，免疫力正常。"
+          },
+          "related_indicators": [
+            "CBC-001",
+            "CBC-006"
+          ],
+          "common_in_departments": [
+            "血液科",
+            "免疫科"
+          ]
+        },
+        {
+          "id": "CBC-012",
+          "name": "红细胞压积",
+          "name_en": "Hematocrit",
+          "abbreviation": "HCT",
+          "unit": "%",
+          "reference_range": {
+            "adult_male": {
+              "min": 40,
+              "max": 50
+            },
+            "adult_female": {
+              "min": 35,
+              "max": 45
+            }
+          },
+          "clinical_significance": {
+            "high": "红细胞压积增高见于真性红细胞增多症、严重脱水、烧伤等。",
+            "low": "红细胞压积减低见于各类贫血、血液稀释等。",
+            "normal": "红细胞压积正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "红细胞压积是血液中红细胞所占的比例，反映血液的浓稠程度。",
+            "high_simple": "红细胞压积偏高，血液比较浓稠，可能与脱水有关，要多喝水。",
+            "low_simple": "红细胞压积偏低，可能有贫血，建议做进一步检查。",
+            "normal_simple": "红细胞压积正常，血液浓度适中。"
+          },
+          "related_indicators": [
+            "CBC-002",
+            "CBC-003"
+          ],
+          "common_in_departments": [
+            "血液科",
+            "内科"
+          ]
+        },
+        {
+          "id": "CBC-013",
+          "name": "平均红细胞体积",
+          "name_en": "Mean Corpuscular Volume",
+          "abbreviation": "MCV",
+          "unit": "fL",
+          "reference_range": {
+            "adult_male": {
+              "min": 80,
+              "max": 100
+            },
+            "adult_female": {
+              "min": 80,
+              "max": 100
+            }
+          },
+          "clinical_significance": {
+            "high": "MCV增大见于巨幼细胞性贫血（维生素B12或叶酸缺乏）、骨髓增生异常综合征、肝病等。",
+            "low": "MCV减小见于缺铁性贫血、珠蛋白生成障碍性贫血（地中海贫血）等。",
+            "normal": "MCV正常，提示红细胞大小正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "平均红细胞体积是每个红细胞的平均大小。",
+            "high_simple": "红细胞体积偏大，可能缺少维生素B12或叶酸，需要补充营养。",
+            "low_simple": "红细胞体积偏小，可能缺铁，建议多吃含铁食物。",
+            "normal_simple": "红细胞大小正常。"
+          },
+          "related_indicators": [
+            "CBC-002",
+            "CBC-014",
+            "CBC-015"
+          ],
+          "common_in_departments": [
+            "血液科"
+          ]
+        },
+        {
+          "id": "CBC-014",
+          "name": "平均红细胞血红蛋白含量",
+          "name_en": "Mean Corpuscular Hemoglobin",
+          "abbreviation": "MCH",
+          "unit": "pg",
+          "reference_range": {
+            "adult_male": {
+              "min": 27,
+              "max": 34
+            },
+            "adult_female": {
+              "min": 27,
+              "max": 34
+            }
+          },
+          "clinical_significance": {
+            "high": "MCH增高见于巨幼细胞性贫血等大细胞性贫血。",
+            "low": "MCH降低见于缺铁性贫血、珠蛋白生成障碍性贫血等小细胞低色素性贫血。",
+            "normal": "MCH正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "MCH表示每个红细胞平均含有多少血红蛋白。",
+            "high_simple": "MCH偏高，红细胞里的血红蛋白偏多，需结合其他指标判断。",
+            "low_simple": "MCH偏低，红细胞里的血红蛋白太少，可能缺铁。",
+            "normal_simple": "每个红细胞携带的血红蛋白量正常。"
+          },
+          "related_indicators": [
+            "CBC-003",
+            "CBC-013",
+            "CBC-015"
+          ],
+          "common_in_departments": [
+            "血液科"
+          ]
+        },
+        {
+          "id": "CBC-015",
+          "name": "平均红细胞血红蛋白浓度",
+          "name_en": "Mean Corpuscular Hemoglobin Concentration",
+          "abbreviation": "MCHC",
+          "unit": "g/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 316,
+              "max": 354
+            },
+            "adult_female": {
+              "min": 316,
+              "max": 354
+            }
+          },
+          "clinical_significance": {
+            "high": "MCHC增高见于遗传性球形红细胞增多症等。",
+            "low": "MCHC降低见于缺铁性贫血、珠蛋白生成障碍性贫血等。",
+            "normal": "MCHC正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "MCHC表示红细胞中血红蛋白的浓度。",
+            "high_simple": "MCHC偏高，比较少见，需结合其他检查判断。",
+            "low_simple": "MCHC偏低，红细胞'颜色'偏淡，可能缺铁。",
+            "normal_simple": "红细胞中血红蛋白的浓度正常。"
+          },
+          "related_indicators": [
+            "CBC-013",
+            "CBC-014"
+          ],
+          "common_in_departments": [
+            "血液科"
+          ]
+        },
+        {
+          "id": "CBC-016",
+          "name": "红细胞分布宽度",
+          "name_en": "Red Cell Distribution Width",
+          "abbreviation": "RDW",
+          "unit": "%",
+          "reference_range": {
+            "adult_male": {
+              "min": 11.5,
+              "max": 14.5
+            },
+            "adult_female": {
+              "min": 11.5,
+              "max": 14.5
+            }
+          },
+          "clinical_significance": {
+            "high": "RDW增大提示红细胞大小不均匀，见于缺铁性贫血早期、营养性巨幼细胞贫血、混合性贫血等。",
+            "low": "RDW减小临床意义不大。",
+            "normal": "RDW正常，提示红细胞大小较均一。"
+          },
+          "patient_explanation": {
+            "what_is_it": "RDW反映红细胞大小是否均匀一致。",
+            "high_simple": "RDW偏高，说明红细胞大小不太均匀，可能有贫血的早期表现。",
+            "low_simple": "RDW偏低，通常没有问题。",
+            "normal_simple": "红细胞大小均匀，正常。"
+          },
+          "related_indicators": [
+            "CBC-013",
+            "CBC-002"
+          ],
+          "common_in_departments": [
+            "血液科"
+          ]
+        },
+        {
+          "id": "CBC-017",
+          "name": "平均血小板体积",
+          "name_en": "Mean Platelet Volume",
+          "abbreviation": "MPV",
+          "unit": "fL",
+          "reference_range": {
+            "adult_male": {
+              "min": 7.0,
+              "max": 11.0
+            },
+            "adult_female": {
+              "min": 7.0,
+              "max": 11.0
+            }
+          },
+          "clinical_significance": {
+            "high": "MPV增大见于血小板破坏增多后骨髓代偿性产生大血小板，如ITP、脾亢等。",
+            "low": "MPV减小见于骨髓造血功能低下、再生障碍性贫血等。",
+            "normal": "MPV正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "MPV是血小板的平均大小。",
+            "high_simple": "血小板体积偏大，可能是身体在加紧制造新的血小板。",
+            "low_simple": "血小板体积偏小，骨髓造血小板的功能可能有所下降。",
+            "normal_simple": "血小板大小正常。"
+          },
+          "related_indicators": [
+            "CBC-004"
+          ],
+          "common_in_departments": [
+            "血液科"
+          ]
+        },
+        {
+          "id": "CBC-018",
+          "name": "血小板分布宽度",
+          "name_en": "Platelet Distribution Width",
+          "abbreviation": "PDW",
+          "unit": "fL",
+          "reference_range": {
+            "adult_male": {
+              "min": 9.0,
+              "max": 17.0
+            },
+            "adult_female": {
+              "min": 9.0,
+              "max": 17.0
+            }
+          },
+          "clinical_significance": {
+            "high": "PDW增大提示血小板大小不均一，见于骨髓增殖性疾病、巨幼细胞性贫血等。",
+            "low": "PDW减小临床意义有限。",
+            "normal": "PDW正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "PDW反映血小板大小是否均匀。",
+            "high_simple": "血小板大小不太均匀，需结合其他指标一起看。",
+            "low_simple": "PDW偏低，通常没有大问题。",
+            "normal_simple": "血小板大小均匀，正常。"
+          },
+          "related_indicators": [
+            "CBC-004",
+            "CBC-017"
+          ],
+          "common_in_departments": [
+            "血液科"
+          ]
+        },
+        {
+          "id": "CBC-019",
+          "name": "血小板压积",
+          "name_en": "Plateletcrit",
+          "abbreviation": "PCT",
+          "unit": "%",
+          "reference_range": {
+            "adult_male": {
+              "min": 0.108,
+              "max": 0.282
+            },
+            "adult_female": {
+              "min": 0.108,
+              "max": 0.282
+            }
+          },
+          "clinical_significance": {
+            "high": "PCT增高见于骨髓增殖性疾病、脾切除后等。",
+            "low": "PCT降低见于血小板减少性疾病、再生障碍性贫血等。",
+            "normal": "PCT正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "血小板压积是血液中血小板所占的体积比例。",
+            "high_simple": "血小板压积偏高，血液中血小板比例偏多。",
+            "low_simple": "血小板压积偏低，血小板比例偏少。",
+            "normal_simple": "血小板压积正常。"
+          },
+          "related_indicators": [
+            "CBC-004",
+            "CBC-017"
+          ],
+          "common_in_departments": [
+            "血液科"
+          ]
+        },
+        {
+          "id": "CBC-020",
+          "name": "网织红细胞计数",
+          "name_en": "Reticulocyte Count",
+          "abbreviation": "RET%",
+          "unit": "%",
+          "reference_range": {
+            "adult_male": {
+              "min": 0.5,
+              "max": 1.5
+            },
+            "adult_female": {
+              "min": 0.5,
+              "max": 1.5
+            },
+            "newborn": {
+              "min": 2.0,
+              "max": 6.0
+            }
+          },
+          "clinical_significance": {
+            "high": "网织红细胞增高提示骨髓红系造血活跃，见于溶血性贫血、急性失血后、缺铁性贫血治疗有效时。",
+            "low": "网织红细胞减低提示骨髓造血功能低下，见于再生障碍性贫血等。",
+            "normal": "网织红细胞计数正常，提示骨髓造血功能正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "网织红细胞是新生的红细胞，反映骨髓造血的活跃程度。",
+            "high_simple": "网织红细胞偏高，说明骨髓正在加紧造血，可能是失血或贫血后恢复。",
+            "low_simple": "网织红细胞偏低，骨髓造血功能可能不太好，需要进一步检查。",
+            "normal_simple": "网织红细胞正常，骨髓造血功能正常。"
+          },
+          "related_indicators": [
+            "CBC-002",
+            "CBC-003"
+          ],
+          "common_in_departments": [
+            "血液科"
+          ]
+        }
+      ]
+    },
+    {
+      "category_id": "LIVER",
+      "category_name": "肝功能",
+      "category_name_en": "Liver Function",
+      "indicators": [
+        {
+          "id": "LIVER-001",
+          "name": "丙氨酸氨基转移酶",
+          "name_en": "Alanine Aminotransferase",
+          "abbreviation": "ALT",
+          "unit": "U/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 9,
+              "max": 50
+            },
+            "adult_female": {
+              "min": 7,
+              "max": 40
+            }
+          },
+          "clinical_significance": {
+            "high": "ALT升高是肝细胞损伤最敏感的指标，见于病毒性肝炎、药物性肝损害、脂肪肝、酒精性肝病、肝硬化等。轻度升高也可见于心肌梗死、骨骼肌损伤。",
+            "low": "ALT偏低一般无临床意义。",
+            "normal": "ALT正常，提示肝细胞功能基本正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "ALT（谷丙转氨酶）是肝脏细胞里的一种酶，肝细胞受损时它会漏到血液里。",
+            "high_simple": "ALT偏高说明肝脏可能有损伤，需要查明原因，少喝酒、少吃油腻食物。",
+            "low_simple": "ALT偏低通常没有问题。",
+            "normal_simple": "ALT正常，说明肝脏功能良好。"
+          },
+          "related_indicators": [
+            "LIVER-002",
+            "LIVER-003",
+            "LIVER-005"
+          ],
+          "common_in_departments": [
+            "肝病科",
+            "消化内科",
+            "感染科"
+          ]
+        },
+        {
+          "id": "LIVER-002",
+          "name": "天门冬氨酸氨基转移酶",
+          "name_en": "Aspartate Aminotransferase",
+          "abbreviation": "AST",
+          "unit": "U/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 15,
+              "max": 40
+            },
+            "adult_female": {
+              "min": 13,
+              "max": 35
+            }
+          },
+          "clinical_significance": {
+            "high": "AST升高见于急性心肌梗死（显著升高）、肝炎、肝硬化、肌肉损伤等。AST/ALT>1提示肝硬化或酒精性肝病。",
+            "low": "AST偏低一般无临床意义。",
+            "normal": "AST正常，提示心肌和肝脏无明显损伤。"
+          },
+          "patient_explanation": {
+            "what_is_it": "AST（谷草转氨酶）存在于肝脏和心脏中，升高说明这些器官可能有损伤。",
+            "high_simple": "AST偏高，可能是肝脏或心脏有问题，需要进一步检查。",
+            "low_simple": "AST偏低通常没有问题。",
+            "normal_simple": "AST正常，肝脏和心脏功能良好。"
+          },
+          "related_indicators": [
+            "LIVER-001",
+            "LIVER-005"
+          ],
+          "common_in_departments": [
+            "肝病科",
+            "心内科",
+            "消化内科"
+          ]
+        },
+        {
+          "id": "LIVER-003",
+          "name": "γ-谷氨酰转移酶",
+          "name_en": "Gamma-Glutamyl Transferase",
+          "abbreviation": "GGT",
+          "unit": "U/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 10,
+              "max": 60
+            },
+            "adult_female": {
+              "min": 7,
+              "max": 45
+            }
+          },
+          "clinical_significance": {
+            "high": "GGT升高见于胆汁淤积性肝病、酒精性肝损害、胰腺疾病、药物性肝损害等。是酒精性肝病的敏感指标。",
+            "low": "GGT偏低一般无临床意义。",
+            "normal": "GGT正常，提示无胆汁淤积或酒精性肝损害。"
+          },
+          "patient_explanation": {
+            "what_is_it": "GGT是反映肝脏和胆管是否通畅的指标。",
+            "high_simple": "GGT偏高，可能与饮酒、胆管堵塞或肝脏问题有关，建议戒酒并就医。",
+            "low_simple": "GGT偏低通常没有问题。",
+            "normal_simple": "GGT正常，肝脏和胆管功能正常。"
+          },
+          "related_indicators": [
+            "LIVER-001",
+            "LIVER-004"
+          ],
+          "common_in_departments": [
+            "肝病科",
+            "消化内科"
+          ]
+        },
+        {
+          "id": "LIVER-004",
+          "name": "碱性磷酸酶",
+          "name_en": "Alkaline Phosphatase",
+          "abbreviation": "ALP",
+          "unit": "U/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 45,
+              "max": 125
+            },
+            "adult_female": {
+              "min": 35,
+              "max": 100
+            },
+            "child": {
+              "min": 42,
+              "max": 390
+            }
+          },
+          "clinical_significance": {
+            "high": "ALP升高见于胆道梗阻、肝占位性病变、骨骼疾病（佝偻病、骨折愈合期）等。儿童生长发育期生理性升高。",
+            "low": "ALP降低见于甲状腺功能减退、恶性贫血等。",
+            "normal": "ALP正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "ALP是肝脏和骨骼中的一种酶，升高可能与肝胆或骨骼疾病有关。",
+            "high_simple": "ALP偏高，可能与肝胆问题或骨骼疾病有关。小孩在长身体时偏高是正常的。",
+            "low_simple": "ALP偏低，比较少见，建议咨询医生。",
+            "normal_simple": "ALP正常，肝胆和骨骼功能良好。"
+          },
+          "related_indicators": [
+            "LIVER-003",
+            "LIVER-005"
+          ],
+          "common_in_departments": [
+            "肝病科",
+            "骨科",
+            "消化内科"
+          ]
+        },
+        {
+          "id": "LIVER-005",
+          "name": "总胆红素",
+          "name_en": "Total Bilirubin",
+          "abbreviation": "TBIL",
+          "unit": "μmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 3.4,
+              "max": 17.1
+            },
+            "adult_female": {
+              "min": 3.4,
+              "max": 17.1
+            },
+            "newborn": {
+              "min": 0,
+              "max": 220
+            }
+          },
+          "clinical_significance": {
+            "high": "TBIL升高（>17.1μmol/L为隐性黄疸，>34.2μmol/L为显性黄疸），见于肝细胞性黄疸、梗阻性黄疸、溶血性黄疸。",
+            "low": "TBIL偏低一般无临床意义。",
+            "normal": "TBIL正常，提示胆红素代谢正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "胆红素是红细胞分解后的产物，由肝脏处理后排出体外。偏高时皮肤和眼白会发黄。",
+            "high_simple": "胆红素偏高，可能出现皮肤发黄，说明肝脏排泄胆红素的功能有问题，需要就医。",
+            "low_simple": "胆红素偏低一般没有问题。",
+            "normal_simple": "胆红素正常，肝脏处理废物的功能正常。"
+          },
+          "related_indicators": [
+            "LIVER-006",
+            "LIVER-007",
+            "LIVER-001"
+          ],
+          "common_in_departments": [
+            "肝病科",
+            "消化内科",
+            "血液科"
+          ]
+        },
+        {
+          "id": "LIVER-006",
+          "name": "直接胆红素",
+          "name_en": "Direct Bilirubin",
+          "abbreviation": "DBIL",
+          "unit": "μmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 6.8
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 6.8
+            }
+          },
+          "clinical_significance": {
+            "high": "DBIL升高为主提示梗阻性黄疸（胆管结石、胰头癌等）或肝内胆汁淤积。",
+            "low": "DBIL偏低无临床意义。",
+            "normal": "DBIL正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "直接胆红素是经过肝脏处理的胆红素。",
+            "high_simple": "直接胆红素偏高，可能是胆管堵塞，胆汁排不出去，需要查B超。",
+            "low_simple": "直接胆红素偏低没有问题。",
+            "normal_simple": "直接胆红素正常，胆管通畅。"
+          },
+          "related_indicators": [
+            "LIVER-005",
+            "LIVER-007"
+          ],
+          "common_in_departments": [
+            "肝病科",
+            "消化内科",
+            "普外科"
+          ]
+        },
+        {
+          "id": "LIVER-007",
+          "name": "间接胆红素",
+          "name_en": "Indirect Bilirubin",
+          "abbreviation": "IBIL",
+          "unit": "μmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 1.7,
+              "max": 10.2
+            },
+            "adult_female": {
+              "min": 1.7,
+              "max": 10.2
+            }
+          },
+          "clinical_significance": {
+            "high": "IBIL升高为主提示溶血性黄疸（红细胞大量破坏）、Gilbert综合征等。",
+            "low": "IBIL偏低无临床意义。",
+            "normal": "IBIL正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "间接胆红素是还没经过肝脏处理的胆红素。",
+            "high_simple": "间接胆红素偏高，可能是红细胞破坏太多或肝脏处理能力下降。",
+            "low_simple": "间接胆红素偏低没有问题。",
+            "normal_simple": "间接胆红素正常。"
+          },
+          "related_indicators": [
+            "LIVER-005",
+            "LIVER-006"
+          ],
+          "common_in_departments": [
+            "血液科",
+            "肝病科"
+          ]
+        },
+        {
+          "id": "LIVER-008",
+          "name": "总蛋白",
+          "name_en": "Total Protein",
+          "abbreviation": "TP",
+          "unit": "g/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 65,
+              "max": 85
+            },
+            "adult_female": {
+              "min": 65,
+              "max": 85
+            }
+          },
+          "clinical_significance": {
+            "high": "TP增高见于脱水、多发性骨髓瘤、慢性炎症等。",
+            "low": "TP降低见于营养不良、肝硬化、肾病综合征、消耗性疾病等。",
+            "normal": "TP正常，提示蛋白质代谢基本正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "总蛋白是血液中所有蛋白质的总量，反映营养状况和肝脏合成能力。",
+            "high_simple": "总蛋白偏高，可能与脱水或某些疾病有关。",
+            "low_simple": "总蛋白偏低，说明营养不够或肝脏功能下降，要加强营养。",
+            "normal_simple": "总蛋白正常，营养状况良好。"
+          },
+          "related_indicators": [
+            "LIVER-009",
+            "LIVER-010",
+            "LIVER-011"
+          ],
+          "common_in_departments": [
+            "消化内科",
+            "肝病科",
+            "营养科"
+          ]
+        },
+        {
+          "id": "LIVER-009",
+          "name": "白蛋白",
+          "name_en": "Albumin",
+          "abbreviation": "ALB",
+          "unit": "g/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 40,
+              "max": 55
+            },
+            "adult_female": {
+              "min": 40,
+              "max": 55
+            }
+          },
+          "clinical_significance": {
+            "high": "ALB增高见于严重脱水。",
+            "low": "ALB降低见于肝硬化、肾病综合征、营养不良、慢性消耗性疾病等。<30g/L可出现水肿。",
+            "normal": "ALB正常，提示肝脏合成功能正常，营养状态良好。"
+          },
+          "patient_explanation": {
+            "what_is_it": "白蛋白是肝脏制造的最重要的蛋白质，维持血液中的水分平衡。",
+            "high_simple": "白蛋白偏高，一般与脱水有关，多喝水就好。",
+            "low_simple": "白蛋白偏低，说明营养不良或肝功能下降，可能导致浮肿，要多补充蛋白质。",
+            "normal_simple": "白蛋白正常，肝脏功能和营养状况良好。"
+          },
+          "related_indicators": [
+            "LIVER-008",
+            "LIVER-010",
+            "LIVER-011"
+          ],
+          "common_in_departments": [
+            "肝病科",
+            "肾内科",
+            "营养科"
+          ]
+        },
+        {
+          "id": "LIVER-010",
+          "name": "球蛋白",
+          "name_en": "Globulin",
+          "abbreviation": "GLB",
+          "unit": "g/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 20,
+              "max": 40
+            },
+            "adult_female": {
+              "min": 20,
+              "max": 40
+            }
+          },
+          "clinical_significance": {
+            "high": "GLB增高见于慢性肝病、自身免疫性疾病、多发性骨髓瘤、慢性感染等。",
+            "low": "GLB降低见于免疫功能低下、先天性低丙种球蛋白血症等。",
+            "normal": "GLB正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "球蛋白是血液中与免疫有关的蛋白质。",
+            "high_simple": "球蛋白偏高，可能与慢性炎症或免疫问题有关，需进一步检查。",
+            "low_simple": "球蛋白偏低，免疫功能可能下降。",
+            "normal_simple": "球蛋白正常，免疫功能正常。"
+          },
+          "related_indicators": [
+            "LIVER-008",
+            "LIVER-009",
+            "LIVER-011"
+          ],
+          "common_in_departments": [
+            "免疫科",
+            "血液科",
+            "肝病科"
+          ]
+        },
+        {
+          "id": "LIVER-011",
+          "name": "白蛋白/球蛋白比值",
+          "name_en": "Albumin/Globulin Ratio",
+          "abbreviation": "A/G",
+          "unit": "无量纲",
+          "reference_range": {
+            "adult_male": {
+              "min": 1.2,
+              "max": 2.4
+            },
+            "adult_female": {
+              "min": 1.2,
+              "max": 2.4
+            }
+          },
+          "clinical_significance": {
+            "high": "A/G比值增高少见，一般无特殊临床意义。",
+            "low": "A/G比值倒置（<1）见于严重肝病、多发性骨髓瘤、肾病综合征等。",
+            "normal": "A/G比值正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "A/G比值是白蛋白和球蛋白的比例，反映肝脏和免疫的平衡。",
+            "high_simple": "A/G比值偏高，通常没有大问题。",
+            "low_simple": "A/G比值偏低甚至倒置，可能肝脏功能不好或免疫系统有问题。",
+            "normal_simple": "A/G比值正常，肝脏和免疫功能协调。"
+          },
+          "related_indicators": [
+            "LIVER-009",
+            "LIVER-010"
+          ],
+          "common_in_departments": [
+            "肝病科",
+            "消化内科"
+          ]
+        },
+        {
+          "id": "LIVER-012",
+          "name": "前白蛋白",
+          "name_en": "Prealbumin",
+          "abbreviation": "PA",
+          "unit": "mg/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 200,
+              "max": 400
+            },
+            "adult_female": {
+              "min": 200,
+              "max": 400
+            }
+          },
+          "clinical_significance": {
+            "high": "PA增高见于霍奇金病等。",
+            "low": "PA降低较ALB更灵敏，见于早期肝功能损害、营养不良、急性炎症等。",
+            "normal": "PA正常，提示近期肝脏合成功能和营养状态良好。"
+          },
+          "patient_explanation": {
+            "what_is_it": "前白蛋白是肝脏制造的一种蛋白，能更早反映营养和肝功能的变化。",
+            "high_simple": "前白蛋白偏高，比较少见。",
+            "low_simple": "前白蛋白偏低，说明近期营养不太好或肝脏功能有早期下降。",
+            "normal_simple": "前白蛋白正常，近期营养状况和肝功能良好。"
+          },
+          "related_indicators": [
+            "LIVER-009",
+            "LIVER-008"
+          ],
+          "common_in_departments": [
+            "营养科",
+            "肝病科",
+            "消化内科"
+          ]
+        },
+        {
+          "id": "LIVER-013",
+          "name": "总胆汁酸",
+          "name_en": "Total Bile Acids",
+          "abbreviation": "TBA",
+          "unit": "μmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 10
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 10
+            }
+          },
+          "clinical_significance": {
+            "high": "TBA升高见于各种肝病（急慢性肝炎、肝硬化）、胆道梗阻、妊娠期肝内胆汁淤积症等。",
+            "low": "TBA偏低无临床意义。",
+            "normal": "TBA正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "胆汁酸是肝脏产生帮助消化脂肪的物质。",
+            "high_simple": "胆汁酸偏高，说明肝脏或胆管可能有问题，需要进一步检查。",
+            "low_simple": "胆汁酸偏低没有问题。",
+            "normal_simple": "胆汁酸正常，肝脏和胆管功能良好。"
+          },
+          "related_indicators": [
+            "LIVER-005",
+            "LIVER-001"
+          ],
+          "common_in_departments": [
+            "肝病科",
+            "消化内科",
+            "妇产科"
+          ]
+        },
+        {
+          "id": "LIVER-014",
+          "name": "乳酸脱氢酶",
+          "name_en": "Lactate Dehydrogenase",
+          "abbreviation": "LDH",
+          "unit": "U/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 120,
+              "max": 250
+            },
+            "adult_female": {
+              "min": 120,
+              "max": 250
+            }
+          },
+          "clinical_significance": {
+            "high": "LDH广泛存在于心、肝、肾、骨骼肌等组织中，升高见于心肌梗死、肝炎、恶性肿瘤、溶血性贫血、肌肉损伤等。",
+            "low": "LDH偏低少见，一般无临床意义。",
+            "normal": "LDH正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "乳酸脱氢酶存在于心脏、肝脏等多个器官中，升高说明某些组织有损伤。",
+            "high_simple": "乳酸脱氢酶偏高，可能是心脏、肝脏或其他组织有损伤，需要结合其他检查判断。",
+            "low_simple": "乳酸脱氢酶偏低，通常没有问题。",
+            "normal_simple": "乳酸脱氢酶正常，各器官功能良好。"
+          },
+          "related_indicators": [
+            "LIVER-001",
+            "LIVER-002"
+          ],
+          "common_in_departments": [
+            "心内科",
+            "肝病科",
+            "肿瘤科"
+          ]
+        },
+        {
+          "id": "LIVER-015",
+          "name": "胆碱酯酶",
+          "name_en": "Cholinesterase",
+          "abbreviation": "CHE",
+          "unit": "U/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 5000,
+              "max": 12000
+            },
+            "adult_female": {
+              "min": 4500,
+              "max": 11000
+            }
+          },
+          "clinical_significance": {
+            "high": "CHE增高见于甲亢、糖尿病、肾病综合征、脂肪肝等。",
+            "low": "CHE降低见于有机磷中毒、严重肝病（肝硬化、重症肝炎）、营养不良等。是反映肝脏合成功能的重要指标。",
+            "normal": "CHE正常，提示肝脏合成功能正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "胆碱酯酶是肝脏制造的一种酶，反映肝脏的合成能力。",
+            "high_simple": "胆碱酯酶偏高，可能与糖尿病或脂肪肝有关。",
+            "low_simple": "胆碱酯酶偏低，说明肝脏功能可能比较差，需要重视。",
+            "normal_simple": "胆碱酯酶正常，肝脏合成能力正常。"
+          },
+          "related_indicators": [
+            "LIVER-001",
+            "LIVER-009"
+          ],
+          "common_in_departments": [
+            "肝病科",
+            "急诊科"
+          ]
+        }
+      ]
+    },
+    {
+      "category_id": "RENAL",
+      "category_name": "肾功能",
+      "category_name_en": "Renal Function",
+      "indicators": [
+        {
+          "id": "RENAL-001",
+          "name": "肌酐",
+          "name_en": "Creatinine",
+          "abbreviation": "Cr",
+          "unit": "μmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 57,
+              "max": 111
+            },
+            "adult_female": {
+              "min": 41,
+              "max": 81
+            }
+          },
+          "clinical_significance": {
+            "high": "肌酐升高见于各种原因引起的肾功能损害，肌酐升高一般提示肾小球滤过率已下降50%以上。也可见于肢端肥大症、巨人症。",
+            "low": "肌酐偏低见于肌肉萎缩、营养不良、妊娠等。",
+            "normal": "肌酐正常，提示肾脏排泄功能基本正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "肌酐是肌肉代谢产生的废物，由肾脏排出。反映肾脏的过滤能力。",
+            "high_simple": "肌酐偏高，说明肾脏过滤废物的能力下降了，需要重视并就医。",
+            "low_simple": "肌酐偏低，通常与肌肉量少有关，一般没大问题。",
+            "normal_simple": "肌酐正常，肾脏过滤功能正常。"
+          },
+          "related_indicators": [
+            "RENAL-002",
+            "RENAL-007",
+            "RENAL-003"
+          ],
+          "common_in_departments": [
+            "肾内科",
+            "内科"
+          ]
+        },
+        {
+          "id": "RENAL-002",
+          "name": "尿素氮",
+          "name_en": "Blood Urea Nitrogen",
+          "abbreviation": "BUN",
+          "unit": "mmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 3.1,
+              "max": 8.0
+            },
+            "adult_female": {
+              "min": 2.6,
+              "max": 7.5
+            }
+          },
+          "clinical_significance": {
+            "high": "BUN升高见于肾功能不全、高蛋白饮食、上消化道出血、严重感染、脱水等。肾前性（脱水）和肾性（肾衰竭）需鉴别。",
+            "low": "BUN降低见于严重肝病、低蛋白饮食、妊娠后期等。",
+            "normal": "BUN正常，提示肾脏排泄功能和蛋白质代谢基本正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "尿素氮是蛋白质代谢后的废物，由肾脏排出体外。",
+            "high_simple": "尿素氮偏高，可能是肾脏排泄能力下降，也可能与吃太多肉或脱水有关。",
+            "low_simple": "尿素氮偏低，可能与吃太少蛋白质或肝功能下降有关。",
+            "normal_simple": "尿素氮正常，肾脏排废功能正常。"
+          },
+          "related_indicators": [
+            "RENAL-001",
+            "RENAL-007"
+          ],
+          "common_in_departments": [
+            "肾内科",
+            "内科"
+          ]
+        },
+        {
+          "id": "RENAL-003",
+          "name": "尿酸",
+          "name_en": "Uric Acid",
+          "abbreviation": "UA",
+          "unit": "μmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 208,
+              "max": 428
+            },
+            "adult_female": {
+              "min": 155,
+              "max": 357
+            }
+          },
+          "clinical_significance": {
+            "high": "尿酸升高（高尿酸血症）见于痛风、肾功能减退、高嘌呤饮食、白血病化疗后等。长期高尿酸可导致痛风性关节炎和肾脏损害。",
+            "low": "尿酸降低见于肝功能严重损害、Wilson病等，少见。",
+            "normal": "尿酸正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "尿酸是身体分解嘌呤（存在于肉类、海鲜、啤酒中）后的产物。",
+            "high_simple": "尿酸偏高，容易得痛风（关节红肿疼痛），要少吃海鲜、内脏、啤酒，多喝水。",
+            "low_simple": "尿酸偏低，通常问题不大。",
+            "normal_simple": "尿酸正常，没有痛风风险。"
+          },
+          "related_indicators": [
+            "RENAL-001",
+            "RENAL-002"
+          ],
+          "common_in_departments": [
+            "风湿免疫科",
+            "肾内科",
+            "内分泌科"
+          ]
+        },
+        {
+          "id": "RENAL-004",
+          "name": "胱抑素C",
+          "name_en": "Cystatin C",
+          "abbreviation": "Cys-C",
+          "unit": "mg/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 0.51,
+              "max": 1.09
+            },
+            "adult_female": {
+              "min": 0.51,
+              "max": 1.09
+            }
+          },
+          "clinical_significance": {
+            "high": "Cys-C升高是早期肾损害的敏感标志物，较肌酐更早反映肾小球滤过功能下降。见于各种肾病、糖尿病肾病早期等。",
+            "low": "Cys-C偏低一般无特殊意义。",
+            "normal": "Cys-C正常，提示肾小球滤过功能正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "胱抑素C是一种能更早发现肾脏问题的指标，比肌酐更灵敏。",
+            "high_simple": "胱抑素C偏高，说明肾脏可能有早期损伤，需要重视。",
+            "low_simple": "胱抑素C偏低，通常没有问题。",
+            "normal_simple": "胱抑素C正常，肾脏功能良好。"
+          },
+          "related_indicators": [
+            "RENAL-001",
+            "RENAL-007"
+          ],
+          "common_in_departments": [
+            "肾内科"
+          ]
+        },
+        {
+          "id": "RENAL-005",
+          "name": "β2-微球蛋白",
+          "name_en": "Beta-2 Microglobulin",
+          "abbreviation": "β2-MG",
+          "unit": "mg/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 1.0,
+              "max": 3.0
+            },
+            "adult_female": {
+              "min": 1.0,
+              "max": 3.0
+            }
+          },
+          "clinical_significance": {
+            "high": "β2-MG升高见于肾小管损伤、肾功能不全、淋巴细胞增殖性疾病（多发性骨髓瘤、淋巴瘤）等。",
+            "low": "β2-MG偏低无特殊意义。",
+            "normal": "β2-MG正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "β2-微球蛋白是反映肾小管功能的指标，也与某些免疫疾病有关。",
+            "high_simple": "β2-微球蛋白偏高，可能肾小管有损伤，需进一步检查。",
+            "low_simple": "β2-微球蛋白偏低没有问题。",
+            "normal_simple": "β2-微球蛋白正常，肾小管功能正常。"
+          },
+          "related_indicators": [
+            "RENAL-001",
+            "RENAL-004"
+          ],
+          "common_in_departments": [
+            "肾内科",
+            "血液科"
+          ]
+        },
+        {
+          "id": "RENAL-006",
+          "name": "二氧化碳结合力",
+          "name_en": "Carbon Dioxide Combining Power",
+          "abbreviation": "CO2CP",
+          "unit": "mmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 22,
+              "max": 29
+            },
+            "adult_female": {
+              "min": 22,
+              "max": 29
+            }
+          },
+          "clinical_significance": {
+            "high": "CO2CP增高见于代谢性碱中毒、呼吸性酸中毒代偿期等。",
+            "low": "CO2CP降低见于代谢性酸中毒（糖尿病酮症酸中毒、尿毒症、腹泻）、呼吸性碱中毒代偿期等。",
+            "normal": "CO2CP正常，提示酸碱平衡基本正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "二氧化碳结合力反映身体的酸碱平衡状态。",
+            "high_simple": "CO2CP偏高，身体可能偏碱性，需要医生判断原因。",
+            "low_simple": "CO2CP偏低，身体可能偏酸性，见于严重腹泻、糖尿病酮症等情况。",
+            "normal_simple": "CO2CP正常，身体酸碱平衡良好。"
+          },
+          "related_indicators": [
+            "ELEC-001",
+            "ELEC-002"
+          ],
+          "common_in_departments": [
+            "肾内科",
+            "急诊科",
+            "内科"
+          ]
+        },
+        {
+          "id": "RENAL-007",
+          "name": "肾小球滤过率",
+          "name_en": "Estimated Glomerular Filtration Rate",
+          "abbreviation": "eGFR",
+          "unit": "mL/min/1.73m²",
+          "reference_range": {
+            "adult_male": {
+              "min": 90,
+              "max": 120
+            },
+            "adult_female": {
+              "min": 90,
+              "max": 120
+            }
+          },
+          "clinical_significance": {
+            "high": "eGFR偏高见于早期糖尿病肾病（高滤过状态）、妊娠等。",
+            "low": "eGFR<90为肾功能轻度下降，<60为中度（CKD3期），<30为重度（CKD4期），<15为肾衰竭（CKD5期/尿毒症）。",
+            "normal": "eGFR正常，肾小球滤过功能正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "eGFR是评估肾脏过滤能力的综合指标，是判断肾功能分期的金标准。",
+            "high_simple": "eGFR偏高，肾脏可能处于高负荷工作状态，需要注意。",
+            "low_simple": "eGFR偏低，说明肾脏过滤能力下降，数值越低越严重，需要肾内科治疗。",
+            "normal_simple": "eGFR正常，肾脏过滤功能正常。"
+          },
+          "related_indicators": [
+            "RENAL-001",
+            "RENAL-002",
+            "RENAL-004"
+          ],
+          "common_in_departments": [
+            "肾内科"
+          ]
+        },
+        {
+          "id": "RENAL-008",
+          "name": "N-乙酰-β-D-氨基葡萄糖苷酶",
+          "name_en": "N-Acetyl-β-D-Glucosaminidase",
+          "abbreviation": "NAG",
+          "unit": "U/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 21
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 21
+            }
+          },
+          "clinical_significance": {
+            "high": "NAG升高是肾小管损伤的早期敏感指标，见于药物性肾损害、糖尿病肾病早期、重金属中毒等。",
+            "low": "NAG偏低无临床意义。",
+            "normal": "NAG正常，提示肾小管功能正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "NAG是肾小管细胞中的一种酶，肾小管受伤时会升高。",
+            "high_simple": "NAG偏高，说明肾小管可能有早期损伤，需要注意用药安全。",
+            "low_simple": "NAG偏低没有问题。",
+            "normal_simple": "NAG正常，肾小管功能正常。"
+          },
+          "related_indicators": [
+            "RENAL-005",
+            "RENAL-004"
+          ],
+          "common_in_departments": [
+            "肾内科"
+          ]
+        }
+      ]
+    },
+    {
+      "category_id": "LIPID",
+      "category_name": "血脂",
+      "category_name_en": "Blood Lipids",
+      "indicators": [
+        {
+          "id": "LIPID-001",
+          "name": "总胆固醇",
+          "name_en": "Total Cholesterol",
+          "abbreviation": "TC",
+          "unit": "mmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 2.8,
+              "max": 5.17
+            },
+            "adult_female": {
+              "min": 2.8,
+              "max": 5.17
+            }
+          },
+          "clinical_significance": {
+            "high": "TC升高（>5.17为边缘升高，>6.22为升高）是动脉粥样硬化的主要危险因素，与冠心病、脑卒中密切相关。也见于甲减、肾病综合征等。",
+            "low": "TC降低见于甲亢、严重肝病、营养不良、恶性肿瘤等。",
+            "normal": "TC正常，心血管疾病风险较低。"
+          },
+          "patient_explanation": {
+            "what_is_it": "总胆固醇是血液中胆固醇的总量，胆固醇过高会堵塞血管。",
+            "high_simple": "胆固醇偏高，血管容易堵塞，增加心脑血管疾病风险。要少吃肥肉、蛋黄，多运动。",
+            "low_simple": "胆固醇偏低，可能与营养不良或其他疾病有关。",
+            "normal_simple": "胆固醇正常，血管健康风险较低。"
+          },
+          "related_indicators": [
+            "LIPID-002",
+            "LIPID-003",
+            "LIPID-004"
+          ],
+          "common_in_departments": [
+            "心内科",
+            "内分泌科",
+            "神经内科"
+          ]
+        },
+        {
+          "id": "LIPID-002",
+          "name": "甘油三酯",
+          "name_en": "Triglycerides",
+          "abbreviation": "TG",
+          "unit": "mmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 0.56,
+              "max": 1.7
+            },
+            "adult_female": {
+              "min": 0.56,
+              "max": 1.7
+            }
+          },
+          "clinical_significance": {
+            "high": "TG升高（>1.7为边缘升高，>2.26为升高）见于高脂饮食、肥胖、糖尿病、酗酒、甲减等。TG>5.65可诱发急性胰腺炎。",
+            "low": "TG降低见于甲亢、肝功能严重损害、营养吸收不良等。",
+            "normal": "TG正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "甘油三酯是血液中的一种脂肪，与饮食关系密切。",
+            "high_simple": "甘油三酯偏高，与吃油腻食物、喝酒有关。要清淡饮食、减肥、多运动。过高可能引发胰腺炎。",
+            "low_simple": "甘油三酯偏低，可能与营养不良有关。",
+            "normal_simple": "甘油三酯正常，血脂水平良好。"
+          },
+          "related_indicators": [
+            "LIPID-001",
+            "LIPID-004"
+          ],
+          "common_in_departments": [
+            "心内科",
+            "内分泌科",
+            "消化内科"
+          ]
+        },
+        {
+          "id": "LIPID-003",
+          "name": "高密度脂蛋白胆固醇",
+          "name_en": "High-Density Lipoprotein Cholesterol",
+          "abbreviation": "HDL-C",
+          "unit": "mmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 1.04,
+              "max": 1.55
+            },
+            "adult_female": {
+              "min": 1.16,
+              "max": 1.68
+            }
+          },
+          "clinical_significance": {
+            "high": "HDL-C适度升高具有心血管保护作用。",
+            "low": "HDL-C降低（<1.04）是冠心病的独立危险因素，常见于肥胖、吸烟、缺乏运动、糖尿病等。",
+            "normal": "HDL-C正常，具有良好的心血管保护作用。"
+          },
+          "patient_explanation": {
+            "what_is_it": "HDL-C是'好胆固醇'，能帮助清理血管壁上的脂肪沉积，保护心脑血管。",
+            "high_simple": "好胆固醇偏高，对心血管有保护作用，是好事。",
+            "low_simple": "好胆固醇偏低，心血管保护作用减弱，建议多运动、戒烟。",
+            "normal_simple": "好胆固醇正常，血管有良好的保护。"
+          },
+          "related_indicators": [
+            "LIPID-001",
+            "LIPID-004"
+          ],
+          "common_in_departments": [
+            "心内科",
+            "内分泌科"
+          ]
+        },
+        {
+          "id": "LIPID-004",
+          "name": "低密度脂蛋白胆固醇",
+          "name_en": "Low-Density Lipoprotein Cholesterol",
+          "abbreviation": "LDL-C",
+          "unit": "mmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 3.37
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 3.37
+            }
+          },
+          "clinical_significance": {
+            "high": "LDL-C升高（>3.37为边缘升高，>4.14为升高）是动脉粥样硬化最重要的危险因素，是降脂治疗的首要靶标。",
+            "low": "LDL-C偏低一般认为是好的，但极度偏低需排除其他疾病。",
+            "normal": "LDL-C正常，动脉粥样硬化风险较低。"
+          },
+          "patient_explanation": {
+            "what_is_it": "LDL-C是'坏胆固醇'，会在血管壁上沉积形成斑块，堵塞血管。",
+            "high_simple": "坏胆固醇偏高，最容易堵塞血管，增加心梗和脑梗的风险。要低脂饮食，必要时吃降脂药。",
+            "low_simple": "坏胆固醇偏低，一般是好事，血管比较干净。",
+            "normal_simple": "坏胆固醇正常，血管堵塞风险较低。"
+          },
+          "related_indicators": [
+            "LIPID-001",
+            "LIPID-003",
+            "LIPID-006"
+          ],
+          "common_in_departments": [
+            "心内科",
+            "神经内科",
+            "内分泌科"
+          ]
+        },
+        {
+          "id": "LIPID-005",
+          "name": "载脂蛋白A1",
+          "name_en": "Apolipoprotein A1",
+          "abbreviation": "ApoA1",
+          "unit": "g/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 1.0,
+              "max": 1.6
+            },
+            "adult_female": {
+              "min": 1.0,
+              "max": 1.6
+            }
+          },
+          "clinical_significance": {
+            "high": "ApoA1升高见于家族性高HDL血症等，一般认为有心血管保护作用。",
+            "low": "ApoA1降低见于冠心病、脑血管疾病、糖尿病、肾病综合征等。",
+            "normal": "ApoA1正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "ApoA1是好胆固醇（HDL）的主要成分，有助于保护血管。",
+            "high_simple": "ApoA1偏高，对心血管有保护作用，是好事。",
+            "low_simple": "ApoA1偏低，心血管保护作用减弱。",
+            "normal_simple": "ApoA1正常，血管保护功能正常。"
+          },
+          "related_indicators": [
+            "LIPID-003",
+            "LIPID-006"
+          ],
+          "common_in_departments": [
+            "心内科"
+          ]
+        },
+        {
+          "id": "LIPID-006",
+          "name": "载脂蛋白B",
+          "name_en": "Apolipoprotein B",
+          "abbreviation": "ApoB",
+          "unit": "g/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 0.6,
+              "max": 1.1
+            },
+            "adult_female": {
+              "min": 0.6,
+              "max": 1.1
+            }
+          },
+          "clinical_significance": {
+            "high": "ApoB升高见于高脂血症、冠心病、糖尿病等，是动脉粥样硬化的危险因素。",
+            "low": "ApoB降低见于肝功能损害等。",
+            "normal": "ApoB正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "ApoB是坏胆固醇（LDL）的主要成分，偏高对血管不利。",
+            "high_simple": "ApoB偏高，说明血管有堵塞的风险，要注意控制血脂。",
+            "low_simple": "ApoB偏低，一般问题不大。",
+            "normal_simple": "ApoB正常，血管堵塞风险较低。"
+          },
+          "related_indicators": [
+            "LIPID-004",
+            "LIPID-005"
+          ],
+          "common_in_departments": [
+            "心内科"
+          ]
+        },
+        {
+          "id": "LIPID-007",
+          "name": "脂蛋白(a)",
+          "name_en": "Lipoprotein(a)",
+          "abbreviation": "Lp(a)",
+          "unit": "mg/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 300
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 300
+            }
+          },
+          "clinical_significance": {
+            "high": "Lp(a)升高是冠心病的独立危险因素，受遗传影响大，目前缺乏有效的药物降低手段。",
+            "low": "Lp(a)偏低无临床意义。",
+            "normal": "Lp(a)正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "Lp(a)是一种特殊的血脂，与遗传有关，偏高会增加心血管疾病风险。",
+            "high_simple": "Lp(a)偏高，多与遗传有关，增加心血管疾病风险，建议综合管理其他危险因素。",
+            "low_simple": "Lp(a)偏低没有问题。",
+            "normal_simple": "Lp(a)正常。"
+          },
+          "related_indicators": [
+            "LIPID-001",
+            "LIPID-004"
+          ],
+          "common_in_departments": [
+            "心内科"
+          ]
+        }
+      ]
+    },
+    {
+      "category_id": "GLUCOSE",
+      "category_name": "血糖",
+      "category_name_en": "Blood Glucose",
+      "indicators": [
+        {
+          "id": "GLUCOSE-001",
+          "name": "空腹血糖",
+          "name_en": "Fasting Blood Glucose",
+          "abbreviation": "FBG",
+          "unit": "mmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 3.9,
+              "max": 6.1
+            },
+            "adult_female": {
+              "min": 3.9,
+              "max": 6.1
+            }
+          },
+          "clinical_significance": {
+            "high": "FBG 6.1-7.0为空腹血糖受损（IFG），≥7.0可诊断糖尿病（需重复确认）。升高见于糖尿病、甲亢、库欣综合征、应激状态等。",
+            "low": "FBG<2.8为低血糖症，见于胰岛素瘤、胰岛素或降糖药过量、肾上腺功能减退等。严重低血糖可致昏迷。",
+            "normal": "FBG正常，糖代谢功能正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "空腹血糖是早上没吃东西时测量的血糖水平，是判断糖尿病的重要指标。",
+            "high_simple": "空腹血糖偏高，可能有糖尿病风险。要控制饮食、少吃甜食和主食，多运动。",
+            "low_simple": "空腹血糖偏低，容易出现头晕、出冷汗、心慌。要及时吃点糖或食物。",
+            "normal_simple": "空腹血糖正常，没有糖尿病。"
+          },
+          "related_indicators": [
+            "GLUCOSE-002",
+            "GLUCOSE-003",
+            "GLUCOSE-004"
+          ],
+          "common_in_departments": [
+            "内分泌科",
+            "内科",
+            "体检中心"
+          ]
+        },
+        {
+          "id": "GLUCOSE-002",
+          "name": "餐后2小时血糖",
+          "name_en": "2-hour Postprandial Blood Glucose",
+          "abbreviation": "2hPG",
+          "unit": "mmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 3.9,
+              "max": 7.8
+            },
+            "adult_female": {
+              "min": 3.9,
+              "max": 7.8
+            }
+          },
+          "clinical_significance": {
+            "high": "2hPG 7.8-11.1为糖耐量异常（IGT），≥11.1可诊断糖尿病。是早期发现糖尿病的重要指标。",
+            "low": "2hPG偏低见于反应性低血糖等。",
+            "normal": "2hPG正常，餐后血糖调节功能正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "餐后2小时血糖是吃饭后2小时测的血糖，看身体处理糖分的能力。",
+            "high_simple": "餐后血糖偏高，身体处理糖分的能力下降了，可能是糖尿病早期信号。",
+            "low_simple": "餐后血糖偏低，可能出现饥饿感、出汗，建议少食多餐。",
+            "normal_simple": "餐后血糖正常，身体处理糖分的能力正常。"
+          },
+          "related_indicators": [
+            "GLUCOSE-001",
+            "GLUCOSE-003"
+          ],
+          "common_in_departments": [
+            "内分泌科"
+          ]
+        },
+        {
+          "id": "GLUCOSE-003",
+          "name": "糖化血红蛋白",
+          "name_en": "Glycosylated Hemoglobin",
+          "abbreviation": "HbA1c",
+          "unit": "%",
+          "reference_range": {
+            "adult_male": {
+              "min": 4.0,
+              "max": 6.0
+            },
+            "adult_female": {
+              "min": 4.0,
+              "max": 6.0
+            }
+          },
+          "clinical_significance": {
+            "high": "HbA1c≥6.5%可辅助诊断糖尿病。反映近2-3个月平均血糖水平，是糖尿病控制效果的金标准。<7%为控制良好。",
+            "low": "HbA1c偏低见于溶血性贫血、大量失血后等。",
+            "normal": "HbA1c正常，提示近2-3个月血糖水平正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "糖化血红蛋白反映最近2-3个月的平均血糖水平，不受当天饮食影响。",
+            "high_simple": "糖化血红蛋白偏高，说明最近两三个月血糖控制不好，需要加强管理。",
+            "low_simple": "糖化血红蛋白偏低，可能与贫血等有关。",
+            "normal_simple": "糖化血红蛋白正常，说明最近血糖控制得很好。"
+          },
+          "related_indicators": [
+            "GLUCOSE-001",
+            "GLUCOSE-002"
+          ],
+          "common_in_departments": [
+            "内分泌科"
+          ]
+        },
+        {
+          "id": "GLUCOSE-004",
+          "name": "空腹胰岛素",
+          "name_en": "Fasting Insulin",
+          "abbreviation": "FINS",
+          "unit": "μU/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 2.6,
+              "max": 24.9
+            },
+            "adult_female": {
+              "min": 2.6,
+              "max": 24.9
+            }
+          },
+          "clinical_significance": {
+            "high": "胰岛素升高见于2型糖尿病早期（胰岛素抵抗）、胰岛素瘤、肥胖等。HOMA-IR指数可评估胰岛素抵抗程度。",
+            "low": "胰岛素降低见于1型糖尿病、2型糖尿病晚期（胰岛功能衰竭）。",
+            "normal": "空腹胰岛素正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "胰岛素是控制血糖的激素，由胰腺分泌。",
+            "high_simple": "胰岛素偏高，可能身体对胰岛素不敏感了（胰岛素抵抗），常见于肥胖人群，要减肥和运动。",
+            "low_simple": "胰岛素偏低，胰腺分泌胰岛素的能力下降，可能需要注射胰岛素治疗。",
+            "normal_simple": "胰岛素水平正常，胰腺功能正常。"
+          },
+          "related_indicators": [
+            "GLUCOSE-001",
+            "GLUCOSE-003"
+          ],
+          "common_in_departments": [
+            "内分泌科"
+          ]
+        }
+      ]
+    },
+    {
+      "category_id": "URINE",
+      "category_name": "尿常规",
+      "category_name_en": "Urinalysis",
+      "indicators": [
+        {
+          "id": "URINE-001",
+          "name": "尿蛋白",
+          "name_en": "Urine Protein",
+          "abbreviation": "PRO",
+          "unit": "定性检测",
+          "reference_range": {
+            "adult_male": {
+              "normal_value": "阴性(-)",
+              "type": "qualitative"
+            },
+            "adult_female": {
+              "normal_value": "阴性(-)",
+              "type": "qualitative"
+            }
+          },
+          "clinical_significance": {
+            "high": "尿蛋白阳性见于肾小球肾炎、肾病综合征、糖尿病肾病、高血压肾损害、妊娠期子痫前期等。生理性蛋白尿见于剧烈运动后、发热等。",
+            "low": "阴性为正常。",
+            "normal": "尿蛋白阴性，提示肾脏滤过屏障功能正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "尿蛋白检查尿液中是否有蛋白质漏出，正常情况下尿中不该有蛋白质。",
+            "high_simple": "尿蛋白阳性，说明肾脏可能有漏洞，蛋白质从尿里流失了，需要去肾内科检查。",
+            "low_simple": "尿蛋白阴性是正常的。",
+            "normal_simple": "尿蛋白正常，肾脏过滤功能良好。"
+          },
+          "related_indicators": [
+            "RENAL-001",
+            "RENAL-007",
+            "URINE-002"
+          ],
+          "common_in_departments": [
+            "肾内科",
+            "内分泌科"
+          ]
+        },
+        {
+          "id": "URINE-002",
+          "name": "尿潜血",
+          "name_en": "Urine Occult Blood",
+          "abbreviation": "BLD",
+          "unit": "定性检测",
+          "reference_range": {
+            "adult_male": {
+              "normal_value": "阴性(-)",
+              "type": "qualitative"
+            },
+            "adult_female": {
+              "normal_value": "阴性(-)",
+              "type": "qualitative"
+            }
+          },
+          "clinical_significance": {
+            "high": "尿潜血阳性见于肾小球肾炎、泌尿系结石、泌尿系肿瘤、泌尿系感染等。女性月经期可假阳性。",
+            "low": "阴性为正常。",
+            "normal": "尿潜血阴性，提示无泌尿系统出血。"
+          },
+          "patient_explanation": {
+            "what_is_it": "尿潜血检查尿里有没有血，正常尿里不该有血。",
+            "high_simple": "尿潜血阳性，尿里有血，可能是肾炎、结石或其他泌尿系统问题，需要就医。",
+            "low_simple": "尿潜血阴性是正常的。",
+            "normal_simple": "尿潜血正常，泌尿系统没有出血。"
+          },
+          "related_indicators": [
+            "URINE-001",
+            "URINE-011"
+          ],
+          "common_in_departments": [
+            "肾内科",
+            "泌尿外科"
+          ]
+        },
+        {
+          "id": "URINE-003",
+          "name": "尿白细胞",
+          "name_en": "Urine White Blood Cells",
+          "abbreviation": "WBC(尿)",
+          "unit": "/HPF",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 5
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 5
+            }
+          },
+          "clinical_significance": {
+            "high": "尿白细胞增多见于泌尿系感染（尿路感染、肾盂肾炎）、前列腺炎、间质性肾炎等。",
+            "low": "正常范围。",
+            "normal": "尿白细胞正常，提示无泌尿系感染。"
+          },
+          "patient_explanation": {
+            "what_is_it": "尿白细胞检查尿里有没有炎症细胞，有的话说明泌尿系统可能有感染。",
+            "high_simple": "尿白细胞偏多，可能有尿路感染，会出现尿频、尿急、尿痛，需要抗感染治疗。",
+            "low_simple": "尿白细胞正常。",
+            "normal_simple": "尿白细胞正常，泌尿系统没有感染。"
+          },
+          "related_indicators": [
+            "URINE-006",
+            "URINE-012"
+          ],
+          "common_in_departments": [
+            "泌尿外科",
+            "肾内科",
+            "妇科"
+          ]
+        },
+        {
+          "id": "URINE-004",
+          "name": "尿糖",
+          "name_en": "Urine Glucose",
+          "abbreviation": "GLU(尿)",
+          "unit": "定性检测",
+          "reference_range": {
+            "adult_male": {
+              "normal_value": "阴性(-)",
+              "type": "qualitative"
+            },
+            "adult_female": {
+              "normal_value": "阴性(-)",
+              "type": "qualitative"
+            }
+          },
+          "clinical_significance": {
+            "high": "尿糖阳性见于糖尿病（血糖>10mmol/L时出现）、肾性糖尿、妊娠等。",
+            "low": "阴性为正常。",
+            "normal": "尿糖阴性，血糖未超过肾糖阈。"
+          },
+          "patient_explanation": {
+            "what_is_it": "尿糖检查尿液中有没有糖分，正常不该有。血糖太高时糖会从尿里漏出来。",
+            "high_simple": "尿糖阳性，血糖可能太高了，糖从尿里漏出来了，要查血糖是否有糖尿病。",
+            "low_simple": "尿糖阴性是正常的。",
+            "normal_simple": "尿糖正常，血糖没有过高。"
+          },
+          "related_indicators": [
+            "GLUCOSE-001",
+            "GLUCOSE-003"
+          ],
+          "common_in_departments": [
+            "内分泌科"
+          ]
+        },
+        {
+          "id": "URINE-005",
+          "name": "尿酮体",
+          "name_en": "Urine Ketones",
+          "abbreviation": "KET",
+          "unit": "定性检测",
+          "reference_range": {
+            "adult_male": {
+              "normal_value": "阴性(-)",
+              "type": "qualitative"
+            },
+            "adult_female": {
+              "normal_value": "阴性(-)",
+              "type": "qualitative"
+            }
+          },
+          "clinical_significance": {
+            "high": "尿酮体阳性见于糖尿病酮症酸中毒、饥饿、严重呕吐腹泻、高脂低碳饮食等。",
+            "low": "阴性为正常。",
+            "normal": "尿酮体阴性。"
+          },
+          "patient_explanation": {
+            "what_is_it": "尿酮体是身体在缺糖时燃烧脂肪产生的物质。",
+            "high_simple": "尿酮体阳性，可能是没吃饱饭或糖尿病控制不好，严重时会酸中毒，要及时就医。",
+            "low_simple": "尿酮体阴性是正常的。",
+            "normal_simple": "尿酮体正常。"
+          },
+          "related_indicators": [
+            "GLUCOSE-001"
+          ],
+          "common_in_departments": [
+            "内分泌科",
+            "急诊科"
+          ]
+        },
+        {
+          "id": "URINE-006",
+          "name": "尿亚硝酸盐",
+          "name_en": "Urine Nitrite",
+          "abbreviation": "NIT",
+          "unit": "定性检测",
+          "reference_range": {
+            "adult_male": {
+              "normal_value": "阴性(-)",
+              "type": "qualitative"
+            },
+            "adult_female": {
+              "normal_value": "阴性(-)",
+              "type": "qualitative"
+            }
+          },
+          "clinical_significance": {
+            "high": "尿亚硝酸盐阳性提示泌尿系细菌感染（大肠杆菌等革兰阴性菌感染）。",
+            "low": "阴性为正常，但不能完全排除感染。",
+            "normal": "尿亚硝酸盐阴性。"
+          },
+          "patient_explanation": {
+            "what_is_it": "尿亚硝酸盐用来快速筛查是否有细菌性尿路感染。",
+            "high_simple": "尿亚硝酸盐阳性，很可能有尿路细菌感染，需要抗感染治疗。",
+            "low_simple": "尿亚硝酸盐阴性是正常的。",
+            "normal_simple": "尿亚硝酸盐正常，没有发现细菌感染的迹象。"
+          },
+          "related_indicators": [
+            "URINE-003",
+            "URINE-012"
+          ],
+          "common_in_departments": [
+            "泌尿外科",
+            "肾内科"
+          ]
+        },
+        {
+          "id": "URINE-007",
+          "name": "尿胆红素",
+          "name_en": "Urine Bilirubin",
+          "abbreviation": "BIL(尿)",
+          "unit": "定性检测",
+          "reference_range": {
+            "adult_male": {
+              "normal_value": "阴性(-)",
+              "type": "qualitative"
+            },
+            "adult_female": {
+              "normal_value": "阴性(-)",
+              "type": "qualitative"
+            }
+          },
+          "clinical_significance": {
+            "high": "尿胆红素阳性见于梗阻性黄疸、肝细胞性黄疸，溶血性黄疸时为阴性。",
+            "low": "阴性为正常。",
+            "normal": "尿胆红素阴性。"
+          },
+          "patient_explanation": {
+            "what_is_it": "尿胆红素检查尿液中是否有胆红素，帮助判断黄疸的类型。",
+            "high_simple": "尿胆红素阳性，可能有肝脏或胆管的问题，尿色会加深变成茶色。",
+            "low_simple": "尿胆红素阴性是正常的。",
+            "normal_simple": "尿胆红素正常。"
+          },
+          "related_indicators": [
+            "LIVER-005",
+            "LIVER-006"
+          ],
+          "common_in_departments": [
+            "肝病科",
+            "消化内科"
+          ]
+        },
+        {
+          "id": "URINE-008",
+          "name": "尿胆原",
+          "name_en": "Urobilinogen",
+          "abbreviation": "URO",
+          "unit": "μmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 1.7,
+              "max": 17
+            },
+            "adult_female": {
+              "min": 1.7,
+              "max": 17
+            }
+          },
+          "clinical_significance": {
+            "high": "尿胆原增高见于溶血性黄疸、肝细胞性黄疸。",
+            "low": "尿胆原减少或缺如见于完全性梗阻性黄疸。",
+            "normal": "尿胆原正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "尿胆原是胆红素在肠道中转化后的产物，帮助判断黄疸原因。",
+            "high_simple": "尿胆原偏高，可能与红细胞破坏过多或肝脏问题有关。",
+            "low_simple": "尿胆原偏低或消失，可能胆管完全堵塞。",
+            "normal_simple": "尿胆原正常。"
+          },
+          "related_indicators": [
+            "LIVER-005",
+            "URINE-007"
+          ],
+          "common_in_departments": [
+            "肝病科",
+            "消化内科"
+          ]
+        },
+        {
+          "id": "URINE-009",
+          "name": "尿液酸碱度",
+          "name_en": "Urine pH",
+          "abbreviation": "pH(尿)",
+          "unit": "pH",
+          "reference_range": {
+            "adult_male": {
+              "min": 4.6,
+              "max": 8.0,
+              "normal_value": "约6.0"
+            },
+            "adult_female": {
+              "min": 4.6,
+              "max": 8.0,
+              "normal_value": "约6.0"
+            }
+          },
+          "clinical_significance": {
+            "high": "尿液偏碱性见于泌尿系感染（变形杆菌）、碱中毒、素食为主等。",
+            "low": "尿液偏酸性见于酸中毒、痛风、糖尿病、高蛋白饮食等。",
+            "normal": "尿液pH正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "尿液酸碱度反映尿液的酸碱性质。",
+            "high_simple": "尿液偏碱，可能与饮食或泌尿系感染有关。",
+            "low_simple": "尿液偏酸，可能与吃肉多或某些疾病有关。",
+            "normal_simple": "尿液酸碱度正常。"
+          },
+          "related_indicators": [
+            "URINE-005",
+            "RENAL-003"
+          ],
+          "common_in_departments": [
+            "肾内科",
+            "泌尿外科"
+          ]
+        },
+        {
+          "id": "URINE-010",
+          "name": "尿比重",
+          "name_en": "Urine Specific Gravity",
+          "abbreviation": "SG",
+          "unit": "无量纲",
+          "reference_range": {
+            "adult_male": {
+              "min": 1.003,
+              "max": 1.03
+            },
+            "adult_female": {
+              "min": 1.003,
+              "max": 1.03
+            }
+          },
+          "clinical_significance": {
+            "high": "尿比重增高见于脱水、急性肾炎、糖尿病等。",
+            "low": "尿比重降低见于大量饮水、慢性肾功能不全、尿崩症等。尿比重固定在1.010左右提示肾功能严重受损。",
+            "normal": "尿比重正常，提示肾脏浓缩稀释功能正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "尿比重反映尿液的浓淡程度，与喝水多少和肾脏功能有关。",
+            "high_simple": "尿比重偏高，尿液比较浓，可能喝水太少或有脱水。",
+            "low_simple": "尿比重偏低，尿液比较稀，可能喝水太多或肾脏浓缩功能下降。",
+            "normal_simple": "尿比重正常，肾脏浓缩功能正常。"
+          },
+          "related_indicators": [
+            "RENAL-001",
+            "RENAL-007"
+          ],
+          "common_in_departments": [
+            "肾内科"
+          ]
+        },
+        {
+          "id": "URINE-011",
+          "name": "尿红细胞",
+          "name_en": "Urine Red Blood Cells",
+          "abbreviation": "RBC(尿)",
+          "unit": "/HPF",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 3
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 3
+            }
+          },
+          "clinical_significance": {
+            "high": "尿红细胞增多（血尿）见于肾小球肾炎、泌尿系结石、泌尿系肿瘤、泌尿系感染等。镜下血尿需进一步做相差显微镜检查鉴别肾性与非肾性血尿。",
+            "low": "正常范围。",
+            "normal": "尿红细胞正常，无血尿。"
+          },
+          "patient_explanation": {
+            "what_is_it": "尿红细胞是检查尿液中有没有红细胞（血细胞），正常尿里几乎没有。",
+            "high_simple": "尿里红细胞偏多，说明泌尿系统可能有出血，需查明是肾脏还是其他部位的问题。",
+            "low_simple": "尿红细胞正常。",
+            "normal_simple": "尿红细胞正常，没有血尿。"
+          },
+          "related_indicators": [
+            "URINE-002",
+            "URINE-001"
+          ],
+          "common_in_departments": [
+            "肾内科",
+            "泌尿外科"
+          ]
+        },
+        {
+          "id": "URINE-012",
+          "name": "尿白细胞酯酶",
+          "name_en": "Leukocyte Esterase",
+          "abbreviation": "LEU",
+          "unit": "定性检测",
+          "reference_range": {
+            "adult_male": {
+              "normal_value": "阴性(-)",
+              "type": "qualitative"
+            },
+            "adult_female": {
+              "normal_value": "阴性(-)",
+              "type": "qualitative"
+            }
+          },
+          "clinical_significance": {
+            "high": "尿白细胞酯酶阳性提示泌尿系感染，与尿沉渣白细胞计数结合判断。",
+            "low": "阴性为正常。",
+            "normal": "尿白细胞酯酶阴性。"
+          },
+          "patient_explanation": {
+            "what_is_it": "白细胞酯酶是白细胞释放的一种物质，阳性提示有泌尿系感染。",
+            "high_simple": "白细胞酯酶阳性，提示可能有尿路感染，建议就医治疗。",
+            "low_simple": "白细胞酯酶阴性是正常的。",
+            "normal_simple": "白细胞酯酶正常，没有泌尿系感染的迹象。"
+          },
+          "related_indicators": [
+            "URINE-003",
+            "URINE-006"
+          ],
+          "common_in_departments": [
+            "泌尿外科",
+            "肾内科"
+          ]
+        }
+      ]
+    },
+    {
+      "category_id": "THYROID",
+      "category_name": "甲状腺功能",
+      "category_name_en": "Thyroid Function",
+      "indicators": [
+        {
+          "id": "THYROID-001",
+          "name": "促甲状腺激素",
+          "name_en": "Thyroid Stimulating Hormone",
+          "abbreviation": "TSH",
+          "unit": "mIU/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 0.27,
+              "max": 4.2
+            },
+            "adult_female": {
+              "min": 0.27,
+              "max": 4.2
+            }
+          },
+          "clinical_significance": {
+            "high": "TSH升高见于原发性甲状腺功能减退症、桥本甲状腺炎等。也见于甲亢治疗后恢复期。",
+            "low": "TSH降低见于甲状腺功能亢进症（Graves病）、亚急性甲状腺炎甲亢期、外源性甲状腺激素过量等。",
+            "normal": "TSH正常，提示甲状腺功能基本正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "TSH是脑垂体分泌的激素，调节甲状腺的工作。是判断甲状腺功能最灵敏的指标。",
+            "high_simple": "TSH偏高，说明甲状腺功能可能减退（甲减），会感到怕冷、乏力、发胖。",
+            "low_simple": "TSH偏低，说明甲状腺功能可能亢进（甲亢），会心跳快、出汗多、体重减轻。",
+            "normal_simple": "TSH正常，甲状腺功能正常。"
+          },
+          "related_indicators": [
+            "THYROID-002",
+            "THYROID-003"
+          ],
+          "common_in_departments": [
+            "内分泌科",
+            "核医学科"
+          ]
+        },
+        {
+          "id": "THYROID-002",
+          "name": "游离三碘甲状腺原氨酸",
+          "name_en": "Free Triiodothyronine",
+          "abbreviation": "FT3",
+          "unit": "pmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 3.1,
+              "max": 6.8
+            },
+            "adult_female": {
+              "min": 3.1,
+              "max": 6.8
+            }
+          },
+          "clinical_significance": {
+            "high": "FT3升高见于甲亢，尤其T3型甲亢时FT3升高更显著。",
+            "low": "FT3降低见于甲减、严重全身性疾病（低T3综合征）等。",
+            "normal": "FT3正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "FT3是甲状腺分泌的活性激素之一，调节身体的新陈代谢。",
+            "high_simple": "FT3偏高，甲状腺功能可能亢进，代谢加快。",
+            "low_simple": "FT3偏低，甲状腺功能可能减退或身体比较虚弱。",
+            "normal_simple": "FT3正常，甲状腺激素水平正常。"
+          },
+          "related_indicators": [
+            "THYROID-001",
+            "THYROID-003",
+            "THYROID-004"
+          ],
+          "common_in_departments": [
+            "内分泌科"
+          ]
+        },
+        {
+          "id": "THYROID-003",
+          "name": "游离甲状腺素",
+          "name_en": "Free Thyroxine",
+          "abbreviation": "FT4",
+          "unit": "pmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 12,
+              "max": 22
+            },
+            "adult_female": {
+              "min": 12,
+              "max": 22
+            }
+          },
+          "clinical_significance": {
+            "high": "FT4升高见于甲亢（Graves病等）。",
+            "low": "FT4降低见于甲减。亚临床甲减时FT4可正常而TSH升高。",
+            "normal": "FT4正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "FT4是甲状腺分泌的另一种激素，和FT3一起调节新陈代谢。",
+            "high_simple": "FT4偏高，可能有甲亢，代谢过快。",
+            "low_simple": "FT4偏低，可能有甲减，代谢过慢。",
+            "normal_simple": "FT4正常，甲状腺功能正常。"
+          },
+          "related_indicators": [
+            "THYROID-001",
+            "THYROID-002",
+            "THYROID-005"
+          ],
+          "common_in_departments": [
+            "内分泌科"
+          ]
+        },
+        {
+          "id": "THYROID-004",
+          "name": "总三碘甲状腺原氨酸",
+          "name_en": "Total Triiodothyronine",
+          "abbreviation": "T3",
+          "unit": "nmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 1.3,
+              "max": 3.1
+            },
+            "adult_female": {
+              "min": 1.3,
+              "max": 3.1
+            }
+          },
+          "clinical_significance": {
+            "high": "T3升高见于甲亢。",
+            "low": "T3降低见于甲减、严重疾病（低T3综合征）。T3受结合蛋白影响较大，FT3更准确。",
+            "normal": "T3正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "T3是甲状腺激素的总量（包含结合和游离部分）。",
+            "high_simple": "T3偏高，可能有甲亢。",
+            "low_simple": "T3偏低，可能有甲减或全身疾病的影响。",
+            "normal_simple": "T3正常。"
+          },
+          "related_indicators": [
+            "THYROID-002",
+            "THYROID-001"
+          ],
+          "common_in_departments": [
+            "内分泌科"
+          ]
+        },
+        {
+          "id": "THYROID-005",
+          "name": "总甲状腺素",
+          "name_en": "Total Thyroxine",
+          "abbreviation": "T4",
+          "unit": "nmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 66,
+              "max": 181
+            },
+            "adult_female": {
+              "min": 66,
+              "max": 181
+            }
+          },
+          "clinical_significance": {
+            "high": "T4升高见于甲亢、妊娠期（生理性升高，因TBG增加）。",
+            "low": "T4降低见于甲减。",
+            "normal": "T4正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "T4是甲状腺激素的总量。",
+            "high_simple": "T4偏高，可能有甲亢，也可能是怀孕等生理原因。",
+            "low_simple": "T4偏低，可能有甲减。",
+            "normal_simple": "T4正常。"
+          },
+          "related_indicators": [
+            "THYROID-003",
+            "THYROID-001"
+          ],
+          "common_in_departments": [
+            "内分泌科"
+          ]
+        },
+        {
+          "id": "THYROID-006",
+          "name": "抗甲状腺球蛋白抗体",
+          "name_en": "Thyroglobulin Antibody",
+          "abbreviation": "TGAb",
+          "unit": "IU/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 115
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 115
+            }
+          },
+          "clinical_significance": {
+            "high": "TGAb升高见于桥本甲状腺炎（最常见）、Graves病、甲状腺癌术后监测等。",
+            "low": "TGAb阴性或低水平为正常。",
+            "normal": "TGAb正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "TGAb是免疫系统产生的攻击甲状腺的抗体，升高提示自身免疫性甲状腺疾病。",
+            "high_simple": "TGAb偏高，说明免疫系统可能在攻击自己的甲状腺，最常见于桥本甲状腺炎。",
+            "low_simple": "TGAb正常或阴性，没有自身免疫性甲状腺问题。",
+            "normal_simple": "TGAb正常，甲状腺没有自身免疫攻击。"
+          },
+          "related_indicators": [
+            "THYROID-007",
+            "THYROID-001"
+          ],
+          "common_in_departments": [
+            "内分泌科"
+          ]
+        },
+        {
+          "id": "THYROID-007",
+          "name": "抗甲状腺过氧化物酶抗体",
+          "name_en": "Thyroid Peroxidase Antibody",
+          "abbreviation": "TPOAb",
+          "unit": "IU/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 34
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 34
+            }
+          },
+          "clinical_significance": {
+            "high": "TPOAb升高是桥本甲状腺炎最敏感的指标，也见于Graves病等自身免疫性甲状腺疾病。TPOAb阳性者发展为甲减的风险增加。",
+            "low": "TPOAb阴性或低水平为正常。",
+            "normal": "TPOAb正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "TPOAb是另一种攻击甲状腺的抗体，是诊断桥本甲状腺炎最重要的指标。",
+            "high_simple": "TPOAb偏高，很可能有桥本甲状腺炎，将来可能发展为甲减，需要定期复查。",
+            "low_simple": "TPOAb正常。",
+            "normal_simple": "TPOAb正常，没有自身免疫性甲状腺炎的证据。"
+          },
+          "related_indicators": [
+            "THYROID-006",
+            "THYROID-001"
+          ],
+          "common_in_departments": [
+            "内分泌科"
+          ]
+        }
+      ]
+    },
+    {
+      "category_id": "TUMOR",
+      "category_name": "肿瘤标志物",
+      "category_name_en": "Tumor Markers",
+      "indicators": [
+        {
+          "id": "TUMOR-001",
+          "name": "甲胎蛋白",
+          "name_en": "Alpha-Fetoprotein",
+          "abbreviation": "AFP",
+          "unit": "ng/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 7
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 7
+            }
+          },
+          "clinical_significance": {
+            "high": "AFP显著升高（>400ng/mL）高度提示原发性肝癌。中度升高见于慢性肝炎、肝硬化、生殖细胞肿瘤等。妊娠期可生理性升高。",
+            "low": "AFP偏低无临床意义。",
+            "normal": "AFP正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "AFP是筛查肝癌的重要指标，高危人群（乙肝、肝硬化患者）应定期检测。",
+            "high_simple": "AFP偏高，需要排除肝脏问题，特别是肝癌。轻度升高也可能是肝炎引起的，别太紧张，做个B超看看。",
+            "low_simple": "AFP正常没有问题。",
+            "normal_simple": "AFP正常，肝癌风险低。"
+          },
+          "related_indicators": [
+            "LIVER-001",
+            "TUMOR-002"
+          ],
+          "common_in_departments": [
+            "肿瘤科",
+            "肝病科",
+            "消化内科"
+          ]
+        },
+        {
+          "id": "TUMOR-002",
+          "name": "癌胚抗原",
+          "name_en": "Carcinoembryonic Antigen",
+          "abbreviation": "CEA",
+          "unit": "ng/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 5.0
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 5.0
+            }
+          },
+          "clinical_significance": {
+            "high": "CEA升高见于结直肠癌（最相关）、胃癌、肺癌、乳腺癌、胰腺癌等。轻度升高也见于吸烟、炎症性肠病、肝硬化等良性疾病。",
+            "low": "CEA偏低无临床意义。",
+            "normal": "CEA正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "CEA是一种广谱肿瘤标志物，与多种癌症相关，尤其是大肠癌。",
+            "high_simple": "CEA偏高，不一定是癌症，吸烟也可能升高。但需要做进一步检查排除肿瘤。",
+            "low_simple": "CEA正常没有问题。",
+            "normal_simple": "CEA正常。"
+          },
+          "related_indicators": [
+            "TUMOR-001",
+            "TUMOR-004"
+          ],
+          "common_in_departments": [
+            "肿瘤科",
+            "消化内科",
+            "普外科"
+          ]
+        },
+        {
+          "id": "TUMOR-003",
+          "name": "糖类抗原125",
+          "name_en": "Cancer Antigen 125",
+          "abbreviation": "CA125",
+          "unit": "U/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 35
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 35
+            }
+          },
+          "clinical_significance": {
+            "high": "CA125升高主要见于卵巢癌（尤其浆液性卵巢癌），也见于子宫内膜异位症、月经期、盆腔炎、肝硬化伴腹水等。",
+            "low": "CA125偏低无临床意义。",
+            "normal": "CA125正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "CA125主要用于筛查和监测卵巢癌。",
+            "high_simple": "CA125偏高，女性需要排除卵巢问题。但月经期、子宫内膜异位症等也能升高，不用过于担心。",
+            "low_simple": "CA125正常没有问题。",
+            "normal_simple": "CA125正常。"
+          },
+          "related_indicators": [
+            "TUMOR-005"
+          ],
+          "common_in_departments": [
+            "妇科",
+            "肿瘤科"
+          ]
+        },
+        {
+          "id": "TUMOR-004",
+          "name": "糖类抗原199",
+          "name_en": "Cancer Antigen 19-9",
+          "abbreviation": "CA199",
+          "unit": "U/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 37
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 37
+            }
+          },
+          "clinical_significance": {
+            "high": "CA199升高主要见于胰腺癌（敏感性最高）、胆管癌、胃癌、结直肠癌等消化系统恶性肿瘤。也见于胆道梗阻、急慢性胰腺炎等。",
+            "low": "CA199偏低无临床意义。",
+            "normal": "CA199正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "CA199主要用于筛查胰腺癌和消化系统肿瘤。",
+            "high_simple": "CA199偏高，需要排除胰腺和消化系统的问题，建议做腹部CT检查。胰腺炎等也能引起升高。",
+            "low_simple": "CA199正常没有问题。",
+            "normal_simple": "CA199正常。"
+          },
+          "related_indicators": [
+            "TUMOR-002"
+          ],
+          "common_in_departments": [
+            "肿瘤科",
+            "消化内科",
+            "肝胆外科"
+          ]
+        },
+        {
+          "id": "TUMOR-005",
+          "name": "糖类抗原153",
+          "name_en": "Cancer Antigen 15-3",
+          "abbreviation": "CA153",
+          "unit": "U/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 25
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 25
+            }
+          },
+          "clinical_significance": {
+            "high": "CA153升高主要见于乳腺癌，尤其是转移性乳腺癌。也见于卵巢癌、肺癌等。轻度升高见于乳腺良性疾病、肝炎等。",
+            "low": "CA153偏低无临床意义。",
+            "normal": "CA153正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "CA153主要用于监测乳腺癌。",
+            "high_simple": "CA153偏高，女性需要做乳腺检查排除乳腺癌。轻度升高也可能是良性乳腺疾病。",
+            "low_simple": "CA153正常没有问题。",
+            "normal_simple": "CA153正常。"
+          },
+          "related_indicators": [
+            "TUMOR-003",
+            "TUMOR-002"
+          ],
+          "common_in_departments": [
+            "乳腺外科",
+            "肿瘤科"
+          ]
+        },
+        {
+          "id": "TUMOR-006",
+          "name": "糖类抗原724",
+          "name_en": "Cancer Antigen 72-4",
+          "abbreviation": "CA724",
+          "unit": "U/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 6.9
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 6.9
+            }
+          },
+          "clinical_significance": {
+            "high": "CA724升高见于胃癌（敏感性较高）、卵巢黏液性囊腺癌、结直肠癌等。也见于良性胃肠疾病。",
+            "low": "CA724偏低无临床意义。",
+            "normal": "CA724正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "CA724主要用于筛查胃癌和卵巢癌。",
+            "high_simple": "CA724偏高，需要排除胃部和消化道的问题，建议做胃镜检查。",
+            "low_simple": "CA724正常没有问题。",
+            "normal_simple": "CA724正常。"
+          },
+          "related_indicators": [
+            "TUMOR-002",
+            "TUMOR-003"
+          ],
+          "common_in_departments": [
+            "肿瘤科",
+            "消化内科"
+          ]
+        },
+        {
+          "id": "TUMOR-007",
+          "name": "前列腺特异性抗原",
+          "name_en": "Prostate-Specific Antigen",
+          "abbreviation": "PSA",
+          "unit": "ng/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 4.0
+            },
+            "adult_female": {
+              "normal_value": "不适用",
+              "type": "qualitative"
+            }
+          },
+          "clinical_significance": {
+            "high": "PSA升高见于前列腺癌、前列腺增生（BPH）、前列腺炎、导尿或前列腺按摩后。PSA>10ng/mL高度怀疑前列腺癌，4-10为灰区需结合fPSA/tPSA比值判断。",
+            "low": "PSA偏低无临床意义。",
+            "normal": "PSA正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "PSA是男性前列腺分泌的蛋白，用于筛查前列腺癌。",
+            "high_simple": "PSA偏高，不一定是前列腺癌，前列腺增生（老年男性很常见）也会升高，需要进一步检查。",
+            "low_simple": "PSA正常没有问题。",
+            "normal_simple": "PSA正常，前列腺癌风险低。"
+          },
+          "related_indicators": [],
+          "common_in_departments": [
+            "泌尿外科",
+            "肿瘤科"
+          ]
+        },
+        {
+          "id": "TUMOR-008",
+          "name": "神经元特异性烯醇化酶",
+          "name_en": "Neuron-Specific Enolase",
+          "abbreviation": "NSE",
+          "unit": "ng/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 16.3
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 16.3
+            }
+          },
+          "clinical_significance": {
+            "high": "NSE升高主要见于小细胞肺癌（SCLC）、神经母细胞瘤、神经内分泌肿瘤等。溶血标本可假性升高。",
+            "low": "NSE偏低无临床意义。",
+            "normal": "NSE正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "NSE主要用于筛查小细胞肺癌和神经内分泌肿瘤。",
+            "high_simple": "NSE偏高，需要排除肺部肿瘤的可能，建议做胸部CT检查。",
+            "low_simple": "NSE正常没有问题。",
+            "normal_simple": "NSE正常。"
+          },
+          "related_indicators": [
+            "TUMOR-009"
+          ],
+          "common_in_departments": [
+            "呼吸科",
+            "肿瘤科"
+          ]
+        },
+        {
+          "id": "TUMOR-009",
+          "name": "细胞角蛋白19片段",
+          "name_en": "Cytokeratin 19 Fragment",
+          "abbreviation": "CYFRA21-1",
+          "unit": "ng/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 3.3
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 3.3
+            }
+          },
+          "clinical_significance": {
+            "high": "CYFRA21-1升高主要见于非小细胞肺癌（尤其鳞癌），也见于膀胱癌、食管癌等。轻度升高见于肺部良性疾病。",
+            "low": "CYFRA21-1偏低无临床意义。",
+            "normal": "CYFRA21-1正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "CYFRA21-1主要用于辅助诊断非小细胞肺癌。",
+            "high_simple": "CYFRA21-1偏高，需要做胸部CT排除肺部肿瘤。轻度升高也可能是肺部炎症引起的。",
+            "low_simple": "CYFRA21-1正常没有问题。",
+            "normal_simple": "CYFRA21-1正常。"
+          },
+          "related_indicators": [
+            "TUMOR-008",
+            "TUMOR-002"
+          ],
+          "common_in_departments": [
+            "呼吸科",
+            "肿瘤科"
+          ]
+        },
+        {
+          "id": "TUMOR-010",
+          "name": "鳞状细胞癌相关抗原",
+          "name_en": "Squamous Cell Carcinoma Antigen",
+          "abbreviation": "SCC",
+          "unit": "ng/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 1.5
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 1.5
+            }
+          },
+          "clinical_significance": {
+            "high": "SCC升高见于鳞状细胞癌（宫颈癌、肺鳞癌、食管鳞癌、头颈部鳞癌等）。也见于银屑病、湿疹等皮肤病。",
+            "low": "SCC偏低无临床意义。",
+            "normal": "SCC正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "SCC用于筛查鳞状细胞癌，如宫颈癌、肺鳞癌等。",
+            "high_simple": "SCC偏高，需要排除鳞状细胞癌的可能，但皮肤病也可能导致升高。",
+            "low_simple": "SCC正常没有问题。",
+            "normal_simple": "SCC正常。"
+          },
+          "related_indicators": [
+            "TUMOR-009",
+            "TUMOR-002"
+          ],
+          "common_in_departments": [
+            "妇科",
+            "呼吸科",
+            "肿瘤科"
+          ]
+        }
+      ]
+    },
+    {
+      "category_id": "COAG",
+      "category_name": "凝血功能",
+      "category_name_en": "Coagulation",
+      "indicators": [
+        {
+          "id": "COAG-001",
+          "name": "凝血酶原时间",
+          "name_en": "Prothrombin Time",
+          "abbreviation": "PT",
+          "unit": "s",
+          "reference_range": {
+            "adult_male": {
+              "min": 11,
+              "max": 14.5
+            },
+            "adult_female": {
+              "min": 11,
+              "max": 14.5
+            }
+          },
+          "clinical_significance": {
+            "high": "PT延长（>正常对照3s以上有意义）见于外源性凝血途径因子缺乏（Ⅱ、Ⅴ、Ⅶ、Ⅹ）、严重肝病、维生素K缺乏、DIC、口服华法林等。",
+            "low": "PT缩短见于血液高凝状态、DIC早期、血栓性疾病等。",
+            "normal": "PT正常，提示外源性凝血途径功能正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "PT是检测血液凝固速度的指标，时间越长说明凝血越慢。",
+            "high_simple": "PT延长，凝血速度变慢，出血后不容易止住，需查明原因。吃华法林的患者需要定期监测。",
+            "low_simple": "PT缩短，血液容易凝固，可能有血栓风险。",
+            "normal_simple": "PT正常，凝血功能正常。"
+          },
+          "related_indicators": [
+            "COAG-003",
+            "COAG-002",
+            "COAG-004"
+          ],
+          "common_in_departments": [
+            "血液科",
+            "心内科",
+            "普外科"
+          ]
+        },
+        {
+          "id": "COAG-002",
+          "name": "活化部分凝血活酶时间",
+          "name_en": "Activated Partial Thromboplastin Time",
+          "abbreviation": "APTT",
+          "unit": "s",
+          "reference_range": {
+            "adult_male": {
+              "min": 25,
+              "max": 37
+            },
+            "adult_female": {
+              "min": 25,
+              "max": 37
+            }
+          },
+          "clinical_significance": {
+            "high": "APTT延长（>正常对照10s以上有意义）见于内源性凝血途径因子缺乏（Ⅷ、Ⅸ、Ⅺ、Ⅻ）、血友病、DIC、使用肝素等。",
+            "low": "APTT缩短见于高凝状态、血栓性疾病等。",
+            "normal": "APTT正常，提示内源性凝血途径功能正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "APTT是检测另一条凝血途径的指标，也反映凝血功能。",
+            "high_simple": "APTT延长，凝血功能下降，可能有出血倾向，需进一步检查。使用肝素的患者需要监测。",
+            "low_simple": "APTT缩短，血液容易凝固，可能有血栓风险。",
+            "normal_simple": "APTT正常，凝血功能正常。"
+          },
+          "related_indicators": [
+            "COAG-001",
+            "COAG-004"
+          ],
+          "common_in_departments": [
+            "血液科",
+            "心内科"
+          ]
+        },
+        {
+          "id": "COAG-003",
+          "name": "国际标准化比值",
+          "name_en": "International Normalized Ratio",
+          "abbreviation": "INR",
+          "unit": "无量纲",
+          "reference_range": {
+            "adult_male": {
+              "min": 0.8,
+              "max": 1.2
+            },
+            "adult_female": {
+              "min": 0.8,
+              "max": 1.2
+            }
+          },
+          "clinical_significance": {
+            "high": "INR升高意义同PT延长。口服华法林抗凝治疗时INR目标值通常为2.0-3.0，机械瓣膜置换术后为2.5-3.5。INR>4.5出血风险显著增加。",
+            "low": "INR降低提示高凝状态。",
+            "normal": "INR正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "INR是标准化的凝血指标，主要用于监测吃华法林（抗凝药）的效果。",
+            "high_simple": "INR偏高，凝血功能减弱，出血风险增加。吃华法林的患者要和医生调整药量。",
+            "low_simple": "INR偏低，血液偏于容易凝固。",
+            "normal_simple": "INR正常，凝血功能正常。"
+          },
+          "related_indicators": [
+            "COAG-001"
+          ],
+          "common_in_departments": [
+            "心内科",
+            "血液科",
+            "心外科"
+          ]
+        },
+        {
+          "id": "COAG-004",
+          "name": "纤维蛋白原",
+          "name_en": "Fibrinogen",
+          "abbreviation": "FIB",
+          "unit": "g/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 2.0,
+              "max": 4.0
+            },
+            "adult_female": {
+              "min": 2.0,
+              "max": 4.0
+            }
+          },
+          "clinical_significance": {
+            "high": "FIB升高见于急性炎症、手术后、心脑血管疾病、恶性肿瘤、妊娠后期等，是血栓形成的危险因素。",
+            "low": "FIB降低见于DIC消耗期、严重肝病、纤溶亢进、遗传性纤维蛋白原缺乏症等。",
+            "normal": "FIB正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "纤维蛋白原是形成血凝块的重要蛋白，由肝脏合成。",
+            "high_simple": "纤维蛋白原偏高，血液容易凝固形成血栓，有心脑血管疾病风险。",
+            "low_simple": "纤维蛋白原偏低，可能凝血功能不好，容易出血。",
+            "normal_simple": "纤维蛋白原正常，凝血功能正常。"
+          },
+          "related_indicators": [
+            "COAG-001",
+            "COAG-006"
+          ],
+          "common_in_departments": [
+            "血液科",
+            "心内科"
+          ]
+        },
+        {
+          "id": "COAG-005",
+          "name": "凝血酶时间",
+          "name_en": "Thrombin Time",
+          "abbreviation": "TT",
+          "unit": "s",
+          "reference_range": {
+            "adult_male": {
+              "min": 14,
+              "max": 21
+            },
+            "adult_female": {
+              "min": 14,
+              "max": 21
+            }
+          },
+          "clinical_significance": {
+            "high": "TT延长（>正常对照3s以上有意义）见于使用肝素、纤维蛋白原减少或异常、纤维蛋白降解产物（FDP）增多等。",
+            "low": "TT缩短见于高凝状态。",
+            "normal": "TT正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "TT是检测凝血最后一步的指标。",
+            "high_simple": "TT延长，凝血功能的最后一步有问题，需要查明原因。",
+            "low_simple": "TT缩短，血液偏于高凝状态。",
+            "normal_simple": "TT正常，凝血功能正常。"
+          },
+          "related_indicators": [
+            "COAG-004",
+            "COAG-001"
+          ],
+          "common_in_departments": [
+            "血液科"
+          ]
+        },
+        {
+          "id": "COAG-006",
+          "name": "D-二聚体",
+          "name_en": "D-Dimer",
+          "abbreviation": "D-Dimer",
+          "unit": "mg/L FEU",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 0.5
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 0.5
+            }
+          },
+          "clinical_significance": {
+            "high": "D-二聚体升高提示体内有血栓形成和纤溶过程，见于深静脉血栓形成（DVT）、肺栓塞（PE）、DIC、手术后、妊娠后期、恶性肿瘤等。D-二聚体阴性可基本排除DVT和PE。",
+            "low": "D-二聚体低水平无临床意义。",
+            "normal": "D-二聚体正常，基本可排除急性血栓性疾病。"
+          },
+          "patient_explanation": {
+            "what_is_it": "D-二聚体是血栓分解后的产物，升高说明体内可能有血栓。",
+            "high_simple": "D-二聚体偏高，体内可能有血栓形成，需要做进一步检查（如血管超声、CT肺动脉造影）。手术后或住院期间偏高也常见。",
+            "low_simple": "D-二聚体正常，基本可排除血栓的可能。",
+            "normal_simple": "D-二聚体正常，没有血栓形成的证据。"
+          },
+          "related_indicators": [
+            "COAG-001",
+            "COAG-004",
+            "CBC-004"
+          ],
+          "common_in_departments": [
+            "血管外科",
+            "呼吸科",
+            "急诊科",
+            "心内科"
+          ]
+        }
+      ]
+    },
+    {
+      "category_id": "ELEC",
+      "category_name": "电解质",
+      "category_name_en": "Electrolytes",
+      "indicators": [
+        {
+          "id": "ELEC-001",
+          "name": "血钾",
+          "name_en": "Potassium",
+          "abbreviation": "K",
+          "unit": "mmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 3.5,
+              "max": 5.3
+            },
+            "adult_female": {
+              "min": 3.5,
+              "max": 5.3
+            }
+          },
+          "clinical_significance": {
+            "high": "高钾血症（>5.3mmol/L）见于肾功能衰竭、使用保钾利尿剂/ACEI/ARB、酸中毒、大面积烧伤等。>6.5可致严重心律失常甚至心脏骤停。",
+            "low": "低钾血症（<3.5mmol/L）见于大量呕吐腹泻、使用排钾利尿剂、醛固酮增多症等。可致肌无力、心律失常。",
+            "normal": "血钾正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "钾是维持心跳正常的重要矿物质，太高太低都很危险。",
+            "high_simple": "血钾偏高，可能影响心脏节律，很危险，需要紧急处理。要少吃香蕉、橙子等高钾食物。",
+            "low_simple": "血钾偏低，可能出现全身没力气、心跳不规律。可以吃些香蕉、橙子等补钾。",
+            "normal_simple": "血钾正常，心脏和肌肉功能正常。"
+          },
+          "related_indicators": [
+            "ELEC-002",
+            "ELEC-003",
+            "RENAL-001"
+          ],
+          "common_in_departments": [
+            "肾内科",
+            "心内科",
+            "急诊科",
+            "内分泌科"
+          ]
+        },
+        {
+          "id": "ELEC-002",
+          "name": "血钠",
+          "name_en": "Sodium",
+          "abbreviation": "Na",
+          "unit": "mmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 137,
+              "max": 147
+            },
+            "adult_female": {
+              "min": 137,
+              "max": 147
+            }
+          },
+          "clinical_significance": {
+            "high": "高钠血症（>147mmol/L）见于严重脱水、尿崩症、库欣综合征等。可致口渴、神志障碍。",
+            "low": "低钠血症（<137mmol/L）见于大量出汗补水不补盐、SIADH、肝硬化腹水、心力衰竭、使用利尿剂等。严重低钠可致脑水肿、意识障碍。",
+            "normal": "血钠正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "钠是维持体内水分平衡的重要矿物质，就是食盐中的主要成分。",
+            "high_simple": "血钠偏高，可能是身体缺水了，要多喝水，严重时需输液治疗。",
+            "low_simple": "血钠偏低，可能与出汗多只喝水不补盐有关，严重时会头晕恶心甚至昏迷，需要就医。",
+            "normal_simple": "血钠正常，体内水盐平衡良好。"
+          },
+          "related_indicators": [
+            "ELEC-001",
+            "ELEC-003"
+          ],
+          "common_in_departments": [
+            "肾内科",
+            "内分泌科",
+            "急诊科"
+          ]
+        },
+        {
+          "id": "ELEC-003",
+          "name": "血氯",
+          "name_en": "Chloride",
+          "abbreviation": "Cl",
+          "unit": "mmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 99,
+              "max": 110
+            },
+            "adult_female": {
+              "min": 99,
+              "max": 110
+            }
+          },
+          "clinical_significance": {
+            "high": "高氯血症见于脱水、肾小管酸中毒、过量摄入含氯盐等。",
+            "low": "低氯血症见于严重呕吐、代谢性碱中毒、大量出汗等。",
+            "normal": "血氯正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "氯是体内的一种电解质，和钠一起维持体内的水盐平衡。",
+            "high_simple": "血氯偏高，可能与脱水有关，要多喝水。",
+            "low_simple": "血氯偏低，可能与呕吐或大量出汗有关。",
+            "normal_simple": "血氯正常，水盐平衡良好。"
+          },
+          "related_indicators": [
+            "ELEC-002",
+            "ELEC-001"
+          ],
+          "common_in_departments": [
+            "肾内科",
+            "急诊科"
+          ]
+        },
+        {
+          "id": "ELEC-004",
+          "name": "血钙",
+          "name_en": "Calcium",
+          "abbreviation": "Ca",
+          "unit": "mmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 2.11,
+              "max": 2.52
+            },
+            "adult_female": {
+              "min": 2.11,
+              "max": 2.52
+            }
+          },
+          "clinical_significance": {
+            "high": "高钙血症见于甲状旁腺功能亢进症、恶性肿瘤骨转移、维生素D过量、多发性骨髓瘤等。可致恶心、便秘、多尿、意识障碍。",
+            "low": "低钙血症见于甲状旁腺功能减退、维生素D缺乏、慢性肾衰竭、低白蛋白血症等。可致手足抽搐、麻木。",
+            "normal": "血钙正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "钙是骨骼和牙齿的主要成分，也参与心脏和肌肉的正常工作。",
+            "high_simple": "血钙偏高，可能与甲状旁腺或骨骼问题有关，需要查明原因。",
+            "low_simple": "血钙偏低，可能出现手脚麻木、抽筋，要补充钙和维生素D。",
+            "normal_simple": "血钙正常，骨骼和肌肉功能正常。"
+          },
+          "related_indicators": [
+            "ELEC-005",
+            "ELEC-006"
+          ],
+          "common_in_departments": [
+            "内分泌科",
+            "骨科",
+            "肾内科"
+          ]
+        },
+        {
+          "id": "ELEC-005",
+          "name": "血磷",
+          "name_en": "Phosphorus",
+          "abbreviation": "P",
+          "unit": "mmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 0.85,
+              "max": 1.51
+            },
+            "adult_female": {
+              "min": 0.85,
+              "max": 1.51
+            },
+            "child": {
+              "min": 1.29,
+              "max": 1.94
+            }
+          },
+          "clinical_significance": {
+            "high": "高磷血症见于慢性肾衰竭（最常见）、甲状旁腺功能减退、维生素D过量等。",
+            "low": "低磷血症见于甲状旁腺功能亢进、维生素D缺乏、长期使用抗酸药等。",
+            "normal": "血磷正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "磷和钙一起构成骨骼，也参与能量代谢。",
+            "high_simple": "血磷偏高，常见于肾功能不好的患者，要控制含磷高的食物（如坚果、可乐）。",
+            "low_simple": "血磷偏低，可能影响骨骼健康和体力。",
+            "normal_simple": "血磷正常。"
+          },
+          "related_indicators": [
+            "ELEC-004",
+            "RENAL-001"
+          ],
+          "common_in_departments": [
+            "肾内科",
+            "内分泌科"
+          ]
+        },
+        {
+          "id": "ELEC-006",
+          "name": "血镁",
+          "name_en": "Magnesium",
+          "abbreviation": "Mg",
+          "unit": "mmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 0.75,
+              "max": 1.02
+            },
+            "adult_female": {
+              "min": 0.75,
+              "max": 1.02
+            }
+          },
+          "clinical_significance": {
+            "high": "高镁血症见于肾功能衰竭、甲状腺功能减退、使用含镁药物过量等。严重者可致呼吸抑制、心脏骤停。",
+            "low": "低镁血症见于慢性腹泻、酗酒、使用利尿剂、糖尿病酮症酸中毒等。可致心律失常、肌肉震颤。",
+            "normal": "血镁正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "镁参与很多身体机能，包括肌肉和神经的正常工作。",
+            "high_simple": "血镁偏高，肾功能不好的人要注意，少吃含镁高的食物。",
+            "low_simple": "血镁偏低，可能出现肌肉抽搐、心跳不规律，可补充含镁食物（如绿叶菜、坚果）。",
+            "normal_simple": "血镁正常。"
+          },
+          "related_indicators": [
+            "ELEC-004",
+            "ELEC-001"
+          ],
+          "common_in_departments": [
+            "肾内科",
+            "心内科",
+            "急诊科"
+          ]
+        }
+      ]
+    },
+    {
+      "category_id": "CARDIAC",
+      "category_name": "心肌酶谱",
+      "category_name_en": "Cardiac Enzymes",
+      "indicators": [
+        {
+          "id": "CARDIAC-001",
+          "name": "肌酸激酶",
+          "name_en": "Creatine Kinase",
+          "abbreviation": "CK",
+          "unit": "U/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 50,
+              "max": 310
+            },
+            "adult_female": {
+              "min": 40,
+              "max": 200
+            }
+          },
+          "clinical_significance": {
+            "high": "CK升高见于急性心肌梗死、心肌炎、横纹肌溶解症、剧烈运动后、肌营养不良等。心肌梗死时4-8小时开始升高，12-24小时达峰。",
+            "low": "CK降低临床意义不大，极低值可见于长期卧床、肌肉萎缩等。",
+            "normal": "CK正常，提示心肌及骨骼肌无明显损伤。"
+          },
+          "patient_explanation": {
+            "what_is_it": "肌酸激酶是肌肉里的一种酶，心脏和骨骼肌受损时会大量释放到血液中。",
+            "high_simple": "肌酸激酶偏高，可能心脏或肌肉有损伤，也可能是剧烈运动后正常升高，建议让医生判断。",
+            "low_simple": "肌酸激酶偏低一般没什么大问题，不用太担心。",
+            "normal_simple": "肌酸激酶正常，说明心脏和肌肉没有明显损伤。"
+          },
+          "related_indicators": [
+            "CARDIAC-002",
+            "CARDIAC-004"
+          ],
+          "common_in_departments": [
+            "心内科",
+            "急诊科",
+            "骨科"
+          ]
+        },
+        {
+          "id": "CARDIAC-002",
+          "name": "肌酸激酶同工酶",
+          "name_en": "Creatine Kinase-MB",
+          "abbreviation": "CK-MB",
+          "unit": "U/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 24
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 24
+            }
+          },
+          "clinical_significance": {
+            "high": "CK-MB升高是心肌损伤的较特异指标，见于急性心肌梗死（4-6小时升高，24小时达峰）、心肌炎、心脏手术后等。",
+            "low": "CK-MB无临床低值意义。",
+            "normal": "CK-MB正常，提示近期无明显心肌损伤。"
+          },
+          "patient_explanation": {
+            "what_is_it": "CK-MB是主要存在于心脏肌肉中的一种酶，心脏受伤时会升高。",
+            "high_simple": "CK-MB偏高，提示心脏肌肉可能有损伤，需要尽快让医生进一步检查。",
+            "low_simple": "CK-MB没有偏低的说法，不用担心。",
+            "normal_simple": "CK-MB正常，说明心脏肌肉目前没有受损。"
+          },
+          "related_indicators": [
+            "CARDIAC-001",
+            "CARDIAC-004",
+            "CARDIAC-005"
+          ],
+          "common_in_departments": [
+            "心内科",
+            "急诊科"
+          ]
+        },
+        {
+          "id": "CARDIAC-003",
+          "name": "乳酸脱氢酶",
+          "name_en": "Lactate Dehydrogenase",
+          "abbreviation": "LDH",
+          "unit": "U/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 120,
+              "max": 250
+            },
+            "adult_female": {
+              "min": 120,
+              "max": 250
+            }
+          },
+          "clinical_significance": {
+            "high": "LDH升高见于心肌梗死、肝脏疾病、溶血性贫血、恶性肿瘤、肺栓塞、肌肉损伤等。特异性较低，需结合其他指标判断。",
+            "low": "LDH降低罕见，临床意义不大。",
+            "normal": "LDH正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "乳酸脱氢酶广泛存在于心脏、肝脏、肌肉等组织中，组织受损时会升高。",
+            "high_simple": "乳酸脱氢酶偏高，说明身体某处组织可能有损伤，需要结合其他检查找原因。",
+            "low_simple": "乳酸脱氢酶偏低很少见，通常不用担心。",
+            "normal_simple": "乳酸脱氢酶正常，说明身体各组织状况良好。"
+          },
+          "related_indicators": [
+            "CARDIAC-001",
+            "LIVER-001"
+          ],
+          "common_in_departments": [
+            "心内科",
+            "肝病科",
+            "血液科"
+          ]
+        },
+        {
+          "id": "CARDIAC-004",
+          "name": "肌钙蛋白T",
+          "name_en": "Cardiac Troponin T",
+          "abbreviation": "cTnT",
+          "unit": "ng/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 0.014
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 0.014
+            }
+          },
+          "clinical_significance": {
+            "high": "cTnT升高是心肌损伤的高度特异性标志物，见于急性心肌梗死（3-6小时升高，可持续10-14天）、不稳定型心绞痛、心肌炎、肺栓塞等。",
+            "low": "cTnT无临床低值意义。",
+            "normal": "cTnT正常，提示无急性心肌损伤。"
+          },
+          "patient_explanation": {
+            "what_is_it": "肌钙蛋白T是心脏肌肉特有的蛋白质，是判断心脏是否受损的'金标准'之一。",
+            "high_simple": "肌钙蛋白T偏高，说明心脏肌肉很可能有损伤，这是比较重要的指标，请务必及时就医。",
+            "low_simple": "肌钙蛋白T没有偏低的说法。",
+            "normal_simple": "肌钙蛋白T正常，说明心脏肌肉没有急性损伤，可以放心。"
+          },
+          "related_indicators": [
+            "CARDIAC-005",
+            "CARDIAC-002"
+          ],
+          "common_in_departments": [
+            "心内科",
+            "急诊科"
+          ]
+        },
+        {
+          "id": "CARDIAC-005",
+          "name": "肌钙蛋白I",
+          "name_en": "Cardiac Troponin I",
+          "abbreviation": "cTnI",
+          "unit": "ng/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 0.04
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 0.04
+            }
+          },
+          "clinical_significance": {
+            "high": "cTnI升高是急性心肌损伤的高特异性指标，见于急性心肌梗死、心肌炎、心力衰竭急性加重、心脏手术后等。较cTnT心肌特异性更高。",
+            "low": "cTnI无临床低值意义。",
+            "normal": "cTnI正常，提示近期无心肌损伤。"
+          },
+          "patient_explanation": {
+            "what_is_it": "肌钙蛋白I也是心脏特有的蛋白，和肌钙蛋白T一样是判断心脏损伤的重要指标。",
+            "high_simple": "肌钙蛋白I偏高，心脏可能有损伤，需要尽快找心脏科医生检查。",
+            "low_simple": "肌钙蛋白I没有偏低的说法。",
+            "normal_simple": "肌钙蛋白I正常，心脏目前没有急性损伤。"
+          },
+          "related_indicators": [
+            "CARDIAC-004",
+            "CARDIAC-002"
+          ],
+          "common_in_departments": [
+            "心内科",
+            "急诊科"
+          ]
+        },
+        {
+          "id": "CARDIAC-006",
+          "name": "天门冬氨酸氨基转移酶",
+          "name_en": "Aspartate Aminotransferase (Cardiac)",
+          "abbreviation": "AST",
+          "unit": "U/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 15,
+              "max": 40
+            },
+            "adult_female": {
+              "min": 13,
+              "max": 35
+            }
+          },
+          "clinical_significance": {
+            "high": "AST在心肌梗死时6-12小时开始升高，24-48小时达峰，3-5天恢复。也见于肝病、骨骼肌损伤。心脏相关时需结合CK-MB、cTnI等判断。",
+            "low": "AST偏低临床意义不大。",
+            "normal": "AST正常，结合心肌标志物可排除急性心肌损伤。"
+          },
+          "patient_explanation": {
+            "what_is_it": "AST是一种存在于心脏和肝脏中的酶，当这些器官受损时会升高。",
+            "high_simple": "AST偏高可能是心脏或肝脏的问题，需要结合其他检查来判断具体原因。",
+            "low_simple": "AST偏低通常没问题。",
+            "normal_simple": "AST正常，心脏和肝脏功能没有明显异常。"
+          },
+          "related_indicators": [
+            "CARDIAC-002",
+            "LIVER-001"
+          ],
+          "common_in_departments": [
+            "心内科",
+            "消化内科"
+          ]
+        },
+        {
+          "id": "CARDIAC-007",
+          "name": "肌红蛋白",
+          "name_en": "Myoglobin",
+          "abbreviation": "Myo",
+          "unit": "ng/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 72
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 58
+            }
+          },
+          "clinical_significance": {
+            "high": "肌红蛋白是最早升高的心肌损伤标志物（1-3小时即可升高），但特异性低，骨骼肌损伤、横纹肌溶解也会升高。主要用于早期排除心梗。",
+            "low": "肌红蛋白无临床低值意义。",
+            "normal": "肌红蛋白正常，可早期排除急性心肌梗死。"
+          },
+          "patient_explanation": {
+            "what_is_it": "肌红蛋白存在于心脏和骨骼肌中，是最早反映肌肉损伤的指标。",
+            "high_simple": "肌红蛋白偏高，说明肌肉可能有损伤，需要进一步检查是心脏还是其他肌肉的问题。",
+            "low_simple": "肌红蛋白偏低没有特别意义。",
+            "normal_simple": "肌红蛋白正常，可以初步排除急性心肌损伤。"
+          },
+          "related_indicators": [
+            "CARDIAC-004",
+            "CARDIAC-005"
+          ],
+          "common_in_departments": [
+            "心内科",
+            "急诊科"
+          ]
+        },
+        {
+          "id": "CARDIAC-008",
+          "name": "B型利钠肽",
+          "name_en": "B-type Natriuretic Peptide",
+          "abbreviation": "BNP",
+          "unit": "pg/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 100
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 100
+            }
+          },
+          "clinical_significance": {
+            "high": "BNP升高是心力衰竭的重要标志物，>400pg/mL高度提示心衰。也见于急性冠脉综合征、肺栓塞、肾功能不全等。",
+            "low": "BNP偏低无临床意义，低值可帮助排除心力衰竭。",
+            "normal": "BNP正常，基本可排除心力衰竭。"
+          },
+          "patient_explanation": {
+            "what_is_it": "BNP是心脏在压力过大时释放的一种物质，是判断心脏功能好坏的重要指标。",
+            "high_simple": "BNP偏高，说明心脏可能承受了较大压力，有心力衰竭的可能，请及时找心脏科医生。",
+            "low_simple": "BNP偏低说明心脏功能良好，不用担心。",
+            "normal_simple": "BNP正常，说明心脏功能正常，没有心力衰竭的迹象。"
+          },
+          "related_indicators": [
+            "CARDIAC-009",
+            "CARDIAC-004"
+          ],
+          "common_in_departments": [
+            "心内科",
+            "急诊科",
+            "呼吸科"
+          ]
+        },
+        {
+          "id": "CARDIAC-009",
+          "name": "N末端B型利钠肽前体",
+          "name_en": "N-terminal pro-BNP",
+          "abbreviation": "NT-proBNP",
+          "unit": "pg/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 125
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 125
+            }
+          },
+          "clinical_significance": {
+            "high": "NT-proBNP升高见于心力衰竭（>300pg/mL需警惕，>450-900pg/mL根据年龄高度提示心衰）、急性冠脉综合征、心房颤动、肾功能不全等。半衰期较BNP长，更稳定。",
+            "low": "NT-proBNP偏低无临床意义，有助于排除心衰。",
+            "normal": "NT-proBNP正常，可排除心力衰竭。"
+          },
+          "patient_explanation": {
+            "what_is_it": "NT-proBNP和BNP类似，都是反映心脏压力的指标，但在血液中存在时间更长，检测更稳定。",
+            "high_simple": "NT-proBNP偏高，心脏可能有问题，特别是心力衰竭的可能性，建议尽早就医。",
+            "low_simple": "NT-proBNP低说明心脏功能好。",
+            "normal_simple": "NT-proBNP正常，心脏功能良好。"
+          },
+          "related_indicators": [
+            "CARDIAC-008",
+            "CARDIAC-004"
+          ],
+          "common_in_departments": [
+            "心内科",
+            "急诊科"
+          ]
+        },
+        {
+          "id": "CARDIAC-010",
+          "name": "α-羟丁酸脱氢酶",
+          "name_en": "Alpha-Hydroxybutyrate Dehydrogenase",
+          "abbreviation": "α-HBDH",
+          "unit": "U/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 72,
+              "max": 182
+            },
+            "adult_female": {
+              "min": 72,
+              "max": 182
+            }
+          },
+          "clinical_significance": {
+            "high": "α-HBDH升高见于急性心肌梗死、活动性风湿性心肌炎、溶血性贫血、恶性肿瘤等。与LDH联合判断，LDH/α-HBDH比值有助于鉴别诊断。",
+            "low": "α-HBDH降低临床意义不大。",
+            "normal": "α-HBDH正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "α-羟丁酸脱氢酶主要存在于心脏，心肌受损时会升高，常和乳酸脱氢酶一起看。",
+            "high_simple": "α-羟丁酸脱氢酶偏高，可能心脏有损伤，需要结合其他心脏指标一起判断。",
+            "low_simple": "偏低一般没有特殊意义。",
+            "normal_simple": "α-羟丁酸脱氢酶正常，心脏状况良好。"
+          },
+          "related_indicators": [
+            "CARDIAC-003",
+            "CARDIAC-001"
+          ],
+          "common_in_departments": [
+            "心内科",
+            "急诊科"
+          ]
+        }
+      ]
+    },
+    {
+      "category_id": "ANEMIA",
+      "category_name": "贫血三项及相关",
+      "category_name_en": "Anemia Panel",
+      "indicators": [
+        {
+          "id": "ANEMIA-001",
+          "name": "铁蛋白",
+          "name_en": "Ferritin",
+          "abbreviation": "SF",
+          "unit": "ng/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 30,
+              "max": 400
+            },
+            "adult_female": {
+              "min": 13,
+              "max": 150
+            }
+          },
+          "clinical_significance": {
+            "high": "铁蛋白升高见于铁超载（血色病）、炎症、肝病、恶性肿瘤、反复输血等。作为急性时相反应蛋白，感染时也可升高。",
+            "low": "铁蛋白降低是缺铁性贫血最敏感和特异的指标，<12ng/mL可确诊缺铁。",
+            "normal": "铁蛋白正常，提示体内铁储备充足。"
+          },
+          "patient_explanation": {
+            "what_is_it": "铁蛋白反映身体里铁的储备量，就像铁的'仓库'指标。",
+            "high_simple": "铁蛋白偏高，可能体内铁太多或有炎症，建议查明原因。",
+            "low_simple": "铁蛋白偏低，说明身体缺铁，可能导致贫血，建议多吃红肉、动物肝脏等含铁食物。",
+            "normal_simple": "铁蛋白正常，体内铁的储备充足。"
+          },
+          "related_indicators": [
+            "ANEMIA-002",
+            "ANEMIA-003",
+            "CBC-003"
+          ],
+          "common_in_departments": [
+            "血液科",
+            "消化内科",
+            "妇产科"
+          ]
+        },
+        {
+          "id": "ANEMIA-002",
+          "name": "血清铁",
+          "name_en": "Serum Iron",
+          "abbreviation": "SI",
+          "unit": "μmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 11,
+              "max": 31
+            },
+            "adult_female": {
+              "min": 9,
+              "max": 27
+            }
+          },
+          "clinical_significance": {
+            "high": "血清铁升高见于血色病、铁粒幼细胞贫血、再生障碍性贫血、溶血性贫血、反复输血等。",
+            "low": "血清铁降低见于缺铁性贫血、慢性失血、感染、恶性肿瘤等。",
+            "normal": "血清铁正常，铁代谢基本平衡。"
+          },
+          "patient_explanation": {
+            "what_is_it": "血清铁是血液中正在运输的铁的量，反映身体当前铁的供应情况。",
+            "high_simple": "血清铁偏高，身体吸收的铁可能过多，需要找原因。",
+            "low_simple": "血清铁偏低，身体缺铁，可能引起贫血，建议补铁。",
+            "normal_simple": "血清铁正常，铁的吸收和利用正常。"
+          },
+          "related_indicators": [
+            "ANEMIA-001",
+            "ANEMIA-003",
+            "ANEMIA-004"
+          ],
+          "common_in_departments": [
+            "血液科",
+            "消化内科"
+          ]
+        },
+        {
+          "id": "ANEMIA-003",
+          "name": "总铁结合力",
+          "name_en": "Total Iron-Binding Capacity",
+          "abbreviation": "TIBC",
+          "unit": "μmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 45,
+              "max": 77
+            },
+            "adult_female": {
+              "min": 45,
+              "max": 77
+            }
+          },
+          "clinical_significance": {
+            "high": "TIBC升高见于缺铁性贫血（代偿性升高）、妊娠后期、口服避孕药等。",
+            "low": "TIBC降低见于肝病、慢性感染、恶性肿瘤、肾病综合征等。",
+            "normal": "TIBC正常，铁的运输能力正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "总铁结合力反映血液中能携带铁的总能力，缺铁时身体会提高这个能力来'多装铁'。",
+            "high_simple": "总铁结合力偏高，说明身体在努力多吸收铁，通常提示缺铁。",
+            "low_simple": "总铁结合力偏低，可能是肝脏问题或营养不良。",
+            "normal_simple": "总铁结合力正常，铁的运输功能正常。"
+          },
+          "related_indicators": [
+            "ANEMIA-002",
+            "ANEMIA-004",
+            "ANEMIA-001"
+          ],
+          "common_in_departments": [
+            "血液科",
+            "内科"
+          ]
+        },
+        {
+          "id": "ANEMIA-004",
+          "name": "转铁蛋白饱和度",
+          "name_en": "Transferrin Saturation",
+          "abbreviation": "TSAT",
+          "unit": "%",
+          "reference_range": {
+            "adult_male": {
+              "min": 20,
+              "max": 50
+            },
+            "adult_female": {
+              "min": 15,
+              "max": 50
+            }
+          },
+          "clinical_significance": {
+            "high": "TSAT升高（>50%）见于铁超载、血色病、铁粒幼细胞贫血等。",
+            "low": "TSAT降低（<20%）是缺铁性贫血的诊断指标之一，也见于慢性病贫血。",
+            "normal": "TSAT正常，铁代谢平衡。"
+          },
+          "patient_explanation": {
+            "what_is_it": "转铁蛋白饱和度是指运铁蛋白上装载了多少铁，反映铁够不够用。",
+            "high_simple": "饱和度偏高，说明铁太多了，需要查明原因。",
+            "low_simple": "饱和度偏低，说明身体缺铁，可能需要补铁治疗。",
+            "normal_simple": "饱和度正常，铁的利用情况良好。"
+          },
+          "related_indicators": [
+            "ANEMIA-002",
+            "ANEMIA-003"
+          ],
+          "common_in_departments": [
+            "血液科",
+            "内科"
+          ]
+        },
+        {
+          "id": "ANEMIA-005",
+          "name": "网织红细胞计数",
+          "name_en": "Reticulocyte Count",
+          "abbreviation": "Ret",
+          "unit": "%",
+          "reference_range": {
+            "adult_male": {
+              "min": 0.5,
+              "max": 1.5
+            },
+            "adult_female": {
+              "min": 0.5,
+              "max": 1.5
+            }
+          },
+          "clinical_significance": {
+            "high": "网织红细胞升高见于溶血性贫血、急性失血后恢复期、缺铁性贫血治疗有效时。反映骨髓造血功能活跃。",
+            "low": "网织红细胞降低见于再生障碍性贫血、骨髓抑制（化疗后）等，提示骨髓造血功能低下。",
+            "normal": "网织红细胞正常，骨髓造血功能正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "网织红细胞是刚从骨髓释放到血液中的'年轻'红细胞，反映骨髓造血的活跃程度。",
+            "high_simple": "网织红细胞偏高，说明骨髓在加速造血，可能是身体在补充丢失的红细胞。",
+            "low_simple": "网织红细胞偏低，说明骨髓造血能力下降，需要进一步检查。",
+            "normal_simple": "网织红细胞正常，说明骨髓造血功能正常。"
+          },
+          "related_indicators": [
+            "CBC-002",
+            "CBC-003"
+          ],
+          "common_in_departments": [
+            "血液科",
+            "内科"
+          ]
+        },
+        {
+          "id": "ANEMIA-006",
+          "name": "叶酸",
+          "name_en": "Folate",
+          "abbreviation": "FA",
+          "unit": "ng/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 4.6,
+              "max": 18.7
+            },
+            "adult_female": {
+              "min": 4.6,
+              "max": 18.7
+            }
+          },
+          "clinical_significance": {
+            "high": "叶酸偏高一般无害，罕见，可能与过量补充有关。",
+            "low": "叶酸缺乏导致巨幼细胞贫血，表现为大红细胞、多分叶核中性粒细胞。孕妇缺乏可致神经管缺陷。",
+            "normal": "叶酸正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "叶酸是一种B族维生素，帮助身体制造红细胞，孕妇特别需要。",
+            "high_simple": "叶酸偏高一般没问题，不用担心。",
+            "low_simple": "叶酸偏低可能引起贫血，孕妇缺乏还可能影响宝宝发育，建议多吃绿叶蔬菜并适当补充。",
+            "normal_simple": "叶酸正常，身体造血的原料充足。"
+          },
+          "related_indicators": [
+            "ANEMIA-007",
+            "CBC-003",
+            "CBC-012"
+          ],
+          "common_in_departments": [
+            "血液科",
+            "妇产科",
+            "内科"
+          ]
+        },
+        {
+          "id": "ANEMIA-007",
+          "name": "维生素B12",
+          "name_en": "Vitamin B12",
+          "abbreviation": "VitB12",
+          "unit": "pg/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 197,
+              "max": 771
+            },
+            "adult_female": {
+              "min": 197,
+              "max": 771
+            }
+          },
+          "clinical_significance": {
+            "high": "维生素B12偏高可见于骨髓增殖性疾病、肝病、肾功能不全等。",
+            "low": "维生素B12缺乏导致巨幼细胞贫血和神经系统损害（亚急性联合变性）。常见于素食者、萎缩性胃炎、回肠切除术后。",
+            "normal": "维生素B12正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "维生素B12参与红细胞生成和神经功能维护，主要从肉类和奶制品中获取。",
+            "high_simple": "维生素B12偏高，可能需要检查肝脏和血液情况。",
+            "low_simple": "维生素B12偏低，可能引起贫血和手脚发麻，素食者和老年人要特别注意补充。",
+            "normal_simple": "维生素B12正常，身体造血和神经功能有足够的维生素支持。"
+          },
+          "related_indicators": [
+            "ANEMIA-006",
+            "CBC-003",
+            "CBC-012"
+          ],
+          "common_in_departments": [
+            "血液科",
+            "神经内科",
+            "消化内科"
+          ]
+        },
+        {
+          "id": "ANEMIA-008",
+          "name": "红细胞沉降率",
+          "name_en": "Erythrocyte Sedimentation Rate",
+          "abbreviation": "ESR",
+          "unit": "mm/h",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 15
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 20
+            }
+          },
+          "clinical_significance": {
+            "high": "ESR增快见于各种炎症、感染、自身免疫性疾病（如类风湿关节炎、系统性红斑狼疮）、恶性肿瘤、贫血、妊娠等。",
+            "low": "ESR减慢见于红细胞增多症、严重脱水等。",
+            "normal": "ESR正常，体内无明显活动性炎症。"
+          },
+          "patient_explanation": {
+            "what_is_it": "血沉就是看红细胞沉降的速度，发炎或感染时红细胞会沉得更快。",
+            "high_simple": "血沉偏快，可能身体有炎症或感染，需要进一步检查找原因。",
+            "low_simple": "血沉偏慢通常不用担心。",
+            "normal_simple": "血沉正常，身体没有明显的炎症。"
+          },
+          "related_indicators": [
+            "INFECTION-001",
+            "INFECTION-002",
+            "CBC-003"
+          ],
+          "common_in_departments": [
+            "风湿免疫科",
+            "感染科",
+            "内科"
+          ]
+        },
+        {
+          "id": "ANEMIA-009",
+          "name": "可溶性转铁蛋白受体",
+          "name_en": "Soluble Transferrin Receptor",
+          "abbreviation": "sTfR",
+          "unit": "mg/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 0.83,
+              "max": 1.76
+            },
+            "adult_female": {
+              "min": 0.83,
+              "max": 1.76
+            }
+          },
+          "clinical_significance": {
+            "high": "sTfR升高见于缺铁性贫血（不受炎症影响，优于铁蛋白）、溶血性贫血、骨髓增殖性疾病等。",
+            "low": "sTfR降低见于再生障碍性贫血、慢性肾衰竭等骨髓造血功能低下状态。",
+            "normal": "sTfR正常，铁代谢和红细胞生成功能正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "可溶性转铁蛋白受体反映身体对铁的需求程度，缺铁时会升高。",
+            "high_simple": "sTfR偏高，说明身体确实缺铁，即使有炎症也能准确反映缺铁。",
+            "low_simple": "sTfR偏低，说明骨髓造红细胞的活力不足。",
+            "normal_simple": "sTfR正常，铁的利用和红细胞生成正常。"
+          },
+          "related_indicators": [
+            "ANEMIA-001",
+            "ANEMIA-002",
+            "ANEMIA-004"
+          ],
+          "common_in_departments": [
+            "血液科",
+            "内科"
+          ]
+        }
+      ]
+    },
+    {
+      "category_id": "INFECTION",
+      "category_name": "感染标志物",
+      "category_name_en": "Infection Markers",
+      "indicators": [
+        {
+          "id": "INFECTION-001",
+          "name": "C反应蛋白",
+          "name_en": "C-Reactive Protein",
+          "abbreviation": "CRP",
+          "unit": "mg/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 10
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 10
+            }
+          },
+          "clinical_significance": {
+            "high": "CRP升高见于细菌感染、组织损伤、手术后、风湿活动、恶性肿瘤等。升高程度与炎症严重程度正相关。>100mg/L提示严重细菌感染。",
+            "low": "CRP无临床低值意义。",
+            "normal": "CRP正常，体内无明显急性炎症。"
+          },
+          "patient_explanation": {
+            "what_is_it": "C反应蛋白是身体发炎时肝脏产生的一种蛋白，是判断身体有没有炎症的常用指标。",
+            "high_simple": "CRP偏高，说明身体有炎症或感染，数值越高说明炎症越厉害。",
+            "low_simple": "CRP没有偏低一说。",
+            "normal_simple": "CRP正常，身体没有明显的急性炎症。"
+          },
+          "related_indicators": [
+            "INFECTION-002",
+            "INFECTION-003",
+            "CBC-001"
+          ],
+          "common_in_departments": [
+            "感染科",
+            "风湿免疫科",
+            "急诊科"
+          ]
+        },
+        {
+          "id": "INFECTION-002",
+          "name": "超敏C反应蛋白",
+          "name_en": "High-sensitivity C-Reactive Protein",
+          "abbreviation": "hs-CRP",
+          "unit": "mg/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 3
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 3
+            }
+          },
+          "clinical_significance": {
+            "high": "hs-CRP轻度升高（1-3mg/L）提示心血管风险增加。>3mg/L提示高心血管风险或存在低度炎症。用于心血管疾病风险评估。",
+            "low": "hs-CRP无临床低值意义。",
+            "normal": "hs-CRP正常（<1mg/L为低心血管风险），体内炎症水平低。"
+          },
+          "patient_explanation": {
+            "what_is_it": "超敏CRP比普通CRP更灵敏，能发现很轻微的炎症，常用来评估心血管病风险。",
+            "high_simple": "超敏CRP偏高，提示体内有低度炎症，可能增加心血管病风险，建议关注心脏健康。",
+            "low_simple": "超敏CRP没有偏低一说。",
+            "normal_simple": "超敏CRP正常，心血管风险较低。"
+          },
+          "related_indicators": [
+            "INFECTION-001",
+            "LIPID-001"
+          ],
+          "common_in_departments": [
+            "心内科",
+            "风湿免疫科",
+            "内科"
+          ]
+        },
+        {
+          "id": "INFECTION-003",
+          "name": "降钙素原",
+          "name_en": "Procalcitonin",
+          "abbreviation": "PCT",
+          "unit": "ng/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 0.05
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 0.05
+            }
+          },
+          "clinical_significance": {
+            "high": "PCT是细菌感染的高特异性标志物。0.05-0.5ng/mL提示局部感染；0.5-2ng/mL提示全身感染可能；>2ng/mL高度提示脓毒症；>10ng/mL提示严重脓毒症或脓毒性休克。病毒感染时通常不升高。",
+            "low": "PCT无临床低值意义。",
+            "normal": "PCT正常，可基本排除严重细菌感染和脓毒症。"
+          },
+          "patient_explanation": {
+            "what_is_it": "降钙素原是区分细菌感染和病毒感染的重要指标，细菌感染时会明显升高。",
+            "high_simple": "降钙素原偏高，很可能有细菌感染，数值越高说明感染越严重，需要抗生素治疗。",
+            "low_simple": "降钙素原没有偏低一说。",
+            "normal_simple": "降钙素原正常，说明没有严重的细菌感染。"
+          },
+          "related_indicators": [
+            "INFECTION-001",
+            "CBC-001"
+          ],
+          "common_in_departments": [
+            "感染科",
+            "急诊科",
+            "ICU"
+          ]
+        },
+        {
+          "id": "INFECTION-004",
+          "name": "白细胞介素6",
+          "name_en": "Interleukin-6",
+          "abbreviation": "IL-6",
+          "unit": "pg/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 7
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 7
+            }
+          },
+          "clinical_significance": {
+            "high": "IL-6是重要的促炎细胞因子，在感染早期（1-2小时）即可升高，早于CRP和PCT。显著升高见于脓毒症、细胞因子风暴、自身免疫性疾病、恶性肿瘤等。",
+            "low": "IL-6无临床低值意义。",
+            "normal": "IL-6正常，无明显炎症反应。"
+          },
+          "patient_explanation": {
+            "what_is_it": "白细胞介素6是身体免疫系统释放的'信号分子'，发炎或感染时最先升高。",
+            "high_simple": "IL-6偏高，说明身体正在经历炎症反应，需要查明感染或炎症的来源。",
+            "low_simple": "IL-6没有偏低一说。",
+            "normal_simple": "IL-6正常，说明体内没有明显的炎症反应。"
+          },
+          "related_indicators": [
+            "INFECTION-001",
+            "INFECTION-003"
+          ],
+          "common_in_departments": [
+            "感染科",
+            "ICU",
+            "风湿免疫科"
+          ]
+        },
+        {
+          "id": "INFECTION-005",
+          "name": "血清淀粉样蛋白A",
+          "name_en": "Serum Amyloid A",
+          "abbreviation": "SAA",
+          "unit": "mg/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 10
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 10
+            }
+          },
+          "clinical_significance": {
+            "high": "SAA在感染尤其是病毒感染时明显升高（可达正常值1000倍），对病毒感染的敏感性优于CRP。也见于细菌感染、自身免疫性疾病。与CRP联合检测可鉴别细菌和病毒感染。",
+            "low": "SAA无临床低值意义。",
+            "normal": "SAA正常，无明显感染。"
+          },
+          "patient_explanation": {
+            "what_is_it": "血清淀粉样蛋白A是一种炎症指标，对病毒感染特别敏感，和CRP搭配看效果更好。",
+            "high_simple": "SAA偏高，可能有病毒或细菌感染，结合CRP一起看可以帮助判断是哪种感染。",
+            "low_simple": "SAA没有偏低一说。",
+            "normal_simple": "SAA正常，没有明显感染迹象。"
+          },
+          "related_indicators": [
+            "INFECTION-001",
+            "INFECTION-004"
+          ],
+          "common_in_departments": [
+            "感染科",
+            "呼吸科",
+            "儿科"
+          ]
+        },
+        {
+          "id": "INFECTION-006",
+          "name": "中性粒细胞与淋巴细胞比值",
+          "name_en": "Neutrophil-to-Lymphocyte Ratio",
+          "abbreviation": "NLR",
+          "unit": "无量纲",
+          "reference_range": {
+            "adult_male": {
+              "min": 1.0,
+              "max": 3.0
+            },
+            "adult_female": {
+              "min": 1.0,
+              "max": 3.0
+            }
+          },
+          "clinical_significance": {
+            "high": "NLR升高提示全身炎症反应，见于细菌感染、脓毒症、恶性肿瘤（预后不良指标）、心血管疾病等。NLR>5提示严重炎症。",
+            "low": "NLR降低见于病毒感染（淋巴细胞相对增多）、自身免疫性疾病等。",
+            "normal": "NLR正常，全身炎症水平低。"
+          },
+          "patient_explanation": {
+            "what_is_it": "NLR是中性粒细胞和淋巴细胞的比值，能反映身体的炎症状态和免疫平衡。",
+            "high_simple": "NLR偏高，提示身体可能有较明显的炎症反应或细菌感染。",
+            "low_simple": "NLR偏低，可能与病毒感染或免疫系统异常有关。",
+            "normal_simple": "NLR正常，身体的炎症和免疫状态平衡。"
+          },
+          "related_indicators": [
+            "CBC-001",
+            "CBC-006",
+            "INFECTION-001"
+          ],
+          "common_in_departments": [
+            "感染科",
+            "肿瘤科",
+            "急诊科"
+          ]
+        },
+        {
+          "id": "INFECTION-007",
+          "name": "白细胞介素10",
+          "name_en": "Interleukin-10",
+          "abbreviation": "IL-10",
+          "unit": "pg/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 5
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 5
+            }
+          },
+          "clinical_significance": {
+            "high": "IL-10是重要的抗炎细胞因子，升高见于脓毒症（提示免疫抑制阶段）、自身免疫性疾病、器官移植排斥反应、某些肿瘤等。",
+            "low": "IL-10降低可能与炎症反应增强、自身免疫性疾病活动有关。",
+            "normal": "IL-10正常，免疫调节功能平衡。"
+          },
+          "patient_explanation": {
+            "what_is_it": "白细胞介素10是免疫系统的'刹车'分子，帮助控制过度炎症反应。",
+            "high_simple": "IL-10偏高，说明身体正在努力控制炎症，但也可能提示免疫功能受到抑制。",
+            "low_simple": "IL-10偏低，身体控制炎症的能力可能不足。",
+            "normal_simple": "IL-10正常，免疫系统的调节功能正常。"
+          },
+          "related_indicators": [
+            "INFECTION-004",
+            "INFECTION-003"
+          ],
+          "common_in_departments": [
+            "感染科",
+            "ICU",
+            "风湿免疫科"
+          ]
+        },
+        {
+          "id": "INFECTION-008",
+          "name": "1,3-β-D葡聚糖",
+          "name_en": "1,3-Beta-D-Glucan (G Test)",
+          "abbreviation": "BDG",
+          "unit": "pg/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 60
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 60
+            }
+          },
+          "clinical_significance": {
+            "high": "BDG升高（G试验阳性）提示侵袭性真菌感染，见于念珠菌、曲霉菌等感染。>100pg/mL需高度警惕。假阳性可见于使用白蛋白、免疫球蛋白等。",
+            "low": "BDG无临床低值意义。",
+            "normal": "BDG正常，可基本排除侵袭性真菌感染。"
+          },
+          "patient_explanation": {
+            "what_is_it": "G试验是检测血液中真菌成分的方法，用来判断有没有真菌感染。",
+            "high_simple": "G试验偏高，可能有真菌（霉菌）感染，免疫力低下的人要特别重视。",
+            "low_simple": "G试验没有偏低一说。",
+            "normal_simple": "G试验正常，没有侵袭性真菌感染的迹象。"
+          },
+          "related_indicators": [
+            "INFECTION-003",
+            "CBC-001"
+          ],
+          "common_in_departments": [
+            "感染科",
+            "呼吸科",
+            "ICU",
+            "血液科"
+          ]
+        },
+        {
+          "id": "INFECTION-009",
+          "name": "内毒素",
+          "name_en": "Endotoxin",
+          "abbreviation": "ET",
+          "unit": "pg/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 10
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 10
+            }
+          },
+          "clinical_significance": {
+            "high": "内毒素升高提示革兰阴性菌感染，见于脓毒症、肠道菌群移位、肝硬化、重症感染等。是判断革兰阴性菌感染的辅助指标。",
+            "low": "内毒素无临床低值意义。",
+            "normal": "内毒素正常，无革兰阴性菌感染的证据。"
+          },
+          "patient_explanation": {
+            "what_is_it": "内毒素是某些细菌死亡后释放的有害物质，检测它可以帮助判断有没有特定类型的细菌感染。",
+            "high_simple": "内毒素偏高，可能有革兰阴性菌感染，需要针对性抗感染治疗。",
+            "low_simple": "内毒素没有偏低一说。",
+            "normal_simple": "内毒素正常，没有革兰阴性菌感染的迹象。"
+          },
+          "related_indicators": [
+            "INFECTION-003",
+            "INFECTION-001"
+          ],
+          "common_in_departments": [
+            "感染科",
+            "ICU",
+            "急诊科"
+          ]
+        }
+      ]
+    },
+    {
+      "category_id": "DM_ADV",
+      "category_name": "糖尿病相关进阶",
+      "category_name_en": "Advanced Diabetes Panel",
+      "indicators": [
+        {
+          "id": "DM_ADV-001",
+          "name": "C肽",
+          "name_en": "C-Peptide",
+          "abbreviation": "C-P",
+          "unit": "ng/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 1.1,
+              "max": 4.4
+            },
+            "adult_female": {
+              "min": 1.1,
+              "max": 4.4
+            }
+          },
+          "clinical_significance": {
+            "high": "C肽升高见于2型糖尿病早期（胰岛素抵抗代偿期）、胰岛素瘤、肾功能不全等。",
+            "low": "C肽降低见于1型糖尿病、2型糖尿病晚期（β细胞功能衰竭）。不受外源性胰岛素影响，是评估自身胰岛功能的最佳指标。",
+            "normal": "C肽正常，胰岛β细胞功能正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "C肽和胰岛素一起从胰腺分泌出来，能准确反映自身胰岛功能，不受注射胰岛素的干扰。",
+            "high_simple": "C肽偏高，可能是身体在大量分泌胰岛素来对抗血糖升高。",
+            "low_simple": "C肽偏低，说明胰腺产生胰岛素的能力下降，可能需要胰岛素治疗。",
+            "normal_simple": "C肽正常，胰腺分泌胰岛素的功能正常。"
+          },
+          "related_indicators": [
+            "DM_ADV-002",
+            "GLUCOSE-001",
+            "GLUCOSE-002"
+          ],
+          "common_in_departments": [
+            "内分泌科",
+            "内科"
+          ]
+        },
+        {
+          "id": "DM_ADV-002",
+          "name": "空腹胰岛素",
+          "name_en": "Fasting Insulin",
+          "abbreviation": "FINS",
+          "unit": "μU/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 2.6,
+              "max": 24.9
+            },
+            "adult_female": {
+              "min": 2.6,
+              "max": 24.9
+            }
+          },
+          "clinical_significance": {
+            "high": "空腹胰岛素升高见于胰岛素抵抗、2型糖尿病早期、代谢综合征、多囊卵巢综合征、胰岛素瘤等。",
+            "low": "空腹胰岛素降低见于1型糖尿病、2型糖尿病晚期β细胞衰竭。",
+            "normal": "空腹胰岛素正常，提示胰岛素分泌和敏感性正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "空腹胰岛素反映身体在没吃东西时分泌了多少胰岛素，用来判断有没有胰岛素抵抗。",
+            "high_simple": "空腹胰岛素偏高，说明身体需要分泌更多胰岛素才能控制血糖，可能有胰岛素抵抗。",
+            "low_simple": "空腹胰岛素偏低，说明胰腺分泌胰岛素的能力不足。",
+            "normal_simple": "空腹胰岛素正常，身体对胰岛素的反应正常。"
+          },
+          "related_indicators": [
+            "DM_ADV-001",
+            "DM_ADV-004",
+            "GLUCOSE-001"
+          ],
+          "common_in_departments": [
+            "内分泌科",
+            "内科"
+          ]
+        },
+        {
+          "id": "DM_ADV-003",
+          "name": "果糖胺",
+          "name_en": "Fructosamine",
+          "abbreviation": "FRA",
+          "unit": "μmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 205,
+              "max": 285
+            },
+            "adult_female": {
+              "min": 205,
+              "max": 285
+            }
+          },
+          "clinical_significance": {
+            "high": "果糖胺升高反映近2-3周平均血糖水平偏高。适用于糖化血红蛋白不可靠时（如溶血性贫血、血红蛋白病）的血糖监测。",
+            "low": "果糖胺降低见于低蛋白血症、肾病综合征等白蛋白丢失增多的情况。",
+            "normal": "果糖胺正常，提示近2-3周血糖控制良好。"
+          },
+          "patient_explanation": {
+            "what_is_it": "果糖胺反映最近2-3周的平均血糖，和糖化血红蛋白类似但时间更短。",
+            "high_simple": "果糖胺偏高，说明最近2-3周血糖控制得不太好，需要调整饮食或药物。",
+            "low_simple": "果糖胺偏低，可能与蛋白质丢失有关，不一定是血糖低。",
+            "normal_simple": "果糖胺正常，最近几周血糖控制不错。"
+          },
+          "related_indicators": [
+            "GLUCOSE-002",
+            "GLUCOSE-001"
+          ],
+          "common_in_departments": [
+            "内分泌科"
+          ]
+        },
+        {
+          "id": "DM_ADV-004",
+          "name": "胰岛素抵抗指数",
+          "name_en": "Homeostatic Model Assessment of Insulin Resistance",
+          "abbreviation": "HOMA-IR",
+          "unit": "无量纲",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 2.5
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 2.5
+            }
+          },
+          "clinical_significance": {
+            "high": "HOMA-IR>2.5提示胰岛素抵抗，见于2型糖尿病、代谢综合征、肥胖、多囊卵巢综合征等。由空腹血糖×空腹胰岛素/22.5计算。",
+            "low": "HOMA-IR偏低提示胰岛素敏感性好。",
+            "normal": "HOMA-IR正常，无明显胰岛素抵抗。"
+          },
+          "patient_explanation": {
+            "what_is_it": "胰岛素抵抗指数通过血糖和胰岛素水平计算出来，反映身体对胰岛素的敏感程度。",
+            "high_simple": "HOMA-IR偏高，说明身体对胰岛素不够敏感，需要更多胰岛素才能控糖，建议减重和加强运动。",
+            "low_simple": "HOMA-IR偏低说明身体对胰岛素很敏感，是好事。",
+            "normal_simple": "HOMA-IR正常，身体对胰岛素的反应正常，没有胰岛素抵抗。"
+          },
+          "related_indicators": [
+            "DM_ADV-002",
+            "GLUCOSE-001"
+          ],
+          "common_in_departments": [
+            "内分泌科",
+            "内科"
+          ]
+        },
+        {
+          "id": "DM_ADV-005",
+          "name": "谷氨酸脱羧酶抗体",
+          "name_en": "Glutamic Acid Decarboxylase Antibody",
+          "abbreviation": "GAD-Ab",
+          "unit": "U/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 10
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 10
+            }
+          },
+          "clinical_significance": {
+            "high": "GAD抗体阳性是1型糖尿病和成人隐匿性自身免疫糖尿病（LADA）的重要诊断标志。阳性提示胰岛β细胞受到自身免疫攻击。",
+            "low": "GAD抗体阴性不能完全排除自身免疫性糖尿病。",
+            "normal": "GAD抗体阴性，不支持自身免疫性糖尿病的诊断。"
+          },
+          "patient_explanation": {
+            "what_is_it": "GAD抗体是一种自身免疫抗体，阳性说明免疫系统在攻击自身的胰岛细胞。",
+            "high_simple": "GAD抗体阳性，提示可能是1型糖尿病或特殊类型的自身免疫性糖尿病。",
+            "low_simple": "GAD抗体阴性，排除自身免疫性糖尿病的可能性较大。",
+            "normal_simple": "GAD抗体正常（阴性），不太可能是自身免疫性糖尿病。"
+          },
+          "related_indicators": [
+            "DM_ADV-006",
+            "DM_ADV-001"
+          ],
+          "common_in_departments": [
+            "内分泌科"
+          ]
+        },
+        {
+          "id": "DM_ADV-006",
+          "name": "胰岛素自身抗体",
+          "name_en": "Insulin Autoantibody",
+          "abbreviation": "IAA",
+          "unit": "U/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 5
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 5
+            }
+          },
+          "clinical_significance": {
+            "high": "IAA阳性见于1型糖尿病发病前及早期（尤其儿童）、外源性胰岛素使用后、胰岛素自身免疫综合征（Hirata病）等。",
+            "low": "IAA阴性不能完全排除1型糖尿病。",
+            "normal": "IAA阴性。"
+          },
+          "patient_explanation": {
+            "what_is_it": "胰岛素自身抗体是身体产生的针对胰岛素的抗体，阳性提示免疫系统在干扰胰岛素的作用。",
+            "high_simple": "IAA阳性，可能与1型糖尿病或免疫系统异常有关，建议内分泌科医生详细评估。",
+            "low_simple": "IAA阴性是正常的。",
+            "normal_simple": "IAA阴性，没有针对胰岛素的自身免疫反应。"
+          },
+          "related_indicators": [
+            "DM_ADV-005",
+            "DM_ADV-001"
+          ],
+          "common_in_departments": [
+            "内分泌科"
+          ]
+        },
+        {
+          "id": "DM_ADV-007",
+          "name": "尿微量白蛋白",
+          "name_en": "Urine Microalbumin",
+          "abbreviation": "mALB",
+          "unit": "mg/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 20
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 20
+            }
+          },
+          "clinical_significance": {
+            "high": "尿微量白蛋白升高（30-300mg/d或20-200μg/min）是糖尿病肾病早期标志，也见于高血压肾损害早期、心血管疾病风险增加。",
+            "low": "尿微量白蛋白无临床低值意义。",
+            "normal": "尿微量白蛋白正常，肾小球滤过屏障完整。"
+          },
+          "patient_explanation": {
+            "what_is_it": "尿微量白蛋白检测尿里有没有少量蛋白质漏出，是发现早期肾脏损伤的灵敏指标。",
+            "high_simple": "尿微量白蛋白偏高，说明肾脏可能有早期损伤，糖尿病和高血压患者要特别重视。",
+            "low_simple": "尿微量白蛋白没有偏低一说。",
+            "normal_simple": "尿微量白蛋白正常，肾脏功能目前没有早期损伤的迹象。"
+          },
+          "related_indicators": [
+            "RENAL-001",
+            "GLUCOSE-001",
+            "GLUCOSE-002"
+          ],
+          "common_in_departments": [
+            "内分泌科",
+            "肾内科"
+          ]
+        },
+        {
+          "id": "DM_ADV-008",
+          "name": "糖化白蛋白",
+          "name_en": "Glycated Albumin",
+          "abbreviation": "GA",
+          "unit": "%",
+          "reference_range": {
+            "adult_male": {
+              "min": 11,
+              "max": 16
+            },
+            "adult_female": {
+              "min": 11,
+              "max": 16
+            }
+          },
+          "clinical_significance": {
+            "high": "糖化白蛋白升高反映近2-3周平均血糖偏高。较HbA1c反映时间更短（2-3周 vs 2-3月），适用于血糖波动大、贫血或血红蛋白异常时的血糖监测。",
+            "low": "糖化白蛋白降低见于肾病综合征（白蛋白周转加快）、甲亢等。",
+            "normal": "糖化白蛋白正常，近2-3周血糖控制良好。"
+          },
+          "patient_explanation": {
+            "what_is_it": "糖化白蛋白反映最近2-3周的平均血糖水平，比糖化血红蛋白更灵敏地反映短期血糖变化。",
+            "high_simple": "糖化白蛋白偏高，说明最近几周血糖偏高，需要加强血糖管理。",
+            "low_simple": "糖化白蛋白偏低，可能与蛋白丢失有关，需排除肾病。",
+            "normal_simple": "糖化白蛋白正常，最近几周血糖控制得不错。"
+          },
+          "related_indicators": [
+            "GLUCOSE-002",
+            "DM_ADV-003"
+          ],
+          "common_in_departments": [
+            "内分泌科"
+          ]
+        }
+      ]
+    },
+    {
+      "category_id": "LIVER_FIB",
+      "category_name": "肝纤维化四项",
+      "category_name_en": "Liver Fibrosis Panel",
+      "indicators": [
+        {
+          "id": "LIVER_FIB-001",
+          "name": "透明质酸",
+          "name_en": "Hyaluronic Acid",
+          "abbreviation": "HA",
+          "unit": "ng/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 120
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 120
+            }
+          },
+          "clinical_significance": {
+            "high": "HA是反映肝纤维化最敏感的指标，升高程度与肝纤维化程度正相关。>200ng/mL提示明显肝纤维化。也见于类风湿关节炎、硬皮病等。",
+            "low": "HA无临床低值意义。",
+            "normal": "HA正常，无明显肝纤维化。"
+          },
+          "patient_explanation": {
+            "what_is_it": "透明质酸是肝纤维化最敏感的血液指标，肝脏'变硬'时会明显升高。",
+            "high_simple": "透明质酸偏高，说明肝脏可能有纤维化（变硬）的趋势，需要进一步检查肝脏。",
+            "low_simple": "透明质酸偏低没有特殊意义。",
+            "normal_simple": "透明质酸正常，肝脏没有明显的纤维化。"
+          },
+          "related_indicators": [
+            "LIVER_FIB-002",
+            "LIVER_FIB-003",
+            "LIVER_FIB-004"
+          ],
+          "common_in_departments": [
+            "肝病科",
+            "消化内科",
+            "感染科"
+          ]
+        },
+        {
+          "id": "LIVER_FIB-002",
+          "name": "层粘连蛋白",
+          "name_en": "Laminin",
+          "abbreviation": "LN",
+          "unit": "ng/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 130
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 130
+            }
+          },
+          "clinical_significance": {
+            "high": "LN升高反映肝窦毛细血管化和门脉高压，与肝纤维化程度和门脉压力相关。也见于肝硬化、肝癌、胰腺炎等。",
+            "low": "LN无临床低值意义。",
+            "normal": "LN正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "层粘连蛋白是肝脏纤维化时会升高的一种基底膜蛋白，反映肝脏的'疤痕'程度。",
+            "high_simple": "层粘连蛋白偏高，说明肝脏可能有纤维化或门静脉压力升高。",
+            "low_simple": "层粘连蛋白偏低没有特殊意义。",
+            "normal_simple": "层粘连蛋白正常，肝脏结构正常。"
+          },
+          "related_indicators": [
+            "LIVER_FIB-001",
+            "LIVER_FIB-003"
+          ],
+          "common_in_departments": [
+            "肝病科",
+            "消化内科"
+          ]
+        },
+        {
+          "id": "LIVER_FIB-003",
+          "name": "III型前胶原",
+          "name_en": "Procollagen III N-terminal Peptide",
+          "abbreviation": "PC-III",
+          "unit": "ng/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 15
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 15
+            }
+          },
+          "clinical_significance": {
+            "high": "PC-III升高反映肝脏胶原纤维合成活跃，是肝纤维化活动的标志。持续升高提示纤维化进展，治疗后下降提示纤维化逆转。",
+            "low": "PC-III无临床低值意义。",
+            "normal": "PC-III正常，肝脏胶原纤维合成不活跃。"
+          },
+          "patient_explanation": {
+            "what_is_it": "III型前胶原反映肝脏是否在'长疤'，升高说明肝纤维化正在活跃进行。",
+            "high_simple": "III型前胶原偏高，说明肝纤维化比较活跃，肝脏正在形成'疤痕'，需积极治疗。",
+            "low_simple": "偏低没有特殊意义。",
+            "normal_simple": "III型前胶原正常，肝脏纤维化不活跃。"
+          },
+          "related_indicators": [
+            "LIVER_FIB-001",
+            "LIVER_FIB-004"
+          ],
+          "common_in_departments": [
+            "肝病科",
+            "消化内科"
+          ]
+        },
+        {
+          "id": "LIVER_FIB-004",
+          "name": "IV型胶原",
+          "name_en": "Type IV Collagen",
+          "abbreviation": "IV-C",
+          "unit": "ng/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 75
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 75
+            }
+          },
+          "clinical_significance": {
+            "high": "IV-C升高反映基底膜胶原更新加速，是早期肝纤维化的敏感指标。与HA联合评估可提高诊断准确性。",
+            "low": "IV-C无临床低值意义。",
+            "normal": "IV-C正常，基底膜结构正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "IV型胶原是肝脏基底膜的成分，肝纤维化早期就会升高。",
+            "high_simple": "IV型胶原偏高，可能肝纤维化在早期阶段，建议定期复查。",
+            "low_simple": "偏低没有特殊意义。",
+            "normal_simple": "IV型胶原正常，肝脏基底膜结构正常。"
+          },
+          "related_indicators": [
+            "LIVER_FIB-001",
+            "LIVER_FIB-003"
+          ],
+          "common_in_departments": [
+            "肝病科",
+            "消化内科"
+          ]
+        },
+        {
+          "id": "LIVER_FIB-005",
+          "name": "γ-谷氨酰转肽酶",
+          "name_en": "Gamma-Glutamyl Transferase (Fibrosis)",
+          "abbreviation": "GGT",
+          "unit": "U/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 10,
+              "max": 60
+            },
+            "adult_female": {
+              "min": 7,
+              "max": 45
+            }
+          },
+          "clinical_significance": {
+            "high": "GGT升高在肝纤维化评估中与其他指标联合使用。单独升高常见于酒精性肝病、胆汁淤积、药物性肝损伤。持续升高提示慢性肝损伤和纤维化进展。",
+            "low": "GGT偏低无临床意义。",
+            "normal": "GGT正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "GGT是肝脏和胆管的酶，喝酒或胆管有问题时特别容易升高。",
+            "high_simple": "GGT偏高，可能与饮酒、肝胆疾病有关，建议戒酒并做肝脏检查。",
+            "low_simple": "GGT偏低通常不用担心。",
+            "normal_simple": "GGT正常，肝胆功能良好。"
+          },
+          "related_indicators": [
+            "LIVER-001",
+            "LIVER_FIB-001",
+            "LIVER_FIB-006"
+          ],
+          "common_in_departments": [
+            "肝病科",
+            "消化内科"
+          ]
+        },
+        {
+          "id": "LIVER_FIB-006",
+          "name": "AST/血小板比值指数",
+          "name_en": "AST to Platelet Ratio Index",
+          "abbreviation": "APRI",
+          "unit": "无量纲",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 0.5
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 0.5
+            }
+          },
+          "clinical_significance": {
+            "high": "APRI>1.5提示肝硬化可能性大，APRI>0.7提示显著肝纤维化。由AST（IU/L）/AST正常上限（IU/L）×100/血小板（10⁹/L）计算。简便无创的肝纤维化评估指标。",
+            "low": "APRI<0.5基本可排除显著纤维化。",
+            "normal": "APRI正常（<0.5），不支持显著肝纤维化。"
+          },
+          "patient_explanation": {
+            "what_is_it": "APRI是通过转氨酶和血小板计算出来的评估肝纤维化的指数，不需要额外抽血。",
+            "high_simple": "APRI偏高，提示可能有明显的肝纤维化甚至肝硬化，建议做肝脏弹性检测进一步确认。",
+            "low_simple": "APRI偏低说明肝纤维化程度很轻或没有。",
+            "normal_simple": "APRI正常，基本排除显著的肝纤维化。"
+          },
+          "related_indicators": [
+            "LIVER-001",
+            "CBC-004",
+            "LIVER_FIB-007"
+          ],
+          "common_in_departments": [
+            "肝病科",
+            "消化内科",
+            "感染科"
+          ]
+        },
+        {
+          "id": "LIVER_FIB-007",
+          "name": "FIB-4指数",
+          "name_en": "Fibrosis-4 Index",
+          "abbreviation": "FIB-4",
+          "unit": "无量纲",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 1.3
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 1.3
+            }
+          },
+          "clinical_significance": {
+            "high": "FIB-4>3.25提示进展期肝纤维化/肝硬化。由年龄×AST/(血小板×√ALT)计算。是国际推荐的无创肝纤维化筛查工具。1.3-3.25为灰区，需进一步检查。",
+            "low": "FIB-4<1.3可排除进展期纤维化（阴性预测值>90%）。",
+            "normal": "FIB-4正常（<1.3），基本排除进展期肝纤维化。"
+          },
+          "patient_explanation": {
+            "what_is_it": "FIB-4是综合年龄、转氨酶和血小板计算的肝纤维化指数，是国际推荐的筛查方法。",
+            "high_simple": "FIB-4偏高，提示肝纤维化可能比较严重，建议做进一步的肝脏影像检查。",
+            "low_simple": "FIB-4偏低说明肝脏纤维化可能性很小。",
+            "normal_simple": "FIB-4正常，基本排除进展期肝纤维化，肝脏状况良好。"
+          },
+          "related_indicators": [
+            "LIVER_FIB-006",
+            "LIVER-001",
+            "LIVER-002"
+          ],
+          "common_in_departments": [
+            "肝病科",
+            "消化内科",
+            "感染科"
+          ]
+        }
+      ]
+    },
+    {
+      "category_id": "PROSTATE",
+      "category_name": "前列腺",
+      "category_name_en": "Prostate Panel",
+      "indicators": [
+        {
+          "id": "PROSTATE-001",
+          "name": "总前列腺特异性抗原",
+          "name_en": "Total Prostate-Specific Antigen",
+          "abbreviation": "tPSA",
+          "unit": "ng/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 4.0
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 0
+            }
+          },
+          "clinical_significance": {
+            "high": "tPSA升高见于前列腺癌（>10ng/mL高度怀疑）、良性前列腺增生、前列腺炎、前列腺按摩后等。4-10ng/mL为灰区，需结合f/tPSA比值判断。",
+            "low": "tPSA无临床低值意义。",
+            "normal": "tPSA正常（<4.0ng/mL），前列腺癌可能性较低。"
+          },
+          "patient_explanation": {
+            "what_is_it": "PSA是前列腺产生的一种蛋白质，是筛查前列腺癌最重要的血液指标。",
+            "high_simple": "PSA偏高，不一定是前列腺癌，前列腺增生和炎症也会升高，建议找泌尿科医生进一步检查。",
+            "low_simple": "PSA没有偏低一说。",
+            "normal_simple": "PSA正常，前列腺目前没有明显异常。"
+          },
+          "related_indicators": [
+            "PROSTATE-002",
+            "PROSTATE-003"
+          ],
+          "common_in_departments": [
+            "泌尿外科",
+            "肿瘤科"
+          ]
+        },
+        {
+          "id": "PROSTATE-002",
+          "name": "游离前列腺特异性抗原",
+          "name_en": "Free Prostate-Specific Antigen",
+          "abbreviation": "fPSA",
+          "unit": "ng/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 1.0
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 0
+            }
+          },
+          "clinical_significance": {
+            "high": "fPSA单独升高意义有限，需与tPSA联合计算f/tPSA比值。",
+            "low": "fPSA无临床低值意义。",
+            "normal": "fPSA正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "游离PSA是PSA中游离存在的部分，主要和总PSA一起计算比值来区分良恶性。",
+            "high_simple": "游离PSA本身偏高意义不大，关键要看它和总PSA的比值。",
+            "low_simple": "游离PSA没有偏低一说。",
+            "normal_simple": "游离PSA正常。"
+          },
+          "related_indicators": [
+            "PROSTATE-001",
+            "PROSTATE-003"
+          ],
+          "common_in_departments": [
+            "泌尿外科",
+            "肿瘤科"
+          ]
+        },
+        {
+          "id": "PROSTATE-003",
+          "name": "游离/总PSA比值",
+          "name_en": "Free/Total PSA Ratio",
+          "abbreviation": "f/tPSA",
+          "unit": "%",
+          "reference_range": {
+            "adult_male": {
+              "min": 16,
+              "max": 100
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 0
+            }
+          },
+          "clinical_significance": {
+            "high": "f/tPSA比值高（>25%）更倾向良性前列腺增生。",
+            "low": "f/tPSA比值低（<10%）前列腺癌的可能性明显增大。10%-16%之间也需警惕。在tPSA 4-10ng/mL灰区中尤为重要。",
+            "normal": "f/tPSA比值>16%，前列腺癌可能性较低。"
+          },
+          "patient_explanation": {
+            "what_is_it": "这个比值帮助区分PSA升高是良性增生还是前列腺癌引起的。",
+            "high_simple": "比值偏高，更倾向是良性前列腺增生，恶性可能性低。",
+            "low_simple": "比值偏低，前列腺癌的可能性增大，建议做前列腺穿刺活检。",
+            "normal_simple": "比值正常，前列腺癌的可能性较低。"
+          },
+          "related_indicators": [
+            "PROSTATE-001",
+            "PROSTATE-002"
+          ],
+          "common_in_departments": [
+            "泌尿外科",
+            "肿瘤科"
+          ]
+        },
+        {
+          "id": "PROSTATE-004",
+          "name": "前列腺酸性磷酸酶",
+          "name_en": "Prostatic Acid Phosphatase",
+          "abbreviation": "PAP",
+          "unit": "ng/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 3.0
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 0
+            }
+          },
+          "clinical_significance": {
+            "high": "PAP升高见于前列腺癌（尤其转移性）、良性前列腺增生、前列腺梗死、骨转移等。作为前列腺癌转移和疗效监测的辅助指标。",
+            "low": "PAP无临床低值意义。",
+            "normal": "PAP正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "前列腺酸性磷酸酶是前列腺分泌的一种酶，前列腺癌转移时常会升高。",
+            "high_simple": "PAP偏高，可能提示前列腺癌尤其是有转移的情况，需要进一步影像检查。",
+            "low_simple": "PAP没有偏低一说。",
+            "normal_simple": "PAP正常，前列腺状况良好。"
+          },
+          "related_indicators": [
+            "PROSTATE-001",
+            "TUMOR-001"
+          ],
+          "common_in_departments": [
+            "泌尿外科",
+            "肿瘤科"
+          ]
+        },
+        {
+          "id": "PROSTATE-005",
+          "name": "前列腺健康指数",
+          "name_en": "Prostate Health Index",
+          "abbreviation": "PHI",
+          "unit": "无量纲",
+          "reference_range": {
+            "adult_male": {
+              "min": 0,
+              "max": 27
+            },
+            "adult_female": {
+              "min": 0,
+              "max": 0
+            }
+          },
+          "clinical_significance": {
+            "high": "PHI>35提示前列腺癌高风险。由[-2]proPSA、fPSA和tPSA综合计算，在tPSA灰区（4-10ng/mL）中对前列腺癌的鉴别诊断优于单独PSA指标。",
+            "low": "PHI偏低提示前列腺癌风险极低。",
+            "normal": "PHI正常（<27），前列腺癌风险较低。"
+          },
+          "patient_explanation": {
+            "what_is_it": "前列腺健康指数是综合多项PSA指标计算出来的，比单项PSA更准确地判断前列腺癌风险。",
+            "high_simple": "PHI偏高，前列腺癌的风险增加，建议进一步做核磁共振或穿刺活检。",
+            "low_simple": "PHI偏低说明前列腺癌风险很低。",
+            "normal_simple": "PHI正常，前列腺癌风险较低。"
+          },
+          "related_indicators": [
+            "PROSTATE-001",
+            "PROSTATE-002",
+            "PROSTATE-003"
+          ],
+          "common_in_departments": [
+            "泌尿外科",
+            "肿瘤科"
+          ]
+        }
+      ]
+    },
+    {
+      "category_id": "VITAMIN",
+      "category_name": "维生素",
+      "category_name_en": "Vitamin Panel",
+      "indicators": [
+        {
+          "id": "VITAMIN-001",
+          "name": "25-羟基维生素D",
+          "name_en": "25-Hydroxyvitamin D",
+          "abbreviation": "25-OH-VD",
+          "unit": "ng/mL",
+          "reference_range": {
+            "adult_male": {
+              "min": 30,
+              "max": 100
+            },
+            "adult_female": {
+              "min": 30,
+              "max": 100
+            }
+          },
+          "clinical_significance": {
+            "high": "维生素D过高（>100ng/mL）可致高钙血症，表现为恶心、呕吐、肾损伤等。多见于过量补充维生素D。",
+            "low": "维生素D缺乏（<20ng/mL）导致儿童佝偻病、成人骨软化症和骨质疏松。20-29ng/mL为不足。与多种慢性病风险增加相关。",
+            "normal": "维生素D水平充足（≥30ng/mL）。"
+          },
+          "patient_explanation": {
+            "what_is_it": "维生素D帮助身体吸收钙质、保护骨骼，主要通过晒太阳获取。",
+            "high_simple": "维生素D偏高，可能补充过量了，要减少剂量，过高会引起钙偏高。",
+            "low_simple": "维生素D偏低，骨骼可能变脆弱，建议适当晒太阳、补充维生素D制剂。",
+            "normal_simple": "维生素D正常，骨骼健康有保障。"
+          },
+          "related_indicators": [
+            "ELEC-004",
+            "VITAMIN-004"
+          ],
+          "common_in_departments": [
+            "骨科",
+            "内分泌科",
+            "儿科"
+          ]
+        },
+        {
+          "id": "VITAMIN-002",
+          "name": "维生素B1",
+          "name_en": "Vitamin B1 (Thiamine)",
+          "abbreviation": "VitB1",
+          "unit": "nmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 70,
+              "max": 180
+            },
+            "adult_female": {
+              "min": 70,
+              "max": 180
+            }
+          },
+          "clinical_significance": {
+            "high": "维生素B1偏高罕见，一般无害。",
+            "low": "维生素B1缺乏导致脚气病（周围神经病变、心力衰竭）、韦尼克脑病（常见于酗酒者）。主要见于长期饮酒、营养不良、长期输液未补充。",
+            "normal": "维生素B1正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "维生素B1帮助身体将食物转化为能量，对神经系统和心脏很重要。",
+            "high_simple": "维生素B1偏高很少见，一般不用担心。",
+            "low_simple": "维生素B1偏低，可能出现手脚发麻、乏力，长期饮酒的人要特别注意补充。",
+            "normal_simple": "维生素B1正常，神经和心脏功能有足够的营养支持。"
+          },
+          "related_indicators": [
+            "VITAMIN-003"
+          ],
+          "common_in_departments": [
+            "神经内科",
+            "营养科",
+            "消化内科"
+          ]
+        },
+        {
+          "id": "VITAMIN-003",
+          "name": "维生素B6",
+          "name_en": "Vitamin B6 (Pyridoxine)",
+          "abbreviation": "VitB6",
+          "unit": "nmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 20,
+              "max": 202
+            },
+            "adult_female": {
+              "min": 20,
+              "max": 202
+            }
+          },
+          "clinical_significance": {
+            "high": "维生素B6过量（长期大剂量补充>200mg/天）可致感觉性周围神经病变。",
+            "low": "维生素B6缺乏见于长期服用异烟肼、口服避孕药、酗酒等。可致口角炎、舌炎、脂溢性皮炎、周围神经病变。",
+            "normal": "维生素B6正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "维生素B6参与蛋白质代谢和神经功能，从肉类、鱼类、豆类中可获取。",
+            "high_simple": "维生素B6偏高，可能是补充过量了，长期过量会伤害神经，要减量。",
+            "low_simple": "维生素B6偏低，可能出现皮肤问题和手脚发麻，建议注意饮食均衡。",
+            "normal_simple": "维生素B6正常，身体代谢功能有足够支持。"
+          },
+          "related_indicators": [
+            "VITAMIN-002",
+            "VITAMIN-006"
+          ],
+          "common_in_departments": [
+            "神经内科",
+            "营养科",
+            "皮肤科"
+          ]
+        },
+        {
+          "id": "VITAMIN-004",
+          "name": "维生素A",
+          "name_en": "Vitamin A (Retinol)",
+          "abbreviation": "VitA",
+          "unit": "μg/dL",
+          "reference_range": {
+            "adult_male": {
+              "min": 30,
+              "max": 80
+            },
+            "adult_female": {
+              "min": 30,
+              "max": 80
+            }
+          },
+          "clinical_significance": {
+            "high": "维生素A过量可致头痛、恶心、肝损伤、骨质疏松。急性中毒见于短期大量摄入；慢性中毒见于长期过量补充。孕妇过量可致胎儿畸形。",
+            "low": "维生素A缺乏导致夜盲症、干眼症、皮肤干燥、免疫力下降。常见于营养不良、脂肪吸收障碍。",
+            "normal": "维生素A正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "维生素A对视力、皮肤和免疫力很重要，从动物肝脏、胡萝卜等获取。",
+            "high_simple": "维生素A偏高，可能补充过量了，过高会伤肝，孕妇更要注意。",
+            "low_simple": "维生素A偏低，可能出现夜盲（晚上看不清）、皮肤干燥，建议吃些胡萝卜、动物肝脏。",
+            "normal_simple": "维生素A正常，对视力和免疫力有良好支持。"
+          },
+          "related_indicators": [
+            "VITAMIN-005",
+            "LIVER-001"
+          ],
+          "common_in_departments": [
+            "眼科",
+            "营养科",
+            "儿科"
+          ]
+        },
+        {
+          "id": "VITAMIN-005",
+          "name": "维生素E",
+          "name_en": "Vitamin E (Alpha-Tocopherol)",
+          "abbreviation": "VitE",
+          "unit": "mg/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 5.5,
+              "max": 17.0
+            },
+            "adult_female": {
+              "min": 5.5,
+              "max": 17.0
+            }
+          },
+          "clinical_significance": {
+            "high": "维生素E过量可增加出血风险（抑制血小板聚集），大剂量补充可能增加全因死亡率。",
+            "low": "维生素E缺乏见于脂肪吸收不良、无β脂蛋白血症等，可致神经病变、溶血性贫血、肌病。",
+            "normal": "维生素E正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "维生素E是重要的抗氧化维生素，保护细胞免受损伤，从坚果、植物油中获取。",
+            "high_simple": "维生素E偏高，可能补充过量，过高会增加出血风险，要减量。",
+            "low_simple": "维生素E偏低，身体的抗氧化能力下降，建议适当吃坚果和植物油。",
+            "normal_simple": "维生素E正常，身体的抗氧化保护机制良好。"
+          },
+          "related_indicators": [
+            "VITAMIN-004",
+            "COAG-001"
+          ],
+          "common_in_departments": [
+            "营养科",
+            "神经内科"
+          ]
+        },
+        {
+          "id": "VITAMIN-006",
+          "name": "同型半胱氨酸",
+          "name_en": "Homocysteine",
+          "abbreviation": "HCY",
+          "unit": "μmol/L",
+          "reference_range": {
+            "adult_male": {
+              "min": 5,
+              "max": 15
+            },
+            "adult_female": {
+              "min": 5,
+              "max": 15
+            }
+          },
+          "clinical_significance": {
+            "high": "同型半胱氨酸升高（>15μmol/L）是心脑血管疾病的独立危险因素（H型高血压）。也见于叶酸/B12/B6缺乏、肾功能不全、甲减等。>100μmol/L为严重高同型半胱氨酸血症。",
+            "low": "同型半胱氨酸偏低无临床意义。",
+            "normal": "同型半胱氨酸正常，心脑血管风险较低。"
+          },
+          "patient_explanation": {
+            "what_is_it": "同型半胱氨酸是一种氨基酸代谢产物，偏高会增加心脑血管病风险。",
+            "high_simple": "同型半胱氨酸偏高，会增加中风和心脏病风险，通常补充叶酸和B族维生素就能降下来。",
+            "low_simple": "同型半胱氨酸偏低不用担心。",
+            "normal_simple": "同型半胱氨酸正常，心脑血管风险因素较低。"
+          },
+          "related_indicators": [
+            "ANEMIA-006",
+            "ANEMIA-007",
+            "VITAMIN-003"
+          ],
+          "common_in_departments": [
+            "心内科",
+            "神经内科",
+            "营养科"
+          ]
+        },
+        {
+          "id": "VITAMIN-007",
+          "name": "维生素C",
+          "name_en": "Vitamin C (Ascorbic Acid)",
+          "abbreviation": "VitC",
+          "unit": "mg/dL",
+          "reference_range": {
+            "adult_male": {
+              "min": 0.4,
+              "max": 2.0
+            },
+            "adult_female": {
+              "min": 0.4,
+              "max": 2.0
+            }
+          },
+          "clinical_significance": {
+            "high": "维生素C过量（>2000mg/天）可致腹泻、肾结石（草酸钙）、铁吸收过多。",
+            "low": "维生素C缺乏导致坏血病，表现为牙龈出血、皮下瘀斑、伤口愈合慢。见于饮食中蔬果严重不足者。",
+            "normal": "维生素C正常。"
+          },
+          "patient_explanation": {
+            "what_is_it": "维生素C帮助身体抗氧化、促进伤口愈合和铁的吸收，从新鲜水果蔬菜中获取。",
+            "high_simple": "维生素C偏高，可能补充过量了，过高会增加肾结石风险。",
+            "low_simple": "维生素C偏低，可能出现牙龈出血、容易瘀青，建议多吃新鲜水果和蔬菜。",
+            "normal_simple": "维生素C正常，免疫力和伤口愈合能力有良好支持。"
+          },
+          "related_indicators": [
+            "ANEMIA-002",
+            "VITAMIN-005"
+          ],
+          "common_in_departments": [
+            "营养科",
+            "口腔科",
+            "皮肤科"
+          ]
+        }
+      ]
+    }
+  ]
+}
