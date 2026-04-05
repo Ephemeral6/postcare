@@ -111,6 +111,29 @@ export default function Home() {
         </Link>
       </div>
 
+      {/* Proactive Guard Timeline CTA */}
+      <div className="px-5 mb-6">
+        <Link href="/timeline" className="block group">
+          <div className="relative overflow-hidden rounded-[20px] bg-gradient-to-r from-purple-500 via-indigo-500 to-purple-600 p-5 shadow-[0_8px_32px_rgba(99,102,241,0.2)] hover:shadow-[0_12px_40px_rgba(99,102,241,0.28)] transition-all duration-300 hover:-translate-y-0.5">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-white/8 rounded-full -translate-y-12 translate-x-12 blur-sm" />
+            <div className="absolute bottom-0 left-0 w-20 h-20 bg-white/5 rounded-full translate-y-8 -translate-x-6 blur-sm" />
+
+            <div className="relative flex items-center gap-4">
+              <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <Heart className="w-6 h-6 text-white fill-white" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-base font-bold text-white mb-0.5">主动守护时间线</h3>
+                <p className="text-xs text-purple-100/80">看看PostCare如何在28天里主动守护一位患者</p>
+              </div>
+              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:translate-x-1 transition-transform">
+                <ChevronRight className="w-4 h-4 text-white" />
+              </div>
+            </div>
+          </div>
+        </Link>
+      </div>
+
       {/* Journey Timeline */}
       <div className="px-5 pb-6">
         <h2 className="text-lg font-bold text-text mb-5 flex items-center gap-2">

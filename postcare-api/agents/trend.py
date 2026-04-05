@@ -11,7 +11,7 @@ with open(_prompt_path, "r", encoding="utf-8") as f:
     SYSTEM_PROMPT = f.read()
 
 
-async def analyze(indicator_name, history_values):
+async def analyze(indicator_name, history_values, medications=None):
     """分析指标历史趋势"""
     try:
         # 尝试从知识库获取参考范围
@@ -28,6 +28,10 @@ async def analyze(indicator_name, history_values):
             f"指标名称：{indicator_name}{ref_info}\n"
             f"历史数据：{json.dumps(history_values, ensure_ascii=False)}"
         )
+
+        if medications:
+            med_text = ", ".join(medications) if isinstance(medications, list) else str(medications)
+            user_input += f"\n当前用药/治疗方案：{med_text}"
 
         result = await call_llm(
             system_prompt=SYSTEM_PROMPT,

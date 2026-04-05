@@ -200,7 +200,7 @@ async def lifestyle_advice(data: dict):
 async def trend_analyze(data: dict):
     """分析指标历史变化趋势"""
     try:
-        return await trend.analyze(data["indicator_name"], data["history_values"])
+        return await trend.analyze(data["indicator_name"], data["history_values"], medications=data.get("medications", None))
     except KeyError as e:
         return JSONResponse(status_code=422, content={"error": f"缺少必填字段: {str(e)}"})
     except Exception as e:
