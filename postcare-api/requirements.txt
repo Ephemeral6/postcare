@@ -9,3 +9,5 @@ openai-whisper
 edge-tts
 Pillow
 numpy
+aiofiles
+pydantic
