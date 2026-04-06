@@ -36,7 +36,8 @@ async def call_llm(system_prompt: str, user_prompt: str, max_retries: int = 1) -
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_prompt}
                 ],
-                temperature=0.3
+                temperature=0.3,
+                max_tokens=8192
             )
             raw_text = response.choices[0].message.content
             # 尝试直接解析，如失败则提取 ```json ... ``` 代码块
@@ -71,7 +72,8 @@ async def call_llm_text(system_prompt: str, user_prompt: str) -> str:
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}
             ],
-            temperature=0.5
+            temperature=0.5,
+            max_tokens=8192
         )
         return response.choices[0].message.content
     except Exception as e:
@@ -87,6 +89,7 @@ async def call_llm_stream(system_prompt: str, user_prompt: str):
             {"role": "user", "content": user_prompt}
         ],
         temperature=0.5,
+        max_tokens=8192,
         stream=True
     )
     for chunk in stream:
