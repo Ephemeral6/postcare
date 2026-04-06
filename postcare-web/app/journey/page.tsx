@@ -52,11 +52,25 @@ const RECOVERY_PLAN = [
   { week: '第4周', text: '复查日！对比上次结果' },
 ];
 
+interface JourneyMedSuggestion {
+  category?: string;
+  drugs?: string[];
+  usage?: string;
+  purpose?: string;
+  note?: string;
+}
+
+interface JourneyFollowupItem {
+  time?: string;
+  items?: string[];
+  purpose?: string;
+}
+
 interface JourneyResult {
   report?: { summary?: string; abnormal_indicators?: unknown[]; explanation?: string };
   emotion?: { level?: string; message?: string };
-  medication?: { suggestions?: string[]; warnings?: string[] };
-  followup?: { plan?: string[]; next_date?: string; reminders?: string[] };
+  medication?: { suggestions?: (string | JourneyMedSuggestion)[]; warnings?: string[] };
+  followup?: { plan?: (string | JourneyFollowupItem)[]; next_date?: string; reminders?: string[] };
   lifestyle?: { diet?: string; exercise?: string; sleep?: string; tips?: string[] };
   profile?: { one_page_summary?: string };
 }
@@ -515,7 +529,7 @@ function getStageList(result: JourneyResult) {
   }
 
   if (result.medication) {
-    const sugCount = result.medication.suggestions?.length ?? 0;
+    const suggestions = result.medication.suggestions ?? [];
     const hasWarnings = (result.medication.warnings?.length ?? 0) > 0;
     stages.push({
       key: 'medication',
@@ -524,10 +538,17 @@ function getStageList(result: JourneyResult) {
       color: 'bg-green-600',
       summary: (
         <div className="space-y-1.5">
-          {sugCount > 0 && <p className="text-sm text-[#1A1A1A] leading-relaxed">{result.medication.suggestions![0]}</p>}
-          {result.medication.suggestions?.slice(1).map((s, i) => (
-            <p key={i} className="text-xs text-[#6B7280] leading-relaxed">{s}</p>
-          ))}
+          {suggestions.map((s, i) => {
+            if (typeof s === 'string') return <p key={i} className="text-xs text-[#6B7280] leading-relaxed">{s}</p>;
+            const sug = s as JourneyMedSuggestion;
+            return (
+              <div key={i} className="text-xs text-[#6B7280] leading-relaxed">
+                <span className="font-medium text-[#1A1A1A]">{sug.category || '用药建议'}</span>
+                {sug.drugs && sug.drugs.length > 0 && <span>：{sug.drugs.join('、')}</span>}
+                {sug.usage && <span className="block text-[#9CA3AF] mt-0.5">{sug.usage}</span>}
+              </div>
+            );
+          })}
           {hasWarnings && (
             <div className="mt-1">
               <span className="text-xs text-[#D97706] font-medium">注意事项：</span>
@@ -536,7 +557,7 @@ function getStageList(result: JourneyResult) {
               ))}
             </div>
           )}
-          {sugCount === 0 && !hasWarnings && <p className="text-sm text-[#6B7280]">暂无用药建议</p>}
+          {suggestions.length === 0 && !hasWarnings && <p className="text-sm text-[#6B7280]">暂无用药建议</p>}
         </div>
       ),
     });
@@ -551,8 +572,18 @@ function getStageList(result: JourneyResult) {
       summary: (
         <div className="space-y-1.5">
           {result.followup.next_date && <p className="text-sm font-semibold text-[#1A1A1A]">建议复查日期：<span className="font-data">{result.followup.next_date}</span></p>}
-          {result.followup.plan?.map((p, i) => <p key={i} className="text-xs text-[#6B7280] leading-relaxed">{p}</p>)}
-          {result.followup.reminders?.map((r, i) => <p key={i} className="text-xs text-[#D97706] leading-relaxed">{r}</p>)}
+          {(result.followup.plan ?? []).map((p, i) => {
+            if (typeof p === 'string') return <p key={i} className="text-xs text-[#6B7280] leading-relaxed">{p}</p>;
+            const item = p as JourneyFollowupItem;
+            return (
+              <div key={i} className="text-xs text-[#6B7280] leading-relaxed">
+                <span className="font-medium text-[#1A1A1A]">{item.time || ''}</span>
+                {item.items && item.items.length > 0 && <span>：{item.items.join('、')}</span>}
+                {item.purpose && <span className="block text-[#9CA3AF] mt-0.5">{item.purpose}</span>}
+              </div>
+            );
+          })}
+          {(result.followup.reminders ?? []).map((r, i) => <p key={i} className="text-xs text-[#D97706] leading-relaxed">{r}</p>)}
         </div>
       ),
     });
