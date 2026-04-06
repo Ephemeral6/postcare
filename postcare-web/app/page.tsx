@@ -11,7 +11,6 @@ const journeyStages = [
     description: '看病前，先让我帮你准备好',
     icon: Stethoscope,
     href: '/pre-visit',
-    color: 'bg-blue-600',
   },
   {
     step: 2,
@@ -20,7 +19,6 @@ const journeyStages = [
     description: '看不懂报告？我帮你翻译成大白话',
     icon: FileText,
     href: '/report',
-    color: 'bg-blue-500',
   },
   {
     step: 3,
@@ -29,7 +27,6 @@ const journeyStages = [
     description: '回家后该怎么吃药、怎么生活',
     icon: Pill,
     href: '/medication',
-    color: 'bg-green-600',
   },
   {
     step: 4,
@@ -38,7 +35,6 @@ const journeyStages = [
     description: '你的指标是在好转还是恶化',
     icon: TrendingUp,
     href: '/tracking',
-    color: 'bg-amber-500',
   },
   {
     step: 5,
@@ -47,60 +43,79 @@ const journeyStages = [
     description: '帮你和医生都省时间',
     icon: ClipboardList,
     href: '/revisit',
-    color: 'bg-purple-600',
   },
 ];
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white pb-20">
+    <div className="min-h-screen bg-[#0B1120] pb-20">
       {/* Hero */}
-      <div className="px-6 pt-12 pb-8">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center">
-            <Heart className="w-5 h-5 text-white fill-white" />
+      <div className="relative px-6 pt-12 pb-10">
+        {/* Subtle radial glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.05)_0%,transparent_70%)]" />
+
+        <div className="relative z-10">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center shadow-[0_0_12px_rgba(59,130,246,0.3)]">
+              <Heart className="w-5 h-5 text-white fill-white" />
+            </div>
+            <div>
+              <h1 className="text-xl font-bold text-[#F1F5F9]">PostCare</h1>
+              <p className="text-sm text-[#94A3B8]">您的全旅程AI守护者</p>
+            </div>
           </div>
-          <div>
-            <h1 className="text-xl font-bold text-gray-900">PostCare</h1>
-            <p className="text-sm text-gray-500">您的全旅程AI守护者</p>
-          </div>
+
+          <p className="text-xl text-slate-300 tracking-wide leading-relaxed">
+            让医生在诊室里来不及说的话，在你最需要的时候被听见。
+          </p>
         </div>
-        <p className="text-sm text-gray-500 leading-relaxed">
-          从诊前准备到复诊跟踪，覆盖完整就医旅程的智能健康助手
-        </p>
       </div>
 
-      {/* Quick Journey CTA */}
+      {/* Journey CTA */}
       <div className="px-5 mb-4">
         <Link href="/journey" className="block">
-          <div className="rounded-2xl bg-blue-600 p-5">
+          <div
+            className="rounded-2xl p-5"
+            style={{
+              background: 'linear-gradient(135deg, rgba(59,130,246,0.1), rgba(59,130,246,0.05))',
+              border: '1px solid rgba(59,130,246,0.2)',
+              boxShadow: '0 0 30px rgba(59,130,246,0.08)',
+            }}
+          >
             <div className="flex items-center gap-4">
-              <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center">
-                <Activity className="w-5 h-5 text-white" />
+              <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-blue-600/20 flex items-center justify-center">
+                <Activity className="w-5 h-5 text-blue-400" />
               </div>
               <div className="flex-1">
-                <h3 className="text-base font-bold text-white">一键全旅程分析</h3>
-                <p className="text-xs text-blue-100">上传报告，自动走完完整诊后旅程</p>
+                <h3 className="text-base font-bold text-[#F1F5F9]">一键全旅程分析</h3>
+                <p className="text-xs text-[#94A3B8]">上传报告，自动走完完整诊后旅程</p>
               </div>
-              <ChevronRight className="w-5 h-5 text-white/60" />
+              <ChevronRight className="w-5 h-5 text-blue-500/40" />
             </div>
           </div>
         </Link>
       </div>
 
-      {/* Proactive Guard Timeline CTA */}
+      {/* Timeline CTA */}
       <div className="px-5 mb-6">
         <Link href="/timeline" className="block">
-          <div className="rounded-2xl bg-white border-2 border-blue-100 p-5">
+          <div
+            className="rounded-2xl p-5"
+            style={{
+              background: 'linear-gradient(135deg, rgba(139,92,246,0.1), rgba(59,130,246,0.05))',
+              border: '1px solid rgba(139,92,246,0.15)',
+              boxShadow: '0 0 30px rgba(139,92,246,0.06)',
+            }}
+          >
             <div className="flex items-center gap-4">
-              <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center">
-                <Heart className="w-5 h-5 text-blue-600" />
+              <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-purple-600/20 flex items-center justify-center">
+                <Heart className="w-5 h-5 text-purple-400" />
               </div>
               <div className="flex-1">
-                <h3 className="text-base font-bold text-gray-900">主动守护时间线</h3>
-                <p className="text-xs text-gray-500">看看PostCare如何在28天里主动守护一位患者</p>
+                <h3 className="text-base font-bold text-[#F1F5F9]">主动守护时间线</h3>
+                <p className="text-xs text-[#94A3B8]">看看PostCare如何在28天里主动守护一位患者</p>
               </div>
-              <ChevronRight className="w-5 h-5 text-gray-400" />
+              <ChevronRight className="w-5 h-5 text-purple-500/40" />
             </div>
           </div>
         </Link>
@@ -108,43 +123,46 @@ export default function Home() {
 
       {/* Journey Timeline */}
       <div className="px-5 pb-6">
-        <h2 className="text-lg font-bold text-gray-900 mb-5 flex items-center gap-2">
-          <Shield className="w-5 h-5 text-blue-600" />
+        <h2 className="text-lg font-bold text-[#F1F5F9] mb-5 flex items-center gap-2">
+          <Shield className="w-5 h-5 text-blue-500" />
           就医旅程
         </h2>
         <div className="relative">
-          {/* Timeline line - dashed */}
-          <div className="absolute left-[23px] top-10 bottom-10 w-px border-l-2 border-dashed border-blue-100" />
+          {/* Timeline line - gradient */}
+          <div className="absolute left-[23px] top-10 bottom-10 w-px bg-gradient-to-b from-blue-500 to-transparent" />
 
           <div className="space-y-3">
             {journeyStages.map((stage) => {
               const Icon = stage.icon;
               return (
                 <Link key={stage.step} href={stage.href} className="block group">
-                  <div className="relative flex items-start gap-4 p-4 rounded-xl bg-white border border-gray-100">
+                  <div
+                    className="relative flex items-start gap-4 p-4 rounded-xl bg-[#141E33] border border-white/5"
+                    style={{ boxShadow: '0 0 20px rgba(59,130,246,0.05)' }}
+                  >
                     {/* Step circle */}
-                    <div className={`relative z-10 flex-shrink-0 w-[46px] h-[46px] rounded-full ${stage.color} flex items-center justify-center`}>
+                    <div className="relative z-10 flex-shrink-0 w-[46px] h-[46px] rounded-full bg-blue-600 flex items-center justify-center shadow-[0_0_12px_rgba(59,130,246,0.3)]">
                       <Icon className="w-5 h-5 text-white" />
                     </div>
 
                     <div className="flex-1 min-w-0 py-0.5">
                       <div className="flex items-center gap-2 mb-0.5">
-                        <span className="text-[11px] font-medium text-gray-400">
+                        <span className="text-[11px] font-medium text-[#94A3B8]">
                           阶段{stage.step}
                         </span>
                       </div>
-                      <h3 className="text-[15px] font-bold text-gray-900 mb-0.5">
+                      <h3 className="text-[15px] font-bold text-[#F1F5F9] mb-0.5">
                         {stage.title}
                       </h3>
-                      <p className="text-xs text-blue-600 font-medium mb-0.5">
+                      <p className="text-xs text-blue-400 font-medium mb-0.5">
                         {stage.subtitle}
                       </p>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-[#94A3B8]">
                         {stage.description}
                       </p>
                     </div>
 
-                    <ChevronRight className="flex-shrink-0 w-4 h-4 text-gray-300 group-hover:text-blue-600 transition-colors mt-3.5" />
+                    <ChevronRight className="flex-shrink-0 w-4 h-4 text-slate-600 group-hover:text-blue-400 transition-colors mt-3.5" />
                   </div>
                 </Link>
               );
@@ -153,15 +171,11 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Footer disclaimer */}
+      {/* Footer */}
       <div className="px-6 pb-6">
-        <div className="p-3.5 rounded-xl bg-gray-50 border border-gray-100">
-          <p className="text-[11px] text-gray-400 text-center leading-relaxed">
-            PostCare 是AI辅助健康管理工具，所有内容仅供参考，不构成医疗建议。
-            <br />
-            具体诊疗请遵医嘱。
-          </p>
-        </div>
+        <p className="text-[11px] text-slate-600 text-center leading-relaxed">
+          PostCare · 浙大未来学习中心 · Ultra Maker Hackathon 2026
+        </p>
       </div>
     </div>
   );

@@ -54,11 +54,11 @@ const nextId = () => ++rowIdCounter;
 // Overall level styling
 // ============================================================
 const levelConfig: Record<string, { bg: string; border: string; text: string; label: string }> = {
-  normal: { bg: 'bg-success-light', border: 'border-success', text: 'text-success', label: '全部正常' },
-  mild: { bg: 'bg-warning-light', border: 'border-warning', text: 'text-warning', label: '轻度异常' },
-  moderate: { bg: 'bg-orange-100', border: 'border-orange-500', text: 'text-orange-700', label: '中度异常' },
-  severe: { bg: 'bg-danger-light', border: 'border-danger', text: 'text-danger', label: '严重异常' },
-  critical: { bg: 'bg-red-200', border: 'border-red-700', text: 'text-red-800', label: '危急异常' },
+  normal: { bg: 'bg-green-500/10', border: 'border-green-500', text: 'text-green-400', label: '全部正常' },
+  mild: { bg: 'bg-amber-500/10', border: 'border-amber-500', text: 'text-amber-400', label: '轻度异常' },
+  moderate: { bg: 'bg-orange-500/10', border: 'border-orange-500', text: 'text-orange-400', label: '中度异常' },
+  severe: { bg: 'bg-red-500/10', border: 'border-red-500', text: 'text-red-400', label: '严重异常' },
+  critical: { bg: 'bg-red-500/15', border: 'border-red-700', text: 'text-red-400', label: '危急异常' },
 };
 
 export default function TrackingPage() {
@@ -213,9 +213,9 @@ export default function TrackingPage() {
   // Trend direction display
   // ----------------------------------------------------------
   const trendDirectionColor = (dir: string) => {
-    if (dir === 'down' || dir === 'improving') return 'text-success';
-    if (dir === 'up' || dir === 'worsening') return 'text-danger';
-    return 'text-warning';
+    if (dir === 'down' || dir === 'improving') return 'text-green-400';
+    if (dir === 'up' || dir === 'worsening') return 'text-red-400';
+    return 'text-amber-400';
   };
 
   const trendDirectionArrow = (dir: string) => {
@@ -226,18 +226,18 @@ export default function TrackingPage() {
 
   // ==========================================================
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#0B1120]">
       <Header stage="健康追踪" />
 
       <main className="max-w-lg mx-auto px-4 pt-4 pb-20 page-enter">
         {/* Tab bar */}
-        <div className="flex rounded-xl bg-gray-50 border border-gray-100 p-1 mb-5">
+        <div className="flex rounded-xl bg-[#141E33] border border-white/5 p-1 mb-5">
           <button
             onClick={() => setActiveTab('trend')}
             className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-sm font-medium transition-all ${
               activeTab === 'trend'
-                ? 'bg-blue-600 text-white shadow-sm'
-                : 'text-gray-500 hover:text-gray-900'
+                ? 'bg-blue-500 text-white'
+                : 'text-slate-400 hover:text-slate-100'
             }`}
           >
             <TrendingUp className="w-4 h-4" />
@@ -247,8 +247,8 @@ export default function TrackingPage() {
             onClick={() => setActiveTab('alert')}
             className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-sm font-medium transition-all ${
               activeTab === 'alert'
-                ? 'bg-blue-600 text-white shadow-sm'
-                : 'text-gray-500 hover:text-gray-900'
+                ? 'bg-blue-500 text-white'
+                : 'text-slate-400 hover:text-slate-100'
             }`}
           >
             <AlertTriangle className="w-4 h-4" />
@@ -261,19 +261,19 @@ export default function TrackingPage() {
           <div className="space-y-4">
             {/* Indicator name */}
             <div>
-              <label className="block text-sm font-medium text-gray-900 mb-1.5">指标名称</label>
+              <label className="block text-sm font-medium text-slate-100 mb-1.5">指标名称</label>
               <input
                 type="text"
                 value={indicatorName}
                 onChange={(e) => setIndicatorName(e.target.value)}
                 placeholder="如：空腹血糖(GLU)"
-                className="w-full px-3 py-2.5 rounded-xl border border-gray-100 bg-white text-sm text-gray-900 placeholder:text-gray-500/50 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 transition"
+                className="w-full px-3 py-2.5 rounded-xl border border-white/5 bg-[#141E33] text-sm text-slate-100 placeholder:text-slate-400/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/40 transition"
               />
             </div>
 
             {/* History values table */}
             <div>
-              <label className="block text-sm font-medium text-gray-900 mb-1.5">历史检查记录</label>
+              <label className="block text-sm font-medium text-slate-100 mb-1.5">历史检查记录</label>
               <div className="space-y-2">
                 {historyRows.map((row) => (
                   <div key={row.id} className="flex items-center gap-2">
@@ -281,7 +281,7 @@ export default function TrackingPage() {
                       type="date"
                       value={row.date}
                       onChange={(e) => updateHistoryRow(row.id, 'date', e.target.value)}
-                      className="flex-1 min-w-0 px-2.5 py-2 rounded-lg border border-gray-100 bg-white text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 transition"
+                      className="flex-1 min-w-0 px-2.5 py-2 rounded-lg border border-white/5 bg-[#141E33] text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/40 transition"
                     />
                     <input
                       type="number"
@@ -289,18 +289,18 @@ export default function TrackingPage() {
                       value={row.value}
                       onChange={(e) => updateHistoryRow(row.id, 'value', e.target.value)}
                       placeholder="数值"
-                      className="w-20 px-2.5 py-2 rounded-lg border border-gray-100 bg-white text-sm text-gray-900 placeholder:text-gray-500/50 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 transition"
+                      className="w-20 px-2.5 py-2 rounded-lg border border-white/5 bg-[#141E33] text-sm text-slate-100 placeholder:text-slate-400/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/40 transition"
                     />
                     <input
                       type="text"
                       value={row.unit}
                       onChange={(e) => updateHistoryRow(row.id, 'unit', e.target.value)}
                       placeholder="单位"
-                      className="w-20 px-2.5 py-2 rounded-lg border border-gray-100 bg-white text-sm text-gray-900 placeholder:text-gray-500/50 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 transition"
+                      className="w-20 px-2.5 py-2 rounded-lg border border-white/5 bg-[#141E33] text-sm text-slate-100 placeholder:text-slate-400/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/40 transition"
                     />
                     <button
                       onClick={() => removeHistoryRow(row.id)}
-                      className="flex-shrink-0 p-1.5 rounded-lg text-gray-500 hover:text-danger hover:bg-danger-light transition"
+                      className="flex-shrink-0 p-1.5 rounded-lg text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
@@ -310,7 +310,7 @@ export default function TrackingPage() {
 
               <button
                 onClick={addHistoryRow}
-                className="mt-2 flex items-center gap-1 text-sm text-blue-600 font-medium hover:text-blue-600/80 transition"
+                className="mt-2 flex items-center gap-1 text-sm text-blue-400 font-medium hover:text-blue-400/80 transition"
               >
                 <Plus className="w-4 h-4" />
                 添加一次检查记录
@@ -321,7 +321,7 @@ export default function TrackingPage() {
             <div className="flex gap-3">
               <button
                 onClick={fillTrendExample}
-                className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-gray-100 text-sm font-medium text-gray-500 hover:border-blue-600 hover:text-blue-600 transition"
+                className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-white/5 text-sm font-medium text-slate-400 hover:border-blue-500 hover:text-blue-400 transition"
               >
                 <Sparkles className="w-4 h-4" />
                 试试示例
@@ -329,7 +329,7 @@ export default function TrackingPage() {
               <button
                 onClick={handleAnalyzeTrend}
                 disabled={trendLoading}
-                className="flex-1 flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-blue-600 text-white text-sm font-medium hover:bg-blue-600/90 disabled:opacity-50 transition shadow-sm"
+                className="flex-1 flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-blue-500 text-white text-sm font-medium hover:bg-blue-500/90 disabled:opacity-50 transition"
               >
                 <Activity className="w-4 h-4" />
                 分析趋势
@@ -337,7 +337,7 @@ export default function TrackingPage() {
             </div>
 
             {trendError && (
-              <p className="text-sm text-danger text-center">{trendError}</p>
+              <p className="text-sm text-red-400 text-center">{trendError}</p>
             )}
 
             {trendLoading && <LoadingSpinner text="正在分析趋势..." />}
@@ -346,9 +346,9 @@ export default function TrackingPage() {
             {trendResult && !trendLoading && (
               <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
                 {/* Chart */}
-                <div className="p-4 rounded-xl bg-white border border-gray-100 shadow-sm">
-                  <h3 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-1.5">
-                    <TrendingUp className="w-4 h-4 text-blue-600" />
+                <div className="p-4 rounded-xl bg-[#141E33] border border-white/5">
+                  <h3 className="text-sm font-semibold text-slate-100 mb-3 flex items-center gap-1.5">
+                    <TrendingUp className="w-4 h-4 text-blue-400" />
                     {indicatorName} 趋势图
                   </h3>
                   <div className="h-52">
@@ -357,7 +357,7 @@ export default function TrackingPage() {
                         data={trendResult.chart_data}
                         margin={{ top: 10, right: 10, left: -10, bottom: 0 }}
                       >
-                        <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
+                        <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.1)" />
                         {trendResult.reference_line?.low != null &&
                           trendResult.reference_line?.high != null && (
                             <ReferenceArea
@@ -377,7 +377,7 @@ export default function TrackingPage() {
                           dataKey="date"
                           tick={{ fontSize: 11, fill: '#94A3B8' }}
                           tickLine={false}
-                          axisLine={{ stroke: '#E2E8F0' }}
+                          axisLine={{ stroke: 'rgba(148,163,184,0.1)' }}
                         />
                         <YAxis
                           tick={{ fontSize: 11, fill: '#94A3B8' }}
@@ -388,9 +388,11 @@ export default function TrackingPage() {
                         <Tooltip
                           contentStyle={{
                             borderRadius: '12px',
-                            border: '1px solid #E2E8F0',
+                            border: '1px solid rgba(255,255,255,0.05)',
+                            background: '#141E33',
+                            color: '#F1F5F9',
                             fontSize: '13px',
-                            boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+                            boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
                           }}
                           formatter={(value: unknown) => [String(value), indicatorName]}
                           labelFormatter={(label: unknown) => `日期: ${String(label)}`}
@@ -419,21 +421,21 @@ export default function TrackingPage() {
                 </div>
 
                 {/* Analysis */}
-                <div className="p-4 rounded-2xl bg-white border border-gray-100">
-                  <h4 className="text-sm font-semibold text-gray-900 mb-2">趋势分析</h4>
-                  <p className="text-sm text-gray-500 leading-relaxed">
+                <div className="p-4 rounded-2xl bg-[#141E33] border border-white/5">
+                  <h4 className="text-sm font-semibold text-slate-100 mb-2">趋势分析</h4>
+                  <p className="text-sm text-slate-400 leading-relaxed">
                     {trendResult.analysis}
                   </p>
                 </div>
 
                 {/* Next target */}
                 {trendResult.next_target && (
-                  <div className="p-4 rounded-xl bg-blue-50 border border-blue-600/20">
+                  <div className="p-4 rounded-xl bg-blue-500/10 border border-blue-500/20">
                     <div className="flex items-start gap-2">
-                      <Target className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                      <Target className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
                       <div>
-                        <h4 className="text-sm font-semibold text-blue-600 mb-1">下次目标</h4>
-                        <p className="text-sm text-gray-900 leading-relaxed">
+                        <h4 className="text-sm font-semibold text-blue-400 mb-1">下次目标</h4>
+                        <p className="text-sm text-slate-100 leading-relaxed">
                           {trendResult.next_target}
                         </p>
                       </div>
@@ -450,21 +452,21 @@ export default function TrackingPage() {
           <div className="space-y-4">
             {/* Indicator rows */}
             <div>
-              <label className="block text-sm font-medium text-gray-900 mb-1.5">检查指标</label>
+              <label className="block text-sm font-medium text-slate-100 mb-1.5">检查指标</label>
               <div className="space-y-2">
                 {alertRows.map((row) => (
-                  <div key={row.id} className="p-3 rounded-xl border border-gray-100 bg-white space-y-2">
+                  <div key={row.id} className="p-3 rounded-xl border border-white/5 bg-[#141E33] space-y-2">
                     <div className="flex items-center gap-2">
                       <input
                         type="text"
                         value={row.name}
                         onChange={(e) => updateAlertRow(row.id, 'name', e.target.value)}
                         placeholder="指标名称"
-                        className="flex-1 min-w-0 px-2.5 py-2 rounded-lg border border-gray-100 bg-white text-sm text-gray-900 placeholder:text-gray-500/50 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 transition"
+                        className="flex-1 min-w-0 px-2.5 py-2 rounded-lg border border-white/5 bg-[#141E33] text-sm text-slate-100 placeholder:text-slate-400/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/40 transition"
                       />
                       <button
                         onClick={() => removeAlertRow(row.id)}
-                        className="flex-shrink-0 p-1.5 rounded-lg text-gray-500 hover:text-danger hover:bg-danger-light transition"
+                        className="flex-shrink-0 p-1.5 rounded-lg text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -476,21 +478,21 @@ export default function TrackingPage() {
                         value={row.value}
                         onChange={(e) => updateAlertRow(row.id, 'value', e.target.value)}
                         placeholder="数值"
-                        className="w-24 px-2.5 py-2 rounded-lg border border-gray-100 bg-white text-sm text-gray-900 placeholder:text-gray-500/50 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 transition"
+                        className="w-24 px-2.5 py-2 rounded-lg border border-white/5 bg-[#141E33] text-sm text-slate-100 placeholder:text-slate-400/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/40 transition"
                       />
                       <input
                         type="text"
                         value={row.unit}
                         onChange={(e) => updateAlertRow(row.id, 'unit', e.target.value)}
                         placeholder="单位"
-                        className="w-20 px-2.5 py-2 rounded-lg border border-gray-100 bg-white text-sm text-gray-900 placeholder:text-gray-500/50 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 transition"
+                        className="w-20 px-2.5 py-2 rounded-lg border border-white/5 bg-[#141E33] text-sm text-slate-100 placeholder:text-slate-400/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/40 transition"
                       />
                       <input
                         type="text"
                         value={row.reference}
                         onChange={(e) => updateAlertRow(row.id, 'reference', e.target.value)}
                         placeholder="参考范围 如 3.9-6.1"
-                        className="flex-1 min-w-0 px-2.5 py-2 rounded-lg border border-gray-100 bg-white text-sm text-gray-900 placeholder:text-gray-500/50 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 transition"
+                        className="flex-1 min-w-0 px-2.5 py-2 rounded-lg border border-white/5 bg-[#141E33] text-sm text-slate-100 placeholder:text-slate-400/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/40 transition"
                       />
                     </div>
                   </div>
@@ -499,7 +501,7 @@ export default function TrackingPage() {
 
               <button
                 onClick={addAlertRow}
-                className="mt-2 flex items-center gap-1 text-sm text-blue-600 font-medium hover:text-blue-600/80 transition"
+                className="mt-2 flex items-center gap-1 text-sm text-blue-400 font-medium hover:text-blue-400/80 transition"
               >
                 <Plus className="w-4 h-4" />
                 添加一项指标
@@ -510,7 +512,7 @@ export default function TrackingPage() {
             <div className="flex gap-3">
               <button
                 onClick={fillAlertExample}
-                className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-gray-100 text-sm font-medium text-gray-500 hover:border-blue-600 hover:text-blue-600 transition"
+                className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-white/5 text-sm font-medium text-slate-400 hover:border-blue-500 hover:text-blue-400 transition"
               >
                 <Sparkles className="w-4 h-4" />
                 试试示例
@@ -518,7 +520,7 @@ export default function TrackingPage() {
               <button
                 onClick={handleCheckAlert}
                 disabled={alertLoading}
-                className="flex-1 flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-blue-600 text-white text-sm font-medium hover:bg-blue-600/90 disabled:opacity-50 transition shadow-sm"
+                className="flex-1 flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-blue-500 text-white text-sm font-medium hover:bg-blue-500/90 disabled:opacity-50 transition"
               >
                 <Search className="w-4 h-4" />
                 检测预警
@@ -526,7 +528,7 @@ export default function TrackingPage() {
             </div>
 
             {alertError && (
-              <p className="text-sm text-danger text-center">{alertError}</p>
+              <p className="text-sm text-red-400 text-center">{alertError}</p>
             )}
 
             {alertLoading && <LoadingSpinner text="正在检测异常..." />}
@@ -545,7 +547,7 @@ export default function TrackingPage() {
                       <ShieldAlert className={`w-6 h-6 flex-shrink-0 ${lc.text}`} />
                       <div>
                         <p className={`text-lg font-bold ${lc.text}`}>{lc.label}</p>
-                        <p className="text-xs text-gray-500 mt-0.5">
+                        <p className="text-xs text-slate-400 mt-0.5">
                           共检测 {alertResult.alerts.length} 项指标
                         </p>
                       </div>
@@ -557,26 +559,26 @@ export default function TrackingPage() {
                 {sortedAlerts.map((item: AlertItem, idx: number) => (
                   <div
                     key={idx}
-                    className={`p-4 rounded-xl bg-white border border-gray-100 shadow-sm ${
+                    className={`p-4 rounded-xl bg-[#141E33] border border-white/5 ${
                       item.severity === 'critical' ? '' : ''
                     }`}
                   >
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
-                        <span className="text-sm font-semibold text-gray-900">{item.indicator}</span>
+                        <span className="text-sm font-semibold text-slate-100">{item.indicator}</span>
                         <SeverityBadge severity={item.severity} />
                       </div>
-                      <span className="text-sm font-bold text-gray-900">
+                      <span className="text-sm font-bold text-slate-100">
                         {item.value}
                       </span>
                     </div>
-                    <p className="text-sm text-gray-500 leading-relaxed mb-2">
+                    <p className="text-sm text-slate-400 leading-relaxed mb-2">
                       {item.message}
                     </p>
                     {item.action && (
-                      <div className="flex items-start gap-1.5 p-2.5 rounded-xl bg-blue-50">
-                        <Target className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
-                        <p className="text-xs text-gray-900 leading-relaxed">{item.action}</p>
+                      <div className="flex items-start gap-1.5 p-2.5 rounded-xl bg-blue-500/10">
+                        <Target className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
+                        <p className="text-xs text-slate-100 leading-relaxed">{item.action}</p>
                       </div>
                     )}
                   </div>

@@ -4,13 +4,13 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { ChevronLeft, Heart, Shield } from 'lucide-react';
 
-const typeConfig: Record<string, { label: string; bg: string; dot: string }> = {
-  report:     { label: '报告解读', bg: 'bg-blue-50',    dot: 'bg-blue-500' },
-  medication: { label: '用药提醒', bg: 'bg-green-50',   dot: 'bg-green-500' },
-  lifestyle:  { label: '生活关怀', bg: 'bg-emerald-50', dot: 'bg-emerald-500' },
-  followup:   { label: '复查提醒', bg: 'bg-amber-50',   dot: 'bg-amber-500' },
-  emotion:    { label: '情绪关怀', bg: 'bg-purple-50',  dot: 'bg-purple-500' },
-  alert:      { label: '紧急提醒', bg: 'bg-red-50',     dot: 'bg-red-500' },
+const typeConfig: Record<string, { label: string; dot: string; glow: string }> = {
+  report:     { label: '报告解读', dot: 'bg-blue-500',    glow: 'shadow-[0_0_8px_rgba(59,130,246,0.4)]' },
+  medication: { label: '用药提醒', dot: 'bg-green-500',   glow: 'shadow-[0_0_8px_rgba(34,197,94,0.4)]' },
+  lifestyle:  { label: '生活关怀', dot: 'bg-emerald-500', glow: 'shadow-[0_0_8px_rgba(16,185,129,0.4)]' },
+  followup:   { label: '复查提醒', dot: 'bg-amber-500',   glow: 'shadow-[0_0_8px_rgba(245,158,11,0.4)]' },
+  emotion:    { label: '情绪关怀', dot: 'bg-purple-500',  glow: 'shadow-[0_0_8px_rgba(168,85,247,0.4)]' },
+  alert:      { label: '紧急提醒', dot: 'bg-red-500',     glow: 'shadow-[0_0_8px_rgba(239,68,68,0.4)]' },
 };
 
 const timelineData = [
@@ -114,32 +114,32 @@ export default function TimelinePage() {
   const [guardEnabled, setGuardEnabled] = useState(true);
 
   return (
-    <div className="min-h-screen bg-white pb-12">
+    <div className="min-h-screen bg-[#0B1120] pb-12">
       {/* Header */}
-      <div className="bg-blue-600 text-white">
+      <div className="bg-[#141E33]">
         <div className="px-5 pt-12 pb-8">
-          <Link href="/" className="inline-flex items-center gap-1 text-blue-100 text-sm mb-4 hover:text-white transition-colors">
+          <Link href="/" className="inline-flex items-center gap-1 text-blue-400/70 text-sm mb-4 hover:text-blue-300 transition-colors">
             <ChevronLeft className="w-4 h-4" />
             返回首页
           </Link>
 
           <div className="flex items-center gap-3 mb-3">
-            <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-white/20">
-              <Heart className="w-6 h-6 text-white fill-white" />
+            <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-blue-600/20 shadow-[0_0_12px_rgba(59,130,246,0.2)]">
+              <Heart className="w-6 h-6 text-blue-400 fill-blue-400" />
             </div>
             <div>
-              <h1 className="text-xl font-bold">PostCare 主动守护</h1>
-              <p className="text-sm text-blue-100">不是等你来找我，而是我主动找你</p>
+              <h1 className="text-xl font-bold text-[#F1F5F9]">PostCare 主动守护</h1>
+              <p className="text-sm text-[#94A3B8]">不是等你来找我，而是我主动找你</p>
             </div>
           </div>
 
           {/* Toggle */}
-          <div className="flex items-center gap-3 mt-4 bg-white/10 rounded-xl px-4 py-3">
-            <Shield className="w-5 h-5 text-white/80" />
-            <span className="text-sm flex-1">开启主动守护</span>
+          <div className="flex items-center gap-3 mt-4 rounded-xl px-4 py-3" style={{ background: 'rgba(59,130,246,0.06)', border: '1px solid rgba(59,130,246,0.1)' }}>
+            <Shield className="w-5 h-5 text-blue-400/70" />
+            <span className="text-sm flex-1 text-[#94A3B8]">开启主动守护</span>
             <button
               onClick={() => setGuardEnabled(!guardEnabled)}
-              className={`relative w-12 h-7 rounded-full transition-colors duration-300 ${guardEnabled ? 'bg-white/30' : 'bg-white/10'}`}
+              className={`relative w-12 h-7 rounded-full transition-colors duration-300 ${guardEnabled ? 'bg-blue-600/40' : 'bg-white/10'}`}
             >
               <div className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow transition-transform duration-300 ${guardEnabled ? 'left-6' : 'left-1'}`} />
             </button>
@@ -149,12 +149,13 @@ export default function TimelinePage() {
 
       {/* Timeline */}
       <div className="px-5 pt-6 pb-4">
-        <p className="text-sm text-gray-500 mb-5">
-          以下是PostCare在 <span className="font-semibold text-gray-900">28天</span> 内主动发送的守护消息
+        <p className="text-sm text-[#94A3B8] mb-5">
+          以下是PostCare在 <span className="font-semibold text-[#F1F5F9]">28天</span> 内主动发送的守护消息
         </p>
 
         <div className="relative">
-          <div className="absolute left-[15px] top-4 bottom-4 w-px border-l-2 border-dashed border-blue-100" />
+          {/* Glowing blue vertical line */}
+          <div className="absolute left-[15px] top-4 bottom-4 w-px bg-gradient-to-b from-blue-500/60 to-blue-500/0" />
 
           <div className="space-y-4">
             {timelineData.map((item, index) => {
@@ -164,24 +165,25 @@ export default function TimelinePage() {
                   key={index}
                   className="relative pl-10"
                 >
-                  <div className={`absolute left-[9px] top-5 w-[14px] h-[14px] rounded-full ${config.dot} ring-4 ring-white z-10`} />
+                  {/* Dot with glow */}
+                  <div className={`absolute left-[9px] top-5 w-[14px] h-[14px] rounded-full ${config.dot} ${config.glow} ring-2 ring-[#0B1120] z-10`} />
 
-                  <div className={`${config.bg} rounded-xl p-4 border border-gray-100`}>
+                  <div className="bg-[#141E33] rounded-xl p-4 border border-white/5" style={{ boxShadow: '0 0 20px rgba(59,130,246,0.05)' }}>
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="text-xs font-medium text-gray-500">
+                      <span className="text-xs font-medium text-[#94A3B8]">
                         {item.date}
                       </span>
-                      <span className="text-[11px] text-gray-400">
+                      <span className="text-[11px] text-slate-600">
                         · 第{item.day}天
                       </span>
                     </div>
 
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-lg">{item.icon}</span>
-                      <h3 className="text-[15px] font-bold text-gray-900">{item.title}</h3>
+                      <h3 className="text-[15px] font-bold text-[#F1F5F9]">{item.title}</h3>
                     </div>
 
-                    <p className="text-sm text-gray-500 leading-relaxed">
+                    <p className="text-sm text-[#94A3B8] leading-relaxed">
                       {item.message}
                     </p>
                   </div>
@@ -194,22 +196,28 @@ export default function TimelinePage() {
 
       {/* Summary Card */}
       <div className="px-5 pt-2 pb-6">
-        <div className="rounded-xl bg-white border-2 border-blue-100 p-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-4">
+        <div
+          className="rounded-xl bg-[#141E33] p-6"
+          style={{
+            border: '1px solid rgba(59,130,246,0.15)',
+            boxShadow: '0 0 30px rgba(59,130,246,0.08)',
+          }}
+        >
+          <h3 className="text-lg font-bold text-[#F1F5F9] mb-4">
             28天，PostCare主动触达了{timelineData.length}次
           </h3>
 
           <div className="grid grid-cols-2 gap-2 mb-5">
             {summaryItems.map((s, i) => (
-              <div key={i} className="flex items-center gap-2 text-sm text-gray-600">
+              <div key={i} className="flex items-center gap-2 text-sm text-[#94A3B8]">
                 <span>{s.icon}</span>
                 <span>{s.label}</span>
-                <span className="font-bold text-gray-900">{s.count}次</span>
+                <span className="font-bold font-data text-[#F1F5F9]">{s.count}次</span>
               </div>
             ))}
           </div>
 
-          <p className="text-sm text-gray-400 italic text-center">
+          <p className="text-sm text-slate-600 italic text-center">
             &ldquo;不是等你来找我，而是我主动找你&rdquo;
           </p>
         </div>

@@ -1,41 +1,39 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap');
 
 :root {
-  --background: #FFFFFF;
-  --foreground: #111827;
-  --primary: #2563EB;
-  --primary-light: #DBEAFE;
-  --primary-dark: #1D4ED8;
-  --success: #16A34A;
-  --success-light: #DCFCE7;
+  --bg-primary: #0B1120;
+  --bg-card: #141E33;
+  --border-glow: rgba(59, 130, 246, 0.08);
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --accent-blue: #3B82F6;
+  --success: #22C55E;
+  --success-light: rgba(34, 197, 94, 0.1);
   --warning: #F59E0B;
-  --warning-light: #FEF3C7;
-  --danger: #DC2626;
-  --danger-light: #FEE2E2;
-  --card: #FFFFFF;
-  --text: #111827;
-  --text-secondary: #4B5563;
-  --border: #F3F4F6;
+  --warning-light: rgba(245, 158, 11, 0.1);
+  --danger: #EF4444;
+  --danger-light: rgba(239, 68, 68, 0.1);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-  --color-primary-light: var(--primary-light);
-  --color-primary-dark: var(--primary-dark);
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-primary);
+  --color-primary: var(--accent-blue);
+  --color-primary-light: rgba(59, 130, 246, 0.1);
+  --color-primary-dark: #2563EB;
   --color-success: var(--success);
   --color-success-light: var(--success-light);
   --color-warning: var(--warning);
   --color-warning-light: var(--warning-light);
   --color-danger: var(--danger);
   --color-danger-light: var(--danger-light);
-  --color-card: var(--card);
-  --color-text: var(--text);
+  --color-card: var(--bg-card);
+  --color-text: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
-  --color-border: var(--border);
-  --font-sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  --color-border: rgba(99, 179, 237, 0.08);
+  --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
 }
 
 * {
@@ -43,25 +41,66 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Smooth transitions for all interactive elements */
 button, a {
   transition: all 0.2s ease;
 }
 
-/* Page entry animation */
+/* Glow card */
+.card-glow {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glow);
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.card-glow:hover {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.1);
+}
+
+/* Data font */
+.font-data {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* Glow button */
+.btn-glow {
+  background: var(--accent-blue);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-weight: 600;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+  transform: translateY(-1px);
+}
+
+.btn-glow:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Page entry */
 .page-enter {
-  animation: fadeSlideUp 0.2s ease-out;
+  animation: fadeSlideUp 0.3s ease-out;
 }
 
 @keyframes fadeSlideUp {
-  from { opacity: 0; transform: translateY(8px); }
+  from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -70,7 +109,7 @@ button, a {
   to { opacity: 1; }
 }
 
-/* Heartbeat loading animation */
+/* Heartbeat loading */
 @keyframes heartbeat-line {
   0% { stroke-dashoffset: 400; }
   100% { stroke-dashoffset: 0; }
@@ -89,7 +128,7 @@ button, a {
   animation: pulse-glow 1.5s ease-in-out infinite;
 }
 
-/* Checkbox bounce */
+/* Checkbox */
 @keyframes check-bounce {
   0% { transform: scale(0.8); }
   50% { transform: scale(1.15); }
@@ -100,7 +139,7 @@ input[type="checkbox"]:checked {
   animation: check-bounce 0.3s ease;
 }
 
-/* Smooth scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 4px;
 }
@@ -108,11 +147,33 @@ input[type="checkbox"]:checked {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
+  background: rgba(148, 163, 184, 0.3);
   border-radius: 2px;
 }
 
-/* Tabular nums for data display */
+/* Tabular nums */
 .tabular-nums {
   font-variant-numeric: tabular-nums;
+}
+
+/* Input dark style */
+.input-dark {
+  background: var(--bg-card);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  color: var(--text-primary);
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.input-dark::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.5;
+}
+
+.input-dark:focus {
+  outline: none;
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }

@@ -84,13 +84,13 @@ function DrugTagInput({
 
   return (
     <div
-      className="flex flex-wrap gap-2 min-h-[44px] p-2.5 rounded-xl border border-gray-200 bg-white cursor-text focus-within:border-blue-600/50 focus-within:ring-2 focus-within:ring-blue-600/10 transition-all"
+      className="flex flex-wrap gap-2 min-h-[44px] p-2.5 rounded-xl border border-white/10 bg-white/5 cursor-text focus-within:border-blue-500/50 focus-within:ring-2 focus-within:ring-blue-500/10 transition-all"
       onClick={() => inputRef.current?.focus()}
     >
       {drugs.map((drug, i) => (
-        <span key={i} className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-blue-50 text-blue-600 text-sm font-medium">
+        <span key={i} className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-blue-500/20 text-blue-400 text-sm font-medium">
           {drug}
-          <button onClick={(e) => { e.stopPropagation(); onRemove(i); }} className="ml-0.5 hover:bg-blue-100 rounded-full p-0.5 transition-colors">
+          <button onClick={(e) => { e.stopPropagation(); onRemove(i); }} className="ml-0.5 hover:bg-blue-500/30 rounded-full p-0.5 transition-colors">
             <X className="w-3.5 h-3.5" />
           </button>
         </span>
@@ -101,7 +101,7 @@ function DrugTagInput({
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder={drugs.length === 0 ? '输入药品名称，按回车添加（可选）' : '继续添加...'}
-        className="flex-1 min-w-[120px] bg-transparent outline-none text-sm text-gray-900 placeholder:text-gray-400"
+        className="flex-1 min-w-[120px] bg-transparent outline-none text-sm text-slate-100 placeholder:text-slate-500"
       />
     </div>
   );
@@ -123,21 +123,35 @@ function StageCard({
 }) {
   const [expanded, setExpanded] = useState(false);
 
+  // Map old colors to left-bar tint colors
+  const barColorMap: Record<string, string> = {
+    'bg-blue-600': 'bg-blue-500',
+    'bg-blue-500': 'bg-blue-400',
+    'bg-green-600': 'bg-emerald-500',
+    'bg-amber-500': 'bg-amber-400',
+    'bg-purple-600': 'bg-purple-400',
+  };
+  const barColor = barColorMap[color] || 'bg-blue-500';
+
   return (
     <div className={`transition-all duration-500 ease-out ${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-      <div className="rounded-xl bg-white border border-gray-100 overflow-hidden">
-        <button onClick={() => setExpanded(!expanded)} className="w-full flex items-center gap-3 p-4 text-left">
-          <div className={`flex-shrink-0 w-10 h-10 rounded-xl ${color} flex items-center justify-center`}>
-            <Icon className="w-5 h-5 text-white" />
+      <div className="rounded-xl bg-[#141E33] border border-white/5 overflow-hidden flex">
+        {/* Left colored bar */}
+        <div className={`w-1 flex-shrink-0 ${barColor}`} />
+        <div className="flex-1 min-w-0">
+          <button onClick={() => setExpanded(!expanded)} className="w-full flex items-center gap-3 p-4 text-left">
+            <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center">
+              <Icon className="w-5 h-5 text-blue-400" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <h3 className="text-sm font-bold text-slate-100">{title}</h3>
+            </div>
+            {expanded ? <ChevronUp className="w-4 h-4 text-slate-500 flex-shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0" />}
+          </button>
+          <div className="px-4 pb-3 -mt-1">{children}</div>
+          <div className={`transition-all duration-300 ease-in-out overflow-hidden ${expanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+            <div className="px-4 pb-4 border-t border-white/5 pt-3" id={`stage-detail-${title}`} />
           </div>
-          <div className="flex-1 min-w-0">
-            <h3 className="text-sm font-bold text-gray-900">{title}</h3>
-          </div>
-          {expanded ? <ChevronUp className="w-4 h-4 text-gray-400 flex-shrink-0" /> : <ChevronDown className="w-4 h-4 text-gray-400 flex-shrink-0" />}
-        </button>
-        <div className="px-4 pb-3 -mt-1">{children}</div>
-        <div className={`transition-all duration-300 ease-in-out overflow-hidden ${expanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
-          <div className="px-4 pb-4 border-t border-gray-100 pt-3" id={`stage-detail-${title}`} />
         </div>
       </div>
     </div>
@@ -156,13 +170,13 @@ function ProgressBar({ activeStep }: { activeStep: number }) {
           <div key={i} className="flex flex-col items-center gap-1.5 flex-1">
             <div className="relative flex items-center w-full">
               {i > 0 && (
-                <div className={`absolute right-1/2 h-0.5 w-full transition-colors duration-500 ${isActive ? 'bg-blue-600' : 'bg-gray-200'}`} />
+                <div className={`absolute right-1/2 h-0.5 w-full transition-colors duration-500 ${isActive ? 'bg-blue-500' : 'bg-white/5'}`} />
               )}
-              <div className={`relative z-10 mx-auto w-8 h-8 rounded-full flex items-center justify-center transition-all duration-500 ${isActive ? 'bg-blue-600 text-white' : isCurrent ? 'bg-blue-100 text-blue-600 ring-2 ring-blue-200' : 'bg-gray-100 text-gray-400'}`}>
+              <div className={`relative z-10 mx-auto w-8 h-8 rounded-full flex items-center justify-center transition-all duration-500 ${isActive ? 'bg-blue-500 text-white' : isCurrent ? 'bg-blue-500/20 text-blue-400 ring-2 ring-blue-500/30' : 'bg-white/5 text-slate-500'}`}>
                 {isActive ? <CheckCircle2 className="w-4 h-4" /> : <Icon className="w-3.5 h-3.5" />}
               </div>
             </div>
-            <span className={`text-[10px] font-medium transition-colors duration-300 ${isActive || isCurrent ? 'text-blue-600' : 'text-gray-400'}`}>
+            <span className={`text-[10px] font-medium transition-colors duration-300 ${isActive || isCurrent ? 'text-blue-400' : 'text-slate-500'}`}>
               {step.label}
             </span>
           </div>
@@ -177,13 +191,13 @@ function StoryLine({ storyIndex, storyLines }: { storyIndex: number; storyLines:
   return (
     <div className="text-center py-6">
       <div className="min-h-[56px] flex items-center justify-center">
-        <p key={storyIndex} className="text-xl font-bold text-gray-900 animate-[fadeIn_0.5s_ease-out]">
+        <p key={storyIndex} className="text-xl font-bold text-slate-100 animate-[fadeIn_0.5s_ease-out]">
           {storyLines[storyIndex]?.text}
         </p>
       </div>
-      <div className="mt-4 mx-auto w-48 h-1 bg-gray-100 rounded-full overflow-hidden">
+      <div className="mt-4 mx-auto w-48 h-1 bg-white/5 rounded-full overflow-hidden">
         <div
-          className="h-full bg-blue-600 rounded-full transition-all duration-700 ease-out"
+          className="h-full bg-blue-500 rounded-full transition-all duration-700 ease-out"
           style={{ width: `${((storyIndex + 1) / storyLines.length) * 100}%` }}
         />
       </div>
@@ -297,48 +311,48 @@ export default function JourneyPage() {
   const stages = result ? getStageList(result) : [];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#0B1120]">
       <Header stage="全旅程" />
 
       <main className="max-w-lg mx-auto px-4 pt-4 pb-20 page-enter">
         {/* Input */}
         {!loading && !result && (
           <div className="space-y-4 animate-[fadeIn_0.3s_ease-out]">
-            <div className="rounded-xl bg-blue-600 p-5 text-white">
+            <div className="rounded-xl bg-[#141E33] border border-blue-500/20 shadow-[0_0_30px_rgba(59,130,246,0.08)] p-5">
               <div className="flex items-center gap-2 mb-2">
-                <Activity className="w-6 h-6" />
-                <h1 className="text-lg font-bold">一键全旅程分析</h1>
+                <Activity className="w-6 h-6 text-blue-400" />
+                <h1 className="text-lg font-bold text-slate-100">一键全旅程分析</h1>
               </div>
-              <p className="text-sm text-blue-100 leading-relaxed">
+              <p className="text-sm text-slate-400 leading-relaxed">
                 上传一份报告，PostCare 自动完成报告解读、情绪关怀、用药指导、复查提醒和生活建议
               </p>
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-900 mb-2">检查报告</label>
+              <label className="block text-sm font-semibold text-slate-100 mb-2">检查报告</label>
               <textarea
                 value={reportText}
                 onChange={(e) => setReportText(e.target.value)}
                 placeholder="请将检验报告文字粘贴到这里..."
                 rows={8}
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-900 text-sm leading-relaxed placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 resize-none transition-all"
+                className="input-dark w-full px-4 py-3 rounded-xl border border-white/10 bg-white/5 text-slate-100 text-sm leading-relaxed placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/50 resize-none transition-all"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-500 mb-1.5">当前用药（可选）</label>
+              <label className="block text-sm font-medium text-slate-400 mb-1.5">当前用药（可选）</label>
               <DrugTagInput drugs={drugs} onAdd={addDrug} onRemove={removeDrug} />
             </div>
 
             <div className="flex gap-3">
-              <button onClick={fillExample} className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-gray-200 text-sm font-medium text-gray-500 hover:border-blue-600 hover:text-blue-600 transition-colors">
+              <button onClick={fillExample} className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-white/10 text-sm font-medium text-slate-400 hover:border-blue-500/50 hover:text-blue-400 transition-colors">
                 <Sparkles className="w-4 h-4" />
                 试试示例
               </button>
               <button
                 onClick={handleSubmit}
                 disabled={!reportText.trim()}
-                className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-blue-600 text-white font-bold text-sm hover:bg-blue-700 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                className="btn-glow flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-blue-500 text-white font-bold text-sm hover:bg-blue-400 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
               >
                 <Activity className="w-5 h-5" />
                 一键全旅程分析
@@ -357,7 +371,7 @@ export default function JourneyPage() {
 
         {/* Error */}
         {error && (
-          <div className="flex items-center gap-2 p-3 rounded-xl bg-red-50 text-red-600 text-sm mt-4">
+          <div className="flex items-center gap-2 p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm mt-4">
             <AlertTriangle className="w-4 h-4 flex-shrink-0" />
             {error}
             <button onClick={handleReset} className="ml-auto text-xs underline">重试</button>
@@ -367,7 +381,7 @@ export default function JourneyPage() {
         {/* Results with Story Line */}
         {result && !loading && (
           <div className="space-y-4">
-            <button onClick={handleReset} className="text-xs text-blue-600 font-medium flex items-center gap-1 hover:text-blue-700 transition-colors">
+            <button onClick={handleReset} className="text-xs text-blue-400 font-medium flex items-center gap-1 hover:text-blue-300 transition-colors">
               <FileText className="w-3.5 h-3.5" />
               重新分析
             </button>
@@ -384,25 +398,25 @@ export default function JourneyPage() {
 
             {/* 28-Day Recovery Plan */}
             <div className={`transition-all duration-500 ease-out ${visibleStages > stages.length ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-              <div className="rounded-xl bg-white border-2 border-blue-100 p-5">
-                <h3 className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
-                  <CalendarDays className="w-5 h-5 text-blue-600" />
+              <div className="rounded-xl bg-[#141E33] border border-blue-500/20 shadow-[0_0_30px_rgba(59,130,246,0.08)] p-5">
+                <h3 className="text-base font-bold text-slate-100 mb-4 flex items-center gap-2">
+                  <CalendarDays className="w-5 h-5 text-blue-400" />
                   28天康复计划
                 </h3>
                 <div className="space-y-3">
                   {RECOVERY_PLAN.map((item, i) => (
                     <div key={i} className="flex items-start gap-3">
-                      <span className="flex-shrink-0 w-14 text-xs font-bold text-blue-600 pt-0.5">{item.week}</span>
+                      <span className="flex-shrink-0 w-14 text-xs font-bold font-data text-blue-400 pt-0.5">{item.week}</span>
                       <div className="flex-1 flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-blue-600 flex-shrink-0" />
-                        <p className="text-sm text-gray-600">{item.text}</p>
+                        <div className="w-2 h-2 rounded-full bg-blue-500 flex-shrink-0" />
+                        <p className="text-sm text-slate-400">{item.text}</p>
                       </div>
                     </div>
                   ))}
                 </div>
                 <Link
                   href="/timeline"
-                  className="mt-4 flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-blue-50 text-blue-600 text-sm font-medium hover:bg-blue-100 transition-colors"
+                  className="mt-4 flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-blue-500/10 text-blue-400 text-sm font-medium hover:bg-blue-500/20 transition-colors"
                 >
                   查看完整28天计划
                   <ChevronRight className="w-4 h-4" />
@@ -412,10 +426,10 @@ export default function JourneyPage() {
 
             {/* Completion */}
             <div className={`transition-all duration-500 ease-out ${visibleStages > stages.length ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-              <div className="rounded-xl bg-green-600 p-5 text-white text-center">
-                <CheckCircle2 className="w-10 h-10 mx-auto mb-2 opacity-90" />
-                <h3 className="text-lg font-bold mb-1">全旅程分析完成</h3>
-                <p className="text-sm text-green-50 leading-relaxed">
+              <div className="rounded-xl bg-green-500/10 border border-green-500/20 p-5 text-center">
+                <CheckCircle2 className="w-10 h-10 mx-auto mb-2 text-green-400 opacity-90" />
+                <h3 className="text-lg font-bold text-green-400 mb-1">全旅程分析完成</h3>
+                <p className="text-sm text-green-400/70 leading-relaxed">
                   {result.profile?.one_page_summary
                     ? result.profile.one_page_summary.slice(0, 120) + (result.profile.one_page_summary.length > 120 ? '...' : '')
                     : '以上内容仅供参考，具体诊疗请遵医嘱'}
@@ -451,15 +465,15 @@ function getStageList(result: JourneyResult) {
       color: 'bg-blue-600',
       summary: (
         <div className="space-y-1.5">
-          <p className="text-sm text-gray-900 leading-relaxed">{result.report.summary || '暂无摘要'}</p>
+          <p className="text-sm text-slate-100 leading-relaxed">{result.report.summary || '暂无摘要'}</p>
           {abnormalCount > 0 && (
-            <span className="inline-flex items-center gap-1 text-xs text-amber-500 font-medium">
+            <span className="inline-flex items-center gap-1 text-xs text-amber-400 font-medium">
               <AlertTriangle className="w-3 h-3" />
-              {abnormalCount} 项异常指标
+              <span className="font-data">{abnormalCount}</span> 项异常指标
             </span>
           )}
           {result.report.explanation && (
-            <p className="text-xs text-gray-500 leading-relaxed mt-1">{result.report.explanation}</p>
+            <p className="text-xs text-slate-400 leading-relaxed mt-1">{result.report.explanation}</p>
           )}
         </div>
       ),
@@ -473,7 +487,7 @@ function getStageList(result: JourneyResult) {
       title: '情绪关怀',
       color: 'bg-blue-500',
       summary: (
-        <p className="text-sm text-gray-900 leading-relaxed">
+        <p className="text-sm text-slate-100 leading-relaxed">
           {result.emotion.message.slice(0, 150)}{result.emotion.message.length > 150 ? '...' : ''}
         </p>
       ),
@@ -490,19 +504,19 @@ function getStageList(result: JourneyResult) {
       color: 'bg-green-600',
       summary: (
         <div className="space-y-1.5">
-          {sugCount > 0 && <p className="text-sm text-gray-900 leading-relaxed">{result.medication.suggestions![0]}</p>}
+          {sugCount > 0 && <p className="text-sm text-slate-100 leading-relaxed">{result.medication.suggestions![0]}</p>}
           {result.medication.suggestions?.slice(1).map((s, i) => (
-            <p key={i} className="text-xs text-gray-500 leading-relaxed">{s}</p>
+            <p key={i} className="text-xs text-slate-400 leading-relaxed">{s}</p>
           ))}
           {hasWarnings && (
             <div className="mt-1">
-              <span className="text-xs text-amber-500 font-medium">注意事项：</span>
+              <span className="text-xs text-amber-400 font-medium">注意事项：</span>
               {result.medication.warnings?.map((w, i) => (
-                <p key={i} className="text-xs text-gray-500 leading-relaxed">{w}</p>
+                <p key={i} className="text-xs text-slate-400 leading-relaxed">{w}</p>
               ))}
             </div>
           )}
-          {sugCount === 0 && !hasWarnings && <p className="text-sm text-gray-500">暂无用药建议</p>}
+          {sugCount === 0 && !hasWarnings && <p className="text-sm text-slate-400">暂无用药建议</p>}
         </div>
       ),
     });
@@ -516,9 +530,9 @@ function getStageList(result: JourneyResult) {
       color: 'bg-amber-500',
       summary: (
         <div className="space-y-1.5">
-          {result.followup.next_date && <p className="text-sm font-semibold text-gray-900">建议复查日期：{result.followup.next_date}</p>}
-          {result.followup.plan?.map((p, i) => <p key={i} className="text-xs text-gray-500 leading-relaxed">{p}</p>)}
-          {result.followup.reminders?.map((r, i) => <p key={i} className="text-xs text-amber-500 leading-relaxed">{r}</p>)}
+          {result.followup.next_date && <p className="text-sm font-semibold text-slate-100">建议复查日期：<span className="font-data">{result.followup.next_date}</span></p>}
+          {result.followup.plan?.map((p, i) => <p key={i} className="text-xs text-slate-400 leading-relaxed">{p}</p>)}
+          {result.followup.reminders?.map((r, i) => <p key={i} className="text-xs text-amber-400 leading-relaxed">{r}</p>)}
         </div>
       ),
     });
@@ -532,10 +546,10 @@ function getStageList(result: JourneyResult) {
       color: 'bg-purple-600',
       summary: (
         <div className="space-y-1">
-          {result.lifestyle.diet && <p className="text-xs text-gray-900 leading-relaxed"><span className="font-medium">饮食：</span>{result.lifestyle.diet}</p>}
-          {result.lifestyle.exercise && <p className="text-xs text-gray-900 leading-relaxed"><span className="font-medium">运动：</span>{result.lifestyle.exercise}</p>}
-          {result.lifestyle.sleep && <p className="text-xs text-gray-900 leading-relaxed"><span className="font-medium">作息：</span>{result.lifestyle.sleep}</p>}
-          {result.lifestyle.tips?.map((t, i) => <p key={i} className="text-xs text-gray-500 leading-relaxed">{t}</p>)}
+          {result.lifestyle.diet && <p className="text-xs text-slate-100 leading-relaxed"><span className="font-medium text-slate-300">饮食：</span>{result.lifestyle.diet}</p>}
+          {result.lifestyle.exercise && <p className="text-xs text-slate-100 leading-relaxed"><span className="font-medium text-slate-300">运动：</span>{result.lifestyle.exercise}</p>}
+          {result.lifestyle.sleep && <p className="text-xs text-slate-100 leading-relaxed"><span className="font-medium text-slate-300">作息：</span>{result.lifestyle.sleep}</p>}
+          {result.lifestyle.tips?.map((t, i) => <p key={i} className="text-xs text-slate-400 leading-relaxed">{t}</p>)}
         </div>
       ),
     });

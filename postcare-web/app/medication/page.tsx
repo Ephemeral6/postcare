@@ -27,17 +27,17 @@ import type { MedicationResult, DrugInfo } from '@/lib/types';
 const EXAMPLE_DRUGS = ['奥美拉唑', '阿莫西林', '六味地黄丸'];
 
 function mealTimingColor(timing: string) {
-  if (timing.includes('饭前')) return 'bg-amber-50 text-amber-700 border-amber-200';
-  if (timing.includes('饭后')) return 'bg-green-50 text-green-700 border-green-200';
-  if (timing.includes('睡前')) return 'bg-indigo-50 text-indigo-700 border-indigo-200';
-  return 'bg-gray-50 text-gray-600 border-gray-200';
+  if (timing.includes('饭前')) return 'bg-amber-500/10 text-amber-400 border-amber-500/20';
+  if (timing.includes('饭后')) return 'bg-green-500/10 text-green-400 border-green-500/20';
+  if (timing.includes('睡前')) return 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20';
+  return 'bg-white/5 text-slate-400 border-white/10';
 }
 
 function mealTimingDot(timing: string) {
   if (timing.includes('饭前')) return 'bg-amber-400';
   if (timing.includes('饭后')) return 'bg-green-400';
   if (timing.includes('睡前')) return 'bg-indigo-400';
-  return 'bg-gray-400';
+  return 'bg-slate-400';
 }
 
 // --------------- Drug Input ---------------
@@ -64,19 +64,19 @@ function DrugInput({
   };
 
   return (
-    <div className="bg-white rounded-xl border border-gray-100 p-4">
-      <label className="text-sm font-semibold text-gray-900 mb-2 flex items-center gap-1.5">
-        <Pill className="w-4 h-4 text-blue-600" />
+    <div className="bg-[#141E33] rounded-xl border border-white/5 p-4">
+      <label className="text-sm font-semibold text-slate-100 mb-2 flex items-center gap-1.5">
+        <Pill className="w-4 h-4 text-blue-500" />
         输入药品
       </label>
       <div
-        className="flex flex-wrap gap-2 min-h-[44px] p-2.5 rounded-xl border border-gray-200 bg-white cursor-text focus-within:border-blue-600/50 focus-within:ring-2 focus-within:ring-blue-600/10 transition-all"
+        className="input-dark flex flex-wrap gap-2 min-h-[44px] p-2.5 rounded-xl border border-white/10 bg-white/5 cursor-text focus-within:border-blue-500/50 focus-within:ring-2 focus-within:ring-blue-500/10 transition-all"
         onClick={() => inputRef.current?.focus()}
       >
         {drugs.map((drug, i) => (
           <span
             key={i}
-            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-blue-50 text-blue-600 text-sm font-medium"
+            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-400 text-sm font-medium"
           >
             {drug}
             <button
@@ -84,7 +84,7 @@ function DrugInput({
                 e.stopPropagation();
                 onRemove(i);
               }}
-              className="ml-0.5 hover:bg-blue-100 rounded-full p-0.5 transition-colors"
+              className="ml-0.5 hover:bg-blue-500/20 rounded-full p-0.5 transition-colors"
             >
               <X className="w-3.5 h-3.5" />
             </button>
@@ -96,12 +96,12 @@ function DrugInput({
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder={drugs.length === 0 ? '输入药品名称，按回车添加' : '继续添加...'}
-          className="flex-1 min-w-[120px] bg-transparent outline-none text-sm text-gray-900 placeholder:text-gray-400"
+          className="flex-1 min-w-[120px] bg-transparent outline-none text-sm text-slate-100 placeholder:text-slate-500"
         />
       </div>
       <button
         onClick={onFillExample}
-        className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-blue-600 hover:text-blue-700 transition-colors"
+        className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-blue-400 hover:text-blue-300 transition-colors"
       >
         <Sparkles className="w-3.5 h-3.5" />
         试试示例
@@ -121,22 +121,22 @@ function ScheduleTimeline({
   const drugMap = new Map(drugs.map((d) => [d.name, d]));
 
   const periods = [
-    { key: 'morning' as const, label: '早上', time: '08:00', icon: Sun, color: 'bg-amber-500' },
-    { key: 'noon' as const, label: '中午', time: '12:00', icon: CloudSun, color: 'bg-blue-500' },
-    { key: 'evening' as const, label: '晚上', time: '20:00', icon: Moon, color: 'bg-indigo-500' },
+    { key: 'morning' as const, label: '早上', time: '08:00', icon: Sun, color: 'bg-amber-500/20', iconColor: 'text-amber-400' },
+    { key: 'noon' as const, label: '中午', time: '12:00', icon: CloudSun, color: 'bg-blue-500/20', iconColor: 'text-blue-400' },
+    { key: 'evening' as const, label: '晚上', time: '20:00', icon: Moon, color: 'bg-indigo-500/20', iconColor: 'text-indigo-400' },
   ];
 
   return (
-    <div className="bg-white rounded-xl border border-gray-100 overflow-hidden">
+    <div className="bg-[#141E33] rounded-xl border border-white/5 overflow-hidden">
       <div className="px-4 pt-4 pb-2">
-        <h3 className="text-sm font-bold text-gray-900 flex items-center gap-1.5">
-          <Clock className="w-4 h-4 text-blue-600" />
+        <h3 className="text-sm font-bold text-slate-100 flex items-center gap-1.5">
+          <Clock className="w-4 h-4 text-blue-500" />
           服药时间表
         </h3>
       </div>
 
       <div className="relative px-4 pb-4">
-        <div className="absolute left-[39px] top-0 bottom-4 w-px border-l-2 border-dashed border-blue-100" />
+        <div className="absolute left-[39px] top-0 bottom-4 w-px border-l-2 border-dashed border-blue-500/20" />
 
         <div className="space-y-4">
           {periods.map((period) => {
@@ -145,17 +145,17 @@ function ScheduleTimeline({
             return (
               <div key={period.key} className="relative flex gap-3">
                 <div className={`relative z-10 flex-shrink-0 w-11 h-11 rounded-xl ${period.color} flex items-center justify-center`}>
-                  <Icon className="w-5 h-5 text-white" />
+                  <Icon className={`w-5 h-5 ${period.iconColor}`} />
                 </div>
 
                 <div className="flex-1 min-w-0">
                   <div className="flex items-baseline gap-2 mb-1.5">
-                    <span className="text-sm font-bold text-gray-900">{period.label}</span>
-                    <span className="text-xs text-gray-400">{period.time}</span>
+                    <span className="text-sm font-bold text-slate-100">{period.label}</span>
+                    <span className="font-data text-xs text-slate-500">{period.time}</span>
                   </div>
 
                   {drugNames.length === 0 ? (
-                    <p className="text-xs text-gray-400 italic">无需服药</p>
+                    <p className="text-xs text-slate-500 italic">无需服药</p>
                   ) : (
                     <div className="flex flex-wrap gap-1.5">
                       {drugNames.map((name) => {
@@ -183,13 +183,13 @@ function ScheduleTimeline({
         </div>
       </div>
 
-      <div className="px-4 py-2.5 bg-gray-50 border-t border-gray-100 flex flex-wrap gap-3">
+      <div className="px-4 py-2.5 bg-white/5 border-t border-white/5 flex flex-wrap gap-3">
         {[
           { label: '饭前', cls: 'bg-amber-400' },
           { label: '饭后', cls: 'bg-green-400' },
           { label: '睡前', cls: 'bg-indigo-400' },
         ].map((item) => (
-          <span key={item.label} className="inline-flex items-center gap-1 text-[11px] text-gray-400">
+          <span key={item.label} className="inline-flex items-center gap-1 text-[11px] text-slate-400">
             <span className={`w-2 h-2 rounded-full ${item.cls}`} />
             {item.label}
           </span>
@@ -206,24 +206,24 @@ function DrugCard({ drug }: { drug: DrugInfo }) {
 
   return (
     <div
-      className={`bg-white rounded-xl border overflow-hidden ${
-        isTCM ? 'border-amber-200' : 'border-gray-100'
+      className={`bg-[#141E33] rounded-xl border overflow-hidden ${
+        isTCM ? 'border-amber-500/20' : 'border-white/5'
       }`}
     >
       <div className="flex items-center justify-between px-4 py-3">
         <div className="flex items-center gap-2">
           {isTCM ? (
-            <Leaf className="w-4 h-4 text-amber-600" />
+            <Leaf className="w-4 h-4 text-amber-400" />
           ) : (
-            <Pill className="w-4 h-4 text-blue-600" />
+            <Pill className="w-4 h-4 text-blue-500" />
           )}
-          <h4 className="text-sm font-bold text-gray-900">{drug.name}</h4>
+          <h4 className="text-sm font-bold text-slate-100">{drug.name}</h4>
         </div>
         <span
           className={`text-[11px] px-2 py-0.5 rounded-full font-medium ${
             isTCM
-              ? 'bg-amber-50 text-amber-700 border border-amber-200'
-              : 'bg-blue-50 text-blue-600'
+              ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
+              : 'bg-blue-500/10 text-blue-400'
           }`}
         >
           {isTCM ? '中成药' : '西药'}
@@ -238,14 +238,14 @@ function DrugCard({ drug }: { drug: DrugInfo }) {
       </div>
 
       {(drug.food_warnings ?? []).length > 0 && (
-        <div className="mx-4 mb-3 px-3 py-2 rounded-lg bg-green-50 border border-green-100">
+        <div className="mx-4 mb-3 px-3 py-2 rounded-lg bg-green-500/10 border border-green-500/20">
           <div className="flex items-center gap-1 mb-1">
-            <Utensils className="w-3 h-3 text-green-600" />
-            <span className="text-[11px] font-semibold text-green-700">饮食提示</span>
+            <Utensils className="w-3 h-3 text-green-400" />
+            <span className="text-[11px] font-semibold text-green-400">饮食提示</span>
           </div>
           <ul className="space-y-0.5">
             {drug.food_warnings?.map((note, i) => (
-              <li key={i} className="text-xs text-green-800 leading-relaxed">
+              <li key={i} className="text-xs text-green-300/80 leading-relaxed">
                 {note}
               </li>
             ))}
@@ -262,7 +262,7 @@ function DrugCard({ drug }: { drug: DrugInfo }) {
         >
           <ul className="space-y-1">
             {drug.contraindications.map((c, i) => (
-              <li key={i} className="text-xs text-gray-500 flex items-start gap-1.5">
+              <li key={i} className="text-xs text-slate-400 flex items-start gap-1.5">
                 <span className="w-1 h-1 rounded-full bg-red-500 mt-1.5 flex-shrink-0" />
                 {c}
               </li>
@@ -276,9 +276,9 @@ function DrugCard({ drug }: { drug: DrugInfo }) {
 
 function InfoItem({ label, value }: { label: string; value: string }) {
   return (
-    <div className="px-2.5 py-1.5 rounded-lg bg-gray-50">
-      <p className="text-[10px] text-gray-400 mb-0.5">{label}</p>
-      <p className="text-xs font-medium text-gray-900">{value}</p>
+    <div className="px-2.5 py-1.5 bg-white/5 rounded-lg">
+      <p className="text-[10px] text-slate-500 mb-0.5">{label}</p>
+      <p className="text-xs font-medium text-slate-100">{value}</p>
     </div>
   );
 }
@@ -297,21 +297,21 @@ function CollapsibleSection({
   children: React.ReactNode;
 }) {
   const colorMap = {
-    warning: 'text-amber-500',
-    danger: 'text-red-500',
+    warning: 'text-amber-400',
+    danger: 'text-red-400',
   };
 
   return (
-    <div className="border-t border-dashed border-red-200">
+    <div className="border-t border-dashed border-white/5">
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between px-4 py-2.5 hover:bg-gray-50 transition-colors"
+        className="w-full flex items-center justify-between px-4 py-2.5 hover:bg-white/5 transition-colors"
       >
         <span className={`text-xs font-medium ${colorMap[color]}`}>{title}</span>
         {open ? (
-          <ChevronUp className="w-4 h-4 text-gray-400" />
+          <ChevronUp className="w-4 h-4 text-slate-400" />
         ) : (
-          <ChevronDown className="w-4 h-4 text-gray-400" />
+          <ChevronDown className="w-4 h-4 text-slate-400" />
         )}
       </button>
       {open && <div className="px-4 pb-3">{children}</div>}
@@ -329,7 +329,7 @@ function InteractionWarnings({
 
   return (
     <div className="space-y-2">
-      <h3 className="text-sm font-bold text-gray-900 flex items-center gap-1.5">
+      <h3 className="text-sm font-bold text-slate-100 flex items-center gap-1.5">
         <AlertTriangle className="w-4 h-4 text-red-500" />
         药物相互作用
       </h3>
@@ -340,29 +340,29 @@ function InteractionWarnings({
             key={i}
             className={`rounded-xl border p-3 ${
               isHigh
-                ? 'bg-red-50 border-red-200'
-                : 'bg-amber-50 border-amber-200'
+                ? 'bg-red-500/10 border-red-500/20'
+                : 'bg-amber-500/10 border-amber-500/20'
             }`}
           >
             <div className="flex items-center gap-2 mb-1.5">
               <ShieldAlert
-                className={`w-4 h-4 ${isHigh ? 'text-red-500' : 'text-amber-500'}`}
+                className={`w-4 h-4 ${isHigh ? 'text-red-400' : 'text-amber-400'}`}
               />
-              <span className="text-xs font-bold text-gray-900">
-                {inter.drug_a} <span className="text-gray-400 mx-1">&#8596;</span>{' '}
+              <span className="text-xs font-bold text-slate-100">
+                {inter.drug_a} <span className="text-slate-500 mx-1">&#8596;</span>{' '}
                 {inter.drug_b}
               </span>
               <span
                 className={`text-[10px] px-1.5 py-0.5 rounded-full font-medium ${
                   isHigh
-                    ? 'bg-red-100 text-red-600'
-                    : 'bg-amber-100 text-amber-600'
+                    ? 'bg-red-500/20 text-red-400'
+                    : 'bg-amber-500/20 text-amber-400'
                 }`}
               >
                 {inter.severity}
               </span>
             </div>
-            <p className="text-xs text-gray-500 leading-relaxed">
+            <p className="text-xs text-slate-400 leading-relaxed">
               {inter.warning}
             </p>
           </div>
@@ -377,18 +377,18 @@ function TCMWesternNotes({ notes }: { notes: string[] }) {
   if (notes.length === 0) return null;
 
   return (
-    <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
+    <div className="rounded-xl border border-amber-500/20 bg-amber-500/10 p-4">
       <div className="flex items-center gap-1.5 mb-2">
-        <Info className="w-4 h-4 text-amber-600" />
-        <h3 className="text-sm font-bold text-amber-800">中西药服用提示</h3>
+        <Info className="w-4 h-4 text-amber-400" />
+        <h3 className="text-sm font-bold text-amber-400">中西药服用提示</h3>
       </div>
       <ul className="space-y-1.5">
         {notes.map((note, i) => (
           <li
             key={i}
-            className="text-xs text-amber-900 leading-relaxed flex items-start gap-1.5"
+            className="text-xs text-amber-300/80 leading-relaxed flex items-start gap-1.5"
           >
-            <Leaf className="w-3 h-3 text-amber-500 mt-0.5 flex-shrink-0" />
+            <Leaf className="w-3 h-3 text-amber-400 mt-0.5 flex-shrink-0" />
             {note}
           </li>
         ))}
@@ -434,7 +434,7 @@ export default function MedicationPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#0B1120]">
       <Header stage="用药管家" />
 
       <main className="page-enter max-w-lg mx-auto px-4 pt-4 pb-20 space-y-4">
@@ -448,7 +448,7 @@ export default function MedicationPage() {
         <button
           onClick={handleAnalyze}
           disabled={drugs.length === 0 || loading}
-          className="w-full py-3 rounded-xl bg-blue-600 text-white text-sm font-bold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all active:scale-[0.97]"
+          className="btn-glow w-full py-3 rounded-xl bg-blue-500 text-white text-sm font-bold hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all active:scale-[0.97]"
         >
           分析用药方案
         </button>
@@ -456,7 +456,7 @@ export default function MedicationPage() {
         {loading && <LoadingSpinner text="正在分析用药方案..." />}
 
         {error && (
-          <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm text-center">
+          <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm text-center">
             {error}
           </div>
         )}
@@ -468,8 +468,8 @@ export default function MedicationPage() {
             <TCMWesternNotes notes={result.tcm_western_warnings} />
 
             <div className="space-y-3">
-              <h3 className="text-sm font-bold text-gray-900 flex items-center gap-1.5">
-                <Pill className="w-4 h-4 text-blue-600" />
+              <h3 className="text-sm font-bold text-slate-100 flex items-center gap-1.5">
+                <Pill className="w-4 h-4 text-blue-500" />
                 药品详情
               </h3>
               {result.drugs.map((drug) => (

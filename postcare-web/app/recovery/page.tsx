@@ -144,11 +144,11 @@ export default function RecoveryPage() {
 
   // --- Render ---
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#0B1120]">
       <Header stage="回家管理" />
 
       {/* Tab Bar */}
-      <div className="sticky top-14 z-40 bg-white border-b border-gray-100">
+      <div className="sticky top-14 z-40 bg-[#0B1120] border-b border-white/5">
         <div className="flex max-w-lg mx-auto">
           {TABS.map((tab) => {
             const Icon = tab.icon;
@@ -158,13 +158,13 @@ export default function RecoveryPage() {
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
                 className={`flex-1 flex items-center justify-center gap-1.5 py-3 text-sm font-medium transition-colors relative ${
-                  isActive ? 'text-blue-600' : 'text-gray-500 hover:text-gray-900'
+                  isActive ? 'text-blue-400' : 'text-slate-400 hover:text-slate-100'
                 }`}
               >
                 <Icon className="w-4 h-4" />
                 {tab.label}
                 {isActive && (
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-0.5 rounded-full bg-blue-600" />
+                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-0.5 rounded-full bg-blue-500" />
                 )}
               </button>
             );
@@ -178,23 +178,23 @@ export default function RecoveryPage() {
           {/* Input section */}
           <div className="space-y-3">
             <div>
-              <label className="block text-sm font-medium text-gray-900 mb-1.5">诊断结果</label>
+              <label className="block text-sm font-medium text-slate-100 mb-1.5">诊断结果</label>
               <input
                 type="text"
                 value={fDiagnosis}
                 onChange={(e) => setFDiagnosis(e.target.value)}
                 placeholder="如：肝功能异常，高脂血症"
-                className="w-full px-4 py-2.5 rounded-xl bg-white border border-gray-100 text-sm text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all"
+                className="w-full px-4 py-2.5 rounded-xl bg-[#141E33] border border-white/5 text-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/40 transition-all"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-900 mb-1.5">异常指标（逗号分隔）</label>
+              <label className="block text-sm font-medium text-slate-100 mb-1.5">异常指标（逗号分隔）</label>
               <textarea
                 value={fIndicators}
                 onChange={(e) => setFIndicators(e.target.value)}
                 placeholder="如：ALT 85 U/L, AST 62 U/L"
                 rows={2}
-                className="w-full px-4 py-2.5 rounded-xl bg-white border border-gray-100 text-sm text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all resize-none"
+                className="w-full px-4 py-2.5 rounded-xl bg-[#141E33] border border-white/5 text-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/40 transition-all resize-none"
               />
             </div>
             <div className="flex gap-2">
@@ -203,7 +203,7 @@ export default function RecoveryPage() {
                   setFDiagnosis(FOLLOWUP_EXAMPLE.diagnosis);
                   setFIndicators(FOLLOWUP_EXAMPLE.indicators);
                 }}
-                className="flex items-center gap-1 px-4 py-2.5 rounded-xl border border-gray-100 text-sm text-gray-500 hover:border-blue-600 hover:text-blue-600 transition-colors"
+                className="flex items-center gap-1 px-4 py-2.5 rounded-xl border border-white/5 text-sm text-slate-400 hover:border-blue-500 hover:text-blue-400 transition-colors"
               >
                 <Sparkles className="w-3.5 h-3.5" />
                 试试示例
@@ -211,7 +211,7 @@ export default function RecoveryPage() {
               <button
                 onClick={handleFollowup}
                 disabled={fLoading || !fDiagnosis.trim()}
-                className="flex-1 flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-blue-600 text-white text-sm font-medium disabled:opacity-40 hover:opacity-90 transition-opacity"
+                className="flex-1 flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-blue-500 text-white text-sm font-medium disabled:opacity-40 hover:opacity-90 transition-opacity"
               >
                 <CalendarDays className="w-4 h-4" />
                 生成提醒
@@ -224,7 +224,7 @@ export default function RecoveryPage() {
           {fResult && (
             <div className="mt-6 space-y-4">
               {/* Calendar Card */}
-              <div className="relative overflow-hidden rounded-xl bg-blue-600 p-5 text-white">
+              <div className="relative overflow-hidden rounded-xl bg-blue-500 p-5 text-white">
                 <div className="absolute top-3 right-3 opacity-10">
                   <CalendarDays className="w-20 h-20" />
                 </div>
@@ -234,28 +234,28 @@ export default function RecoveryPage() {
 
               {/* Check Items */}
               {(fResult.checkup_items ?? []).length > 0 && (
-                <div className="rounded-2xl bg-white border border-gray-100 p-4">
+                <div className="rounded-2xl bg-[#141E33] border border-white/5 p-4">
                   <div className="flex items-center gap-2 mb-3">
-                    <ClipboardCheck className="w-4.5 h-4.5 text-blue-600" />
-                    <h3 className="text-sm font-bold text-gray-900">复查项目</h3>
+                    <ClipboardCheck className="w-4.5 h-4.5 text-blue-400" />
+                    <h3 className="text-sm font-bold text-slate-100">复查项目</h3>
                   </div>
                   <div className="space-y-2">
                     {fResult.checkup_items?.map((ci, idx) => (
                       <label
                         key={idx}
-                        className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-gray-50 cursor-pointer transition-colors"
+                        className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-white/5 cursor-pointer transition-colors"
                       >
                         <input
                           type="checkbox"
                           checked={checkedItems.has(idx)}
                           onChange={() => toggleCheck(idx)}
-                          className="mt-0.5 w-4 h-4 rounded border-gray-100 text-blue-600 focus:ring-blue-600/20"
+                          className="mt-0.5 w-4 h-4 rounded border-white/5 text-blue-500 focus:ring-blue-500/20 accent-blue-500"
                         />
                         <div className={`text-sm leading-relaxed ${
-                            checkedItems.has(idx) ? 'line-through text-gray-500' : 'text-gray-900'
+                            checkedItems.has(idx) ? 'line-through text-slate-400' : 'text-slate-100'
                           }`}>
                           <span>{ci.item}</span>
-                          {ci.reason && <span className="text-gray-500 ml-1">({ci.reason})</span>}
+                          {ci.reason && <span className="text-slate-400 ml-1">({ci.reason})</span>}
                         </div>
                       </label>
                     ))}
@@ -265,21 +265,21 @@ export default function RecoveryPage() {
 
               {/* Preparations */}
               {(fResult.preparation ?? []).length > 0 && (
-                <div className="rounded-2xl bg-white border border-gray-100 p-4">
+                <div className="rounded-2xl bg-[#141E33] border border-white/5 p-4">
                   <div className="flex items-center gap-2 mb-3">
-                    <ChevronRight className="w-4.5 h-4.5 text-success" />
-                    <h3 className="text-sm font-bold text-gray-900">准备事项</h3>
+                    <ChevronRight className="w-4.5 h-4.5 text-green-400" />
+                    <h3 className="text-sm font-bold text-slate-100">准备事项</h3>
                   </div>
                   <div className="space-y-2">
                     {fResult.preparation?.map((p, idx) => (
                       <div
                         key={idx}
-                        className="flex items-start gap-2.5 p-3 rounded-xl bg-success-light"
+                        className="flex items-start gap-2.5 p-3 rounded-xl bg-green-500/10"
                       >
-                        <div className="mt-1 w-1.5 h-1.5 rounded-full bg-success flex-shrink-0" />
-                        <span className="text-sm text-gray-900 leading-relaxed">
+                        <div className="mt-1 w-1.5 h-1.5 rounded-full bg-green-400 flex-shrink-0" />
+                        <span className="text-sm text-slate-100 leading-relaxed">
                           {p.instruction}
-                          {p.time_before && <span className="text-gray-500 ml-1">（提前{p.time_before}）</span>}
+                          {p.time_before && <span className="text-slate-400 ml-1">（提前{p.time_before}）</span>}
                         </span>
                       </div>
                     ))}
@@ -289,20 +289,20 @@ export default function RecoveryPage() {
 
               {/* Emergency Signals */}
               {(fResult.emergency_signs ?? []).length > 0 && (
-                <div className="rounded-xl bg-danger-light border border-danger/20 p-4">
+                <div className="rounded-xl bg-red-500/10 border border-red-500/20 p-4">
                   <div className="flex items-center gap-2 mb-3">
-                    <AlertTriangle className="w-4.5 h-4.5 text-danger" />
-                    <h3 className="text-sm font-bold text-danger">紧急信号</h3>
+                    <AlertTriangle className="w-4.5 h-4.5 text-red-400" />
+                    <h3 className="text-sm font-bold text-red-400">紧急信号</h3>
                   </div>
-                  <p className="text-xs text-danger/70 mb-2">出现以下情况请立即就医：</p>
+                  <p className="text-xs text-red-400/70 mb-2">出现以下情况请立即就医：</p>
                   <div className="space-y-2">
                     {fResult.emergency_signs?.map((item, idx) => (
                       <div
                         key={idx}
-                        className="flex items-start gap-2.5 p-3 rounded-xl bg-white/60 border border-danger/10"
+                        className="flex items-start gap-2.5 p-3 rounded-xl bg-white/5 border border-red-500/10"
                       >
-                        <AlertTriangle className="mt-0.5 w-3.5 h-3.5 text-danger flex-shrink-0" />
-                        <span className="text-sm text-danger font-medium leading-relaxed">{item}</span>
+                        <AlertTriangle className="mt-0.5 w-3.5 h-3.5 text-red-400 flex-shrink-0" />
+                        <span className="text-sm text-red-400 font-medium leading-relaxed">{item}</span>
                       </div>
                     ))}
                   </div>
@@ -318,33 +318,33 @@ export default function RecoveryPage() {
           {/* Input section */}
           <div className="space-y-3">
             <div>
-              <label className="block text-sm font-medium text-gray-900 mb-1.5">诊断结果</label>
+              <label className="block text-sm font-medium text-slate-100 mb-1.5">诊断结果</label>
               <input
                 type="text"
                 value={lDiagnosis}
                 onChange={(e) => setLDiagnosis(e.target.value)}
                 placeholder="如：肝功能异常，高脂血症"
-                className="w-full px-4 py-2.5 rounded-xl bg-white border border-gray-100 text-sm text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all"
+                className="w-full px-4 py-2.5 rounded-xl bg-[#141E33] border border-white/5 text-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/40 transition-all"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-900 mb-1.5">异常指标（逗号分隔）</label>
+              <label className="block text-sm font-medium text-slate-100 mb-1.5">异常指标（逗号分隔）</label>
               <textarea
                 value={lIndicators}
                 onChange={(e) => setLIndicators(e.target.value)}
                 placeholder="如：ALT 85 U/L, AST 62 U/L"
                 rows={2}
-                className="w-full px-4 py-2.5 rounded-xl bg-white border border-gray-100 text-sm text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all resize-none"
+                className="w-full px-4 py-2.5 rounded-xl bg-[#141E33] border border-white/5 text-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/40 transition-all resize-none"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-900 mb-1.5">当前用药（逗号分隔）</label>
+              <label className="block text-sm font-medium text-slate-100 mb-1.5">当前用药（逗号分隔）</label>
               <textarea
                 value={lMedications}
                 onChange={(e) => setLMedications(e.target.value)}
                 placeholder="如：阿托伐他汀钙片 20mg, 双环醇片 25mg"
                 rows={2}
-                className="w-full px-4 py-2.5 rounded-xl bg-white border border-gray-100 text-sm text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all resize-none"
+                className="w-full px-4 py-2.5 rounded-xl bg-[#141E33] border border-white/5 text-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/40 transition-all resize-none"
               />
             </div>
             <div className="flex gap-2">
@@ -354,7 +354,7 @@ export default function RecoveryPage() {
                   setLIndicators(LIFESTYLE_EXAMPLE.indicators);
                   setLMedications(LIFESTYLE_EXAMPLE.medications);
                 }}
-                className="flex items-center gap-1 px-4 py-2.5 rounded-xl border border-gray-100 text-sm text-gray-500 hover:border-blue-600 hover:text-blue-600 transition-colors"
+                className="flex items-center gap-1 px-4 py-2.5 rounded-xl border border-white/5 text-sm text-slate-400 hover:border-blue-500 hover:text-blue-400 transition-colors"
               >
                 <Sparkles className="w-3.5 h-3.5" />
                 试试示例
@@ -362,7 +362,7 @@ export default function RecoveryPage() {
               <button
                 onClick={handleLifestyle}
                 disabled={lLoading || !lDiagnosis.trim()}
-                className="flex-1 flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-blue-600 text-white text-sm font-medium disabled:opacity-40 hover:opacity-90 transition-opacity"
+                className="flex-1 flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-blue-500 text-white text-sm font-medium disabled:opacity-40 hover:opacity-90 transition-opacity"
               >
                 获取建议
               </button>
@@ -377,16 +377,16 @@ export default function RecoveryPage() {
               <div>
                 <div className="flex items-center gap-2 mb-3">
                   <span className="text-lg">🥗</span>
-                  <h3 className="text-sm font-bold text-gray-900">饮食建议</h3>
+                  <h3 className="text-sm font-bold text-slate-100">饮食建议</h3>
                 </div>
                 {(lResult.diet?.should_eat ?? []).length > 0 && (
                   <div className="mb-3">
-                    <p className="text-xs font-medium text-success mb-2">推荐食用</p>
+                    <p className="text-xs font-medium text-green-400 mb-2">推荐食用</p>
                     <div className="flex flex-wrap gap-2">
                       {lResult.diet.should_eat.map((item, idx) => (
                         <span
                           key={idx}
-                          className="inline-block px-3 py-1.5 rounded-full bg-success-light text-success text-sm font-medium"
+                          className="inline-block px-3 py-1.5 rounded-full bg-green-500/10 text-green-400 text-sm font-medium"
                         >
                           {item}
                         </span>
@@ -396,12 +396,12 @@ export default function RecoveryPage() {
                 )}
                 {(lResult.diet?.should_avoid ?? []).length > 0 && (
                   <div>
-                    <p className="text-xs font-medium text-danger mb-2">建议避免</p>
+                    <p className="text-xs font-medium text-red-400 mb-2">建议避免</p>
                     <div className="flex flex-wrap gap-2">
                       {lResult.diet.should_avoid.map((item, idx) => (
                         <span
                           key={idx}
-                          className="inline-block px-3 py-1.5 rounded-full bg-danger-light text-danger text-sm font-medium"
+                          className="inline-block px-3 py-1.5 rounded-full bg-red-500/10 text-red-400 text-sm font-medium"
                         >
                           {item}
                         </span>
@@ -416,32 +416,32 @@ export default function RecoveryPage() {
                 <div>
                   <div className="flex items-center gap-2 mb-3">
                     <span className="text-lg">🏃</span>
-                    <h3 className="text-sm font-bold text-gray-900">运动建议</h3>
+                    <h3 className="text-sm font-bold text-slate-100">运动建议</h3>
                   </div>
                   <div className="space-y-2">
-                    <div className="rounded-xl bg-blue-50 border border-blue-100 p-4">
+                    <div className="rounded-xl bg-blue-500/10 border border-blue-500/20 p-4">
                       {lResult.exercise.recommended && (
                         <div className="flex items-center gap-2 mb-2">
-                          <Dumbbell className="w-4 h-4 text-blue-600" />
-                          <span className="text-sm font-bold text-blue-700">{lResult.exercise.recommended}</span>
+                          <Dumbbell className="w-4 h-4 text-blue-400" />
+                          <span className="text-sm font-bold text-blue-400">{lResult.exercise.recommended}</span>
                         </div>
                       )}
-                      <div className="grid grid-cols-2 gap-2 text-xs text-blue-600">
+                      <div className="grid grid-cols-2 gap-2 text-xs text-blue-400">
                         {lResult.exercise.frequency && (
                           <div>
-                            <span className="text-blue-400">频率：</span>
+                            <span className="text-blue-400/70">频率：</span>
                             {lResult.exercise.frequency}
                           </div>
                         )}
                         {lResult.exercise.avoid && (
                           <div>
-                            <span className="text-blue-400">避免：</span>
+                            <span className="text-blue-400/70">避免：</span>
                             {lResult.exercise.avoid}
                           </div>
                         )}
                       </div>
                       {lResult.exercise.tip && (
-                        <p className="mt-2 text-xs text-blue-500 leading-relaxed">{lResult.exercise.tip}</p>
+                        <p className="mt-2 text-xs text-blue-400/80 leading-relaxed">{lResult.exercise.tip}</p>
                       )}
                     </div>
                   </div>
@@ -452,19 +452,19 @@ export default function RecoveryPage() {
               <div>
                 <div className="flex items-center gap-2 mb-3">
                   <span className="text-lg">😴</span>
-                  <h3 className="text-sm font-bold text-gray-900">生活习惯</h3>
+                  <h3 className="text-sm font-bold text-slate-100">生活习惯</h3>
                 </div>
                 {lResult.habits.must_do.length > 0 && (
                   <div className="mb-3">
-                    <p className="text-xs font-medium text-purple-600 mb-2">建议养成</p>
+                    <p className="text-xs font-medium text-purple-400 mb-2">建议养成</p>
                     <div className="space-y-2">
                       {lResult.habits.must_do.map((item, idx) => (
                         <div
                           key={idx}
-                          className="flex items-start gap-2.5 p-3 rounded-xl bg-purple-50 border border-purple-100"
+                          className="flex items-start gap-2.5 p-3 rounded-xl bg-purple-500/10 border border-purple-500/20"
                         >
-                          <Moon className="mt-0.5 w-3.5 h-3.5 text-purple-500 flex-shrink-0" />
-                          <span className="text-sm text-purple-700 leading-relaxed">{item}</span>
+                          <Moon className="mt-0.5 w-3.5 h-3.5 text-purple-400 flex-shrink-0" />
+                          <span className="text-sm text-purple-400 leading-relaxed">{item}</span>
                         </div>
                       ))}
                     </div>
@@ -472,15 +472,15 @@ export default function RecoveryPage() {
                 )}
                 {lResult.habits.avoid.length > 0 && (
                   <div>
-                    <p className="text-xs font-medium text-gray-500 mb-2">建议避免</p>
+                    <p className="text-xs font-medium text-slate-400 mb-2">建议避免</p>
                     <div className="space-y-2">
                       {lResult.habits.avoid.map((item, idx) => (
                         <div
                           key={idx}
-                          className="flex items-start gap-2.5 p-3 rounded-xl bg-gray-50 border border-gray-200"
+                          className="flex items-start gap-2.5 p-3 rounded-xl bg-white/5 border border-white/5"
                         >
-                          <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-400 flex-shrink-0" />
-                          <span className="text-sm text-gray-500 leading-relaxed">{item}</span>
+                          <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-400 flex-shrink-0" />
+                          <span className="text-sm text-slate-400 leading-relaxed">{item}</span>
                         </div>
                       ))}
                     </div>
@@ -506,14 +506,14 @@ export default function RecoveryPage() {
             ))}
             {chatLoading && (
               <div className="flex gap-2 mb-3">
-                <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
-                  <MessageCircle className="w-4 h-4 text-white" />
+                <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                  <MessageCircle className="w-4 h-4 text-blue-400" />
                 </div>
-                <div className="max-w-[80%] rounded-2xl rounded-bl-md px-4 py-3 bg-white border border-gray-100">
+                <div className="max-w-[80%] rounded-2xl rounded-bl-md px-4 py-3 bg-[#141E33] border border-white/5">
                   <div className="flex gap-1">
-                    <div className="w-2 h-2 rounded-full bg-blue-600/40 animate-bounce" style={{ animationDelay: '0ms' }} />
-                    <div className="w-2 h-2 rounded-full bg-blue-600/40 animate-bounce" style={{ animationDelay: '150ms' }} />
-                    <div className="w-2 h-2 rounded-full bg-blue-600/40 animate-bounce" style={{ animationDelay: '300ms' }} />
+                    <div className="w-2 h-2 rounded-full bg-blue-400/40 animate-bounce" style={{ animationDelay: '0ms' }} />
+                    <div className="w-2 h-2 rounded-full bg-blue-400/40 animate-bounce" style={{ animationDelay: '150ms' }} />
+                    <div className="w-2 h-2 rounded-full bg-blue-400/40 animate-bounce" style={{ animationDelay: '300ms' }} />
                   </div>
                 </div>
               </div>
@@ -522,9 +522,9 @@ export default function RecoveryPage() {
           </div>
 
           {/* Disclaimer + Chat Input */}
-          <div className="border-t border-gray-100">
-            <div className="py-1.5 px-4 bg-gray-50/90">
-              <p className="text-center text-[11px] text-gray-500">
+          <div className="border-t border-white/5">
+            <div className="py-1.5 px-4 bg-white/5">
+              <p className="text-center text-[11px] text-slate-400">
                 以上内容由AI生成，仅供参考，不替代医生诊断
               </p>
             </div>
