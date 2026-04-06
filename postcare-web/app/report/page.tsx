@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import {
   Camera,
   Upload,
@@ -16,6 +16,7 @@ import {
   Users,
   User,
   Phone,
+  Stethoscope,
 } from 'lucide-react';
 import { analyzeReport, analyzeReportOCR, assessEmotion } from '@/lib/api';
 import type { ReportResult, Indicator, EmotionResult } from '@/lib/types';
@@ -37,23 +38,278 @@ const SAMPLE_REPORT = `检验报告单
 甘油三酯(TG)       2.5      0-1.7        mmol/L
 空腹血糖(GLU)      6.3      3.9-6.1      mmol/L`;
 
-// --- IndicatorBar component ---
+// ==================== Health Score Logic ====================
+
+function calculateHealthScore(indicators: Indicator[]): number {
+  if (!indicators || indicators.length === 0) return 100;
+  const total = indicators.length;
+  const normal = indicators.filter(i => i.status === 'normal').length;
+  const high = indicators.filter(i => i.status === 'high' || i.status === 'mild').length;
+  const critical = indicators.filter(i => i.status === 'critical').length;
+  let score = 100;
+  score -= high * 8;
+  score -= critical * 15;
+  const normalRatio = normal / total;
+  score = Math.max(30, Math.min(100, Math.round(score * (0.5 + normalRatio * 0.5))));
+  return score;
+}
+
+function getScoreColor(score: number): string {
+  if (score >= 85) return 'text-green-600';
+  if (score >= 70) return 'text-blue-600';
+  if (score >= 55) return 'text-amber-500';
+  return 'text-red-500';
+}
+
+function getScoreLabel(score: number): string {
+  if (score >= 85) return '整体良好';
+  if (score >= 70) return '基本正常';
+  if (score >= 55) return '需要关注';
+  return '建议就医';
+}
+
+function getScoreRingColor(score: number): string {
+  if (score >= 85) return '#16A34A';
+  if (score >= 70) return '#2563EB';
+  if (score >= 55) return '#F59E0B';
+  return '#DC2626';
+}
+
+function getDimensions(indicators: Indicator[]) {
+  const groups: Record<string, Indicator[]> = {};
+  indicators.forEach(ind => {
+    const name = ind.name;
+    if (['WBC', 'RBC', 'HGB', 'PLT', '白细胞', '红细胞', '血红蛋白', '血小板'].some(k => name.includes(k))) {
+      (groups['血常规'] = groups['血常规'] || []).push(ind);
+    } else if (['ALT', 'AST', 'GGT', 'TBIL', 'ALB', '转氨酶', '胆红素', '白蛋白'].some(k => name.includes(k))) {
+      (groups['肝功能'] = groups['肝功能'] || []).push(ind);
+    } else if (['TC', 'TG', 'LDL', 'HDL', '胆固醇', '甘油三酯'].some(k => name.includes(k))) {
+      (groups['血脂'] = groups['血脂'] || []).push(ind);
+    } else if (['GLU', 'HbA1c', '血糖', '糖化'].some(k => name.includes(k))) {
+      (groups['血糖'] = groups['血糖'] || []).push(ind);
+    } else if (['CREA', 'BUN', 'UA', '肌酐', '尿素', '尿酸'].some(k => name.includes(k))) {
+      (groups['肾功能'] = groups['肾功能'] || []).push(ind);
+    } else {
+      (groups['其他'] = groups['其他'] || []).push(ind);
+    }
+  });
+
+  return Object.entries(groups).map(([name, inds]) => {
+    const hasCritical = inds.some(i => i.status === 'critical');
+    const hasAbnormal = inds.some(i => i.status !== 'normal');
+    return {
+      name,
+      status: hasCritical ? 'bad' as const : hasAbnormal ? 'warning' as const : 'good' as const,
+    };
+  });
+}
+
+// ==================== Health Score View ====================
+
+function HealthScoreView({
+  indicators,
+  displayScore,
+  onViewDetails,
+}: {
+  indicators: Indicator[];
+  displayScore: number;
+  onViewDetails: () => void;
+}) {
+  const targetScore = calculateHealthScore(indicators);
+  const dimensions = getDimensions(indicators);
+  const ringColor = getScoreRingColor(targetScore);
+  const circumference = 2 * Math.PI * 54;
+  const progress = displayScore / 100;
+
+  return (
+    <div className="flex flex-col items-center py-8 animate-[fadeIn_0.3s_ease-out]">
+      <p className="text-sm text-gray-500 mb-6">健康评分</p>
+
+      {/* Score ring */}
+      <div className="relative w-40 h-40 mb-4">
+        <svg className="w-full h-full -rotate-90" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="54" fill="none" stroke="#F3F4F6" strokeWidth="8" />
+          <circle
+            cx="60" cy="60" r="54" fill="none"
+            stroke={ringColor}
+            strokeWidth="8"
+            strokeLinecap="round"
+            strokeDasharray={circumference}
+            strokeDashoffset={circumference * (1 - progress)}
+            className="transition-all duration-100"
+          />
+        </svg>
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
+          <span className={`text-5xl font-bold tabular-nums ${getScoreColor(targetScore)}`}>
+            {displayScore}
+          </span>
+        </div>
+      </div>
+
+      <p className={`text-lg font-semibold mb-6 ${getScoreColor(targetScore)}`}>
+        {getScoreLabel(targetScore)}
+      </p>
+
+      {/* Dimension tags */}
+      <div className="flex flex-wrap justify-center gap-2 mb-8 px-4">
+        {dimensions.map((dim) => {
+          const style = dim.status === 'good'
+            ? 'bg-green-50 text-green-700 border-green-200'
+            : dim.status === 'warning'
+              ? 'bg-amber-50 text-amber-700 border-amber-200'
+              : 'bg-red-50 text-red-700 border-red-200';
+          const icon = dim.status === 'good' ? '✅' : dim.status === 'warning' ? '⚠️' : '❌';
+          return (
+            <span key={dim.name} className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-sm font-medium ${style}`}>
+              <span>{icon}</span>
+              {dim.name}
+            </span>
+          );
+        })}
+      </div>
+
+      <button
+        onClick={onViewDetails}
+        className="text-sm text-blue-600 font-medium flex items-center gap-1 hover:text-blue-700 transition-colors"
+      >
+        查看详细解读
+        <ChevronDown className="w-4 h-4" />
+      </button>
+    </div>
+  );
+}
+
+// ==================== Doctor View ====================
+
+function DoctorView({ indicators, summary }: { indicators: Indicator[]; summary: string }) {
+  const abnormal = indicators.filter(i => i.status !== 'normal');
+  const normal = indicators.filter(i => i.status === 'normal');
+
+  return (
+    <div className="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden font-mono text-sm">
+      {/* Header */}
+      <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 bg-white">
+        <span className="font-bold text-gray-900 font-sans">检验报告AI辅助分析</span>
+        <span className="text-xs text-gray-400 font-sans">PostCare</span>
+      </div>
+
+      <div className="p-4 space-y-4">
+        {/* Abnormal table */}
+        {abnormal.length > 0 && (
+          <div>
+            <p className="text-xs font-bold text-gray-500 mb-2 font-sans">异常指标汇总</p>
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs">
+                <thead>
+                  <tr className="border-b border-gray-300">
+                    <th className="text-left py-1.5 pr-3 text-gray-500 font-semibold">指标</th>
+                    <th className="text-right py-1.5 px-3 text-gray-500 font-semibold">结果</th>
+                    <th className="text-right py-1.5 px-3 text-gray-500 font-semibold">参考范围</th>
+                    <th className="text-left py-1.5 px-3 text-gray-500 font-semibold">单位</th>
+                    <th className="text-right py-1.5 pl-3 text-gray-500 font-semibold">标记</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {abnormal.map((ind, i) => {
+                    const refRange = ind.reference_low != null && ind.reference_high != null
+                      ? `${ind.reference_low}-${ind.reference_high}`
+                      : '-';
+                    const flag = ind.status === 'critical' ? '↑↑H' : ind.direction === 'low' ? '↓L' : '↑H';
+                    return (
+                      <tr key={i} className="border-b border-gray-100">
+                        <td className="py-1.5 pr-3 text-gray-900 font-medium">{ind.name}</td>
+                        <td className="py-1.5 px-3 text-right font-bold text-red-600">{ind.value}</td>
+                        <td className="py-1.5 px-3 text-right text-gray-500">{refRange}</td>
+                        <td className="py-1.5 px-3 text-gray-500">{ind.unit}</td>
+                        <td className="py-1.5 pl-3 text-right font-bold text-red-600">{flag}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        {/* Normal table (collapsed) */}
+        {normal.length > 0 && (
+          <div>
+            <p className="text-xs text-gray-400 font-sans">正常指标 ({normal.length}项): {normal.map(n => n.name).join('、')}</p>
+          </div>
+        )}
+
+        {/* Clinical notes */}
+        <div>
+          <p className="text-xs font-bold text-gray-500 mb-2 font-sans">临床提示</p>
+          <div className="space-y-1">
+            {abnormal.map((ind, i) => {
+              const direction = ind.direction === 'low' ? '↓' : '↑';
+              return (
+                <p key={i} className="text-xs text-gray-700 leading-relaxed">
+                  {i + 1}. {ind.name}{direction} {ind.value}{ind.unit}
+                  {ind.suggestion ? `，${ind.suggestion}` : ''}
+                </p>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="pt-3 border-t border-gray-200">
+          <p className="text-[11px] text-gray-400 font-sans">AI辅助分析，仅供临床参考</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ==================== View Mode Toggle ====================
+
+function ViewModeToggle({
+  mode,
+  onToggle,
+}: {
+  mode: 'patient' | 'doctor';
+  onToggle: () => void;
+}) {
+  return (
+    <div className="flex bg-gray-100 rounded-xl p-1">
+      <button
+        onClick={() => mode !== 'patient' && onToggle()}
+        className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
+          mode === 'patient' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'
+        }`}
+      >
+        <User className="w-4 h-4" />
+        患者视角
+      </button>
+      <button
+        onClick={() => mode !== 'doctor' && onToggle()}
+        className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
+          mode === 'doctor' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'
+        }`}
+      >
+        <Stethoscope className="w-4 h-4" />
+        医生视角
+      </button>
+    </div>
+  );
+}
+
+// ==================== Existing Components ====================
+
 function IndicatorBar({ indicator }: { indicator: Indicator }) {
   const { value, reference_low, reference_high, status } = indicator;
   const min = reference_low ?? 0;
   const max = reference_high ?? value * 2;
   const range = max - min;
-
   const displayMin = min - range * 0.3;
   const displayMax = max + range * 0.3;
   const displayRange = displayMax - displayMin;
-
   const clampedValue = Math.max(displayMin, Math.min(displayMax, value));
   const dotPosition = ((clampedValue - displayMin) / displayRange) * 100;
-
   const rangeLeft = ((min - displayMin) / displayRange) * 100;
   const rangeRight = ((max - displayMin) / displayRange) * 100;
-
   const isNormal = status === 'normal';
   const dotColor = isNormal ? 'var(--success)' : status === 'critical' ? 'var(--danger)' : 'var(--warning)';
 
@@ -74,18 +330,12 @@ function IndicatorBar({ indicator }: { indicator: Indicator }) {
         />
         <div
           className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-2 border-white shadow-sm transition-all duration-500"
-          style={{
-            left: `${dotPosition}%`,
-            backgroundColor: dotColor,
-          }}
+          style={{ left: `${dotPosition}%`, backgroundColor: dotColor }}
         />
       </div>
       <div
         className="text-[10px] mt-0.5 transition-all duration-500"
-        style={{
-          marginLeft: `${Math.max(5, Math.min(85, dotPosition - 5))}%`,
-          color: dotColor,
-        }}
+        style={{ marginLeft: `${Math.max(5, Math.min(85, dotPosition - 5))}%`, color: dotColor }}
       >
         {value} {indicator.unit}
       </div>
@@ -93,63 +343,40 @@ function IndicatorBar({ indicator }: { indicator: Indicator }) {
   );
 }
 
-// --- Indicator Card ---
 function IndicatorCard({ indicator }: { indicator: Indicator }) {
   const isNormal = indicator.status === 'normal';
   const [expanded, setExpanded] = useState(!isNormal);
-
   const borderColor =
-    indicator.status === 'critical'
-      ? 'border-l-red-500'
-      : indicator.status === 'normal'
-        ? 'border-l-green-500'
+    indicator.status === 'critical' ? 'border-l-red-500'
+      : indicator.status === 'normal' ? 'border-l-green-500'
         : 'border-l-amber-500';
-
   const valueColor =
-    indicator.status === 'critical'
-      ? 'var(--danger)'
-      : indicator.status === 'normal'
-        ? 'var(--success)'
+    indicator.status === 'critical' ? 'var(--danger)'
+      : indicator.status === 'normal' ? 'var(--success)'
         : 'var(--warning)';
 
   return (
     <div className={`relative bg-white rounded-xl border border-gray-100 border-l-4 ${borderColor} overflow-hidden transition-all duration-300`}>
-      <button
-        onClick={() => setExpanded((v) => !v)}
-        className="w-full flex items-center justify-between p-4 text-left"
-      >
+      <button onClick={() => setExpanded((v) => !v)} className="w-full flex items-center justify-between p-4 text-left">
         <div className="flex items-center gap-2 flex-1 min-w-0">
           <span className="font-semibold text-gray-900 text-sm truncate">{indicator.name}</span>
           <SeverityBadge severity={indicator.status} />
         </div>
         <div className="flex items-center gap-2 shrink-0">
-          <span className="tabular-nums font-bold text-lg" style={{ color: valueColor }}>
-            {indicator.value}
-          </span>
+          <span className="tabular-nums font-bold text-lg" style={{ color: valueColor }}>{indicator.value}</span>
           <span className="text-xs text-gray-400">{indicator.unit}</span>
-          {expanded ? (
-            <ChevronUp className="w-4 h-4 text-gray-400" />
-          ) : (
-            <ChevronDown className="w-4 h-4 text-gray-400" />
-          )}
+          {expanded ? <ChevronUp className="w-4 h-4 text-gray-400" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
         </div>
       </button>
-
-      <div
-        className={`transition-all duration-300 ease-in-out overflow-hidden ${
-          expanded ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
-        }`}
-      >
+      <div className={`transition-all duration-300 ease-in-out overflow-hidden ${expanded ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
         <div className="px-5 pb-4 space-y-3">
           <IndicatorBar indicator={indicator} />
-
           {indicator.explanation && (
             <div className="flex gap-2.5 p-3.5 rounded-xl bg-blue-50 border border-blue-100">
               <Sparkles className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
               <p className="text-xs text-gray-900 leading-relaxed">{indicator.explanation}</p>
             </div>
           )}
-
           {indicator.suggestion && (
             <div className="flex gap-2.5 p-3.5 rounded-xl bg-gray-50 border border-gray-100">
               <Heart className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
@@ -162,34 +389,18 @@ function IndicatorCard({ indicator }: { indicator: Indicator }) {
   );
 }
 
-// --- Emotion Care Modal ---
-function EmotionModal({
-  emotion,
-  onClose,
-}: {
-  emotion: EmotionResult;
-  onClose: () => void;
-}) {
+function EmotionModal({ emotion, onClose }: { emotion: EmotionResult; onClose: () => void }) {
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/40 animate-[fadeIn_0.3s_ease-out]">
       <div className="relative w-full max-w-sm bg-white rounded-2xl overflow-hidden shadow-xl">
-        {/* Blue top */}
         <div className="bg-blue-600 p-6 pb-8">
-          <button
-            onClick={onClose}
-            className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors"
-          >
+          <button onClick={onClose} className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors">
             <X className="w-4 h-4" />
           </button>
           <div className="text-3xl mb-3">🤗</div>
-          <h3 className="text-lg font-bold text-white mb-2">
-            PostCare 关心您的感受
-          </h3>
-          <p className="text-sm text-blue-100 leading-relaxed">
-            {emotion.comfort_message}
-          </p>
+          <h3 className="text-lg font-bold text-white mb-2">PostCare 关心您的感受</h3>
+          <p className="text-sm text-blue-100 leading-relaxed">{emotion.comfort_message}</p>
         </div>
-        {/* Suggestions */}
         <div className="p-5 space-y-3">
           {emotion.action_items?.map((s, i) => (
             <div key={i} className="flex gap-2 items-start">
@@ -199,10 +410,7 @@ function EmotionModal({
               <p className="text-sm text-gray-900 leading-relaxed">{s}</p>
             </div>
           ))}
-          <button
-            onClick={onClose}
-            className="w-full mt-3 py-3 rounded-xl bg-blue-600 text-white font-medium text-sm hover:bg-blue-700 active:scale-[0.98] transition-all"
-          >
+          <button onClick={onClose} className="w-full mt-3 py-3 rounded-xl bg-blue-600 text-white font-medium text-sm hover:bg-blue-700 active:scale-[0.98] transition-all">
             我了解了，查看详细解读 →
           </button>
         </div>
@@ -211,86 +419,54 @@ function EmotionModal({
   );
 }
 
-// --- Normal Indicators Collapsible ---
 function NormalIndicatorsCollapsible({ indicators }: { indicators: Indicator[] }) {
   const [open, setOpen] = useState(false);
   return (
     <div className="rounded-xl bg-white border border-gray-100 overflow-hidden">
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors"
-      >
+      <button onClick={() => setOpen(!open)} className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors">
         <h3 className="text-sm font-semibold text-gray-900 flex items-center gap-1.5">
           <span className="w-4 h-4 rounded-full bg-green-50 flex items-center justify-center">
             <span className="w-2 h-2 rounded-full bg-green-500" />
           </span>
           正常指标 ({indicators.length})
         </h3>
-        {open ? (
-          <ChevronUp className="w-4 h-4 text-gray-400" />
-        ) : (
-          <ChevronDown className="w-4 h-4 text-gray-400" />
-        )}
+        {open ? <ChevronUp className="w-4 h-4 text-gray-400" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
       </button>
       <div className={`transition-all duration-300 ease-in-out overflow-hidden ${open ? 'max-h-[3000px] opacity-100' : 'max-h-0 opacity-0'}`}>
         <div className="px-4 pb-4 space-y-3">
-          {indicators.map((ind, i) => (
-            <IndicatorCard key={`normal-${i}`} indicator={ind} />
-          ))}
+          {indicators.map((ind, i) => <IndicatorCard key={`normal-${i}`} indicator={ind} />)}
         </div>
       </div>
     </div>
   );
 }
 
-// --- Family Mode Indicator Card ---
 function IndicatorCardFamily({ indicator }: { indicator: Indicator }) {
   const [expanded, setExpanded] = useState(true);
-
-  const borderColor =
-    indicator.status === 'critical' ? 'var(--danger)' : 'var(--warning)';
+  const borderColor = indicator.status === 'critical' ? 'var(--danger)' : 'var(--warning)';
 
   return (
-    <div
-      className="bg-white rounded-xl border border-gray-100 overflow-hidden transition-all duration-300"
-      style={{ borderLeft: `5px solid ${borderColor}` }}
-    >
-      <button
-        onClick={() => setExpanded((v) => !v)}
-        className="w-full flex items-center justify-between p-5 text-left"
-      >
+    <div className="bg-white rounded-xl border border-gray-100 overflow-hidden transition-all duration-300" style={{ borderLeft: `5px solid ${borderColor}` }}>
+      <button onClick={() => setExpanded((v) => !v)} className="w-full flex items-center justify-between p-5 text-left">
         <div className="flex items-center gap-3 flex-1 min-w-0">
           <span className="font-bold text-gray-900 text-lg">{indicator.name}</span>
           <SeverityBadge severity={indicator.status} />
         </div>
         <div className="flex items-center gap-2 shrink-0">
-          <span className="tabular-nums font-extrabold text-2xl" style={{ color: borderColor }}>
-            {indicator.value}
-          </span>
+          <span className="tabular-nums font-extrabold text-2xl" style={{ color: borderColor }}>{indicator.value}</span>
           <span className="text-sm text-gray-400">{indicator.unit}</span>
-          {expanded ? (
-            <ChevronUp className="w-5 h-5 text-gray-400" />
-          ) : (
-            <ChevronDown className="w-5 h-5 text-gray-400" />
-          )}
+          {expanded ? <ChevronUp className="w-5 h-5 text-gray-400" /> : <ChevronDown className="w-5 h-5 text-gray-400" />}
         </div>
       </button>
-
-      <div
-        className={`transition-all duration-300 ease-in-out overflow-hidden ${
-          expanded ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
-        }`}
-      >
+      <div className={`transition-all duration-300 ease-in-out overflow-hidden ${expanded ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
         <div className="px-5 pb-5 space-y-4">
           <IndicatorBar indicator={indicator} />
-
           {indicator.explanation && (
             <div className="flex gap-3 p-4 rounded-xl bg-orange-50 border border-orange-100">
               <Sparkles className="w-5 h-5 text-orange-500 shrink-0 mt-0.5" />
               <p className="text-base text-gray-900 leading-[1.8]">{indicator.explanation}</p>
             </div>
           )}
-
           {indicator.suggestion && (
             <div className="flex gap-3 p-4 rounded-xl bg-orange-50/50 border border-orange-100">
               <Heart className="w-5 h-5 text-orange-400 shrink-0 mt-0.5" />
@@ -303,30 +479,19 @@ function IndicatorCardFamily({ indicator }: { indicator: Indicator }) {
   );
 }
 
-// --- Family Mode Toggle ---
-function FamilyModeToggle({
-  familyMode,
-  onToggle,
-}: {
-  familyMode: boolean;
-  onToggle: () => void;
-}) {
+function FamilyModeToggle({ familyMode, onToggle }: { familyMode: boolean; onToggle: () => void }) {
   return (
     <div className="flex bg-gray-100 rounded-xl p-1 mb-4">
       <button
         onClick={() => !familyMode || onToggle()}
-        className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
-          !familyMode ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'
-        }`}
+        className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${!familyMode ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
       >
         <User className="w-4 h-4" />
         标准模式
       </button>
       <button
         onClick={() => familyMode || onToggle()}
-        className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
-          familyMode ? 'bg-white text-orange-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'
-        }`}
+        className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${familyMode ? 'bg-white text-orange-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
       >
         <Users className="w-4 h-4" />
         家属模式
@@ -335,7 +500,8 @@ function FamilyModeToggle({
   );
 }
 
-// --- Main Page ---
+// ==================== Main Page ====================
+
 export default function ReportPage() {
   const [activeTab, setActiveTab] = useState<'text' | 'photo'>('text');
   const [text, setText] = useState('');
@@ -347,7 +513,35 @@ export default function ReportPage() {
   const [showEmotion, setShowEmotion] = useState(false);
   const [dragOver, setDragOver] = useState(false);
   const [familyMode, setFamilyMode] = useState(false);
+  const [viewMode, setViewMode] = useState<'patient' | 'doctor'>('patient');
+  const [showScore, setShowScore] = useState(false);
+  const [displayScore, setDisplayScore] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Score animation + auto-dismiss
+  useEffect(() => {
+    if (!result) return;
+    setShowScore(true);
+    setDisplayScore(0);
+    const target = calculateHealthScore(result.indicators);
+    const duration = 1500;
+    const start = Date.now();
+    let raf: number;
+    const animate = () => {
+      const elapsed = Date.now() - start;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease-out curve
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setDisplayScore(Math.round(target * eased));
+      if (progress < 1) raf = requestAnimationFrame(animate);
+    };
+    raf = requestAnimationFrame(animate);
+    const timer = setTimeout(() => setShowScore(false), 3000);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(timer);
+    };
+  }, [result]);
 
   const handleFileSelect = useCallback((f: File) => {
     setFile(f);
@@ -369,28 +563,21 @@ export default function ReportPage() {
   const handleSubmit = async () => {
     if (activeTab === 'text' && !text.trim()) return;
     if (activeTab === 'photo' && !file) return;
-
     setLoading(true);
     setResult(null);
     setEmotionResult(null);
     setShowEmotion(false);
-
+    setViewMode('patient');
     try {
       const data: ReportResult =
-        activeTab === 'text'
-          ? await analyzeReport(text)
-          : await analyzeReportOCR(file!);
-
+        activeTab === 'text' ? await analyzeReport(text) : await analyzeReportOCR(file!);
       if (data.emotion_trigger === 'moderate' || data.emotion_trigger === 'severe') {
         try {
           const emotionData: EmotionResult = await assessEmotion(data.summary);
           setEmotionResult(emotionData);
           setShowEmotion(true);
-        } catch {
-          // If emotion assessment fails, still show results
-        }
+        } catch { /* still show results */ }
       }
-
       setResult(data);
     } catch (err) {
       console.error('Report analysis failed:', err);
@@ -407,11 +594,12 @@ export default function ReportPage() {
     setFilePreview(null);
     setEmotionResult(null);
     setShowEmotion(false);
+    setShowScore(false);
+    setViewMode('patient');
   };
 
   const abnormalIndicators = result?.indicators?.filter((i) => i.status !== 'normal') ?? [];
   const normalIndicators = result?.indicators?.filter((i) => i.status === 'normal') ?? [];
-
   const familySummary = result?.summary
     ? result.summary.split(/[。！？]/).filter(Boolean).slice(0, 2).join('。') + '。'
     : '';
@@ -425,12 +613,14 @@ export default function ReportPage() {
       )}
 
       <main className="flex-1 max-w-lg mx-auto w-full px-4 pt-4 pb-20 page-enter">
+        {/* Loading */}
         {loading && (
           <div className="flex flex-col items-center justify-center min-h-[60vh]">
             <LoadingSpinner text="正在为您解读报告..." />
           </div>
         )}
 
+        {/* Input form */}
         {!loading && !result && (
           <div className="space-y-5 animate-[fadeIn_0.3s_ease-out]">
             <div className="text-center space-y-1">
@@ -441,22 +631,14 @@ export default function ReportPage() {
             <div className="flex bg-gray-100 rounded-xl p-1">
               <button
                 onClick={() => setActiveTab('text')}
-                className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
-                  activeTab === 'text'
-                    ? 'bg-white text-blue-600 shadow-sm'
-                    : 'text-gray-500 hover:text-gray-700'
-                }`}
+                className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${activeTab === 'text' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
               >
                 <ClipboardPaste className="w-4 h-4" />
                 粘贴文本
               </button>
               <button
                 onClick={() => setActiveTab('photo')}
-                className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
-                  activeTab === 'photo'
-                    ? 'bg-white text-blue-600 shadow-sm'
-                    : 'text-gray-500 hover:text-gray-700'
-                }`}
+                className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${activeTab === 'photo' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
               >
                 <Camera className="w-4 h-4" />
                 拍照上传
@@ -472,64 +654,29 @@ export default function ReportPage() {
                   className="w-full h-52 p-4 rounded-xl border border-gray-200 bg-white text-sm text-gray-900 placeholder:text-gray-400 resize-none focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all"
                 />
                 <div className="flex items-center justify-between">
-                  <button
-                    onClick={() => setText(SAMPLE_REPORT)}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50 text-blue-600 text-xs font-medium hover:bg-blue-100 active:scale-95 transition-all"
-                  >
+                  <button onClick={() => setText(SAMPLE_REPORT)} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50 text-blue-600 text-xs font-medium hover:bg-blue-100 active:scale-95 transition-all">
                     <Sparkles className="w-3.5 h-3.5" />
                     试试示例
                   </button>
-                  <span className="text-xs text-gray-400">
-                    {text.length > 0 ? `${text.length} 字` : ''}
-                  </span>
+                  <span className="text-xs text-gray-400">{text.length > 0 ? `${text.length} 字` : ''}</span>
                 </div>
               </div>
             )}
 
             {activeTab === 'photo' && (
               <div className="space-y-3 animate-[fadeIn_0.2s_ease-out]">
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept="image/*"
-                  capture="environment"
-                  className="hidden"
-                  onChange={(e) => {
-                    const f = e.target.files?.[0];
-                    if (f) handleFileSelect(f);
-                  }}
-                />
+                <input ref={fileInputRef} type="file" accept="image/*" capture="environment" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFileSelect(f); }} />
                 <div
-                  onDragOver={(e) => {
-                    e.preventDefault();
-                    setDragOver(true);
-                  }}
+                  onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
                   onDragLeave={() => setDragOver(false)}
                   onDrop={handleDrop}
                   onClick={() => fileInputRef.current?.click()}
-                  className={`relative flex flex-col items-center justify-center h-52 rounded-xl border-2 border-dashed cursor-pointer transition-all duration-200 ${
-                    dragOver
-                      ? 'border-blue-600 bg-blue-50'
-                      : filePreview
-                        ? 'border-green-500 bg-green-50'
-                        : 'border-gray-200 bg-gray-50 hover:border-blue-400 hover:bg-blue-50'
-                  }`}
+                  className={`relative flex flex-col items-center justify-center h-52 rounded-xl border-2 border-dashed cursor-pointer transition-all duration-200 ${dragOver ? 'border-blue-600 bg-blue-50' : filePreview ? 'border-green-500 bg-green-50' : 'border-gray-200 bg-gray-50 hover:border-blue-400 hover:bg-blue-50'}`}
                 >
                   {filePreview ? (
                     <div className="relative w-full h-full p-3">
-                      <img
-                        src={filePreview}
-                        alt="预览"
-                        className="w-full h-full object-contain rounded-lg"
-                      />
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setFile(null);
-                          setFilePreview(null);
-                        }}
-                        className="absolute top-1 right-1 w-6 h-6 flex items-center justify-center rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
-                      >
+                      <img src={filePreview} alt="预览" className="w-full h-full object-contain rounded-lg" />
+                      <button onClick={(e) => { e.stopPropagation(); setFile(null); setFilePreview(null); }} className="absolute top-1 right-1 w-6 h-6 flex items-center justify-center rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors">
                         <X className="w-3.5 h-3.5" />
                       </button>
                     </div>
@@ -548,10 +695,7 @@ export default function ReportPage() {
 
             <button
               onClick={handleSubmit}
-              disabled={
-                (activeTab === 'text' && !text.trim()) ||
-                (activeTab === 'photo' && !file)
-              }
+              disabled={(activeTab === 'text' && !text.trim()) || (activeTab === 'photo' && !file)}
               className="w-full py-3.5 rounded-xl bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200"
             >
               <span className="flex items-center justify-center gap-2">
@@ -562,105 +706,121 @@ export default function ReportPage() {
           </div>
         )}
 
-        {!loading && result && (
+        {/* Health Score View */}
+        {!loading && result && showScore && (
+          <HealthScoreView
+            indicators={result.indicators}
+            displayScore={displayScore}
+            onViewDetails={() => setShowScore(false)}
+          />
+        )}
+
+        {/* Detailed Results */}
+        {!loading && result && !showScore && (
           <div className={`animate-[fadeIn_0.4s_ease-out] transition-all duration-300 ${familyMode ? 'space-y-5' : 'space-y-4'}`}>
+            {/* Top controls */}
             <div className="flex items-center justify-between">
-              <button
-                onClick={handleReset}
-                className={`text-blue-600 font-medium flex items-center gap-1 hover:text-blue-700 transition-colors ${familyMode ? 'text-sm' : 'text-xs'}`}
-              >
+              <button onClick={handleReset} className={`text-blue-600 font-medium flex items-center gap-1 hover:text-blue-700 transition-colors ${familyMode ? 'text-sm' : 'text-xs'}`}>
                 <FileText className="w-3.5 h-3.5" />
                 重新解读
               </button>
+              <button onClick={() => setShowScore(true)} className="text-xs text-gray-400 hover:text-gray-600 transition-colors">
+                查看评分
+              </button>
             </div>
 
-            <FamilyModeToggle familyMode={familyMode} onToggle={() => setFamilyMode(!familyMode)} />
+            {/* View mode toggle: patient vs doctor */}
+            <ViewModeToggle mode={viewMode} onToggle={() => setViewMode(viewMode === 'patient' ? 'doctor' : 'patient')} />
 
-            {familyMode && (
-              <div className="p-3 rounded-xl bg-orange-50 border border-orange-200 text-center">
-                <p className="text-sm text-orange-700 font-medium">
-                  当前为家属模式 -- 字体已放大，仅显示关键信息
-                </p>
-              </div>
+            {/* Doctor View */}
+            {viewMode === 'doctor' && (
+              <DoctorView indicators={result.indicators} summary={result.summary} />
             )}
 
-            {/* Summary card */}
-            {familyMode ? (
-              <div className="rounded-xl bg-amber-500 p-5">
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center">
-                    <Sparkles className="w-5 h-5 text-white" />
+            {/* Patient View */}
+            {viewMode === 'patient' && (
+              <>
+                <FamilyModeToggle familyMode={familyMode} onToggle={() => setFamilyMode(!familyMode)} />
+
+                {familyMode && (
+                  <div className="p-3 rounded-xl bg-orange-50 border border-orange-200 text-center">
+                    <p className="text-sm text-orange-700 font-medium">当前为家属模式 -- 字体已放大，仅显示关键信息</p>
                   </div>
-                  <h2 className="text-xl font-bold text-white">AI 解读摘要</h2>
-                </div>
-                <p className="text-lg text-white/95 leading-[1.8]">{familySummary}</p>
-              </div>
-            ) : (
-              <div className="rounded-xl bg-white border border-gray-100 border-l-4 border-l-blue-600 p-5">
-                <h2 className="text-base font-bold text-gray-900 mb-2">AI 解读摘要</h2>
-                <p className="text-sm text-gray-600 leading-relaxed">{result.summary}</p>
-              </div>
-            )}
+                )}
 
-            {abnormalIndicators.length > 0 && (
-              <div className={familyMode ? 'space-y-4' : 'space-y-2'}>
-                <h3 className={`font-semibold text-gray-900 flex items-center gap-1.5 px-1 ${familyMode ? 'text-lg' : 'text-sm'}`}>
-                  <AlertTriangle className={familyMode ? 'w-5 h-5 text-amber-500' : 'w-4 h-4 text-amber-500'} />
-                  异常指标 ({abnormalIndicators.length})
-                </h3>
-                <div className={familyMode ? 'space-y-4' : 'space-y-3'}>
-                  {abnormalIndicators.map((ind, i) =>
-                    familyMode ? (
-                      <IndicatorCardFamily key={`abnormal-${i}`} indicator={ind} />
-                    ) : (
-                      <IndicatorCard key={`abnormal-${i}`} indicator={ind} />
-                    )
-                  )}
-                </div>
-              </div>
-            )}
-
-            {!familyMode && normalIndicators.length > 0 && (
-              <NormalIndicatorsCollapsible indicators={normalIndicators} />
-            )}
-
-            {(result.attention_items?.length ?? 0) > 0 && (
-              <div className={familyMode ? 'space-y-3' : 'space-y-2'}>
-                <h3 className={`font-semibold text-gray-900 flex items-center gap-1.5 px-1 ${familyMode ? 'text-lg' : 'text-sm'}`}>
-                  <AlertTriangle className={familyMode ? 'w-5 h-5 text-amber-500' : 'w-4 h-4 text-amber-500'} />
-                  注意事项
-                </h3>
-                <div className={familyMode ? 'space-y-3' : 'space-y-2'}>
-                  {result.attention_items?.map((item, i) => (
-                    <div
-                      key={i}
-                      className={`flex gap-3 rounded-xl bg-amber-50 border border-amber-100 ${familyMode ? 'p-4' : 'p-3.5'}`}
-                    >
-                      <div className={`rounded-full bg-amber-100 flex items-center justify-center shrink-0 mt-0.5 ${familyMode ? 'w-6 h-6' : 'w-5 h-5'}`}>
-                        <AlertTriangle className={familyMode ? 'w-4 h-4 text-amber-500' : 'w-3 h-3 text-amber-500'} />
+                {/* Summary */}
+                {familyMode ? (
+                  <div className="rounded-xl bg-amber-500 p-5">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center">
+                        <Sparkles className="w-5 h-5 text-white" />
                       </div>
-                      <p className={`text-gray-900 leading-relaxed ${familyMode ? 'text-base leading-[1.8]' : 'text-xs'}`}>{item}</p>
+                      <h2 className="text-xl font-bold text-white">AI 解读摘要</h2>
                     </div>
-                  ))}
-                </div>
-              </div>
-            )}
+                    <p className="text-lg text-white/95 leading-[1.8]">{familySummary}</p>
+                  </div>
+                ) : (
+                  <div className="rounded-xl bg-white border border-gray-100 border-l-4 border-l-blue-600 p-5">
+                    <h2 className="text-base font-bold text-gray-900 mb-2">AI 解读摘要</h2>
+                    <p className="text-sm text-gray-600 leading-relaxed">{result.summary}</p>
+                  </div>
+                )}
 
-            {familyMode && (
-              <div className="space-y-3 mt-4">
-                <div className="p-5 rounded-xl bg-orange-50 border border-orange-200 text-center">
-                  <p className="text-lg font-bold text-orange-800 leading-[1.8]">
-                    如有疑问，带着这个页面去找医生
-                  </p>
-                </div>
-                <a
-                  href="tel:10000"
-                  className="flex items-center justify-center gap-3 w-full py-4 rounded-xl bg-amber-500 text-white font-bold text-lg hover:bg-amber-600 active:scale-[0.98] transition-all"
-                >
-                  <Phone className="w-6 h-6" />
-                  打电话给子女
-                </a>
-              </div>
+                {/* Abnormal */}
+                {abnormalIndicators.length > 0 && (
+                  <div className={familyMode ? 'space-y-4' : 'space-y-2'}>
+                    <h3 className={`font-semibold text-gray-900 flex items-center gap-1.5 px-1 ${familyMode ? 'text-lg' : 'text-sm'}`}>
+                      <AlertTriangle className={familyMode ? 'w-5 h-5 text-amber-500' : 'w-4 h-4 text-amber-500'} />
+                      异常指标 ({abnormalIndicators.length})
+                    </h3>
+                    <div className={familyMode ? 'space-y-4' : 'space-y-3'}>
+                      {abnormalIndicators.map((ind, i) =>
+                        familyMode
+                          ? <IndicatorCardFamily key={`abnormal-${i}`} indicator={ind} />
+                          : <IndicatorCard key={`abnormal-${i}`} indicator={ind} />
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {/* Normal */}
+                {!familyMode && normalIndicators.length > 0 && (
+                  <NormalIndicatorsCollapsible indicators={normalIndicators} />
+                )}
+
+                {/* Attention */}
+                {(result.attention_items?.length ?? 0) > 0 && (
+                  <div className={familyMode ? 'space-y-3' : 'space-y-2'}>
+                    <h3 className={`font-semibold text-gray-900 flex items-center gap-1.5 px-1 ${familyMode ? 'text-lg' : 'text-sm'}`}>
+                      <AlertTriangle className={familyMode ? 'w-5 h-5 text-amber-500' : 'w-4 h-4 text-amber-500'} />
+                      注意事项
+                    </h3>
+                    <div className={familyMode ? 'space-y-3' : 'space-y-2'}>
+                      {result.attention_items?.map((item, i) => (
+                        <div key={i} className={`flex gap-3 rounded-xl bg-amber-50 border border-amber-100 ${familyMode ? 'p-4' : 'p-3.5'}`}>
+                          <div className={`rounded-full bg-amber-100 flex items-center justify-center shrink-0 mt-0.5 ${familyMode ? 'w-6 h-6' : 'w-5 h-5'}`}>
+                            <AlertTriangle className={familyMode ? 'w-4 h-4 text-amber-500' : 'w-3 h-3 text-amber-500'} />
+                          </div>
+                          <p className={`text-gray-900 leading-relaxed ${familyMode ? 'text-base leading-[1.8]' : 'text-xs'}`}>{item}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Family footer */}
+                {familyMode && (
+                  <div className="space-y-3 mt-4">
+                    <div className="p-5 rounded-xl bg-orange-50 border border-orange-200 text-center">
+                      <p className="text-lg font-bold text-orange-800 leading-[1.8]">如有疑问，带着这个页面去找医生</p>
+                    </div>
+                    <a href="tel:10000" className="flex items-center justify-center gap-3 w-full py-4 rounded-xl bg-amber-500 text-white font-bold text-lg hover:bg-amber-600 active:scale-[0.98] transition-all">
+                      <Phone className="w-6 h-6" />
+                      打电话给子女
+                    </a>
+                  </div>
+                )}
+              </>
             )}
           </div>
         )}

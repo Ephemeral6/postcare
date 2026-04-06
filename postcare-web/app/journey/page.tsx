@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import {
   Activity,
   FileText,
@@ -12,6 +13,7 @@ import {
   Sparkles,
   ChevronDown,
   ChevronUp,
+  ChevronRight,
   X,
   AlertTriangle,
 } from 'lucide-react';
@@ -41,6 +43,13 @@ const PROGRESS_STEPS = [
   { label: '用药分析', icon: Pill },
   { label: '复查提醒', icon: CalendarDays },
   { label: '生活建议', icon: Utensils },
+];
+
+const RECOVERY_PLAN = [
+  { week: '第1周', text: '适应用药，注意观察副作用' },
+  { week: '第2周', text: '开始调整饮食和运动习惯' },
+  { week: '第3周', text: '预约复查，准备复诊问题' },
+  { week: '第4周', text: '复查日！对比上次结果' },
 ];
 
 interface JourneyResult {
@@ -79,18 +88,9 @@ function DrugTagInput({
       onClick={() => inputRef.current?.focus()}
     >
       {drugs.map((drug, i) => (
-        <span
-          key={i}
-          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-blue-50 text-blue-600 text-sm font-medium"
-        >
+        <span key={i} className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-blue-50 text-blue-600 text-sm font-medium">
           {drug}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onRemove(i);
-            }}
-            className="ml-0.5 hover:bg-blue-100 rounded-full p-0.5 transition-colors"
-          >
+          <button onClick={(e) => { e.stopPropagation(); onRemove(i); }} className="ml-0.5 hover:bg-blue-100 rounded-full p-0.5 transition-colors">
             <X className="w-3.5 h-3.5" />
           </button>
         </span>
@@ -124,38 +124,19 @@ function StageCard({
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div
-      className={`transition-all duration-500 ease-out ${
-        visible ? 'opacity-100' : 'opacity-0 pointer-events-none'
-      }`}
-    >
+    <div className={`transition-all duration-500 ease-out ${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
       <div className="rounded-xl bg-white border border-gray-100 overflow-hidden">
-        <button
-          onClick={() => setExpanded(!expanded)}
-          className="w-full flex items-center gap-3 p-4 text-left"
-        >
-          <div
-            className={`flex-shrink-0 w-10 h-10 rounded-xl ${color} flex items-center justify-center`}
-          >
+        <button onClick={() => setExpanded(!expanded)} className="w-full flex items-center gap-3 p-4 text-left">
+          <div className={`flex-shrink-0 w-10 h-10 rounded-xl ${color} flex items-center justify-center`}>
             <Icon className="w-5 h-5 text-white" />
           </div>
           <div className="flex-1 min-w-0">
             <h3 className="text-sm font-bold text-gray-900">{title}</h3>
           </div>
-          {expanded ? (
-            <ChevronUp className="w-4 h-4 text-gray-400 flex-shrink-0" />
-          ) : (
-            <ChevronDown className="w-4 h-4 text-gray-400 flex-shrink-0" />
-          )}
+          {expanded ? <ChevronUp className="w-4 h-4 text-gray-400 flex-shrink-0" /> : <ChevronDown className="w-4 h-4 text-gray-400 flex-shrink-0" />}
         </button>
-
         <div className="px-4 pb-3 -mt-1">{children}</div>
-
-        <div
-          className={`transition-all duration-300 ease-in-out overflow-hidden ${
-            expanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
-          }`}
-        >
+        <div className={`transition-all duration-300 ease-in-out overflow-hidden ${expanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
           <div className="px-4 pb-4 border-t border-gray-100 pt-3" id={`stage-detail-${title}`} />
         </div>
       </div>
@@ -175,38 +156,37 @@ function ProgressBar({ activeStep }: { activeStep: number }) {
           <div key={i} className="flex flex-col items-center gap-1.5 flex-1">
             <div className="relative flex items-center w-full">
               {i > 0 && (
-                <div
-                  className={`absolute right-1/2 h-0.5 w-full transition-colors duration-500 ${
-                    isActive ? 'bg-blue-600' : 'bg-gray-200'
-                  }`}
-                />
+                <div className={`absolute right-1/2 h-0.5 w-full transition-colors duration-500 ${isActive ? 'bg-blue-600' : 'bg-gray-200'}`} />
               )}
-              <div
-                className={`relative z-10 mx-auto w-8 h-8 rounded-full flex items-center justify-center transition-all duration-500 ${
-                  isActive
-                    ? 'bg-blue-600 text-white'
-                    : isCurrent
-                      ? 'bg-blue-100 text-blue-600 ring-2 ring-blue-200'
-                      : 'bg-gray-100 text-gray-400'
-                }`}
-              >
-                {isActive ? (
-                  <CheckCircle2 className="w-4 h-4" />
-                ) : (
-                  <Icon className="w-3.5 h-3.5" />
-                )}
+              <div className={`relative z-10 mx-auto w-8 h-8 rounded-full flex items-center justify-center transition-all duration-500 ${isActive ? 'bg-blue-600 text-white' : isCurrent ? 'bg-blue-100 text-blue-600 ring-2 ring-blue-200' : 'bg-gray-100 text-gray-400'}`}>
+                {isActive ? <CheckCircle2 className="w-4 h-4" /> : <Icon className="w-3.5 h-3.5" />}
               </div>
             </div>
-            <span
-              className={`text-[10px] font-medium transition-colors duration-300 ${
-                isActive || isCurrent ? 'text-blue-600' : 'text-gray-400'
-              }`}
-            >
+            <span className={`text-[10px] font-medium transition-colors duration-300 ${isActive || isCurrent ? 'text-blue-600' : 'text-gray-400'}`}>
               {step.label}
             </span>
           </div>
         );
       })}
+    </div>
+  );
+}
+
+// --- Story Line ---
+function StoryLine({ storyIndex, storyLines }: { storyIndex: number; storyLines: { text: string }[] }) {
+  return (
+    <div className="text-center py-6">
+      <div className="min-h-[56px] flex items-center justify-center">
+        <p key={storyIndex} className="text-xl font-bold text-gray-900 animate-[fadeIn_0.5s_ease-out]">
+          {storyLines[storyIndex]?.text}
+        </p>
+      </div>
+      <div className="mt-4 mx-auto w-48 h-1 bg-gray-100 rounded-full overflow-hidden">
+        <div
+          className="h-full bg-blue-600 rounded-full transition-all duration-700 ease-out"
+          style={{ width: `${((storyIndex + 1) / storyLines.length) * 100}%` }}
+        />
+      </div>
     </div>
   );
 }
@@ -220,6 +200,7 @@ export default function JourneyPage() {
   const [error, setError] = useState('');
   const [progressStep, setProgressStep] = useState(0);
   const [visibleStages, setVisibleStages] = useState(0);
+  const [storyIndex, setStoryIndex] = useState(0);
   const progressInterval = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const addDrug = (name: string) => {
@@ -241,13 +222,12 @@ export default function JourneyPage() {
     setResult(null);
     setVisibleStages(0);
     setProgressStep(0);
+    setStoryIndex(0);
 
     let step = 0;
     progressInterval.current = setInterval(() => {
       step++;
-      if (step <= 5) {
-        setProgressStep(step);
-      }
+      if (step <= 5) setProgressStep(step);
     }, 1000);
 
     try {
@@ -263,12 +243,41 @@ export default function JourneyPage() {
     }
   };
 
+  // Build dynamic story lines based on result
+  const abnormalCount = result?.report?.abnormal_indicators?.length ?? 0;
+  const storyLines = [
+    { text: '正在解读您的报告...', delay: 0 },
+    { text: abnormalCount > 0 ? `发现了${abnormalCount}项需要关注的指标` : '您的各项指标总体良好', delay: 2500 },
+    { text: '别担心，让我帮您理清头绪', delay: 5000 },
+    { text: '以下是您的专属健康方案', delay: 7500 },
+  ];
+
+  // Story line progression + stage cascade
   useEffect(() => {
     if (!result) return;
+
+    // Story line timers
+    const storyTimers = storyLines.map((line, i) =>
+      setTimeout(() => setStoryIndex(i), line.delay)
+    );
+
+    // Stage cascade (starts after 2nd story line)
     const stages = getStageList(result);
-    stages.forEach((_, i) => {
-      setTimeout(() => setVisibleStages(i + 1), i * 600);
-    });
+    const stageTimers = stages.map((_, i) =>
+      setTimeout(() => setVisibleStages(i + 1), 3000 + i * 800)
+    );
+
+    // Show completion card
+    const completionTimer = setTimeout(
+      () => setVisibleStages(stages.length + 1),
+      3000 + stages.length * 800
+    );
+
+    return () => {
+      storyTimers.forEach(clearTimeout);
+      stageTimers.forEach(clearTimeout);
+      clearTimeout(completionTimer);
+    };
   }, [result]);
 
   useEffect(() => {
@@ -281,6 +290,7 @@ export default function JourneyPage() {
     setResult(null);
     setVisibleStages(0);
     setProgressStep(0);
+    setStoryIndex(0);
     setError('');
   };
 
@@ -291,9 +301,9 @@ export default function JourneyPage() {
       <Header stage="全旅程" />
 
       <main className="max-w-lg mx-auto px-4 pt-4 pb-20 page-enter">
+        {/* Input */}
         {!loading && !result && (
           <div className="space-y-4 animate-[fadeIn_0.3s_ease-out]">
-            {/* Hero card */}
             <div className="rounded-xl bg-blue-600 p-5 text-white">
               <div className="flex items-center gap-2 mb-2">
                 <Activity className="w-6 h-6" />
@@ -316,17 +326,12 @@ export default function JourneyPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-500 mb-1.5">
-                当前用药（可选）
-              </label>
+              <label className="block text-sm font-medium text-gray-500 mb-1.5">当前用药（可选）</label>
               <DrugTagInput drugs={drugs} onAdd={addDrug} onRemove={removeDrug} />
             </div>
 
             <div className="flex gap-3">
-              <button
-                onClick={fillExample}
-                className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-gray-200 text-sm font-medium text-gray-500 hover:border-blue-600 hover:text-blue-600 transition-colors"
-              >
+              <button onClick={fillExample} className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-gray-200 text-sm font-medium text-gray-500 hover:border-blue-600 hover:text-blue-600 transition-colors">
                 <Sparkles className="w-4 h-4" />
                 试试示例
               </button>
@@ -342,6 +347,7 @@ export default function JourneyPage() {
           </div>
         )}
 
+        {/* Loading */}
         {loading && (
           <div className="space-y-8 animate-[fadeIn_0.3s_ease-out]">
             <LoadingSpinner text="PostCare 正在为您走完全旅程..." />
@@ -349,46 +355,63 @@ export default function JourneyPage() {
           </div>
         )}
 
+        {/* Error */}
         {error && (
           <div className="flex items-center gap-2 p-3 rounded-xl bg-red-50 text-red-600 text-sm mt-4">
             <AlertTriangle className="w-4 h-4 flex-shrink-0" />
             {error}
-            <button onClick={handleReset} className="ml-auto text-xs underline">
-              重试
-            </button>
+            <button onClick={handleReset} className="ml-auto text-xs underline">重试</button>
           </div>
         )}
 
+        {/* Results with Story Line */}
         {result && !loading && (
           <div className="space-y-4">
-            <button
-              onClick={handleReset}
-              className="text-xs text-blue-600 font-medium flex items-center gap-1 hover:text-blue-700 transition-colors"
-            >
+            <button onClick={handleReset} className="text-xs text-blue-600 font-medium flex items-center gap-1 hover:text-blue-700 transition-colors">
               <FileText className="w-3.5 h-3.5" />
               重新分析
             </button>
 
+            {/* Story line */}
+            <StoryLine storyIndex={storyIndex} storyLines={storyLines} />
+
+            {/* Stage cards */}
             {stages.map((stage, i) => (
-              <StageCard
-                key={stage.key}
-                icon={stage.icon}
-                title={stage.title}
-                color={stage.color}
-                visible={visibleStages > i}
-              >
+              <StageCard key={stage.key} icon={stage.icon} title={stage.title} color={stage.color} visible={visibleStages > i}>
                 {stage.summary}
               </StageCard>
             ))}
 
-            {/* Completion card */}
-            <div
-              className={`transition-all duration-500 ease-out ${
-                visibleStages > stages.length
-                  ? 'opacity-100'
-                  : 'opacity-0 pointer-events-none'
-              }`}
-            >
+            {/* 28-Day Recovery Plan */}
+            <div className={`transition-all duration-500 ease-out ${visibleStages > stages.length ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+              <div className="rounded-xl bg-white border-2 border-blue-100 p-5">
+                <h3 className="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <CalendarDays className="w-5 h-5 text-blue-600" />
+                  28天康复计划
+                </h3>
+                <div className="space-y-3">
+                  {RECOVERY_PLAN.map((item, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <span className="flex-shrink-0 w-14 text-xs font-bold text-blue-600 pt-0.5">{item.week}</span>
+                      <div className="flex-1 flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-blue-600 flex-shrink-0" />
+                        <p className="text-sm text-gray-600">{item.text}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <Link
+                  href="/timeline"
+                  className="mt-4 flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-blue-50 text-blue-600 text-sm font-medium hover:bg-blue-100 transition-colors"
+                >
+                  查看完整28天计划
+                  <ChevronRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Completion */}
+            <div className={`transition-all duration-500 ease-out ${visibleStages > stages.length ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
               <div className="rounded-xl bg-green-600 p-5 text-white text-center">
                 <CheckCircle2 className="w-10 h-10 mx-auto mb-2 opacity-90" />
                 <h3 className="text-lg font-bold mb-1">全旅程分析完成</h3>
@@ -428,9 +451,7 @@ function getStageList(result: JourneyResult) {
       color: 'bg-blue-600',
       summary: (
         <div className="space-y-1.5">
-          <p className="text-sm text-gray-900 leading-relaxed">
-            {result.report.summary || '暂无摘要'}
-          </p>
+          <p className="text-sm text-gray-900 leading-relaxed">{result.report.summary || '暂无摘要'}</p>
           {abnormalCount > 0 && (
             <span className="inline-flex items-center gap-1 text-xs text-amber-500 font-medium">
               <AlertTriangle className="w-3 h-3" />
@@ -438,9 +459,7 @@ function getStageList(result: JourneyResult) {
             </span>
           )}
           {result.report.explanation && (
-            <p className="text-xs text-gray-500 leading-relaxed mt-1">
-              {result.report.explanation}
-            </p>
+            <p className="text-xs text-gray-500 leading-relaxed mt-1">{result.report.explanation}</p>
           )}
         </div>
       ),
@@ -455,8 +474,7 @@ function getStageList(result: JourneyResult) {
       color: 'bg-blue-500',
       summary: (
         <p className="text-sm text-gray-900 leading-relaxed">
-          {result.emotion.message.slice(0, 150)}
-          {result.emotion.message.length > 150 ? '...' : ''}
+          {result.emotion.message.slice(0, 150)}{result.emotion.message.length > 150 ? '...' : ''}
         </p>
       ),
     });
@@ -472,29 +490,19 @@ function getStageList(result: JourneyResult) {
       color: 'bg-green-600',
       summary: (
         <div className="space-y-1.5">
-          {sugCount > 0 && (
-            <p className="text-sm text-gray-900 leading-relaxed">
-              {result.medication.suggestions![0]}
-            </p>
-          )}
+          {sugCount > 0 && <p className="text-sm text-gray-900 leading-relaxed">{result.medication.suggestions![0]}</p>}
           {result.medication.suggestions?.slice(1).map((s, i) => (
-            <p key={i} className="text-xs text-gray-500 leading-relaxed">
-              {s}
-            </p>
+            <p key={i} className="text-xs text-gray-500 leading-relaxed">{s}</p>
           ))}
           {hasWarnings && (
             <div className="mt-1">
               <span className="text-xs text-amber-500 font-medium">注意事项：</span>
               {result.medication.warnings?.map((w, i) => (
-                <p key={i} className="text-xs text-gray-500 leading-relaxed">
-                  {w}
-                </p>
+                <p key={i} className="text-xs text-gray-500 leading-relaxed">{w}</p>
               ))}
             </div>
           )}
-          {sugCount === 0 && !hasWarnings && (
-            <p className="text-sm text-gray-500">暂无用药建议</p>
-          )}
+          {sugCount === 0 && !hasWarnings && <p className="text-sm text-gray-500">暂无用药建议</p>}
         </div>
       ),
     });
@@ -508,21 +516,9 @@ function getStageList(result: JourneyResult) {
       color: 'bg-amber-500',
       summary: (
         <div className="space-y-1.5">
-          {result.followup.next_date && (
-            <p className="text-sm font-semibold text-gray-900">
-              建议复查日期：{result.followup.next_date}
-            </p>
-          )}
-          {result.followup.plan?.map((p, i) => (
-            <p key={i} className="text-xs text-gray-500 leading-relaxed">
-              {p}
-            </p>
-          ))}
-          {result.followup.reminders?.map((r, i) => (
-            <p key={i} className="text-xs text-amber-500 leading-relaxed">
-              {r}
-            </p>
-          ))}
+          {result.followup.next_date && <p className="text-sm font-semibold text-gray-900">建议复查日期：{result.followup.next_date}</p>}
+          {result.followup.plan?.map((p, i) => <p key={i} className="text-xs text-gray-500 leading-relaxed">{p}</p>)}
+          {result.followup.reminders?.map((r, i) => <p key={i} className="text-xs text-amber-500 leading-relaxed">{r}</p>)}
         </div>
       ),
     });
@@ -536,29 +532,10 @@ function getStageList(result: JourneyResult) {
       color: 'bg-purple-600',
       summary: (
         <div className="space-y-1">
-          {result.lifestyle.diet && (
-            <p className="text-xs text-gray-900 leading-relaxed">
-              <span className="font-medium">饮食：</span>
-              {result.lifestyle.diet}
-            </p>
-          )}
-          {result.lifestyle.exercise && (
-            <p className="text-xs text-gray-900 leading-relaxed">
-              <span className="font-medium">运动：</span>
-              {result.lifestyle.exercise}
-            </p>
-          )}
-          {result.lifestyle.sleep && (
-            <p className="text-xs text-gray-900 leading-relaxed">
-              <span className="font-medium">作息：</span>
-              {result.lifestyle.sleep}
-            </p>
-          )}
-          {result.lifestyle.tips?.map((t, i) => (
-            <p key={i} className="text-xs text-gray-500 leading-relaxed">
-              {t}
-            </p>
-          ))}
+          {result.lifestyle.diet && <p className="text-xs text-gray-900 leading-relaxed"><span className="font-medium">饮食：</span>{result.lifestyle.diet}</p>}
+          {result.lifestyle.exercise && <p className="text-xs text-gray-900 leading-relaxed"><span className="font-medium">运动：</span>{result.lifestyle.exercise}</p>}
+          {result.lifestyle.sleep && <p className="text-xs text-gray-900 leading-relaxed"><span className="font-medium">作息：</span>{result.lifestyle.sleep}</p>}
+          {result.lifestyle.tips?.map((t, i) => <p key={i} className="text-xs text-gray-500 leading-relaxed">{t}</p>)}
         </div>
       ),
     });
