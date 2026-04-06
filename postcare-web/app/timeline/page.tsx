@@ -4,13 +4,13 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { ChevronLeft, Heart, Shield } from 'lucide-react';
 
-const typeConfig: Record<string, { label: string; dot: string; glow: string }> = {
-  report:     { label: '报告解读', dot: 'bg-indigo-400',   glow: 'shadow-[0_0_8px_rgba(99,102,241,0.4)]' },
-  medication: { label: '用药提醒', dot: 'bg-emerald-400',  glow: 'shadow-[0_0_8px_rgba(52,211,153,0.4)]' },
-  lifestyle:  { label: '生活关怀', dot: 'bg-emerald-400',  glow: 'shadow-[0_0_8px_rgba(52,211,153,0.4)]' },
-  followup:   { label: '复查提醒', dot: 'bg-amber-400',    glow: 'shadow-[0_0_8px_rgba(251,191,36,0.4)]' },
-  emotion:    { label: '情绪关怀', dot: 'bg-indigo-400',   glow: 'shadow-[0_0_8px_rgba(99,102,241,0.4)]' },
-  alert:      { label: '紧急提醒', dot: 'bg-red-400',      glow: 'shadow-[0_0_8px_rgba(248,113,113,0.4)]' },
+const typeConfig: Record<string, { label: string; dot: string; border: string }> = {
+  report:     { label: '报告解读', dot: 'bg-[#2563EB]',  border: 'border-l-[#2563EB]' },
+  medication: { label: '用药提醒', dot: 'bg-[#059669]',  border: 'border-l-[#059669]' },
+  lifestyle:  { label: '生活关怀', dot: 'bg-[#059669]',  border: 'border-l-[#059669]' },
+  followup:   { label: '复查提醒', dot: 'bg-[#D97706]',  border: 'border-l-[#D97706]' },
+  emotion:    { label: '情绪关怀', dot: 'bg-[#7C3AED]',  border: 'border-l-[#7C3AED]' },
+  alert:      { label: '紧急提醒', dot: 'bg-[#DC2626]',  border: 'border-l-[#DC2626]' },
 };
 
 const timelineData = [
@@ -114,32 +114,32 @@ export default function TimelinePage() {
   const [guardEnabled, setGuardEnabled] = useState(true);
 
   return (
-    <div className="min-h-screen bg-[#09090b] pb-12">
+    <div className="min-h-screen bg-[#FAFAF8] pb-12">
       {/* Header */}
-      <div className="bg-[#18181b]">
+      <div className="bg-[#2563EB] rounded-b-2xl">
         <div className="px-5 pt-12 pb-8">
-          <Link href="/" className="inline-flex items-center gap-1 text-indigo-400/70 text-sm mb-4 hover:text-indigo-300 transition-colors">
+          <Link href="/" className="inline-flex items-center gap-1 text-white/70 text-sm mb-4 hover:text-white transition-colors">
             <ChevronLeft className="w-4 h-4" />
             返回首页
           </Link>
 
           <div className="flex items-center gap-3 mb-3">
-            <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-indigo-500/15">
-              <Heart className="w-6 h-6 text-indigo-400 fill-indigo-400" />
+            <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-white/20">
+              <Heart className="w-6 h-6 text-white fill-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-zinc-50">PostCare 主动守护</h1>
-              <p className="text-sm text-zinc-400">不是等你来找我，而是我主动找你</p>
+              <h1 className="text-xl font-bold text-white">PostCare 主动守护</h1>
+              <p className="text-sm text-white/70">不是等你来找我，而是我主动找你</p>
             </div>
           </div>
 
           {/* Toggle */}
-          <div className="flex items-center gap-3 mt-4 rounded-xl px-4 py-3 bg-[#27272a]/60 border border-white/[0.06]">
-            <Shield className="w-5 h-5 text-indigo-400/70" />
-            <span className="text-sm flex-1 text-zinc-400">开启主动守护</span>
+          <div className="flex items-center gap-3 mt-4 rounded-xl px-4 py-3 bg-white/10">
+            <Shield className="w-5 h-5 text-white/70" />
+            <span className="text-sm flex-1 text-white/80">开启主动守护</span>
             <button
               onClick={() => setGuardEnabled(!guardEnabled)}
-              className={`relative w-12 h-7 rounded-full transition-colors duration-300 ${guardEnabled ? 'bg-indigo-500/40' : 'bg-white/10'}`}
+              className={`relative w-12 h-7 rounded-full transition-colors duration-300 ${guardEnabled ? 'bg-[#EFF6FF]' : 'bg-white/20'}`}
             >
               <div className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow transition-transform duration-300 ${guardEnabled ? 'left-6' : 'left-1'}`} />
             </button>
@@ -149,13 +149,13 @@ export default function TimelinePage() {
 
       {/* Timeline */}
       <div className="px-5 pt-6 pb-4">
-        <p className="text-sm text-zinc-400 mb-5">
-          以下是PostCare在 <span className="font-semibold text-zinc-50">28天</span> 内主动发送的守护消息
+        <p className="text-sm text-[#6B7280] mb-5">
+          以下是PostCare在 <span className="font-semibold text-[#1A1A1A]">28天</span> 内主动发送的守护消息
         </p>
 
         <div className="relative">
           {/* Vertical line */}
-          <div className="absolute left-[15px] top-4 bottom-4 w-px bg-gradient-to-b from-indigo-500/50 to-indigo-500/0" />
+          <div className="absolute left-[15px] top-4 bottom-4 w-[2px] bg-gray-200" />
 
           <div className="space-y-4">
             {timelineData.map((item, index) => {
@@ -165,25 +165,28 @@ export default function TimelinePage() {
                   key={index}
                   className="relative pl-10"
                 >
-                  {/* Dot with glow */}
-                  <div className={`absolute left-[9px] top-5 w-[14px] h-[14px] rounded-full ${config.dot} ${config.glow} ring-2 ring-[#09090b] z-10`} />
+                  {/* Dot */}
+                  <div className={`absolute left-[11px] top-5 w-[10px] h-[10px] rounded-full ${config.dot} ring-2 ring-[#FAFAF8] z-10`} />
 
-                  <div className="bg-[#18181b] rounded-xl p-4 border border-white/[0.06]">
+                  <div
+                    className={`bg-white rounded-xl p-4 border-l-4 ${config.border}`}
+                    style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.04), 0 0 0 1px rgba(0,0,0,0.02)' }}
+                  >
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="text-xs font-medium text-zinc-400">
+                      <span className="text-xs font-medium text-[#6B7280]">
                         {item.date}
                       </span>
-                      <span className="text-[11px] text-zinc-600">
+                      <span className="text-[11px] text-[#9CA3AF]">
                         · 第<span className="font-data">{item.day}</span>天
                       </span>
                     </div>
 
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-lg">{item.icon}</span>
-                      <h3 className="text-[15px] font-bold text-zinc-50">{item.title}</h3>
+                      <h3 className="text-[15px] font-bold text-[#1A1A1A]">{item.title}</h3>
                     </div>
 
-                    <p className="text-sm text-zinc-400 leading-relaxed">
+                    <p className="text-sm text-[#374151] leading-relaxed">
                       {item.message}
                     </p>
                   </div>
@@ -197,27 +200,23 @@ export default function TimelinePage() {
       {/* Summary Card */}
       <div className="px-5 pt-2 pb-6">
         <div
-          className="rounded-xl bg-[#18181b] p-6"
-          style={{
-            border: '1px solid rgba(99,102,241,0.2)',
-            boxShadow: '0 0 0 1px rgba(99,102,241,0.08), 0 8px 40px -12px rgba(99,102,241,0.15)',
-          }}
+          className="rounded-xl bg-[#F5F5F0] p-6"
         >
-          <h3 className="text-lg font-bold text-zinc-50 mb-4">
+          <h3 className="text-lg font-bold text-[#1A1A1A] mb-4">
             <span className="font-data">{timelineData.length}</span> 次主动守护，覆盖 <span className="font-data">28</span> 天
           </h3>
 
           <div className="grid grid-cols-2 gap-2 mb-5">
             {summaryItems.map((s, i) => (
-              <div key={i} className="flex items-center gap-2 text-sm text-zinc-400">
+              <div key={i} className="flex items-center gap-2 text-sm text-[#6B7280]">
                 <span>{s.icon}</span>
                 <span>{s.label}</span>
-                <span className="font-bold font-data text-zinc-50">{s.count}次</span>
+                <span className="font-bold font-data text-[#1A1A1A]">{s.count}次</span>
               </div>
             ))}
           </div>
 
-          <p className="text-sm text-zinc-600 italic text-center">
+          <p className="text-sm text-[#9CA3AF] italic text-center">
             &ldquo;不是等你来找我，而是我主动找你&rdquo;
           </p>
         </div>

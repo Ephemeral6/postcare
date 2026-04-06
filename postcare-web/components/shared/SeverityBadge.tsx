@@ -1,13 +1,13 @@
 const config: Record<string, { bg: string; text: string; label: string }> = {
-  normal:   { bg: 'bg-emerald-400/10', text: 'text-emerald-400', label: '���常' },
-  mild:     { bg: 'bg-amber-400/10',   text: 'text-amber-400',   label: '轻度异常' },
-  high:     { bg: 'bg-amber-400/10',   text: 'text-amber-400',   label: '偏高' },
-  moderate: { bg: 'bg-orange-400/10',  text: 'text-orange-400',  label: '中度异��' },
-  severe:   { bg: 'bg-red-400/10',     text: 'text-red-400',     label: '严重异常' },
-  critical: { bg: 'bg-red-400/10',     text: 'text-red-400',     label: '严重异常' },
-  improved: { bg: 'bg-emerald-400/10', text: 'text-emerald-400', label: '好转' },
-  stable:   { bg: 'bg-zinc-400/10',    text: 'text-zinc-400',    label: '稳定' },
-  worsened: { bg: 'bg-red-400/10',     text: 'text-red-400',     label: '关注' },
+  normal:   { bg: 'bg-[#ECFDF5]', text: 'text-[#059669]', label: '正常' },
+  mild:     { bg: 'bg-[#FFFBEB]', text: 'text-[#D97706]', label: '轻度异常' },
+  high:     { bg: 'bg-[#FFFBEB]', text: 'text-[#D97706]', label: '偏高' },
+  moderate: { bg: 'bg-orange-50',  text: 'text-orange-600', label: '中度异常' },
+  severe:   { bg: 'bg-[#FEF2F2]', text: 'text-[#DC2626]', label: '严重异常' },
+  critical: { bg: 'bg-[#FEF2F2]', text: 'text-[#DC2626]', label: '严重异常' },
+  improved: { bg: 'bg-[#ECFDF5]', text: 'text-[#059669]', label: '好转' },
+  stable:   { bg: 'bg-gray-100',   text: 'text-gray-500',  label: '稳定' },
+  worsened: { bg: 'bg-[#FEF2F2]', text: 'text-[#DC2626]', label: '关注' },
 };
 
 export default function SeverityBadge({ severity, label }: { severity: string; label?: string }) {

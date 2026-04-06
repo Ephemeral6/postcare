@@ -153,16 +153,16 @@ export default function RevisitPage() {
   // ---- row change icon ----
   const changeIcon = (status: string) => {
     if (status === 'improved')
-      return <ArrowDownRight className="w-4 h-4 text-emerald-400" />;
+      return <ArrowDownRight className="w-4 h-4 text-[#059669]" />;
     if (status === 'worsened')
-      return <ArrowUpRight className="w-4 h-4 text-red-400" />;
-    return <Minus className="w-3.5 h-3.5 text-zinc-400" />;
+      return <ArrowUpRight className="w-4 h-4 text-[#DC2626]" />;
+    return <Minus className="w-3.5 h-3.5 text-[#6B7280]" />;
   };
 
   const rowBg = (status: string) => {
-    if (status === 'improved') return 'bg-emerald-400/5';
-    if (status === 'worsened') return 'bg-red-400/5';
-    return 'bg-[#27272a]';
+    if (status === 'improved') return 'bg-[#ECFDF5]';
+    if (status === 'worsened') return 'bg-[#FEF2F2]';
+    return 'bg-[#F5F5F0]';
   };
 
   // ---- render helpers ----
@@ -174,12 +174,12 @@ export default function RevisitPage() {
     setDate: typeof setOriginalDate,
   ) => (
     <div className="flex-1 min-w-0">
-      <h3 className="text-sm font-semibold text-zinc-50 mb-2">{label}</h3>
+      <h3 className="text-sm font-semibold text-[#1A1A1A] mb-2">{label}</h3>
       <input
         type="date"
         value={date}
         onChange={(e) => setDate(e.target.value)}
-        className="w-full mb-3 px-3 py-2 rounded-lg border border-white/[0.06] text-sm text-zinc-50 bg-[#18181b] focus:outline-none focus:ring-2 focus:ring-indigo-500/10"
+        className="w-full mb-3 px-3 py-2 rounded-lg border border-black/[0.06] text-sm text-[#1A1A1A] bg-white focus:outline-none focus:ring-2 focus:ring-blue-100"
       />
       <div className="space-y-2">
         {rows.map((row, i) => (
@@ -188,23 +188,23 @@ export default function RevisitPage() {
               placeholder="指标名"
               value={row.name}
               onChange={(e) => updateRow(setter, i, 'name', e.target.value)}
-              className="flex-[2] min-w-0 px-2.5 py-1.5 rounded-lg border border-white/[0.06] text-sm text-zinc-50 bg-[#18181b] focus:outline-none focus:ring-2 focus:ring-indigo-500/10"
+              className="flex-[2] min-w-0 px-2.5 py-1.5 rounded-lg border border-black/[0.06] text-sm text-[#1A1A1A] bg-white focus:outline-none focus:ring-2 focus:ring-blue-100"
             />
             <input
               placeholder="值"
               value={row.value}
               onChange={(e) => updateRow(setter, i, 'value', e.target.value)}
-              className="flex-1 min-w-0 px-2.5 py-1.5 rounded-lg border border-white/[0.06] text-sm text-zinc-50 bg-[#18181b] focus:outline-none focus:ring-2 focus:ring-indigo-500/10"
+              className="flex-1 min-w-0 px-2.5 py-1.5 rounded-lg border border-black/[0.06] text-sm text-[#1A1A1A] bg-white focus:outline-none focus:ring-2 focus:ring-blue-100"
             />
             <input
               placeholder="单位"
               value={row.unit}
               onChange={(e) => updateRow(setter, i, 'unit', e.target.value)}
-              className="flex-1 min-w-0 px-2.5 py-1.5 rounded-lg border border-white/[0.06] text-sm text-zinc-50 bg-[#18181b] focus:outline-none focus:ring-2 focus:ring-indigo-500/10"
+              className="flex-1 min-w-0 px-2.5 py-1.5 rounded-lg border border-black/[0.06] text-sm text-[#1A1A1A] bg-white focus:outline-none focus:ring-2 focus:ring-blue-100"
             />
             <button
               onClick={() => removeRow(setter, i)}
-              className="flex-shrink-0 p-1 rounded text-zinc-400 hover:text-red-400 transition-colors"
+              className="flex-shrink-0 p-1 rounded text-[#6B7280] hover:text-[#DC2626] transition-colors"
               aria-label="删除指标"
             >
               <Trash2 className="w-4 h-4" />
@@ -214,7 +214,7 @@ export default function RevisitPage() {
       </div>
       <button
         onClick={() => addRow(setter)}
-        className="mt-2 flex items-center gap-1 text-xs text-indigo-400 font-medium hover:underline"
+        className="mt-2 flex items-center gap-1 text-xs text-[#2563EB] font-medium hover:underline"
       >
         <Plus className="w-3.5 h-3.5" />
         添加指标
@@ -223,18 +223,18 @@ export default function RevisitPage() {
   );
 
   return (
-    <div className="min-h-screen bg-[#09090b]">
+    <div className="min-h-screen bg-[#FAFAF8]">
       <Header stage="复诊准备" />
 
       <main className="max-w-lg mx-auto px-4 pt-5 pb-20 page-enter">
         {/* Title */}
         <div className="flex items-center gap-2 mb-5">
-          <ClipboardList className="w-5 h-5 text-indigo-400" />
-          <h1 className="text-lg font-bold text-zinc-50">复诊准备</h1>
+          <ClipboardList className="w-5 h-5 text-[#2563EB]" />
+          <h1 className="text-lg font-bold text-[#1A1A1A]">复诊准备</h1>
         </div>
 
         {/* Input section */}
-        <section className="p-4 rounded-xl bg-[#18181b] border border-white/[0.06] space-y-5">
+        <section className="p-4 rounded-xl bg-white border border-black/[0.06] space-y-5">
           {/* Two-column indicators */}
           <div className="flex flex-col sm:flex-row gap-5">
             {renderIndicatorPanel(
@@ -255,17 +255,17 @@ export default function RevisitPage() {
 
           {/* Medications tag input */}
           <div>
-            <h3 className="text-sm font-semibold text-zinc-50 mb-2">正在服用的药物</h3>
+            <h3 className="text-sm font-semibold text-[#1A1A1A] mb-2">正在服用的药物</h3>
             <div className="flex flex-wrap gap-2 mb-2">
               {medications.map((med) => (
                 <span
                   key={med}
-                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-indigo-500/10 text-indigo-400 text-xs font-medium"
+                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#EFF6FF] text-[#2563EB] text-xs font-medium"
                 >
                   {med}
                   <button
                     onClick={() => removeMed(med)}
-                    className="hover:text-red-400 transition-colors"
+                    className="hover:text-[#DC2626] transition-colors"
                     aria-label={`移除${med}`}
                   >
                     <X className="w-3 h-3" />
@@ -278,19 +278,19 @@ export default function RevisitPage() {
               onChange={(e) => setMedInput(e.target.value)}
               onKeyDown={handleMedKeyDown}
               placeholder="输入药物名称，按回车添加"
-              className="w-full px-3 py-2 rounded-lg border border-white/[0.06] text-sm text-zinc-50 bg-[#18181b] focus:outline-none focus:ring-2 focus:ring-indigo-500/10"
+              className="w-full px-3 py-2 rounded-lg border border-black/[0.06] text-sm text-[#1A1A1A] bg-white focus:outline-none focus:ring-2 focus:ring-blue-100"
             />
           </div>
 
           {/* Symptoms update */}
           <div>
-            <h3 className="text-sm font-semibold text-zinc-50 mb-2">症状变化（选填）</h3>
+            <h3 className="text-sm font-semibold text-[#1A1A1A] mb-2">症状变化（选填）</h3>
             <textarea
               value={symptoms}
               onChange={(e) => setSymptoms(e.target.value)}
               placeholder="描述一下最近身体感觉怎么样..."
               rows={3}
-              className="w-full px-3 py-2 rounded-lg border border-white/[0.06] text-sm text-zinc-50 bg-[#18181b] resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500/10"
+              className="w-full px-3 py-2 rounded-lg border border-black/[0.06] text-sm text-[#1A1A1A] bg-white resize-none focus:outline-none focus:ring-2 focus:ring-blue-100"
             />
           </div>
 
@@ -298,7 +298,7 @@ export default function RevisitPage() {
           <div className="flex gap-3">
             <button
               onClick={fillExample}
-              className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-white/[0.06] text-sm font-medium text-zinc-400 hover:bg-[#27272a] transition-colors"
+              className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-black/[0.06] text-sm font-medium text-[#6B7280] hover:bg-[#F5F5F0] transition-colors"
             >
               <Sparkles className="w-4 h-4" />
               试试示例
@@ -306,7 +306,7 @@ export default function RevisitPage() {
             <button
               onClick={handleSubmit}
               disabled={loading}
-              className="flex-1 flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-indigo-500 text-white text-sm font-semibold hover:opacity-90 disabled:opacity-50 transition-opacity"
+              className="flex-1 flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#2563EB] text-white text-sm font-semibold hover:opacity-90 disabled:opacity-50 transition-opacity"
             >
               <ClipboardList className="w-4 h-4" />
               生成复诊报告
@@ -316,7 +316,7 @@ export default function RevisitPage() {
 
         {/* Error */}
         {error && (
-          <div className="mt-4 p-3 rounded-xl bg-red-500/10 text-red-400 text-sm font-medium text-center">
+          <div className="mt-4 p-3 rounded-xl bg-[#FEF2F2] text-[#DC2626] text-sm font-medium text-center">
             {error}
           </div>
         )}
@@ -362,17 +362,17 @@ export default function RevisitPage() {
           return (
           <div className="mt-6 space-y-5">
             {/* Comparison table */}
-            <section className="rounded-xl bg-[#18181b] border border-white/[0.06] overflow-hidden">
-              <div className="px-4 py-3 border-b border-white/[0.06]">
-                <h2 className="text-sm font-bold text-zinc-50 flex items-center gap-1.5">
-                  <Stethoscope className="w-4 h-4 text-indigo-400" />
+            <section className="rounded-xl bg-white border border-black/[0.06] overflow-hidden">
+              <div className="px-4 py-3 border-b border-black/[0.06]">
+                <h2 className="text-sm font-bold text-[#1A1A1A] flex items-center gap-1.5">
+                  <Stethoscope className="w-4 h-4 text-[#2563EB]" />
                   指标对比
                 </h2>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
-                    <tr className="bg-[#27272a] text-zinc-400 text-xs">
+                    <tr className="bg-[#F5F5F0] text-[#6B7280] text-xs">
                       <th className="text-left px-4 py-2.5 font-medium">指标</th>
                       <th className="text-center px-3 py-2.5 font-medium">上次</th>
                       <th className="text-center px-3 py-2.5 font-medium">本次</th>
@@ -384,15 +384,15 @@ export default function RevisitPage() {
                     {comparison.map((item, i) => (
                       <tr
                         key={i}
-                        className={`${rowBg(item.status)} border-t border-white/[0.06] hover:brightness-110 transition-all`}
+                        className={`${rowBg(item.status)} border-t border-black/[0.06] hover:brightness-110 transition-all`}
                       >
-                        <td className="px-4 py-2.5 font-medium text-zinc-50">
+                        <td className="px-4 py-2.5 font-medium text-[#1A1A1A]">
                           {item.name}
                         </td>
-                        <td className="text-center px-3 py-2.5 text-zinc-400">
+                        <td className="text-center px-3 py-2.5 text-[#6B7280]">
                           {item.old_value}
                         </td>
-                        <td className="text-center px-3 py-2.5 text-zinc-50">
+                        <td className="text-center px-3 py-2.5 text-[#1A1A1A]">
                           {item.new_value}
                         </td>
                         <td className="text-center px-3 py-2.5">
@@ -401,10 +401,10 @@ export default function RevisitPage() {
                             <span
                               className={`text-xs font-medium ${
                                 item.status === 'improved'
-                                  ? 'text-emerald-400'
+                                  ? 'text-[#059669]'
                                   : item.status === 'worsened'
-                                    ? 'text-red-400'
-                                    : 'text-zinc-400'
+                                    ? 'text-[#DC2626]'
+                                    : 'text-[#6B7280]'
                               }`}
                             >
                               {item.change_percent}
@@ -423,15 +423,15 @@ export default function RevisitPage() {
 
             {/* Questions for doctor */}
             {questionsForDoctor.length > 0 && (
-              <section className="p-4 rounded-xl bg-[#18181b] border border-white/[0.06]">
+              <section className="p-4 rounded-xl bg-white border border-black/[0.06]">
                 <div className="flex items-center justify-between mb-3">
-                  <h2 className="text-sm font-bold text-zinc-50 flex items-center gap-1.5">
-                    <MessageSquareText className="w-4 h-4 text-indigo-400" />
+                  <h2 className="text-sm font-bold text-[#1A1A1A] flex items-center gap-1.5">
+                    <MessageSquareText className="w-4 h-4 text-[#2563EB]" />
                     复诊时可以问医生
                   </h2>
                   <button
                     onClick={copyQuestions}
-                    className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium text-indigo-400 bg-indigo-500/10 hover:opacity-80 transition-opacity"
+                    className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium text-[#2563EB] bg-[#EFF6FF] hover:opacity-80 transition-opacity"
                   >
                     {copiedQ ? (
                       <>
@@ -450,9 +450,9 @@ export default function RevisitPage() {
                   {questionsForDoctor.map((q, i) => (
                     <li
                       key={i}
-                      className="flex gap-2.5 text-sm text-zinc-50 leading-relaxed"
+                      className="flex gap-2.5 text-sm text-[#1A1A1A] leading-relaxed"
                     >
-                      <span className="flex-shrink-0 w-5 h-5 rounded-full bg-indigo-500/10 text-indigo-400 text-xs font-bold flex items-center justify-center mt-0.5">
+                      <span className="flex-shrink-0 w-5 h-5 rounded-full bg-[#EFF6FF] text-[#2563EB] text-xs font-bold flex items-center justify-center mt-0.5">
                         {i + 1}
                       </span>
                       {q}
@@ -463,14 +463,14 @@ export default function RevisitPage() {
             )}
 
             {/* Doctor brief card */}
-            <section className="relative p-4 rounded-xl bg-[#18181b] border border-white/[0.08]">
+            <section className="relative p-4 rounded-xl bg-white border border-black/[0.06]">
               <button
                 onClick={copyDoctorView}
-                className="absolute top-3 right-3 flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium text-indigo-300 bg-white/[0.06] border border-white/[0.08] hover:bg-white/[0.08] transition-colors"
+                className="absolute top-3 right-3 flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium text-[#2563EB] bg-[#F5F5F0]/50 border border-black/[0.06] hover:bg-gray-50 transition-colors"
               >
                 {copiedD ? (
                   <>
-                    <Check className="w-3.5 h-3.5 text-emerald-400" />
+                    <Check className="w-3.5 h-3.5 text-[#059669]" />
                     已复制
                   </>
                 ) : (
@@ -480,15 +480,15 @@ export default function RevisitPage() {
                   </>
                 )}
               </button>
-              <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 mb-2">给医生看</span>
-              <h2 className="text-sm font-bold text-white mb-2 flex items-center gap-1.5">
-                <Stethoscope className="w-4 h-4 text-zinc-400" />
+              <span className="inline-block text-[10px] font-medium px-2 py-0.5 rounded-full bg-[#EFF6FF] text-[#2563EB] mb-2">给医生看</span>
+              <h2 className="text-sm font-bold text-[#1A1A1A] mb-2 flex items-center gap-1.5">
+                <Stethoscope className="w-4 h-4 text-[#6B7280]" />
                 给医生看的简报
               </h2>
-              <p className="text-sm text-white leading-relaxed whitespace-pre-wrap pr-16">
+              <p className="text-sm text-[#374151] leading-relaxed whitespace-pre-wrap pr-16">
                 {result.doctor_view}
               </p>
-              <p className="mt-3 text-xs text-zinc-400">
+              <p className="mt-3 text-xs text-[#6B7280]">
                 复诊时把这段话给医生看，他10秒就能了解您的情况
               </p>
             </section>
