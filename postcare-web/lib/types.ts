@@ -4,7 +4,7 @@ export interface Indicator {
   unit: string;
   reference_low?: number;
   reference_high?: number;
-  status: 'normal' | 'mild' | 'high' | 'critical';
+  status: 'normal' | 'mild' | 'high' | 'low' | 'critical';
   direction?: 'high' | 'low';
   explanation: string;
   suggestion: string;

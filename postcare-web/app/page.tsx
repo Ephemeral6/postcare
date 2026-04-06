@@ -58,7 +58,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#FAFAF8] pb-20">
       {/* Header / Hero */}
-      <div className="px-6 pt-12 pb-10">
+      <div className="px-6 pt-12 pb-4">
         <div className="flex items-center gap-2.5 mb-10">
           <div className="w-8 h-8 rounded-lg bg-[#2563EB] flex items-center justify-center">
             <Heart className="w-4 h-4 text-white fill-white" />
@@ -66,7 +66,7 @@ export default function Home() {
           <span className="text-[15px] font-semibold text-[#1A1A1A] tracking-tight">PostCare</span>
         </div>
 
-        <h1 className="text-2xl font-bold text-[#1A1A1A] tracking-tight leading-snug mb-1.5 min-h-[4.5em]">
+        <h1 className="text-2xl font-bold text-[#1A1A1A] tracking-tight leading-snug mb-3 min-h-[4.5em]">
           {renderHeroText()}
           {showCursor && <span className="cursor-blink text-[#2563EB] ml-0.5">|</span>}
         </h1>
@@ -97,7 +97,7 @@ export default function Home() {
       </div>
 
       {/* Timeline CTA — white card with blue left border */}
-      <div className="px-5 mb-10">
+      <div className="px-5 mb-6">
         <Link href="/timeline" className="block">
           <div
             className="rounded-2xl bg-white border-l-4 border-l-[#2563EB] p-5"

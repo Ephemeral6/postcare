@@ -44,7 +44,7 @@ function calculateHealthScore(indicators: Indicator[]): number {
   if (!indicators || indicators.length === 0) return 100;
   const total = indicators.length;
   const normal = indicators.filter(i => i.status === 'normal').length;
-  const high = indicators.filter(i => i.status === 'high' || i.status === 'mild').length;
+  const high = indicators.filter(i => i.status === 'high' || i.status === 'mild' || i.status === 'low').length;
   const critical = indicators.filter(i => i.status === 'critical').length;
   let score = 100;
   score -= high * 8;
@@ -76,6 +76,7 @@ function getScoreRingColor(score: number): string {
 }
 
 function getDimensions(indicators: Indicator[]) {
+  if (!indicators || indicators.length === 0) return [];
   const groups: Record<string, Indicator[]> = {};
   indicators.forEach(ind => {
     const name = ind.name;
@@ -183,8 +184,9 @@ function HealthScoreView({
 // ==================== Doctor View ====================
 
 function DoctorView({ indicators, summary }: { indicators: Indicator[]; summary: string }) {
-  const abnormal = indicators.filter(i => i.status !== 'normal');
-  const normal = indicators.filter(i => i.status === 'normal');
+  const safeIndicators = indicators ?? [];
+  const abnormal = safeIndicators.filter(i => i.status !== 'normal');
+  const normal = safeIndicators.filter(i => i.status === 'normal');
 
   return (
     <div className="bg-[#F9FAFB] rounded-xl border border-black/[0.06] overflow-hidden font-data text-sm">
@@ -542,7 +544,7 @@ export default function ReportPage() {
     if (!result) return;
     setShowScore(true);
     setDisplayScore(0);
-    const target = calculateHealthScore(result.indicators);
+    const target = calculateHealthScore(result.indicators ?? []);
     const duration = 1500;
     const start = Date.now();
     let raf: number;
@@ -730,7 +732,7 @@ export default function ReportPage() {
         {/* Health Score View */}
         {!loading && result && showScore && (
           <HealthScoreView
-            indicators={result.indicators}
+            indicators={result.indicators ?? []}
             displayScore={displayScore}
             onViewDetails={() => setShowScore(false)}
           />
@@ -755,7 +757,7 @@ export default function ReportPage() {
 
             {/* Doctor View */}
             {viewMode === 'doctor' && (
-              <DoctorView indicators={result.indicators} summary={result.summary} />
+              <DoctorView indicators={result.indicators ?? []} summary={result.summary ?? ''} />
             )}
 
             {/* Patient View */}
