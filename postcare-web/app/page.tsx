@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Heart, Stethoscope, FileText, Pill, TrendingUp, ClipboardList, ChevronRight, Activity } from 'lucide-react';
+import BottomNav from '@/components/layout/BottomNav';
 
 const HERO_TEXT = '让医生在诊室里来不及说的话，在你最需要的时候被听见。';
 
@@ -65,7 +66,7 @@ export default function Home() {
           <span className="text-[15px] font-semibold text-[#1A1A1A] tracking-tight">PostCare</span>
         </div>
 
-        <h1 className="text-2xl font-bold text-[#1A1A1A] tracking-tight leading-snug mb-3 min-h-[4.5em]">
+        <h1 className="text-2xl font-bold text-[#1A1A1A] tracking-tight leading-snug mb-1.5 min-h-[4.5em]">
           {renderHeroText()}
           {showCursor && <span className="cursor-blink text-[#2563EB] ml-0.5">|</span>}
         </h1>
@@ -78,8 +79,8 @@ export default function Home() {
       <div className="px-5 mb-3">
         <Link href="/journey" className="block">
           <div
-            className="rounded-2xl bg-[#2563EB] text-white p-5"
-            style={{ boxShadow: '0 8px 24px rgba(37,99,235,0.25)' }}
+            className="rounded-2xl bg-[#1E3A5F] text-white p-5"
+            style={{ boxShadow: '0 8px 24px rgba(30,58,95,0.3)' }}
           >
             <div className="flex items-center gap-4">
               <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center">
@@ -148,6 +149,8 @@ export default function Home() {
           PostCare · 浙大未来学习中心 · Ultra Maker Hackathon 2026
         </p>
       </div>
+
+      <BottomNav />
     </div>
   );
 }
