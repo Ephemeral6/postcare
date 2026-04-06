@@ -9,46 +9,26 @@ function PlayButton({ text }: { text: string }) {
       const audio = new Audio(url);
       audio.play();
       audio.onended = () => URL.revokeObjectURL(url);
-    } catch {
-      // TTS not available
-    }
+    } catch {}
   };
-
   return (
-    <button
-      onClick={handlePlay}
-      className="inline-flex items-center gap-1 mt-2 text-xs text-slate-500 hover:text-blue-400 transition-colors"
-    >
+    <button onClick={handlePlay} className="inline-flex items-center gap-1 mt-2 text-[11px] text-zinc-500 hover:text-indigo-400 transition-colors">
       <Volume2 className="w-3.5 h-3.5" />
       朗读
     </button>
   );
 }
 
-export default function ChatBubble({
-  role,
-  content,
-  showTTS = false,
-}: {
-  role: 'user' | 'assistant';
-  content: string;
-  showTTS?: boolean;
-}) {
+export default function ChatBubble({ role, content, showTTS = false }: { role: 'user' | 'assistant'; content: string; showTTS?: boolean }) {
   const isUser = role === 'user';
   return (
     <div className={`flex gap-2 ${isUser ? 'flex-row-reverse' : 'flex-row'} mb-3`}>
       {!isUser && (
-        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center">
-          <Heart className="w-4 h-4 text-blue-400 fill-blue-400" />
+        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center">
+          <Heart className="w-4 h-4 text-indigo-400 fill-indigo-400" />
         </div>
       )}
-      <div
-        className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
-          isUser
-            ? 'bg-blue-500 text-white rounded-br-md'
-            : 'bg-[#141E33] border border-white/5 text-slate-200 rounded-bl-md'
-        }`}
-      >
+      <div className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${isUser ? 'bg-indigo-500 text-white rounded-br-md' : 'bg-[#18181b] border border-white/[0.06] text-zinc-200 rounded-bl-md'}`}>
         <div className="whitespace-pre-wrap">{content}</div>
         {!isUser && showTTS && <PlayButton text={content} />}
       </div>
