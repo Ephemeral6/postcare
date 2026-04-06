@@ -1,5 +1,6 @@
 from openai import OpenAI
 import json
+import re
 import logging
 from config import DEEPSEEK_API_KEY, DEEPSEEK_BASE_URL, DEEPSEEK_MODEL
 
@@ -7,7 +8,8 @@ logger = logging.getLogger(__name__)
 
 client = OpenAI(
     api_key=DEEPSEEK_API_KEY,
-    base_url=DEEPSEEK_BASE_URL
+    base_url=DEEPSEEK_BASE_URL,
+    timeout=120.0
 )
 
 
@@ -34,11 +36,17 @@ async def call_llm(system_prompt: str, user_prompt: str, max_retries: int = 1) -
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_prompt}
                 ],
-                temperature=0.3,
-                response_format={"type": "json_object"}
+                temperature=0.3
             )
             raw_text = response.choices[0].message.content
-            return json.loads(raw_text)
+            # 尝试直接解析，如失败则提取 ```json ... ``` 代码块
+            try:
+                return json.loads(raw_text)
+            except json.JSONDecodeError:
+                match = re.search(r'```json\s*(.*?)\s*```', raw_text, re.DOTALL)
+                if match:
+                    return json.loads(match.group(1))
+                raise
         except json.JSONDecodeError as e:
             last_error = e
             logger.warning(f"JSON解析失败 (第{attempt + 1}次)，原始内容: {raw_text[:200] if raw_text else 'None'}")
