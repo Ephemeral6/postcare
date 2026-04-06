@@ -96,7 +96,6 @@ const timelineData = [
   },
 ];
 
-// 统计各类型数量
 const typeCounts: Record<string, number> = {};
 timelineData.forEach((item) => {
   typeCounts[item.type] = (typeCounts[item.type] || 0) + 1;
@@ -115,32 +114,27 @@ export default function TimelinePage() {
   const [guardEnabled, setGuardEnabled] = useState(true);
 
   return (
-    <div className="min-h-screen bg-background pb-12">
+    <div className="min-h-screen bg-white pb-12">
       {/* Header */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-purple-500 via-indigo-500 to-blue-600 text-white">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-6 left-[20%] w-24 h-24 rounded-full bg-white/10 blur-2xl animate-float-slow" />
-          <div className="absolute top-14 right-[15%] w-20 h-20 rounded-full bg-white/8 blur-2xl animate-float-slower" />
-        </div>
-
-        <div className="relative px-5 pt-12 pb-8">
-          <Link href="/" className="inline-flex items-center gap-1 text-white/80 text-sm mb-4 hover:text-white transition-colors">
+      <div className="bg-blue-600 text-white">
+        <div className="px-5 pt-12 pb-8">
+          <Link href="/" className="inline-flex items-center gap-1 text-blue-100 text-sm mb-4 hover:text-white transition-colors">
             <ChevronLeft className="w-4 h-4" />
             返回首页
           </Link>
 
           <div className="flex items-center gap-3 mb-3">
-            <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-sm">
+            <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-white/20">
               <Heart className="w-6 h-6 text-white fill-white" />
             </div>
             <div>
               <h1 className="text-xl font-bold">PostCare 主动守护</h1>
-              <p className="text-sm text-purple-100/90">不是等你来找我，而是我主动找你</p>
+              <p className="text-sm text-blue-100">不是等你来找我，而是我主动找你</p>
             </div>
           </div>
 
           {/* Toggle */}
-          <div className="flex items-center gap-3 mt-4 bg-white/10 backdrop-blur-sm rounded-2xl px-4 py-3">
+          <div className="flex items-center gap-3 mt-4 bg-white/10 rounded-xl px-4 py-3">
             <Shield className="w-5 h-5 text-white/80" />
             <span className="text-sm flex-1">开启主动守护</span>
             <button
@@ -151,21 +145,16 @@ export default function TimelinePage() {
             </button>
           </div>
         </div>
-
-        <svg className="block w-full" viewBox="0 0 1440 48" fill="none">
-          <path d="M0 48V18C240 -2 480 30 720 22C960 14 1200 38 1440 22V48H0Z" fill="var(--background)" />
-        </svg>
       </div>
 
       {/* Timeline */}
-      <div className="px-5 pt-2 pb-4">
-        <p className="text-sm text-text-secondary mb-5">
-          以下是PostCare在 <span className="font-semibold text-text">28天</span> 内主动发送的守护消息
+      <div className="px-5 pt-6 pb-4">
+        <p className="text-sm text-gray-500 mb-5">
+          以下是PostCare在 <span className="font-semibold text-gray-900">28天</span> 内主动发送的守护消息
         </p>
 
         <div className="relative">
-          {/* Vertical dashed line */}
-          <div className="absolute left-[15px] top-4 bottom-4 w-px border-l-2 border-dashed border-purple-200" />
+          <div className="absolute left-[15px] top-4 bottom-4 w-px border-l-2 border-dashed border-blue-100" />
 
           <div className="space-y-4">
             {timelineData.map((item, index) => {
@@ -174,33 +163,25 @@ export default function TimelinePage() {
                 <div
                   key={index}
                   className="relative pl-10"
-                  style={{
-                    animation: `fadeSlideUp 0.4s ease-out ${index * 0.06}s both`,
-                  }}
                 >
-                  {/* Dot on timeline */}
-                  <div className={`absolute left-[9px] top-5 w-[14px] h-[14px] rounded-full ${config.dot} ring-4 ring-background z-10`} />
+                  <div className={`absolute left-[9px] top-5 w-[14px] h-[14px] rounded-full ${config.dot} ring-4 ring-white z-10`} />
 
-                  {/* Card */}
-                  <div className={`${config.bg} rounded-[18px] p-4 border border-gray-100/60 shadow-[var(--shadow-soft)]`}>
-                    {/* Date & Day */}
+                  <div className={`${config.bg} rounded-xl p-4 border border-gray-100`}>
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="text-xs font-medium text-text-secondary">
+                      <span className="text-xs font-medium text-gray-500">
                         {item.date}
                       </span>
-                      <span className="text-[11px] text-text-secondary/60">
+                      <span className="text-[11px] text-gray-400">
                         · 第{item.day}天
                       </span>
                     </div>
 
-                    {/* Title */}
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-lg">{item.icon}</span>
-                      <h3 className="text-[15px] font-bold text-text">{item.title}</h3>
+                      <h3 className="text-[15px] font-bold text-gray-900">{item.title}</h3>
                     </div>
 
-                    {/* Message */}
-                    <p className="text-sm text-text-secondary leading-relaxed">
+                    <p className="text-sm text-gray-500 leading-relaxed">
                       {item.message}
                     </p>
                   </div>
@@ -213,29 +194,24 @@ export default function TimelinePage() {
 
       {/* Summary Card */}
       <div className="px-5 pt-2 pb-6">
-        <div className="relative overflow-hidden rounded-[20px] bg-gradient-to-br from-purple-500 via-indigo-500 to-blue-500 p-6 text-white shadow-[0_8px_32px_rgba(99,102,241,0.25)]">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-white/8 rounded-full -translate-y-12 translate-x-12 blur-sm" />
-          <div className="absolute bottom-0 left-0 w-20 h-20 bg-white/5 rounded-full translate-y-8 -translate-x-6 blur-sm" />
+        <div className="rounded-xl bg-white border-2 border-blue-100 p-6">
+          <h3 className="text-lg font-bold text-gray-900 mb-4">
+            28天，PostCare主动触达了{timelineData.length}次
+          </h3>
 
-          <div className="relative">
-            <h3 className="text-lg font-bold mb-4">
-              28天，PostCare主动触达了{timelineData.length}次
-            </h3>
-
-            <div className="grid grid-cols-2 gap-2 mb-5">
-              {summaryItems.map((s, i) => (
-                <div key={i} className="flex items-center gap-2 text-sm text-white/90">
-                  <span>{s.icon}</span>
-                  <span>{s.label}</span>
-                  <span className="font-bold">{s.count}次</span>
-                </div>
-              ))}
-            </div>
-
-            <p className="text-sm text-purple-100/80 italic text-center">
-              &ldquo;不是等你来找我，而是我主动找你&rdquo;
-            </p>
+          <div className="grid grid-cols-2 gap-2 mb-5">
+            {summaryItems.map((s, i) => (
+              <div key={i} className="flex items-center gap-2 text-sm text-gray-600">
+                <span>{s.icon}</span>
+                <span>{s.label}</span>
+                <span className="font-bold text-gray-900">{s.count}次</span>
+              </div>
+            ))}
           </div>
+
+          <p className="text-sm text-gray-400 italic text-center">
+            &ldquo;不是等你来找我，而是我主动找你&rdquo;
+          </p>
         </div>
       </div>
     </div>

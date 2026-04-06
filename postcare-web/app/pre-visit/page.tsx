@@ -130,18 +130,18 @@ export default function PreVisitPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white">
       <Header stage="诊前准备" />
 
-      <main className="max-w-lg mx-auto px-4 pt-4 pb-28 page-enter">
+      <main className="max-w-lg mx-auto px-4 pt-4 pb-20 page-enter">
         {/* Tabs */}
-        <div className="flex bg-card rounded-xl p-1 border border-border mb-5">
+        <div className="flex bg-gray-50 rounded-xl p-1 border border-gray-100 mb-5">
           <button
             onClick={() => setActiveTab('interview')}
             className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-sm font-medium transition-all ${
               activeTab === 'interview'
-                ? 'bg-primary text-white shadow-sm'
-                : 'text-text-secondary hover:text-text'
+                ? 'bg-blue-600 text-white shadow-sm'
+                : 'text-gray-500 hover:text-gray-900'
             }`}
           >
             <Stethoscope className="w-4 h-4" />
@@ -151,8 +151,8 @@ export default function PreVisitPage() {
             onClick={() => setActiveTab('checklist')}
             className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-sm font-medium transition-all ${
               activeTab === 'checklist'
-                ? 'bg-primary text-white shadow-sm'
-                : 'text-text-secondary hover:text-text'
+                ? 'bg-blue-600 text-white shadow-sm'
+                : 'text-gray-500 hover:text-gray-900'
             }`}
           >
             <ClipboardList className="w-4 h-4" />
@@ -165,7 +165,7 @@ export default function PreVisitPage() {
           <div className="space-y-4">
             {/* Symptoms textarea */}
             <div>
-              <label className="block text-sm font-semibold text-text mb-2">
+              <label className="block text-sm font-semibold text-gray-900 mb-2">
                 请描述您的症状，想到什么写什么，我来帮您整理
               </label>
               <textarea
@@ -173,11 +173,11 @@ export default function PreVisitPage() {
                 onChange={(e) => setSymptoms(e.target.value)}
                 placeholder="最近一周头晕，早上起来特别明显，有时候恶心..."
                 rows={5}
-                className="w-full px-4 py-3 rounded-xl border border-border bg-white text-text text-sm leading-relaxed placeholder:text-text-secondary/50 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary resize-none transition-all"
+                className="w-full px-4 py-3 rounded-xl border border-gray-100 bg-white text-gray-900 text-sm leading-relaxed placeholder:text-gray-500/50 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 resize-none transition-all"
               />
               <button
                 onClick={fillExample}
-                className="mt-1.5 text-xs text-primary hover:text-primary/80 font-medium transition-colors"
+                className="mt-1.5 text-xs text-blue-600 hover:text-blue-600/80 font-medium transition-colors"
               >
                 试试示例
               </button>
@@ -185,7 +185,7 @@ export default function PreVisitPage() {
 
             {/* History input */}
             <div>
-              <label className="block text-sm font-medium text-text-secondary mb-1.5">
+              <label className="block text-sm font-medium text-gray-500 mb-1.5">
                 既往病史（可选）
               </label>
               <input
@@ -193,7 +193,7 @@ export default function PreVisitPage() {
                 value={history}
                 onChange={(e) => setHistory(e.target.value)}
                 placeholder="如：高血压3年、糖尿病..."
-                className="w-full px-4 py-2.5 rounded-xl border border-border bg-white text-text text-sm placeholder:text-text-secondary/50 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                className="w-full px-4 py-2.5 rounded-xl border border-gray-100 bg-white text-gray-900 text-sm placeholder:text-gray-500/50 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 transition-all"
               />
             </div>
 
@@ -201,7 +201,7 @@ export default function PreVisitPage() {
             <button
               onClick={handleInterview}
               disabled={!symptoms.trim() || interviewLoading}
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-primary text-white font-semibold text-sm shadow-sm hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-blue-600 text-white font-semibold text-sm shadow-sm hover:bg-blue-600/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
             >
               <Sparkles className="w-4 h-4" />
               帮我整理
@@ -222,29 +222,29 @@ export default function PreVisitPage() {
             {interviewResult && (
               <div className="space-y-4 mt-2">
                 {/* Card 1: 主诉 */}
-                <div className="p-4 rounded-xl bg-primary-light border border-primary/20">
-                  <h3 className="text-xs font-semibold text-primary mb-2 flex items-center gap-1.5">
+                <div className="p-4 rounded-xl bg-blue-50 border border-blue-600/20">
+                  <h3 className="text-xs font-semibold text-blue-600 mb-2 flex items-center gap-1.5">
                     <Stethoscope className="w-3.5 h-3.5" />
                     主诉
                   </h3>
-                  <p className="text-base font-semibold text-text leading-relaxed">
+                  <p className="text-base font-semibold text-gray-900 leading-relaxed">
                     {interviewResult.structured_symptoms?.main_complaint}
                   </p>
                 </div>
 
                 {/* Card 2: 症状详情 */}
-                <div className="rounded-xl border border-border bg-white overflow-hidden">
-                  <div className="px-4 py-3 border-b border-border bg-gray-50/50">
-                    <h3 className="text-xs font-semibold text-text flex items-center gap-1.5">
-                      <FileText className="w-3.5 h-3.5 text-primary" />
+                <div className="rounded-xl border border-gray-100 bg-white overflow-hidden">
+                  <div className="px-4 py-3 border-b border-gray-100 bg-gray-50/50">
+                    <h3 className="text-xs font-semibold text-gray-900 flex items-center gap-1.5">
+                      <FileText className="w-3.5 h-3.5 text-blue-600" />
                       症状详情
                     </h3>
                   </div>
                   <div className="divide-y divide-border">
                     {interviewResult.structured_symptoms?.symptom_details?.map((item, idx) => (
                       <div key={idx} className="px-4 py-3">
-                        <p className="text-sm font-semibold text-text mb-1.5">{item.symptom}</p>
-                        <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-text-secondary">
+                        <p className="text-sm font-semibold text-gray-900 mb-1.5">{item.symptom}</p>
+                        <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-500">
                           <span>持续: {item.duration}</span>
                           <span>程度: {item.severity}</span>
                           <span>频率: {item.frequency}</span>
@@ -260,21 +260,21 @@ export default function PreVisitPage() {
                     <CheckCircle2 className="w-3.5 h-3.5" />
                     建议挂科
                   </h3>
-                  <p className="text-lg font-bold text-text">
+                  <p className="text-lg font-bold text-gray-900">
                     {interviewResult.structured_symptoms?.suggested_department}
                   </p>
                 </div>
 
                 {/* Card 4: 问医生的问题 */}
-                <div className="rounded-xl border border-border bg-white overflow-hidden">
-                  <div className="px-4 py-3 border-b border-border bg-gray-50/50 flex items-center justify-between">
-                    <h3 className="text-xs font-semibold text-text flex items-center gap-1.5">
-                      <Info className="w-3.5 h-3.5 text-primary" />
+                <div className="rounded-xl border border-gray-100 bg-white overflow-hidden">
+                  <div className="px-4 py-3 border-b border-gray-100 bg-gray-50/50 flex items-center justify-between">
+                    <h3 className="text-xs font-semibold text-gray-900 flex items-center gap-1.5">
+                      <Info className="w-3.5 h-3.5 text-blue-600" />
                       问医生的问题
                     </h3>
                     <button
                       onClick={handleCopyQuestions}
-                      className="flex items-center gap-1 text-xs text-primary hover:text-primary/80 font-medium transition-colors"
+                      className="flex items-center gap-1 text-xs text-blue-600 hover:text-blue-600/80 font-medium transition-colors"
                     >
                       {copiedQuestions ? (
                         <>
@@ -291,8 +291,8 @@ export default function PreVisitPage() {
                   </div>
                   <div className="p-4 space-y-2.5">
                     {interviewResult.structured_symptoms?.questions_for_doctor?.map((q, idx) => (
-                      <div key={idx} className="flex gap-2.5 text-sm text-text">
-                        <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-primary-light text-primary text-xs font-bold">
+                      <div key={idx} className="flex gap-2.5 text-sm text-gray-900">
+                        <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-blue-50 text-blue-600 text-xs font-bold">
                           {idx + 1}
                         </span>
                         <span className="leading-relaxed">{q}</span>
@@ -302,10 +302,10 @@ export default function PreVisitPage() {
                 </div>
 
                 {/* Card 5: 就诊前准备提示 */}
-                <div className="rounded-xl border border-border bg-white overflow-hidden">
-                  <div className="px-4 py-3 border-b border-border bg-gray-50/50">
-                    <h3 className="text-xs font-semibold text-text flex items-center gap-1.5">
-                      <ClipboardList className="w-3.5 h-3.5 text-primary" />
+                <div className="rounded-xl border border-gray-100 bg-white overflow-hidden">
+                  <div className="px-4 py-3 border-b border-gray-100 bg-gray-50/50">
+                    <h3 className="text-xs font-semibold text-gray-900 flex items-center gap-1.5">
+                      <ClipboardList className="w-3.5 h-3.5 text-blue-600" />
                       就诊前准备提示
                     </h3>
                   </div>
@@ -314,8 +314,8 @@ export default function PreVisitPage() {
                       ? interviewResult.pre_visit_tips.split(/[;；\n]/).filter(Boolean)
                       : []
                     ).map((tip, idx) => (
-                      <div key={idx} className="flex gap-2 text-sm text-text-secondary">
-                        <span className="text-primary mt-0.5">&#8226;</span>
+                      <div key={idx} className="flex gap-2 text-sm text-gray-500">
+                        <span className="text-blue-600 mt-0.5">&#8226;</span>
                         <span className="leading-relaxed">{tip}</span>
                       </div>
                     ))}
@@ -331,27 +331,27 @@ export default function PreVisitPage() {
           <div className="space-y-4">
             {/* Department dropdown */}
             <div>
-              <label className="block text-sm font-semibold text-text mb-2">
+              <label className="block text-sm font-semibold text-gray-900 mb-2">
                 选择就诊科室
               </label>
               <div className="relative">
                 <select
                   value={department}
                   onChange={(e) => setDepartment(e.target.value)}
-                  className="w-full appearance-none px-4 py-2.5 pr-10 rounded-xl border border-border bg-white text-text text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                  className="w-full appearance-none px-4 py-2.5 pr-10 rounded-xl border border-gray-100 bg-white text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 transition-all"
                 >
                   <option value="">请选择科室</option>
                   {DEPARTMENTS.map((d) => (
                     <option key={d} value={d}>{d}</option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary pointer-events-none" />
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
               </div>
             </div>
 
             {/* Optional symptoms */}
             <div>
-              <label className="block text-sm font-medium text-text-secondary mb-1.5">
+              <label className="block text-sm font-medium text-gray-500 mb-1.5">
                 症状描述（可选，获得更精准的清单）
               </label>
               <textarea
@@ -359,7 +359,7 @@ export default function PreVisitPage() {
                 onChange={(e) => setChecklistSymptoms(e.target.value)}
                 placeholder="简单描述您的症状..."
                 rows={3}
-                className="w-full px-4 py-3 rounded-xl border border-border bg-white text-text text-sm leading-relaxed placeholder:text-text-secondary/50 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary resize-none transition-all"
+                className="w-full px-4 py-3 rounded-xl border border-gray-100 bg-white text-gray-900 text-sm leading-relaxed placeholder:text-gray-500/50 focus:outline-none focus:ring-2 focus:ring-blue-600/30 focus:border-blue-600 resize-none transition-all"
               />
             </div>
 
@@ -367,7 +367,7 @@ export default function PreVisitPage() {
             <button
               onClick={handleChecklist}
               disabled={!department || checklistLoading}
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-primary text-white font-semibold text-sm shadow-sm hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-blue-600 text-white font-semibold text-sm shadow-sm hover:bg-blue-600/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
             >
               <ClipboardList className="w-4 h-4" />
               生成准备清单
@@ -388,10 +388,10 @@ export default function PreVisitPage() {
             {checklistResult && (
               <div className="space-y-4 mt-2">
                 {/* Documents checklist */}
-                <div className="rounded-xl border border-border bg-white overflow-hidden">
-                  <div className="px-4 py-3 border-b border-border bg-gray-50/50">
-                    <h3 className="text-xs font-semibold text-text flex items-center gap-1.5">
-                      <FileText className="w-3.5 h-3.5 text-primary" />
+                <div className="rounded-xl border border-gray-100 bg-white overflow-hidden">
+                  <div className="px-4 py-3 border-b border-gray-100 bg-gray-50/50">
+                    <h3 className="text-xs font-semibold text-gray-900 flex items-center gap-1.5">
+                      <FileText className="w-3.5 h-3.5 text-blue-600" />
                       需要携带的材料
                     </h3>
                   </div>
@@ -405,11 +405,11 @@ export default function PreVisitPage() {
                           type="checkbox"
                           checked={checkedDocs.has(idx)}
                           onChange={() => toggleDoc(idx)}
-                          className="w-4 h-4 rounded border-border text-primary focus:ring-primary/30 accent-primary"
+                          className="w-4 h-4 rounded border-gray-100 text-blue-600 focus:ring-blue-600/30 accent-blue-600"
                         />
                         <span
                           className={`flex-1 text-sm ${
-                            checkedDocs.has(idx) ? 'line-through text-text-secondary' : 'text-text'
+                            checkedDocs.has(idx) ? 'line-through text-gray-500' : 'text-gray-900'
                           } transition-all`}
                         >
                           {typeof doc === 'string' ? doc : doc}
@@ -421,9 +421,9 @@ export default function PreVisitPage() {
                 </div>
 
                 {/* Preparations */}
-                <div className="rounded-xl border border-border bg-white overflow-hidden">
-                  <div className="px-4 py-3 border-b border-border bg-gray-50/50">
-                    <h3 className="text-xs font-semibold text-text flex items-center gap-1.5">
+                <div className="rounded-xl border border-gray-100 bg-white overflow-hidden">
+                  <div className="px-4 py-3 border-b border-gray-100 bg-gray-50/50">
+                    <h3 className="text-xs font-semibold text-gray-900 flex items-center gap-1.5">
                       <CheckCircle2 className="w-3.5 h-3.5 text-success" />
                       就诊前准备事项
                     </h3>
@@ -438,11 +438,11 @@ export default function PreVisitPage() {
                           type="checkbox"
                           checked={checkedPreps.has(idx)}
                           onChange={() => togglePrep(idx)}
-                          className="w-4 h-4 rounded border-border text-primary focus:ring-primary/30 accent-primary"
+                          className="w-4 h-4 rounded border-gray-100 text-blue-600 focus:ring-blue-600/30 accent-blue-600"
                         />
                         <span
                           className={`flex-1 text-sm ${
-                            checkedPreps.has(idx) ? 'line-through text-text-secondary' : 'text-text'
+                            checkedPreps.has(idx) ? 'line-through text-gray-500' : 'text-gray-900'
                           } transition-all`}
                         >
                           {prep.item}
@@ -454,17 +454,17 @@ export default function PreVisitPage() {
                 </div>
 
                 {/* Common tests */}
-                <div className="rounded-xl border border-border bg-white overflow-hidden">
-                  <div className="px-4 py-3 border-b border-border bg-gray-50/50">
-                    <h3 className="text-xs font-semibold text-text flex items-center gap-1.5">
-                      <FlaskConical className="w-3.5 h-3.5 text-primary" />
+                <div className="rounded-xl border border-gray-100 bg-white overflow-hidden">
+                  <div className="px-4 py-3 border-b border-gray-100 bg-gray-50/50">
+                    <h3 className="text-xs font-semibold text-gray-900 flex items-center gap-1.5">
+                      <FlaskConical className="w-3.5 h-3.5 text-blue-600" />
                       可能的检查项目
                     </h3>
                   </div>
                   <div className="p-4 space-y-2">
                     {checklistResult.checklist?.common_tests?.map((test, idx) => (
-                      <div key={idx} className="flex gap-2 text-sm text-text-secondary">
-                        <span className="text-primary mt-0.5">&#8226;</span>
+                      <div key={idx} className="flex gap-2 text-sm text-gray-500">
+                        <span className="text-blue-600 mt-0.5">&#8226;</span>
                         <span className="leading-relaxed">{test}</span>
                       </div>
                     ))}
@@ -473,18 +473,18 @@ export default function PreVisitPage() {
 
                 {/* Time and cost estimates */}
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="flex items-center gap-3 p-4 rounded-xl bg-primary-light border border-primary/20">
-                    <Clock className="w-5 h-5 text-primary flex-shrink-0" />
+                  <div className="flex items-center gap-3 p-4 rounded-xl bg-blue-50 border border-blue-600/20">
+                    <Clock className="w-5 h-5 text-blue-600 flex-shrink-0" />
                     <div>
-                      <p className="text-[11px] text-text-secondary">预计时间</p>
-                      <p className="text-sm font-bold text-text">{checklistResult.checklist?.estimated_time}</p>
+                      <p className="text-[11px] text-gray-500">预计时间</p>
+                      <p className="text-sm font-bold text-gray-900">{checklistResult.checklist?.estimated_time}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 p-4 rounded-xl bg-success-light border border-success/20">
                     <DollarSign className="w-5 h-5 text-success flex-shrink-0" />
                     <div>
-                      <p className="text-[11px] text-text-secondary">预计费用</p>
-                      <p className="text-sm font-bold text-text">{checklistResult.checklist?.cost_estimate}</p>
+                      <p className="text-[11px] text-gray-500">预计费用</p>
+                      <p className="text-sm font-bold text-gray-900">{checklistResult.checklist?.cost_estimate}</p>
                     </div>
                   </div>
                 </div>

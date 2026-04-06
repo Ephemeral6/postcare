@@ -44,16 +44,13 @@ function IndicatorBar({ indicator }: { indicator: Indicator }) {
   const max = reference_high ?? value * 2;
   const range = max - min;
 
-  // Extend visible range to show out-of-range values
   const displayMin = min - range * 0.3;
   const displayMax = max + range * 0.3;
   const displayRange = displayMax - displayMin;
 
-  // Clamp dot position
   const clampedValue = Math.max(displayMin, Math.min(displayMax, value));
   const dotPosition = ((clampedValue - displayMin) / displayRange) * 100;
 
-  // Reference range bar position
   const rangeLeft = ((min - displayMin) / displayRange) * 100;
   const rangeRight = ((max - displayMin) / displayRange) * 100;
 
@@ -62,25 +59,21 @@ function IndicatorBar({ indicator }: { indicator: Indicator }) {
 
   return (
     <div className="mt-2 mb-1">
-      <div className="flex justify-between text-[10px] text-text-secondary mb-1">
+      <div className="flex justify-between text-[10px] text-gray-400 mb-1">
         <span>{min}</span>
         <span>{max}</span>
       </div>
-      <div className="relative h-2.5 rounded-full bg-gray-100/80 overflow-visible">
-        {/* Reference range fill */}
+      <div className="relative h-2.5 rounded-full bg-gray-100 overflow-visible">
         <div
           className="absolute top-0 h-full rounded-full"
           style={{
             left: `${rangeLeft}%`,
             width: `${rangeRight - rangeLeft}%`,
-            background: isNormal
-              ? 'linear-gradient(90deg, var(--success-light), rgba(22,163,74,0.15))'
-              : 'linear-gradient(90deg, #E2E8F0, #F1F5F9)',
+            background: isNormal ? 'var(--success-light)' : '#F1F5F9',
           }}
         />
-        {/* Value dot with breathing animation */}
         <div
-          className={`absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-2 border-white shadow-lg transition-all duration-500 ${!isNormal ? 'animate-breathe' : ''}`}
+          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-2 border-white shadow-sm transition-all duration-500"
           style={{
             left: `${dotPosition}%`,
             backgroundColor: dotColor,
@@ -107,40 +100,37 @@ function IndicatorCard({ indicator }: { indicator: Indicator }) {
 
   const borderColor =
     indicator.status === 'critical'
+      ? 'border-l-red-500'
+      : indicator.status === 'normal'
+        ? 'border-l-green-500'
+        : 'border-l-amber-500';
+
+  const valueColor =
+    indicator.status === 'critical'
       ? 'var(--danger)'
       : indicator.status === 'normal'
         ? 'var(--success)'
         : 'var(--warning)';
 
-  const gradientBorder =
-    indicator.status === 'critical'
-      ? 'from-red-400 to-red-600'
-      : indicator.status === 'normal'
-        ? 'from-emerald-400 to-emerald-500'
-        : 'from-amber-400 to-orange-500';
-
   return (
-    <div className="relative bg-card rounded-[18px] shadow-[var(--shadow-soft)] overflow-hidden transition-all duration-300">
-      {/* Gradient left border */}
-      <div className={`absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b ${gradientBorder}`} />
-
+    <div className={`relative bg-white rounded-xl border border-gray-100 border-l-4 ${borderColor} overflow-hidden transition-all duration-300`}>
       <button
         onClick={() => setExpanded((v) => !v)}
-        className="w-full flex items-center justify-between p-4 pl-5 text-left"
+        className="w-full flex items-center justify-between p-4 text-left"
       >
         <div className="flex items-center gap-2 flex-1 min-w-0">
-          <span className="font-semibold text-text text-sm truncate">{indicator.name}</span>
+          <span className="font-semibold text-gray-900 text-sm truncate">{indicator.name}</span>
           <SeverityBadge severity={indicator.status} />
         </div>
         <div className="flex items-center gap-2 shrink-0">
-          <span className="tabular-nums font-bold text-lg" style={{ color: borderColor }}>
+          <span className="tabular-nums font-bold text-lg" style={{ color: valueColor }}>
             {indicator.value}
           </span>
-          <span className="text-xs text-text-secondary">{indicator.unit}</span>
+          <span className="text-xs text-gray-400">{indicator.unit}</span>
           {expanded ? (
-            <ChevronUp className="w-4 h-4 text-text-secondary" />
+            <ChevronUp className="w-4 h-4 text-gray-400" />
           ) : (
-            <ChevronDown className="w-4 h-4 text-text-secondary" />
+            <ChevronDown className="w-4 h-4 text-gray-400" />
           )}
         </div>
       </button>
@@ -154,16 +144,16 @@ function IndicatorCard({ indicator }: { indicator: Indicator }) {
           <IndicatorBar indicator={indicator} />
 
           {indicator.explanation && (
-            <div className="flex gap-2.5 p-3.5 rounded-2xl bg-primary-light/40 border border-primary/10">
-              <Sparkles className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-              <p className="text-xs text-text leading-relaxed">{indicator.explanation}</p>
+            <div className="flex gap-2.5 p-3.5 rounded-xl bg-blue-50 border border-blue-100">
+              <Sparkles className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+              <p className="text-xs text-gray-900 leading-relaxed">{indicator.explanation}</p>
             </div>
           )}
 
           {indicator.suggestion && (
-            <div className="flex gap-2.5 p-3.5 rounded-2xl bg-blue-50/80 border border-blue-100/60">
-              <Heart className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-              <p className="text-xs text-text leading-relaxed">{indicator.suggestion}</p>
+            <div className="flex gap-2.5 p-3.5 rounded-xl bg-gray-50 border border-gray-100">
+              <Heart className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+              <p className="text-xs text-gray-900 leading-relaxed">{indicator.suggestion}</p>
             </div>
           )}
         </div>
@@ -181,10 +171,10 @@ function EmotionModal({
   onClose: () => void;
 }) {
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/40 backdrop-blur-md animate-[fadeIn_0.3s_ease-out]">
-      <div className="relative w-full max-w-sm rounded-[22px] overflow-hidden shadow-2xl animate-[modalPop_0.35s_ease-out]">
-        {/* Gradient top */}
-        <div className="bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-600 p-6 pb-8">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/40 animate-[fadeIn_0.3s_ease-out]">
+      <div className="relative w-full max-w-sm bg-white rounded-2xl overflow-hidden shadow-xl">
+        {/* Blue top */}
+        <div className="bg-blue-600 p-6 pb-8">
           <button
             onClick={onClose}
             className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors"
@@ -195,23 +185,23 @@ function EmotionModal({
           <h3 className="text-lg font-bold text-white mb-2">
             PostCare 关心您的感受
           </h3>
-          <p className="text-sm text-white/90 leading-relaxed">
+          <p className="text-sm text-blue-100 leading-relaxed">
             {emotion.comfort_message}
           </p>
         </div>
         {/* Suggestions */}
-        <div className="bg-white p-5 space-y-3">
+        <div className="p-5 space-y-3">
           {emotion.action_items?.map((s, i) => (
             <div key={i} className="flex gap-2 items-start">
-              <div className="w-5 h-5 rounded-full bg-indigo-100 flex items-center justify-center shrink-0 mt-0.5">
-                <span className="text-[10px] font-bold text-indigo-600">{i + 1}</span>
+              <div className="w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center shrink-0 mt-0.5">
+                <span className="text-[10px] font-bold text-blue-600">{i + 1}</span>
               </div>
-              <p className="text-sm text-text leading-relaxed">{s}</p>
+              <p className="text-sm text-gray-900 leading-relaxed">{s}</p>
             </div>
           ))}
           <button
             onClick={onClose}
-            className="w-full mt-3 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-medium text-sm hover:opacity-90 active:scale-[0.98] transition-all"
+            className="w-full mt-3 py-3 rounded-xl bg-blue-600 text-white font-medium text-sm hover:bg-blue-700 active:scale-[0.98] transition-all"
           >
             我了解了，查看详细解读 →
           </button>
@@ -225,21 +215,21 @@ function EmotionModal({
 function NormalIndicatorsCollapsible({ indicators }: { indicators: Indicator[] }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="rounded-[18px] bg-white border border-border/80 shadow-[var(--shadow-soft)] overflow-hidden">
+    <div className="rounded-xl bg-white border border-gray-100 overflow-hidden">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50/50 transition-colors"
+        className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors"
       >
-        <h3 className="text-sm font-semibold text-text flex items-center gap-1.5">
-          <span className="w-4 h-4 rounded-full bg-success-light flex items-center justify-center">
-            <span className="w-2 h-2 rounded-full bg-success" />
+        <h3 className="text-sm font-semibold text-gray-900 flex items-center gap-1.5">
+          <span className="w-4 h-4 rounded-full bg-green-50 flex items-center justify-center">
+            <span className="w-2 h-2 rounded-full bg-green-500" />
           </span>
           正常指标 ({indicators.length})
         </h3>
         {open ? (
-          <ChevronUp className="w-4 h-4 text-text-secondary" />
+          <ChevronUp className="w-4 h-4 text-gray-400" />
         ) : (
-          <ChevronDown className="w-4 h-4 text-text-secondary" />
+          <ChevronDown className="w-4 h-4 text-gray-400" />
         )}
       </button>
       <div className={`transition-all duration-300 ease-in-out overflow-hidden ${open ? 'max-h-[3000px] opacity-100' : 'max-h-0 opacity-0'}`}>
@@ -262,7 +252,7 @@ function IndicatorCardFamily({ indicator }: { indicator: Indicator }) {
 
   return (
     <div
-      className="bg-card rounded-2xl shadow-sm overflow-hidden transition-all duration-300"
+      className="bg-white rounded-xl border border-gray-100 overflow-hidden transition-all duration-300"
       style={{ borderLeft: `5px solid ${borderColor}` }}
     >
       <button
@@ -270,18 +260,18 @@ function IndicatorCardFamily({ indicator }: { indicator: Indicator }) {
         className="w-full flex items-center justify-between p-5 text-left"
       >
         <div className="flex items-center gap-3 flex-1 min-w-0">
-          <span className="font-bold text-text text-lg">{indicator.name}</span>
+          <span className="font-bold text-gray-900 text-lg">{indicator.name}</span>
           <SeverityBadge severity={indicator.status} />
         </div>
         <div className="flex items-center gap-2 shrink-0">
           <span className="tabular-nums font-extrabold text-2xl" style={{ color: borderColor }}>
             {indicator.value}
           </span>
-          <span className="text-sm text-text-secondary">{indicator.unit}</span>
+          <span className="text-sm text-gray-400">{indicator.unit}</span>
           {expanded ? (
-            <ChevronUp className="w-5 h-5 text-text-secondary" />
+            <ChevronUp className="w-5 h-5 text-gray-400" />
           ) : (
-            <ChevronDown className="w-5 h-5 text-text-secondary" />
+            <ChevronDown className="w-5 h-5 text-gray-400" />
           )}
         </div>
       </button>
@@ -297,14 +287,14 @@ function IndicatorCardFamily({ indicator }: { indicator: Indicator }) {
           {indicator.explanation && (
             <div className="flex gap-3 p-4 rounded-xl bg-orange-50 border border-orange-100">
               <Sparkles className="w-5 h-5 text-orange-500 shrink-0 mt-0.5" />
-              <p className="text-base text-text leading-[1.8]">{indicator.explanation}</p>
+              <p className="text-base text-gray-900 leading-[1.8]">{indicator.explanation}</p>
             </div>
           )}
 
           {indicator.suggestion && (
             <div className="flex gap-3 p-4 rounded-xl bg-orange-50/50 border border-orange-100">
               <Heart className="w-5 h-5 text-orange-400 shrink-0 mt-0.5" />
-              <p className="text-base text-text leading-[1.8]">{indicator.suggestion}</p>
+              <p className="text-base text-gray-900 leading-[1.8]">{indicator.suggestion}</p>
             </div>
           )}
         </div>
@@ -326,7 +316,7 @@ function FamilyModeToggle({
       <button
         onClick={() => !familyMode || onToggle()}
         className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
-          !familyMode ? 'bg-white text-primary shadow-sm' : 'text-text-secondary hover:text-text'
+          !familyMode ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'
         }`}
       >
         <User className="w-4 h-4" />
@@ -335,7 +325,7 @@ function FamilyModeToggle({
       <button
         onClick={() => familyMode || onToggle()}
         className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
-          familyMode ? 'bg-white text-orange-600 shadow-sm' : 'text-text-secondary hover:text-text'
+          familyMode ? 'bg-white text-orange-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'
         }`}
       >
         <Users className="w-4 h-4" />
@@ -391,7 +381,6 @@ export default function ReportPage() {
           ? await analyzeReport(text)
           : await analyzeReportOCR(file!);
 
-      // Check emotion trigger
       if (data.emotion_trigger === 'moderate' || data.emotion_trigger === 'severe') {
         try {
           const emotionData: EmotionResult = await assessEmotion(data.summary);
@@ -423,45 +412,39 @@ export default function ReportPage() {
   const abnormalIndicators = result?.indicators?.filter((i) => i.status !== 'normal') ?? [];
   const normalIndicators = result?.indicators?.filter((i) => i.status === 'normal') ?? [];
 
-  // Family mode: simplified summary (first 2 sentences)
   const familySummary = result?.summary
     ? result.summary.split(/[。！？]/).filter(Boolean).slice(0, 2).join('。') + '。'
     : '';
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col">
       <Header stage="报告解读" />
 
-      {/* Emotion modal */}
       {showEmotion && emotionResult && (
         <EmotionModal emotion={emotionResult} onClose={() => setShowEmotion(false)} />
       )}
 
-      <main className="flex-1 max-w-lg mx-auto w-full px-4 pt-4 pb-28 page-enter">
-        {/* Loading state */}
+      <main className="flex-1 max-w-lg mx-auto w-full px-4 pt-4 pb-20 page-enter">
         {loading && (
           <div className="flex flex-col items-center justify-center min-h-[60vh]">
             <LoadingSpinner text="正在为您解读报告..." />
           </div>
         )}
 
-        {/* Input form */}
         {!loading && !result && (
           <div className="space-y-5 animate-[fadeIn_0.3s_ease-out]">
-            {/* Title */}
             <div className="text-center space-y-1">
-              <h1 className="text-xl font-bold text-text">报告解读</h1>
-              <p className="text-sm text-text-secondary">上传或粘贴您的检验报告，AI为您解读</p>
+              <h1 className="text-xl font-bold text-gray-900">报告解读</h1>
+              <p className="text-sm text-gray-500">上传或粘贴您的检验报告，AI为您解读</p>
             </div>
 
-            {/* Tabs */}
             <div className="flex bg-gray-100 rounded-xl p-1">
               <button
                 onClick={() => setActiveTab('text')}
                 className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
                   activeTab === 'text'
-                    ? 'bg-white text-primary shadow-sm'
-                    : 'text-text-secondary hover:text-text'
+                    ? 'bg-white text-blue-600 shadow-sm'
+                    : 'text-gray-500 hover:text-gray-700'
                 }`}
               >
                 <ClipboardPaste className="w-4 h-4" />
@@ -471,8 +454,8 @@ export default function ReportPage() {
                 onClick={() => setActiveTab('photo')}
                 className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
                   activeTab === 'photo'
-                    ? 'bg-white text-primary shadow-sm'
-                    : 'text-text-secondary hover:text-text'
+                    ? 'bg-white text-blue-600 shadow-sm'
+                    : 'text-gray-500 hover:text-gray-700'
                 }`}
               >
                 <Camera className="w-4 h-4" />
@@ -480,31 +463,29 @@ export default function ReportPage() {
               </button>
             </div>
 
-            {/* Text input tab */}
             {activeTab === 'text' && (
               <div className="space-y-3 animate-[fadeIn_0.2s_ease-out]">
                 <textarea
                   value={text}
                   onChange={(e) => setText(e.target.value)}
                   placeholder="请将检验报告文字粘贴到这里...&#10;&#10;支持各类血常规、肝功能、肾功能、血脂、血糖等检验报告"
-                  className="w-full h-52 p-4 rounded-xl border border-border bg-card text-sm text-text placeholder:text-text-secondary/60 resize-none focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                  className="w-full h-52 p-4 rounded-xl border border-gray-200 bg-white text-sm text-gray-900 placeholder:text-gray-400 resize-none focus:outline-none focus:ring-2 focus:ring-blue-600/20 focus:border-blue-600 transition-all"
                 />
                 <div className="flex items-center justify-between">
                   <button
                     onClick={() => setText(SAMPLE_REPORT)}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary-light text-primary text-xs font-medium hover:bg-primary/10 active:scale-95 transition-all"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50 text-blue-600 text-xs font-medium hover:bg-blue-100 active:scale-95 transition-all"
                   >
                     <Sparkles className="w-3.5 h-3.5" />
                     试试示例
                   </button>
-                  <span className="text-xs text-text-secondary">
+                  <span className="text-xs text-gray-400">
                     {text.length > 0 ? `${text.length} 字` : ''}
                   </span>
                 </div>
               </div>
             )}
 
-            {/* Photo upload tab */}
             {activeTab === 'photo' && (
               <div className="space-y-3 animate-[fadeIn_0.2s_ease-out]">
                 <input
@@ -528,10 +509,10 @@ export default function ReportPage() {
                   onClick={() => fileInputRef.current?.click()}
                   className={`relative flex flex-col items-center justify-center h-52 rounded-xl border-2 border-dashed cursor-pointer transition-all duration-200 ${
                     dragOver
-                      ? 'border-primary bg-primary-light/50 scale-[1.01]'
+                      ? 'border-blue-600 bg-blue-50'
                       : filePreview
-                        ? 'border-success bg-success-light/30'
-                        : 'border-border bg-gray-50 hover:border-primary/50 hover:bg-primary-light/20'
+                        ? 'border-green-500 bg-green-50'
+                        : 'border-gray-200 bg-gray-50 hover:border-blue-400 hover:bg-blue-50'
                   }`}
                 >
                   {filePreview ? (
@@ -554,25 +535,24 @@ export default function ReportPage() {
                     </div>
                   ) : (
                     <>
-                      <div className="w-14 h-14 rounded-full bg-primary-light flex items-center justify-center mb-3">
-                        <ImagePlus className="w-7 h-7 text-primary" />
+                      <div className="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center mb-3">
+                        <ImagePlus className="w-7 h-7 text-blue-600" />
                       </div>
-                      <p className="text-sm font-medium text-text">点击拍照或选择图片</p>
-                      <p className="text-xs text-text-secondary mt-1">支持拖拽上传</p>
+                      <p className="text-sm font-medium text-gray-900">点击拍照或选择图片</p>
+                      <p className="text-xs text-gray-400 mt-1">支持拖拽上传</p>
                     </>
                   )}
                 </div>
               </div>
             )}
 
-            {/* Submit button */}
             <button
               onClick={handleSubmit}
               disabled={
                 (activeTab === 'text' && !text.trim()) ||
                 (activeTab === 'photo' && !file)
               }
-              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-primary to-blue-500 text-white font-semibold text-sm shadow-lg shadow-primary/25 hover:opacity-90 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none transition-all duration-200"
+              className="w-full py-3.5 rounded-xl bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200"
             >
               <span className="flex items-center justify-center gap-2">
                 <Sparkles className="w-4 h-4" />
@@ -582,24 +562,20 @@ export default function ReportPage() {
           </div>
         )}
 
-        {/* Results display */}
         {!loading && result && (
           <div className={`animate-[fadeIn_0.4s_ease-out] transition-all duration-300 ${familyMode ? 'space-y-5' : 'space-y-4'}`}>
-            {/* Top controls */}
             <div className="flex items-center justify-between">
               <button
                 onClick={handleReset}
-                className={`text-primary font-medium flex items-center gap-1 hover:text-primary/80 transition-colors ${familyMode ? 'text-sm' : 'text-xs'}`}
+                className={`text-blue-600 font-medium flex items-center gap-1 hover:text-blue-700 transition-colors ${familyMode ? 'text-sm' : 'text-xs'}`}
               >
                 <FileText className="w-3.5 h-3.5" />
                 重新解读
               </button>
             </div>
 
-            {/* Family mode toggle */}
             <FamilyModeToggle familyMode={familyMode} onToggle={() => setFamilyMode(!familyMode)} />
 
-            {/* Family mode banner */}
             {familyMode && (
               <div className="p-3 rounded-xl bg-orange-50 border border-orange-200 text-center">
                 <p className="text-sm text-orange-700 font-medium">
@@ -609,31 +585,27 @@ export default function ReportPage() {
             )}
 
             {/* Summary card */}
-            <div className={`relative overflow-hidden rounded-2xl p-5 shadow-lg ${
-              familyMode
-                ? 'bg-gradient-to-br from-orange-500 via-amber-500 to-orange-600 shadow-orange-500/20'
-                : 'bg-gradient-to-br from-blue-600 via-blue-500 to-indigo-500 shadow-blue-500/20'
-            }`}>
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-12 translate-x-12" />
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full translate-y-10 -translate-x-10" />
-              <div className="relative z-10">
+            {familyMode ? (
+              <div className="rounded-xl bg-amber-500 p-5">
                 <div className="flex items-center gap-2 mb-3">
                   <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center">
-                    <Sparkles className={familyMode ? 'w-5 h-5 text-white' : 'w-4 h-4 text-white'} />
+                    <Sparkles className="w-5 h-5 text-white" />
                   </div>
-                  <h2 className={`font-bold text-white ${familyMode ? 'text-xl' : 'text-base'}`}>AI 解读摘要</h2>
+                  <h2 className="text-xl font-bold text-white">AI 解读摘要</h2>
                 </div>
-                <p className={`text-white/95 ${familyMode ? 'text-lg leading-[1.8]' : 'text-sm leading-relaxed'}`}>
-                  {familyMode ? familySummary : result.summary}
-                </p>
+                <p className="text-lg text-white/95 leading-[1.8]">{familySummary}</p>
               </div>
-            </div>
+            ) : (
+              <div className="rounded-xl bg-white border border-gray-100 border-l-4 border-l-blue-600 p-5">
+                <h2 className="text-base font-bold text-gray-900 mb-2">AI 解读摘要</h2>
+                <p className="text-sm text-gray-600 leading-relaxed">{result.summary}</p>
+              </div>
+            )}
 
-            {/* Abnormal indicators */}
             {abnormalIndicators.length > 0 && (
               <div className={familyMode ? 'space-y-4' : 'space-y-2'}>
-                <h3 className={`font-semibold text-text flex items-center gap-1.5 px-1 ${familyMode ? 'text-lg' : 'text-sm'}`}>
-                  <AlertTriangle className={familyMode ? 'w-5 h-5 text-warning' : 'w-4 h-4 text-warning'} />
+                <h3 className={`font-semibold text-gray-900 flex items-center gap-1.5 px-1 ${familyMode ? 'text-lg' : 'text-sm'}`}>
+                  <AlertTriangle className={familyMode ? 'w-5 h-5 text-amber-500' : 'w-4 h-4 text-amber-500'} />
                   异常指标 ({abnormalIndicators.length})
                 </h3>
                 <div className={familyMode ? 'space-y-4' : 'space-y-3'}>
@@ -648,45 +620,42 @@ export default function ReportPage() {
               </div>
             )}
 
-            {/* Normal indicators (hidden in family mode, collapsed by default) */}
             {!familyMode && normalIndicators.length > 0 && (
               <NormalIndicatorsCollapsible indicators={normalIndicators} />
             )}
 
-            {/* Attention items */}
             {(result.attention_items?.length ?? 0) > 0 && (
               <div className={familyMode ? 'space-y-3' : 'space-y-2'}>
-                <h3 className={`font-semibold text-text flex items-center gap-1.5 px-1 ${familyMode ? 'text-lg' : 'text-sm'}`}>
-                  <AlertTriangle className={familyMode ? 'w-5 h-5 text-warning' : 'w-4 h-4 text-warning'} />
+                <h3 className={`font-semibold text-gray-900 flex items-center gap-1.5 px-1 ${familyMode ? 'text-lg' : 'text-sm'}`}>
+                  <AlertTriangle className={familyMode ? 'w-5 h-5 text-amber-500' : 'w-4 h-4 text-amber-500'} />
                   注意事项
                 </h3>
                 <div className={familyMode ? 'space-y-3' : 'space-y-2'}>
                   {result.attention_items?.map((item, i) => (
                     <div
                       key={i}
-                      className={`flex gap-3 rounded-2xl bg-warning-light/50 border border-warning/15 ${familyMode ? 'p-4' : 'p-3.5'}`}
+                      className={`flex gap-3 rounded-xl bg-amber-50 border border-amber-100 ${familyMode ? 'p-4' : 'p-3.5'}`}
                     >
-                      <div className={`rounded-full bg-warning/20 flex items-center justify-center shrink-0 mt-0.5 animate-dot-pulse ${familyMode ? 'w-6 h-6' : 'w-5 h-5'}`} style={{ animationDelay: `${i * 300}ms` }}>
-                        <AlertTriangle className={familyMode ? 'w-4 h-4 text-warning' : 'w-3 h-3 text-warning'} />
+                      <div className={`rounded-full bg-amber-100 flex items-center justify-center shrink-0 mt-0.5 ${familyMode ? 'w-6 h-6' : 'w-5 h-5'}`}>
+                        <AlertTriangle className={familyMode ? 'w-4 h-4 text-amber-500' : 'w-3 h-3 text-amber-500'} />
                       </div>
-                      <p className={`text-text leading-relaxed ${familyMode ? 'text-base leading-[1.8]' : 'text-xs'}`}>{item}</p>
+                      <p className={`text-gray-900 leading-relaxed ${familyMode ? 'text-base leading-[1.8]' : 'text-xs'}`}>{item}</p>
                     </div>
                   ))}
                 </div>
               </div>
             )}
 
-            {/* Family mode: footer */}
             {familyMode && (
               <div className="space-y-3 mt-4">
-                <div className="p-5 rounded-2xl bg-orange-50 border border-orange-200 text-center">
+                <div className="p-5 rounded-xl bg-orange-50 border border-orange-200 text-center">
                   <p className="text-lg font-bold text-orange-800 leading-[1.8]">
                     如有疑问，带着这个页面去找医生
                   </p>
                 </div>
                 <a
                   href="tel:10000"
-                  className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold text-lg shadow-lg shadow-orange-500/20 hover:opacity-90 active:scale-[0.98] transition-all"
+                  className="flex items-center justify-center gap-3 w-full py-4 rounded-xl bg-amber-500 text-white font-bold text-lg hover:bg-amber-600 active:scale-[0.98] transition-all"
                 >
                   <Phone className="w-6 h-6" />
                   打电话给子女
@@ -699,8 +668,6 @@ export default function ReportPage() {
 
       <DisclaimerBar />
       <BottomNav />
-
-      {/* Keyframes are in globals.css */}
     </div>
   );
 }

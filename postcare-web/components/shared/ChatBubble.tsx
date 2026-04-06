@@ -38,7 +38,7 @@ export default function ChatBubble({
   return (
     <div className={`flex gap-2 ${isUser ? 'flex-row-reverse' : 'flex-row'} mb-3`}>
       {!isUser && (
-        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-primary to-blue-400 flex items-center justify-center">
+        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center">
           <Heart className="w-4 h-4 text-white fill-white" />
         </div>
       )}
