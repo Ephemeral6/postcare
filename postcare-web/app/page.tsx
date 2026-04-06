@@ -76,9 +76,6 @@ export default function Home() {
           <p className="text-blue-50/80 text-sm leading-relaxed mt-3 max-w-[280px]">
             从诊前准备到复诊跟踪，覆盖完整就医旅程的智能健康助手
           </p>
-          <p className="mt-3 text-[11px] text-blue-200/60 font-medium">
-            已服务 1,280+ 位患者
-          </p>
         </div>
 
         {/* Wave divider */}
