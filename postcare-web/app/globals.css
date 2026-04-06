@@ -81,3 +81,49 @@ input[type="checkbox"]:checked { animation: check-bounce 0.3s ease; }
 ::-webkit-scrollbar-thumb { background: rgba(161, 161, 170, 0.2); border-radius: 2px; }
 
 .tabular-nums { font-variant-numeric: tabular-nums; }
+
+/* Rotating border glow */
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotate-glow {
+  to { --angle: 360deg; }
+}
+
+.border-glow {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.border-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 16px;
+  background: conic-gradient(from var(--angle), transparent 70%, rgba(99,102,241,0.5) 100%);
+  animation: rotate-glow 4s linear infinite;
+  z-index: 0;
+}
+
+.border-glow::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: 15px;
+  background: #18181b;
+  z-index: 0;
+}
+
+/* Blinking cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
