@@ -383,7 +383,7 @@ export default function RecoveryPage() {
                   <div className="mb-3">
                     <p className="text-xs font-medium text-[#059669] mb-2">推荐食用</p>
                     <div className="flex flex-wrap gap-2">
-                      {lResult.diet.should_eat.map((item, idx) => (
+                      {(lResult.diet?.should_eat ?? []).map((item, idx) => (
                         <span
                           key={idx}
                           className="inline-block px-3 py-1.5 rounded-full bg-[#ECFDF5] text-[#059669] text-sm font-medium"
@@ -398,7 +398,7 @@ export default function RecoveryPage() {
                   <div>
                     <p className="text-xs font-medium text-[#DC2626] mb-2">建议避免</p>
                     <div className="flex flex-wrap gap-2">
-                      {lResult.diet.should_avoid.map((item, idx) => (
+                      {(lResult.diet?.should_avoid ?? []).map((item, idx) => (
                         <span
                           key={idx}
                           className="inline-block px-3 py-1.5 rounded-full bg-[#FEF2F2] text-[#DC2626] text-sm font-medium"
@@ -454,11 +454,11 @@ export default function RecoveryPage() {
                   <span className="text-lg">😴</span>
                   <h3 className="text-sm font-bold text-[#1A1A1A]">生活习惯</h3>
                 </div>
-                {lResult.habits.must_do.length > 0 && (
+                {(lResult.habits?.must_do ?? []).length > 0 && (
                   <div className="mb-3">
                     <p className="text-xs font-medium text-purple-600 mb-2">建议养成</p>
                     <div className="space-y-2">
-                      {lResult.habits.must_do.map((item, idx) => (
+                      {(lResult.habits?.must_do ?? []).map((item, idx) => (
                         <div
                           key={idx}
                           className="flex items-start gap-2.5 p-3 rounded-xl bg-purple-50 border border-purple-200"
@@ -470,11 +470,11 @@ export default function RecoveryPage() {
                     </div>
                   </div>
                 )}
-                {lResult.habits.avoid.length > 0 && (
+                {(lResult.habits?.avoid ?? []).length > 0 && (
                   <div>
                     <p className="text-xs font-medium text-[#6B7280] mb-2">建议避免</p>
                     <div className="space-y-2">
-                      {lResult.habits.avoid.map((item, idx) => (
+                      {(lResult.habits?.avoid ?? []).map((item, idx) => (
                         <div
                           key={idx}
                           className="flex items-start gap-2.5 p-3 rounded-xl bg-[#F5F5F0] border border-black/[0.06]"

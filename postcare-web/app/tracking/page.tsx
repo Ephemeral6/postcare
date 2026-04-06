@@ -204,7 +204,7 @@ export default function TrackingPage() {
   };
 
   const sortedAlerts = alertResult
-    ? [...alertResult.alerts].sort(
+    ? [...(alertResult.alerts ?? [])].sort(
         (a, b) => (severityOrder[a.severity] ?? 5) - (severityOrder[b.severity] ?? 5),
       )
     : [];
@@ -548,7 +548,7 @@ export default function TrackingPage() {
                       <div>
                         <p className={`text-lg font-bold ${lc.text}`}>{lc.label}</p>
                         <p className="text-xs text-[#6B7280] mt-0.5">
-                          共检测 {alertResult.alerts.length} 项指标
+                          共检测 {(alertResult.alerts ?? []).length} 项指标
                         </p>
                       </div>
                     </div>

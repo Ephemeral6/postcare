@@ -268,7 +268,7 @@ function DrugCard({ drug }: { drug: DrugInfo }) {
           color="danger"
         >
           <ul className="space-y-1">
-            {drug.contraindications.map((c, i) => (
+            {(drug.contraindications ?? []).map((c, i) => (
               <li key={i} className="text-xs text-[#374151] flex items-start gap-1.5">
                 <span className="w-1 h-1 rounded-full bg-[#DC2626] mt-1.5 flex-shrink-0" />
                 {c}
@@ -470,16 +470,16 @@ export default function MedicationPage() {
 
         {result && (
           <div className="space-y-4">
-            <ScheduleTimeline schedule={result.schedule} drugs={result.drugs} />
-            <InteractionWarnings interactions={result.interactions} />
-            <TCMWesternNotes notes={result.tcm_western_warnings} />
+            {result.schedule && <ScheduleTimeline schedule={result.schedule} drugs={result.drugs ?? []} />}
+            <InteractionWarnings interactions={result.interactions ?? []} />
+            <TCMWesternNotes notes={result.tcm_western_warnings ?? []} />
 
             <div className="space-y-3">
               <h3 className="text-sm font-bold text-[#1A1A1A] flex items-center gap-1.5">
                 <Pill className="w-4 h-4 text-[#2563EB]" />
                 药品详情
               </h3>
-              {result.drugs.map((drug) => (
+              {(result.drugs ?? []).map((drug) => (
                 <DrugCard key={drug.name} drug={drug} />
               ))}
             </div>

@@ -145,7 +145,7 @@ export default function RevisitPage() {
 
   const copyDoctorView = async () => {
     if (!result) return;
-    await navigator.clipboard.writeText(result.doctor_view);
+    await navigator.clipboard.writeText(result.doctor_view ?? '');
     setCopiedD(true);
     setTimeout(() => setCopiedD(false), 2000);
   };
