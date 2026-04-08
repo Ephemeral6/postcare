@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PostCare · 路演</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700;900&family=Outfit:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        :root {
+            --bg: #0A0A0F;
+            --card: #13131E;
+            --border: #1e1e30;
+            --border2: #2a2a40;
+            --white: #EAEAF0;
+            --gray: #8888A0;
+            --blue: #47B8E8;
+            --red: #FF5A5A;
+            --green: #4ADE80;
+            --purple: #A78BFA;
+            --orange: #F59E0B;
+            --gold: #E8C547;
+            --teal: #2DD4BF;
+            --animate-duration: 0.7s;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #000; color: var(--white);
+            font-family: 'Noto Sans SC', 'Outfit', sans-serif;
+            width: 100vw; height: 100vh; overflow: hidden;
+            display: flex; justify-content: center; align-items: center;
+            user-select: none;
+        }
+        #progress { position: fixed; top: 0; left: 0; height: 3px; z-index: 9999; background: linear-gradient(90deg, var(--blue), var(--green), var(--purple)); transition: width .4s ease; }
+        .hint { position: fixed; bottom: 16px; right: 20px; z-index: 9999; color: rgba(255,255,255,.2); font-size: 12px; pointer-events: none; font-family: 'JetBrains Mono', monospace; }
+        #presentation { position: relative; width: 1280px; height: 720px; transform-origin: center center; }
+        .slide {
+            width: 1280px; height: 720px; background: var(--bg); position: absolute; top: 0; left: 0;
+            padding: 50px 70px; border: 1px solid var(--border); border-radius: 12px;
+            box-shadow: 0 10px 60px rgba(0,0,0,.8); overflow: hidden;
+            display: none; flex-direction: column; opacity: 0;
+            transform: scale(.98) translateY(10px); transition: opacity .5s ease, transform .5s ease;
+        }
+        .slide.active { display: flex; opacity: 1; transform: scale(1) translateY(0); }
+        .slide::after {
+            content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .025;
+            background-image: linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        .bg-glow::before {
+            content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(71,184,232,.12) 0%, rgba(45,212,191,.04) 40%, transparent 70%);
+            z-index: 0; pointer-events: none; animation: glowPulse 8s infinite alternate;
+        }
+        @keyframes glowPulse { 0% { opacity:.7; scale:.95 } 100% { opacity:1; scale:1.05 } }
+        .blob { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; opacity: .06; }
+        h1 { font-family: 'Outfit', sans-serif; font-size: 52px; font-weight: 800; line-height: 1.15; letter-spacing: 1px; margin-bottom: 16px; }
+        h2 { font-family: 'Outfit', sans-serif; font-size: 30px; font-weight: 700; margin-bottom: 24px; }
+        p { line-height: 1.7; font-size: 16px; margin-bottom: 6px; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .text-blue { color: var(--blue); } .text-green { color: var(--green); } .text-red { color: var(--red); }
+        .text-purple { color: var(--purple); } .text-gray { color: var(--gray); } .text-orange { color: var(--orange); }
+        .text-teal { color: var(--teal); } .text-gold { color: var(--gold); }
+        .flex { display: flex; } .flex-col { flex-direction: column; } .items-center { align-items: center; }
+        .justify-center { justify-content: center; } .gap-4 { gap: 16px; } .gap-6 { gap: 24px; } .gap-8 { gap: 32px; }
+        .z-1 { position: relative; z-index: 1; }
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 24px; transition: transform .3s, border-color .3s; }
+        .card:hover { transform: translateY(-3px); border-color: rgba(71,184,232,.2); box-shadow: 0 8px 30px rgba(0,0,0,.4); }
+        .sec-tag { position: absolute; top: 20px; left: 70px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 3px; color: var(--gray); text-transform: uppercase; z-index: 10; }
+        .page-num { position: absolute; bottom: 20px; right: 70px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: rgba(255,255,255,.15); z-index: 10; }
+        .footer { position: absolute; bottom: 20px; left: 70px; right: 200px; display: flex; justify-content: space-between; font-size: 11px; color: var(--gray); font-family: 'JetBrains Mono', monospace; z-index: 10; }
+        .gradient-text { background: linear-gradient(135deg, var(--blue) 0%, var(--teal) 50%, var(--green) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .pill { display: inline-block; padding: 4px 14px; border-radius: 20px; border: 1px solid; font-size: 12px; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+        .phone-frame { border-radius: 12px; overflow: hidden; border: none; background: none; box-shadow: 0 8px 30px rgba(0,0,0,.4); flex-shrink: 0; }
+        .phone-frame img { width: 100%; display: block; }
+        .stat-box { text-align: center; }
+        .stat-num { font-family: 'JetBrains Mono', monospace; font-size: 48px; font-weight: 700; }
+        .stat-label { font-size: 13px; color: var(--gray); margin-top: 4px; }
+        .feat-item { display: flex; align-items: center; gap: 12px; padding: 8px 0; font-size: 15px; }
+        .feat-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+        .pipeline { display: flex; align-items: center; }
+        .pipe-stage { flex: 1; text-align: center; padding: 14px 6px; }
+        .pipe-icon { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; margin: 0 auto 8px; border: 2px solid var(--blue); background: rgba(71,184,232,.06); }
+        .pipe-stage h4 { font-size: 13px; font-weight: 700; color: var(--blue); margin-bottom: 2px; }
+        .pipe-stage p { font-size: 11px; color: var(--gray); line-height: 1.4; margin: 0; }
+        .pipe-arrow { font-size: 16px; color: var(--blue); opacity: .4; flex-shrink: 0; }
+        .stack-strip { display: flex; gap: 14px; }
+        .stack-card { flex: 1; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; border-top: 3px solid var(--blue); }
+        .stack-card h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+        .stack-card p { font-size: 11px; color: var(--gray); line-height: 1.6; margin: 0; }
+        .delay-1 { animation-delay: .15s; } .delay-2 { animation-delay: .3s; } .delay-3 { animation-delay: .45s; } .delay-4 { animation-delay: .6s; }
+    </style>
+</head>
+<body>
+<div id="progress" style="width:10%"></div>
+<div class="hint">← → 翻页 · F 全屏</div>
+<div id="presentation">
+
+<!-- 1: Cover -->
+<div class="slide flex-col justify-center bg-glow active">
+    <div class="blob" style="width:400px;height:400px;top:10%;right:15%;background:var(--blue)"></div>
+    <div class="blob" style="width:300px;height:300px;bottom:20%;left:10%;background:var(--teal)"></div>
+    <div class="flex z-1" style="align-items:center;gap:50px;padding-left:120px">
+        <div style="flex:1">
+            <p class="mono text-blue animate__animated animate__fadeIn" style="font-size:13px;letter-spacing:4px;margin-bottom:20px">ULTRA MAKER HACKATHON 2026</p>
+            <h1 class="animate__animated animate__fadeInUp" style="font-size:64px;"><span class="gradient-text">PostCare</span></h1>
+            <p class="animate__animated animate__fadeInUp delay-1" style="font-size:24px;color:rgba(234,234,240,.7);max-width:650px;line-height:1.6;margin-bottom:30px;">让医生在诊室里来不及说的话，<br>在你最需要的时候被<span class="text-blue" style="font-weight:700">听见</span>。</p>
+            <div style="display:flex;gap:12px;margin-bottom:40px" class="animate__animated animate__fadeInUp delay-2">
+                <span class="pill" style="border-color:var(--blue);color:var(--blue)">全旅程AI守护者</span>
+                <span class="pill" style="border-color:var(--green);color:var(--green)">临床专家验证</span>
+                <span class="pill" style="border-color:var(--purple);color:var(--purple)">个人赛道</span>
+            </div>
+            <p class="text-gray animate__animated animate__fadeIn delay-3" style="font-size:14px">潘冠成 · 浙江大学未来学习中心 智能医药组</p>
+            <p class="mono animate__animated animate__fadeIn delay-3" style="font-size:13px;margin-top:8px"><span class="text-blue">🌐</span> <a href="https://postcare.zeabur.app" target="_blank" style="color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(71,184,232,.3)">postcare.zeabur.app</a></p>
+        </div>
+        <div class="phone-frame animate__animated animate__fadeInRight delay-2" style="width:450px"><img src="slide_overview.png" alt="产品概览"></div>
+    </div>
+    <div class="page-num">1 / 10</div>
+</div>
+
+<!-- 2: Pain Point -->
+<div class="slide flex-col">
+    <div class="sec-tag text-red">PAIN POINT</div>
+    <div class="blob" style="width:350px;height:350px;top:5%;right:10%;background:var(--red)"></div>
+    <h2 class="animate__animated animate__fadeInDown" style="margin-top:20px"><span class="text-red">🏥</span> 中国门诊的3分钟困境</h2>
+    <div class="flex gap-8 z-1" style="flex:1">
+        <div style="flex:1" class="animate__animated animate__fadeInLeft delay-1">
+            <div class="card" style="text-align:center;padding:40px;border-color:rgba(255,90,90,.15)">
+                <div class="stat-num text-red">3-5</div>
+                <div style="font-size:20px;font-weight:700;margin-top:-5px">分钟</div>
+                <div class="stat-label" style="margin-top:8px">门诊平均就诊时间</div>
+            </div>
+            <div style="margin-top:24px;display:flex;flex-direction:column;gap:14px">
+                <div class="feat-item"><div class="feat-dot" style="background:var(--red)"></div><div><strong>报告看不懂</strong><br><span class="text-gray" style="font-size:12px">专业术语对患者如同天书</span></div></div>
+                <div class="feat-item"><div class="feat-dot" style="background:var(--orange)"></div><div><strong>医嘱记不住</strong><br><span class="text-gray" style="font-size:12px">药该怎么吃、何时复查全忘了</span></div></div>
+                <div class="feat-item"><div class="feat-dot" style="background:var(--purple)"></div><div><strong>焦虑无处问</strong><br><span class="text-gray" style="font-size:12px">指标偏高就恐慌，不知严不严重</span></div></div>
+            </div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px" class="animate__animated animate__fadeInRight delay-2">
+            <div class="card" style="border-left:3px solid var(--blue);padding:28px;">
+                <p style="font-size:18px;font-style:italic;line-height:1.8;color:rgba(234,234,240,.85)">"患者出了诊室后一般都会问检查检验结果的，但我们不会留电话给他们。"</p>
+                <p style="font-size:13px;color:var(--gray);margin-top:14px">—— 徐小波主任 · 浙大附属医院肝胆胰外科</p>
+            </div>
+            <div class="card" style="border-left:3px solid var(--gold);padding:20px;">
+                <p style="font-size:12px;color:var(--gray);line-height:1.6;margin:0"><span class="text-gold" style="font-weight:700">💡 临床洞察：</span>"化验单很多时候是结合临床实际用途看指标的。你的app需要动态看化验指标，比如近几次的指标和最近接受的方案要结合。"</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer"><span>痛点分析</span><span class="text-red">数据来源：真实临床反馈</span></div>
+    <div class="page-num">2 / 10</div>
+</div>
+
+<!-- 3: Solution -->
+<div class="slide flex-col">
+    <div class="sec-tag text-blue">SOLUTION</div>
+    <div class="blob" style="width:400px;height:400px;top:0;left:30%;background:var(--blue)"></div>
+    <h2 class="animate__animated animate__fadeInDown" style="margin-top:20px"><span class="text-blue">💙</span> 全旅程AI守护者</h2>
+    <p class="text-gray animate__animated animate__fadeIn delay-1" style="font-size:14px;margin-top:-16px;margin-bottom:20px">不是做一个点，是做一条完整的线</p>
+    <div class="flex gap-8 z-1" style="flex:1">
+        <div style="flex:1" class="animate__animated animate__fadeInLeft delay-2">
+            <div class="pipeline" style="margin-bottom:24px">
+                <div class="pipe-stage"><div class="pipe-icon">🏥</div><h4>诊前准备</h4><p>症状整理<br>挂科推荐</p></div><div class="pipe-arrow">➜</div>
+                <div class="pipe-stage"><div class="pipe-icon">📋</div><h4>报告解读</h4><p>通俗解释<br>情绪关怀</p></div><div class="pipe-arrow">➜</div>
+                <div class="pipe-stage"><div class="pipe-icon">💊</div><h4>诊后管理</h4><p>用药指导<br>复查提醒</p></div><div class="pipe-arrow">➜</div>
+                <div class="pipe-stage"><div class="pipe-icon">📈</div><h4>健康追踪</h4><p>指标趋势<br>异常预警</p></div><div class="pipe-arrow">➜</div>
+                <div class="pipe-stage"><div class="pipe-icon">📄</div><h4>复诊准备</h4><p>对比报告<br>医生简报</p></div>
+            </div>
+            <div class="flex gap-4">
+                <span class="pill" style="border-color:var(--green);color:var(--green)">✓ 已部署上线</span>
+                <span class="pill" style="border-color:var(--blue);color:var(--blue)">✓ 临床验证</span>
+                <span class="pill" style="border-color:var(--purple);color:var(--purple)">✓ 12个AI Agent</span>
+            </div>
+        </div>
+        <div class="phone-frame animate__animated animate__fadeInRight delay-3" style="width:260px"><img src="slide_home.png" alt="首页"></div>
+    </div>
+    <div class="footer"><span>PostCare</span><span class="text-blue">诊前→诊后→回家→追踪→复诊</span></div>
+    <div class="page-num">3 / 10</div>
+</div>
+
+<!-- 4: Pre-visit -->
+<div class="slide flex-col">
+    <div class="sec-tag text-green">PRE-VISIT</div>
+    <div class="blob" style="width:300px;height:300px;bottom:10%;left:5%;background:var(--green)"></div>
+    <h2 class="animate__animated animate__fadeInDown" style="margin-top:20px"><span class="text-green">🏥</span> 诊前预问诊</h2>
+    <p class="text-gray animate__animated animate__fadeIn delay-1" style="font-size:14px;margin-top:-16px;margin-bottom:20px">看病前，先让我帮你准备好</p>
+    <div class="flex gap-8 z-1" style="flex:1">
+        <div style="flex:1" class="animate__animated animate__fadeInLeft delay-2">
+            <div style="display:flex;flex-direction:column;gap:16px">
+                <div class="feat-item"><div class="feat-dot" style="background:var(--green)"></div><strong>自动整理症状为结构化主诉</strong></div>
+                <div class="feat-item"><div class="feat-dot" style="background:var(--blue)"></div><strong>智能推荐应该挂什么科室</strong></div>
+                <div class="feat-item"><div class="feat-dot" style="background:var(--purple)"></div><strong>生成"问医生的问题"清单</strong></div>
+                <div class="feat-item"><div class="feat-dot" style="background:var(--orange)"></div><strong>就诊前准备提示</strong></div>
+            </div>
+            <div class="card" style="margin-top:24px;border-left:3px solid var(--green);padding:18px">
+                <p style="font-size:12px;color:var(--gray);line-height:1.6;margin:0"><span class="text-green" style="font-weight:700">示例：</span>"头晕一周，血压150/95" → AI整理主诉 → 建议挂心内科 → 生成5个问医生的问题</p>
+            </div>
+        </div>
+        <div class="phone-frame animate__animated animate__fadeInRight delay-3" style="width:280px"><img src="slide_previsit.png" alt="诊前"></div>
+    </div>
+    <div class="page-num">4 / 10</div>
+</div>
+
+<!-- 5: Report + Emotion -->
+<div class="slide flex-col">
+    <div class="sec-tag text-blue">REPORT ANALYSIS</div>
+    <div class="blob" style="width:350px;height:350px;top:10%;left:50%;background:var(--blue)"></div>
+    <h2 class="animate__animated animate__fadeInDown" style="margin-top:20px"><span class="text-blue">📋</span> 报告解读 + 情绪关怀</h2>
+    <p class="text-gray animate__animated animate__fadeIn delay-1" style="font-size:14px;margin-top:-16px;margin-bottom:20px">看不懂报告？我帮你翻译成大白话</p>
+    <div class="flex gap-8 z-1" style="flex:1">
+        <div style="flex:1" class="animate__animated animate__fadeInLeft delay-2">
+            <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px">
+                <div class="feat-item"><div class="feat-dot" style="background:var(--blue)"></div><strong>健康评分一目了然</strong></div>
+                <div class="feat-item"><div class="feat-dot" style="background:var(--green)"></div><strong>异常指标可视化进度条</strong></div>
+                <div class="feat-item"><div class="feat-dot" style="background:var(--purple)"></div><strong>通俗解释 — "白细胞是巡逻兵"</strong></div>
+                <div class="feat-item"><div class="feat-dot" style="background:var(--orange)"></div><strong>情绪关怀 — 先安抚再建议</strong></div>
+                <div class="feat-item"><div class="feat-dot" style="background:var(--teal)"></div><strong>患者 / 医生双视角一键切换</strong></div>
+            </div>
+            <div class="card" style="border-left:3px solid var(--purple);padding:16px">
+                <p style="font-size:12px;color:var(--gray);line-height:1.6;margin:0"><span class="text-purple" style="font-weight:700">💡 创新：</span>同一份数据两种呈现 — 患者看通俗解释，医生看专业表格</p>
+            </div>
+        </div>
+        <div style="display:flex;gap:16px" class="animate__animated animate__fadeInRight delay-3">
+            <div class="phone-frame" style="width:220px"><img src="slide_report.png" alt="报告"></div>
+            <div class="phone-frame" style="width:220px"><img src="slide_emotion.png" alt="情绪"></div>
+        </div>
+    </div>
+    <div class="page-num">5 / 10</div>
+</div>
+
+<!-- 6: Timeline -->
+<div class="slide flex-col">
+    <div class="sec-tag text-teal">PROACTIVE CARE</div>
+    <div class="blob" style="width:350px;height:350px;bottom:0;right:10%;background:var(--teal)"></div>
+    <h2 class="animate__animated animate__fadeInDown" style="margin-top:20px"><span class="text-teal">💙</span> 主动守护时间线</h2>
+    <p class="text-teal animate__animated animate__fadeIn delay-1" style="font-size:16px;font-style:italic;margin-top:-16px;margin-bottom:20px">不是等你来找我，而是我主动找你</p>
+    <div class="flex gap-8 z-1" style="flex:1">
+        <div style="flex:1" class="animate__animated animate__fadeInLeft delay-2">
+            <div class="flex gap-8" style="margin-bottom:30px">
+                <div class="stat-box"><div class="stat-num text-teal">28</div><div class="stat-label">天守护周期</div></div>
+                <div class="stat-box"><div class="stat-num text-blue">10</div><div class="stat-label">次主动触达</div></div>
+                <div class="stat-box"><div class="stat-num text-purple">6</div><div class="stat-label">种关怀类型</div></div>
+            </div>
+            <div class="flex gap-4" style="flex-wrap:wrap">
+                <span class="pill" style="border-color:var(--blue);color:var(--blue)">💊 用药提醒</span>
+                <span class="pill" style="border-color:var(--green);color:var(--green)">🥗 生活关怀</span>
+                <span class="pill" style="border-color:var(--purple);color:var(--purple)">💙 情绪关怀</span>
+                <span class="pill" style="border-color:var(--orange);color:var(--orange)">📊 一周小结</span>
+                <span class="pill" style="border-color:var(--red);color:var(--red)">⚠️ 复查预警</span>
+                <span class="pill" style="border-color:var(--teal);color:var(--teal)">📋 复查准备</span>
+            </div>
+        </div>
+        <div class="phone-frame animate__animated animate__fadeInRight delay-3" style="width:280px"><img src="slide_timeline.png" alt="时间线"></div>
+    </div>
+    <div class="page-num">6 / 10</div>
+</div>
+
+<!-- 7: Tracking + Revisit -->
+<div class="slide flex-col">
+    <div class="sec-tag text-orange">TRACKING</div>
+    <div class="blob" style="width:300px;height:300px;top:10%;left:40%;background:var(--orange)"></div>
+    <h2 class="animate__animated animate__fadeInDown" style="margin-top:20px"><span class="text-orange">📈</span> 健康追踪 + 复诊准备</h2>
+    <div class="flex gap-6 z-1" style="flex:1;align-items:center">
+        <div style="flex:1;text-align:center" class="animate__animated animate__fadeInUp delay-1">
+            <p style="font-weight:700;margin-bottom:12px">📈 指标趋势分析</p>
+            <div class="phone-frame" style="width:300px;margin:0 auto"><img src="slide_tracking.png" alt="追踪"></div>
+        </div>
+        <div style="flex:1;text-align:center" class="animate__animated animate__fadeInUp delay-2">
+            <p style="font-weight:700;margin-bottom:12px">📄 复诊对比 + 医生简报</p>
+            <div class="phone-frame" style="width:300px;margin:0 auto"><img src="slide_revisit.png" alt="复诊"></div>
+        </div>
+    </div>
+    <div class="page-num">7 / 10</div>
+</div>
+
+<!-- 8: Journey -->
+<div class="slide flex-col">
+    <div class="sec-tag text-purple">FULL JOURNEY</div>
+    <div class="blob" style="width:350px;height:350px;top:0;right:20%;background:var(--purple)"></div>
+    <h2 class="animate__animated animate__fadeInDown" style="margin-top:20px"><span class="text-purple">⚡</span> 一键全旅程分析</h2>
+    <p class="text-gray animate__animated animate__fadeIn delay-1" style="font-size:14px;margin-top:-16px;margin-bottom:16px">一次输入，5个AI Agent同时协作</p>
+    <div class="flex gap-8 z-1" style="flex:1">
+        <div style="flex:1" class="animate__animated animate__fadeInLeft delay-2">
+            <div class="pipeline" style="margin-bottom:20px">
+                <div class="pipe-stage" style="padding:10px 4px"><div class="pipe-icon" style="width:40px;height:40px;font-size:18px;border-color:var(--purple)">📋</div><h4 style="color:var(--purple)">报告</h4></div><div class="pipe-arrow" style="color:var(--purple)">➜</div>
+                <div class="pipe-stage" style="padding:10px 4px"><div class="pipe-icon" style="width:40px;height:40px;font-size:18px;border-color:var(--purple)">💙</div><h4 style="color:var(--purple)">情绪</h4></div><div class="pipe-arrow" style="color:var(--purple)">➜</div>
+                <div class="pipe-stage" style="padding:10px 4px"><div class="pipe-icon" style="width:40px;height:40px;font-size:18px;border-color:var(--purple)">💊</div><h4 style="color:var(--purple)">用药</h4></div><div class="pipe-arrow" style="color:var(--purple)">➜</div>
+                <div class="pipe-stage" style="padding:10px 4px"><div class="pipe-icon" style="width:40px;height:40px;font-size:18px;border-color:var(--purple)">🔄</div><h4 style="color:var(--purple)">复查</h4></div><div class="pipe-arrow" style="color:var(--purple)">➜</div>
+                <div class="pipe-stage" style="padding:10px 4px"><div class="pipe-icon" style="width:40px;height:40px;font-size:18px;border-color:var(--purple)">🥗</div><h4 style="color:var(--purple)">生活</h4></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+                <div class="card" style="padding:14px;border-left:3px solid var(--purple)"><p style="font-size:12px;color:var(--gray);margin:0"><span class="text-purple" style="font-weight:700">故事线叙事：</span>"正在解读..." → "发现N项异常" → "别担心" → "专属方案"</p></div>
+                <div class="card" style="padding:14px;border-left:3px solid var(--green)"><p style="font-size:12px;color:var(--gray);margin:0"><span class="text-green" style="font-weight:700">28天康复计划：</span>自动生成从用药适应到复查的完整时间表</p></div>
+            </div>
+        </div>
+        <div class="phone-frame animate__animated animate__fadeInRight delay-3" style="width:260px"><img src="slide_journey.png" alt="全旅程"></div>
+    </div>
+    <div class="page-num">8 / 10</div>
+</div>
+
+<!-- 9: Tech -->
+<div class="slide flex-col">
+    <div class="sec-tag text-blue">ARCHITECTURE</div>
+    <div class="blob" style="width:400px;height:400px;bottom:0;left:30%;background:var(--blue)"></div>
+    <h2 class="animate__animated animate__fadeInDown" style="margin-top:20px"><span class="text-blue">⚙️</span> 技术架构</h2>
+    <div class="flex gap-8 z-1 animate__animated animate__fadeInUp delay-1" style="margin-bottom:30px">
+        <div class="stat-box"><div class="stat-num text-blue">12</div><div class="stat-label">AI Agent</div></div>
+        <div class="stat-box"><div class="stat-num text-green">650</div><div class="stat-label">医学知识库</div></div>
+        <div class="stat-box"><div class="stat-num text-purple">22</div><div class="stat-label">API 端点</div></div>
+        <div class="stat-box"><div class="stat-num text-orange">93%</div><div class="stat-label">测试通过率</div></div>
+        <div class="stat-box"><div class="stat-num text-teal">100</div><div class="stat-label">测试用例</div></div>
+    </div>
+    <div class="stack-strip z-1 animate__animated animate__fadeInUp delay-2">
+        <div class="stack-card" style="border-top-color:var(--blue)"><h4 class="text-blue">🖥️ 后端</h4><p>FastAPI · Python 3.13<br>Claude Sonnet 4.5<br>PaddleOCR · edge-tts</p></div>
+        <div class="stack-card" style="border-top-color:var(--purple)"><h4 class="text-purple">🎨 前端</h4><p>Next.js 14 · TailwindCSS<br>shadcn/ui · Recharts<br>响应式移动端设计</p></div>
+        <div class="stack-card" style="border-top-color:var(--green)"><h4 class="text-green">📚 知识库</h4><p>200种药物 · 150项指标<br>200对药物相互作用<br>100条中西药联用</p></div>
+        <div class="stack-card" style="border-top-color:var(--orange)"><h4 class="text-orange">☁️ 部署</h4><p>Zeabur Cloud<br>GitHub CI/CD<br>Zeabur AI Hub</p></div>
+    </div>
+    <div class="footer"><span>PostCare</span><span class="text-blue">12 Agent · 650 知识库 · 22 API</span></div>
+    <div class="page-num">9 / 10</div>
+</div>
+
+<!-- 10: Closing -->
+<div class="slide flex-col justify-center items-center bg-glow">
+    <div class="blob" style="width:500px;height:500px;top:20%;left:30%;background:var(--blue)"></div>
+    <div class="z-1" style="text-align:center">
+        <p class="animate__animated animate__fadeIn" style="font-size:28px;margin-bottom:12px">PostCare 不替代医生</p>
+        <p class="animate__animated animate__fadeIn delay-1" style="font-size:20px;color:var(--gray);margin-bottom:30px">它只做一件事 ——</p>
+        <h1 class="animate__animated animate__fadeInUp delay-2" style="font-size:36px;max-width:700px;line-height:1.6"><span class="gradient-text">让医生在诊室里来不及说的话，<br>在患者最需要的时候，被听见。</span></h1>
+        <div style="width:80px;height:3px;background:var(--blue);margin:35px auto" class="animate__animated animate__fadeIn delay-3"></div>
+        <p class="animate__animated animate__fadeIn delay-4" style="font-size:22px;color:var(--gray)">谢谢大家</p>
+    </div>
+    <div class="page-num">10 / 10</div>
+</div>
+
+</div>
+<script>
+const slides = document.querySelectorAll('.slide');
+const total = slides.length;
+let cur = 0;
+function resize() { const p = document.getElementById('presentation'); const s = Math.min(window.innerWidth / 1280, window.innerHeight / 720); p.style.transform = `scale(${s})`; }
+function show(i) { if (i < 0 || i >= total) return; slides[cur].classList.remove('active'); cur = i; slides[cur].classList.add('active'); document.getElementById('progress').style.width = ((cur + 1) / total * 100) + '%'; }
+document.addEventListener('keydown', e => { if (['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)) { e.preventDefault(); show(cur + 1); } if (['ArrowLeft','ArrowUp','PageUp'].includes(e.key)) { e.preventDefault(); show(cur - 1); } if (e.key === 'f' || e.key === 'F') document.documentElement.requestFullscreen?.(); });
+document.addEventListener('mousedown', e => { if (e.target.tagName === 'A') return; e.clientX > window.innerWidth / 2 ? show(cur + 1) : show(cur - 1); });
+let ty = 0; document.addEventListener('touchstart', e => { ty = e.touches[0].clientY; }); document.addEventListener('touchend', e => { const d = ty - e.changedTouches[0].clientY; if (Math.abs(d) > 50) { d > 0 ? show(cur + 1) : show(cur - 1); } });
+window.addEventListener('resize', resize); resize();
+</script>
+</body>
+</html>

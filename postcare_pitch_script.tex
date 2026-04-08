@@ -1,0 +1,244 @@
+\documentclass[UTF8, a4paper, 11pt]{ctexart}
+
+% --- 页面布局 ---
+\usepackage{geometry}
+\geometry{left=2.5cm, right=2.5cm, top=3cm, bottom=3cm}
+\linespread{1.3}
+\setlength{\parskip}{0.5em}
+
+% --- 常用宏包 ---
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{hyperref}
+
+% --- 颜色定义 ---
+\definecolor{ThemeBlue}{RGB}{37, 99, 235}
+\definecolor{Navy}{RGB}{30, 58, 95}
+
+% --- 超链接设置 ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=ThemeBlue,
+    urlcolor=ThemeBlue,
+}
+
+% --- 标题与章节样式 ---
+\titleformat{\section}
+  {\color{Navy}\Large\bfseries\sffamily}
+  {\thesection}{1em}{}
+  [\vspace{-0.5ex}\textcolor{ThemeBlue!30}{\rule{\textwidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\color{ThemeBlue}\large\bfseries\sffamily}
+  {\thesubsection}{1em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\sffamily}
+  {\thesubsubsection}{1em}{}
+
+% --- 列表样式 ---
+\setlist{nosep, itemsep=0.5ex, parsep=0.5ex, leftmargin=2em}
+
+% --- 信息框样式 ---
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+
+\tcbset{
+    commonbox/.style={
+        enhanced,
+        arc=4pt,
+        boxrule=0.5pt,
+        left=10pt, right=10pt, top=12pt, bottom=8pt,
+        fonttitle=\bfseries\sffamily,
+        attach boxed title to top left={xshift=12pt, yshift=-10pt},
+        boxed title style={arc=3pt, boxrule=0pt},
+        breakable,
+        before skip=1em,
+        after skip=1em
+    }
+}
+
+\newtcolorbox{infobox}[1][]{
+    commonbox,
+    colback=ThemeBlue!5, colframe=ThemeBlue,
+    title={#1}, coltitle=white,
+    boxed title style={colback=ThemeBlue}
+}
+
+\newtcolorbox{warnbox}[1][]{
+    commonbox,
+    colback=orange!5, colframe=orange!80!black,
+    title={#1}, coltitle=white,
+    boxed title style={colback=orange!80!black}
+}
+
+\newtcolorbox{successbox}[1][]{
+    commonbox,
+    colback=green!5, colframe=green!60!black,
+    title={#1}, coltitle=white,
+    boxed title style={colback=green!60!black}
+}
+
+% --- 页眉页脚 ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\sffamily\color{gray} PostCare · Ultra Maker Hackathon 2026}
+\fancyhead[R]{\small\sffamily\color{gray} 路演逐字稿}
+\fancyfoot[C]{\small\sffamily\color{gray} 第 \thepage\ 页}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{gray!40}\leaders\hrule height \headrulewidth\hfill}}
+
+% ============================================================
+\begin{document}
+
+\begin{center}
+{\color{Navy}\Huge\bfseries\sffamily PostCare 路演逐字稿}\\[8pt]
+{\large\color{gray} 严格5分钟 $\cdot$ 超时10秒强制终止}\\[4pt]
+{\color{ThemeBlue} 潘冠成 $\cdot$ 浙江大学大一学生，现在是浙大未来学习中心 智能医药组}
+\end{center}
+
+\vspace{1em}
+
+% --- 时间分配 ---
+\begin{infobox}[时间分配]
+\begin{tabularx}{\textwidth}{Xr}
+队伍介绍 & 20秒 \\
+项目介绍（痛点 + 方案 + 三个亮点） & 1分40秒 \\
+PPT快速展示（6页截图） & 1分钟 \\
+现场Demo（一键全旅程） & 1分钟 \\
+播放徐主任推荐视频 & 22秒 \\
+总结收尾 & 18秒 \\
+\midrule
+\textbf{合计} & \textbf{4分50秒（留10秒余量）} \\
+\end{tabularx}
+\end{infobox}
+
+% ============================================================
+\section{队伍介绍（20秒）}
+
+大家好，我是潘冠成，来自浙江大学未来学习中心智能医药组，个人参赛。
+
+我的项目叫PostCare——\textbf{患者的全旅程AI守护者}。
+
+% ============================================================
+\section{项目介绍（1分40秒）}
+
+\subsection{痛点（30秒）}
+
+中国三甲医院门诊，每个患者平均就诊时间只有\textbf{3到5分钟}。
+
+走出诊室后，大多数人面临三个问题：\textbf{报告看不懂}、\textbf{医嘱记不住}、\textbf{药该怎么吃搞不清}。
+
+这不是我自己想象出来的痛点。而是我再跟浙大附属医院肝胆胰外科的徐小波主任沟通的过程中发现的这个痛点，当时他说，
+
+\begin{warnbox}[徐主任原话]
+``患者出了诊室后，一般都会问检查检验结果的，但我们不会留电话给他们，主要是回诊来问。''
+\end{warnbox}
+
+\subsection{方案（30秒）}
+
+市面上有人做报告解读，有人做用药查询，有人做复查提醒。但\textbf{没有人把这些串成一条完整的线}。
+
+PostCare是\textbf{第一个覆盖完整就医旅程的AI守护者}——从诊前准备、报告解读、用药管家、复查提醒、生活建议，到复诊报告生成，一键走完全部5个阶段。
+
+\subsection{三个创新亮点（40秒）}
+
+\subsubsection{亮点一：治疗方案联合分析}
+
+根据徐主任的临床建议做的——不只看单次指标高不高，还结合患者正在接受的治疗方案，判断当前治疗是否有效。
+
+{\color{gray}\small 徐主任原话：``化验单很多时候是结合临床实际用途看指标的。你的app需要动态看化验指标，比如近几次的指标和最近接受的方案要结合。''}
+
+\subsubsection{亮点二：主动守护}
+
+PostCare不是等患者来找它，而是会\textbf{主动在关键时间节点提醒患者}——用药第3天提醒观察副作用，第14天提醒预约复查，复查前一天提醒空腹。\textbf{28天主动触达10次}。
+
+\subsubsection{亮点三：双视角设计}
+
+同一份数据，患者看到的是\textbf{通俗解释}，切换一下，医生看到的是\textbf{专业表格}。PostCare同时服务医患两端。
+
+% ============================================================
+\section{PPT快速展示（1分钟，每页5-10秒）}
+
+\begin{enumerate}
+    \item 【翻页：封面】——停留2秒，不说话，让评委看标题
+    \item 【翻页：痛点】``3到5分钟的门诊，患者出来什么都记不住。''
+    \item 【翻页：方案+首页】``PostCare覆盖5个阶段，从诊前到复诊一条线走完。''
+    \item 【翻页：诊前预问诊】``输入症状，AI帮你整理主诉、推荐挂科、生成问医生的问题。''
+    \item 【翻页：报告解读+情绪关怀】``报告一键解读，同时关怀患者情绪——先安抚再建议。''
+    \item 【翻页：主动守护时间线】``28天主动推送10次，不等患者来找，PostCare主动找你。''
+    \item 【翻页：健康追踪+复诊准备】``指标趋势一目了然，复诊自动生成对比报告和医生简报。''
+    \item 【翻页：一键全旅程】``一次输入，5个Agent同时跑，这个我马上现场演示。''
+    \item 【翻页：技术架构】``12个Agent，650条知识库，100个测试用例93\%通过率。''
+    \item 【翻页：收尾——留在屏幕上不翻】——配合口述收尾金句
+\end{enumerate}
+
+% ============================================================
+\section{现场Demo（1分钟）}
+
+现在我来现场演示一键全旅程分析。
+
+{\color{gray}\small 【打开PostCare $\to$ 一键全旅程分析 $\to$ 点``试试示例'' $\to$ 点``开始分析''】}
+
+PostCare正在同时调用5个AI Agent——报告解读、情绪关怀、用药分析、复查建议、生活指导，一次性走完完整旅程。
+
+{\color{gray}\small 【等结果出来，边等边说】}
+
+可以看到，故事线在引导患者：先是``发现了X项异常''，然后``别担心，让我帮您理清头绪''，最后给出专属健康方案。
+
+每个阶段的建议都是\textbf{具体可行的}——不是``注意饮食''这种废话，而是告诉你每天吃多少盐、运动多少分钟。
+
+% ============================================================
+\section{播放徐主任视频（22秒）}
+
+最后，这是浙大附属医院肝胆胰外科\textbf{徐小波主任}对PostCare的评价。
+
+{\color{gray}\small 【播放22秒视频】}
+
+% ============================================================
+\section{总结收尾（18秒）}
+
+PostCare目前已部署上线，12个AI Agent，650条医学知识库。
+
+一句话总结——
+
+\begin{successbox}[金句]
+PostCare不替代医生，它只做一件事：\textbf{让医生在诊室里来不及说的话，在患者最需要的时候，被听见。}
+\end{successbox}
+
+谢谢大家。
+
+% ============================================================
+\newpage
+\section{评委Q\&A预案（一句话快答）}
+
+\begin{infobox}[Q1：医学准确性怎么保证？]
+三层保障——650条医学知识库兜底，不让大模型自己编；100个测试用例覆盖7大类场景，93\%通过率；浙大附属医院临床专家验证方案。
+\end{infobox}
+
+\begin{infobox}[Q2：跟丁香医生/春雨医生有什么区别？]
+丁香医生是搜索引擎，你问一个问题它给一个答案。PostCare是全旅程管家，一次性帮你走完从报告解读到复查提醒的完整流程，而且会主动找你。
+\end{infobox}
+
+\begin{infobox}[Q3：商业模式是什么？]
+to B，给医院和体检中心。医生每天接诊50个患者，没时间每个人都解释清楚。PostCare帮医生把诊室里来不及说的话补上，减少医患沟通成本，降低患者回头问诊的频率。
+\end{infobox}
+
+\begin{infobox}[Q4：隐私和合规怎么做？]
+数据不存储，每次分析都是实时调用不留痕。后续商用会走HIPAA/等保三级合规。
+\end{infobox}
+
+\begin{infobox}[Q5：为什么用AI而不是人工客服？]
+人工客服做不到24小时在线、做不到同时服务100个患者、做不到主动推送提醒。AI的成本是人工的百分之一。
+\end{infobox}
+
+\begin{infobox}[Q6：这个项目后续打算怎么做？]
+短期接入更多医院的真实数据验证，中期开放API给医院HIS系统对接，长期做成中国版的PostVisit.ai。
+\end{infobox}
+
+\end{document}
